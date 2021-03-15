@@ -97,7 +97,7 @@ const PublicProfile = () => {
               <Content>
                 <Username>{`@${profile.username}`}</Username>
                 <Flex alignItems="center">
-                  <AddressLink href={`https://scan-testnet.hecochain.com/address/${account}`} color="text" external>
+                  <AddressLink href={`https://testnet.hecoinfo.com/address/${account}`} color="text" external>
                     {account}
                   </AddressLink>
                   <OpenNewIcon ml="4px" />

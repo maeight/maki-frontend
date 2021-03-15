@@ -12,11 +12,11 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Exchange',
-        href: 'https://exchange-makiswap.netlify.app',
+        href: 'https://exchange.makiswap.com',
       },
       {
         label: 'Liquidity',
-        href: 'https://exchange-makiswap.netlify.app/#/pool',
+        href: 'https://exchange.makiswap.com/#/pool',
       },
     ],
   },

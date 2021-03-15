@@ -1,4 +1,4 @@
-# Contributing to the Maki ecosystem 🥞
+# Contributing to the Maki ecosystem
 
 Thanks for taking the time to contribute !
 You can start by reading our [Contribution guidelines](https://docs.makiswap.finance/code/contributing) first.
