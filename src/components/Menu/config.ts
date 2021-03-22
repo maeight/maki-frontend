@@ -30,6 +30,28 @@ const config: MenuEntry[] = [
     icon: 'PoolIcon',
     href: '/pools',
   },
+  {
+    label: 'Info',
+    icon: 'InfoIcon',
+    items: [
+      {
+        label: 'Overview',
+        href: 'https://info.makiswap.com',
+      },
+      {
+        label: 'Tokens',
+        href: 'https://info.makiswap.com/tokens',
+      },
+      {
+        label: 'Pairs',
+        href: 'https://info.makiswap.com/pairs',
+      },
+      {
+        label: 'Accounts',
+        href: 'https://info.makiswap.com/accounts',
+      },
+    ],
+  },
 ]
 
 export default config
