@@ -103,8 +103,7 @@ const CardFooter: React.FC<Props> = ({
             <FlexFull>
               <Label>
                 <div style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
-                  <img src="/images/brand.svg" width={25} height={25} alt="" />{' '}{' '}
-                  {TranslateString(408, 'Total')}
+                  <img src="/images/brand.svg" width={25} height={25} alt="" /> {TranslateString(408, 'Total')}
                 </div>
               </Label>
             </FlexFull>

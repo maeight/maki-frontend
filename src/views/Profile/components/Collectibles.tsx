@@ -40,16 +40,10 @@ const Collectibles = () => {
         {TranslateString(999, 'Maki Collectibles')}
       </Heading>
       <Text as="p">
-        {TranslateString(
-          999,
-          'Maki Collectibles are special ERC-721 NFTs that can be used on the MakiSwap platform.',
-        )}
+        {TranslateString(999, 'Maki Collectibles are special ERC-721 NFTs that can be used on the MakiSwap platform.')}
       </Text>
       <Text as="p">
-        {TranslateString(
-          999,
-          "NFTs in this user's wallet that aren't approved Maki Collectibles won't be shown here.",
-        )}
+        {TranslateString(999, "NFTs in this user's wallet that aren't approved Maki Collectibles won't be shown here.")}
       </Text>
       {nftsInWallet.length > 0 && (
         <CollectibleList>

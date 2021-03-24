@@ -38,25 +38,19 @@ const MakiStats = () => {
           <Text color="primaryDark" style={{ lineHeight: '24px' }}>
             {cakeSupply}
           </Text>
-          <Text style={{ lineHeight: '36px' }}>
-            {TranslateString(298, 'Total MAKI Supply')}
-          </Text>
+          <Text style={{ lineHeight: '36px' }}>{TranslateString(298, 'Total MAKI Supply')}</Text>
         </Block>
         <Block>
           <Text color="primaryDark" style={{ lineHeight: '24px' }}>
             {getBalanceNumber(burnedBalance)}
           </Text>
-          <Text style={{ lineHeight: '36px' }}>
-            {TranslateString(298, 'Total MAKI Burned')}
-          </Text>
+          <Text style={{ lineHeight: '36px' }}>{TranslateString(298, 'Total MAKI Burned')}</Text>
         </Block>
         <Block>
           <Text color="primaryDark" style={{ lineHeight: '24px' }}>
             25
           </Text>
-          <Text style={{ lineHeight: '36px' }}>
-            {TranslateString(298, 'New MAKI / Block')}
-          </Text>
+          <Text style={{ lineHeight: '36px' }}>{TranslateString(298, 'New MAKI / Block')}</Text>
         </Block>
       </CardBody>
     </StyledFarmStakingCard>

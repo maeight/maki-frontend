@@ -111,8 +111,8 @@ const Farms: React.FC = () => {
           </Route>
         </FlexLayout>
       </div>
-      <div style={{ display: 'flex', justifyContent: 'center'}}>
-        <img src="/images/MakiTime.png" alt="Maki illustration" style={{ maxWidth: '100%'}} />
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <img src="/images/MakiTime.png" alt="Maki illustration" style={{ maxWidth: '100%' }} />
       </div>
     </Page>
   )

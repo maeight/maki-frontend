@@ -69,11 +69,7 @@ const Ifo = () => {
             <li>{TranslateString(608, 'Done!')}</li>
           </List>
           <Text as="div" pt="16px">
-            <Button
-              as="a"
-              variant="secondary"
-              href="https://docs.makiswap.com/core-products/ifo-initial-farm-offering"
-            >
+            <Button as="a" variant="secondary" href="https://docs.makiswap.com/core-products/ifo-initial-farm-offering">
               {TranslateString(610, 'Read more')}
             </Button>
           </Text>

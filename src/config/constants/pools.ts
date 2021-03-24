@@ -1,7 +1,6 @@
 import { getCakeAddress } from 'utils/addressHelpers'
 import { PoolConfig, QuoteToken, PoolCategory } from './types'
 
-
 const pools: PoolConfig[] = [
   {
     sousId: 0,
