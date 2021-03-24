@@ -52,10 +52,10 @@ const Ifo = () => {
             <li>{TranslateString(598, 'Get MAKI-BNB LP tokens by adding MAKI and BNB liquidity')}</li>
           </List>
           <Flex mb="16px">
-            <LinkExternal href="https://exchange.makiswap.finance/#/swap" mr="16px">
+            <LinkExternal href="https://exchange.makiswap.com/#/swap" mr="16px">
               {TranslateString(1060, 'Buy MAKI')}
             </LinkExternal>
-            <LinkExternal href="https://exchange.makiswap.finance/#/add/ETH/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82">
+            <LinkExternal href="https://exchange.makiswap.com/#/add/ETH/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82">
               {TranslateString(1062, 'Get LP tokens')}
             </LinkExternal>
           </Flex>
@@ -72,7 +72,7 @@ const Ifo = () => {
             <Button
               as="a"
               variant="secondary"
-              href="https://docs.makiswap.finance/core-products/ifo-initial-farm-offering"
+              href="https://docs.makiswap.com/core-products/ifo-initial-farm-offering"
             >
               {TranslateString(610, 'Read more')}
             </Button>

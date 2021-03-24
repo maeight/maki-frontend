@@ -13,7 +13,7 @@ const pools: PoolConfig[] = [
       128: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
     },
     poolCategory: PoolCategory.CORE,
-    projectLink: 'https://makiswap.finance/',
+    projectLink: 'https://app.makiswap.com/',
     harvest: true,
     tokenPerBlock: '10',
     sortOrder: 1,
