@@ -5,7 +5,7 @@ import useWeb3 from 'hooks/useWeb3'
 import {
   getAddress,
   getMasterChefAddress,
-  getCakeAddress,
+  getMakiAddress,
   getLotteryAddress,
   getLotteryTicketAddress,
   getBunnyFactoryAddress,
@@ -24,7 +24,7 @@ import lottery from 'config/abi/lottery.json'
 import lotteryTicket from 'config/abi/lotteryNft.json'
 import masterChef from 'config/abi/masterchef.json'
 import sousChef from 'config/abi/sousChef.json'
-import sousChefBnb from 'config/abi/sousChefBnb.json'
+import sousChefHt from 'config/abi/sousChefHt.json'
 import profile from 'config/abi/pancakeProfile.json'
 import pointCenterIfo from 'config/abi/pointCenterIfo.json'
 import bunnySpecial from 'config/abi/bunnySpecial.json'
@@ -54,8 +54,8 @@ export const useERC20 = (address: string) => {
   return useContract(erc20Abi, address)
 }
 
-export const useCake = () => {
-  return useERC20(getCakeAddress())
+export const useMaki = () => {
+  return useERC20(getMakiAddress())
 }
 
 export const useBunnyFactory = () => {
@@ -90,7 +90,7 @@ export const useMasterchef = () => {
 
 export const useSousChef = (id) => {
   const config = poolsConfig.find((pool) => pool.sousId === id)
-  const rawAbi = config.poolCategory === PoolCategory.BINANCE ? sousChefBnb : sousChef
+  const rawAbi = config.poolCategory === PoolCategory.BINANCE ? sousChefHt : sousChef
   const abi = (rawAbi as unknown) as AbiItem
   return useContract(abi, getAddress(config.contractAddress))
 }

@@ -4,8 +4,8 @@ import { Card, CardBody, Heading, Text } from 'makiswap-uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useI18n from 'hooks/useI18n'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
-import { useCake, useBunnyFactory } from 'hooks/useContract'
-import useHasCakeBalance from 'hooks/useHasCakeBalance'
+import { useMaki, useBunnyFactory } from 'hooks/useContract'
+import useHasMakiBalance from 'hooks/useHasMakiBalance'
 import nftList from 'config/constants/nfts'
 import SelectionCard from '../components/SelectionCard'
 import NextStepButton from '../components/NextStepButton'
@@ -21,10 +21,10 @@ const Mint: React.FC = () => {
   const { actions, minimumCakeRequired, allowance } = useProfileCreation()
 
   const { account } = useWallet()
-  const cakeContract = useCake()
+  const cakeContract = useMaki()
   const bunnyFactoryContract = useBunnyFactory()
   const TranslateString = useI18n()
-  const hasMinimumCakeRequired = useHasCakeBalance(minimumCakeBalanceToMint)
+  const hasMinimumCakeRequired = useHasMakiBalance(minimumCakeBalanceToMint)
   const {
     isApproving,
     isApproved,

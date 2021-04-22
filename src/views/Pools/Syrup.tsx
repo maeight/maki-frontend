@@ -31,7 +31,7 @@ const Farm: React.FC = () => {
 
   const priceToBnb = (tokenName: string, tokenPrice: BigNumber, quoteToken: QuoteToken): BigNumber => {
     const tokenPriceBN = new BigNumber(tokenPrice)
-    if (tokenName === 'BNB') {
+    if (tokenName === 'HT') {
       return new BigNumber(1)
     }
     if (tokenPrice && quoteToken === QuoteToken.BUSD) {
@@ -49,18 +49,18 @@ const Farm: React.FC = () => {
     // Will be removed after the price api
     const tempMultiplier = stakingTokenFarm?.quoteTokenSymbol === 'ETH' ? ethPriceBnb : 1
 
-    // /!\ Assume that the farm quote price is BNB
-    const stakingTokenPriceInBNB = isBnbPool
+    // /!\ Assume that the farm quote price is HT
+    const stakingTokenPriceInHT = isBnbPool
       ? new BigNumber(1)
       : new BigNumber(stakingTokenFarm?.tokenPriceVsQuote).times(tempMultiplier)
-    const rewardTokenPriceInBNB = priceToBnb(
+    const rewardTokenPriceInHT = priceToBnb(
       pool.tokenName,
       rewardTokenFarm?.tokenPriceVsQuote,
       rewardTokenFarm?.quoteTokenSymbol,
     )
 
-    const totalRewardPricePerYear = rewardTokenPriceInBNB.times(pool.tokenPerBlock).times(BLOCKS_PER_YEAR)
-    const totalStakingTokenInPool = stakingTokenPriceInBNB.times(getBalanceNumber(pool.totalStaked))
+    const totalRewardPricePerYear = rewardTokenPriceInHT.times(pool.tokenPerBlock).times(BLOCKS_PER_YEAR)
+    const totalStakingTokenInPool = stakingTokenPriceInHT.times(getBalanceNumber(pool.totalStaked))
     const apy = totalRewardPricePerYear.div(totalStakingTokenInPool).times(100)
 
     return {

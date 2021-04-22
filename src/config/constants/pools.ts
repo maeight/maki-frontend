@@ -1,4 +1,4 @@
-import { getCakeAddress } from 'utils/addressHelpers'
+import { getMakiAddress } from 'utils/addressHelpers'
 import { PoolConfig, QuoteToken, PoolCategory } from './types'
 
 const pools: PoolConfig[] = [
@@ -6,9 +6,9 @@ const pools: PoolConfig[] = [
     sousId: 0,
     tokenName: 'MAKI',
     stakingTokenName: QuoteToken.MAKI,
-    stakingTokenAddress: getCakeAddress(),
+    stakingTokenAddress: getMakiAddress(),
     contractAddress: {
-      256: '0x232f691ccaaC8bb6928948880C5BeD3207E37915',
+      256: '0x734A1e360E4C57591CE67F008F1F53304CaC7BAB',
       128: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
     },
     poolCategory: PoolCategory.CORE,

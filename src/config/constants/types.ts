@@ -13,7 +13,7 @@ export interface Ifo {
   launchTime: string
   saleAmount: string
   raiseAmount: string
-  cakeToBurn: string
+  makiToBurn: string
   projectSiteUrl: string
   currency: string
   currencyAddress: string
@@ -23,7 +23,7 @@ export interface Ifo {
 }
 
 export enum QuoteToken {
-  'BNB' = 'BNB',
+  'HT' = 'HT',
   'MAKI' = 'MAKI',
   'SYRUP' = 'SYRUP',
   'BUSD' = 'BUSD',
@@ -36,7 +36,7 @@ export enum QuoteToken {
 export enum PoolCategory {
   'COMMUNITY' = 'Community',
   'CORE' = 'Core',
-  'BINANCE' = 'Binance', // Pools using native BNB behave differently than pools using a token
+  'BINANCE' = 'Binance', // Pools using native HT behave differently than pools using a token
 }
 
 export interface Address {

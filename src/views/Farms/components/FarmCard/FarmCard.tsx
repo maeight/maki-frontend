@@ -60,7 +60,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
   const isCommunityFarm = communityFarms.includes(farm.tokenSymbol)
-  // We assume the token name is coin pair + lp e.g. MAKI-BNB LP, LINK-BNB LP,
+  // We assume the token name is coin pair + lp e.g. MAKI-HT LP, LINK-HT LP,
   // NAR-MAKI LP. The images should be cake-bnb.svg, link-bnb.svg, nar-cake.svg
   const farmImage = farm.lpSymbol.split(' ')[0].toLocaleLowerCase()
 
@@ -68,7 +68,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
     if (!farm.lpTotalInQuoteToken) {
       return null
     }
-    if (farm.quoteTokenSymbol === QuoteToken.BNB) {
+    if (farm.quoteTokenSymbol === QuoteToken.HT) {
       return bnbPrice.times(farm.lpTotalInQuoteToken)
     }
     if (farm.quoteTokenSymbol === QuoteToken.MAKI) {

@@ -48,8 +48,8 @@ const Ifo = () => {
           <Title as="h2">{TranslateString(592, 'How to take part')}</Title>
           <Heading mb="16px">{TranslateString(594, 'Before Sale')}:</Heading>
           <List>
-            <li>{TranslateString(596, 'Buy MAKI and BNB tokens')}</li>
-            <li>{TranslateString(598, 'Get MAKI-BNB LP tokens by adding MAKI and BNB liquidity')}</li>
+            <li>{TranslateString(596, 'Buy MAKI and HT tokens')}</li>
+            <li>{TranslateString(598, 'Get MAKI-HT LP tokens by adding MAKI and HT liquidity')}</li>
           </List>
           <Flex mb="16px">
             <LinkExternal href="https://exchange.makiswap.com/#/swap" mr="16px">

@@ -38,7 +38,7 @@ const EarnAPYCard = () => {
 
   const calculateAPY = useCallback(
     (farmsToDisplay) => {
-      const cakePriceVsBNB = new BigNumber(farmsLP.find((farm) => farm.pid === MAKI_POOL_PID)?.tokenPriceVsQuote || 0)
+      const cakePriceVsHT = new BigNumber(farmsLP.find((farm) => farm.pid === MAKI_POOL_PID)?.tokenPriceVsQuote || 0)
 
       farmsToDisplay.map((farm) => {
         if (!farm.tokenAmount || !farm.lpTotalInQuoteToken || !farm.lpTotalInQuoteToken) {
@@ -47,15 +47,15 @@ const EarnAPYCard = () => {
         const cakeRewardPerBlock = MAKI_PER_BLOCK.times(farm.poolWeight)
         const cakeRewardPerYear = cakeRewardPerBlock.times(BLOCKS_PER_YEAR)
 
-        let apy = cakePriceVsBNB.times(cakeRewardPerYear).div(farm.lpTotalInQuoteToken)
+        let apy = cakePriceVsHT.times(cakeRewardPerYear).div(farm.lpTotalInQuoteToken)
 
         if (farm.quoteTokenSymbol === QuoteToken.BUSD) {
-          apy = cakePriceVsBNB.times(cakeRewardPerYear).div(farm.lpTotalInQuoteToken).times(bnbPrice)
+          apy = cakePriceVsHT.times(cakeRewardPerYear).div(farm.lpTotalInQuoteToken).times(bnbPrice)
         } else if (farm.quoteTokenSymbol === QuoteToken.MAKI) {
           apy = cakeRewardPerYear.div(farm.lpTotalInQuoteToken)
         } else if (farm.dual) {
           const cakeApy =
-            farm && cakePriceVsBNB.times(cakeRewardPerBlock).times(BLOCKS_PER_YEAR).div(farm.lpTotalInQuoteToken)
+            farm && cakePriceVsHT.times(cakeRewardPerBlock).times(BLOCKS_PER_YEAR).div(farm.lpTotalInQuoteToken)
           const dualApy =
             farm.tokenPriceVsQuote &&
             new BigNumber(farm.tokenPriceVsQuote)

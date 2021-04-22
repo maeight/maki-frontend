@@ -59,16 +59,16 @@ const ComingSoon = () => {
             <Text mb={3}>
               {TranslateString(
                 504,
-                'You’ll pay for the new tokens using MAKI-BNB LP tokens, which means you need to stake equal amounts of MAKI and BNB in a liquidity pool to take part.',
+                'You’ll pay for the new tokens using MAKI-HT LP tokens, which means you need to stake equal amounts of MAKI and HT in a liquidity pool to take part.',
               )}
             </Text>
             <Text mb={3}>
               <LiquidityLink href="https://exchange.makiswap.com/#/add/ETH/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82">
-                {TranslateString(506, 'Get MAKI-BNB LP >')}
+                {TranslateString(506, 'Get MAKI-HT LP >')}
               </LiquidityLink>
             </Text>
             <Text mb={3}>
-              {TranslateString(508, 'The project gets the BNB, MakiSwap burns the MAKI.')}
+              {TranslateString(508, 'The project gets the HT, MakiSwap burns the MAKI.')}
               <br />
               <strong>{TranslateString(510, 'You get the tokens.')}</strong>
             </Text>

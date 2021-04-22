@@ -4,7 +4,7 @@ import { Heading, Card, CardBody, Text } from 'makiswap-uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
 import useI18n from 'hooks/useI18n'
-import { getCakeAddress } from 'utils/addressHelpers'
+import { getMakiAddress } from 'utils/addressHelpers'
 
 const StyledFarmStakingCard = styled(Card)`
   background-image: url('/images/stats-bg.png');
@@ -24,7 +24,7 @@ const CardImage = styled.img`
 const MakiStats = () => {
   const TranslateString = useI18n()
   const totalSupply = useTotalSupply()
-  const burnedBalance = useBurnedBalance(getCakeAddress())
+  const burnedBalance = useBurnedBalance(getMakiAddress())
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
 
   return (

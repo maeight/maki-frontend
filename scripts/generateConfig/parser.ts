@@ -16,7 +16,7 @@ export const getIfos = (data) => {
       launchTime: format(lunchTime2, 'HH:mm:ss'),
       saleAmount: ifo.sale_amount,
       raiseAmount: ifo.raise_amount,
-      cakeToBurn: ifo.burn_amount,
+      makiToBurn: ifo.burn_amount,
       projectSiteUrl: ifo.project_url,
       currency: ifo.currency,
       currencyAddress: ifo.currency_address,
@@ -37,7 +37,7 @@ export const getPools = (data) => {
       stakingTokenAddress: pool?.quote_token?.mainnet_address,
       contractAddress: {
         56: pool.contract_address,
-        97: '0xd3af5fe61dbaf8f73149bfcfa9fb653ff096029a',
+        97: '0xDD5F9504267767E9F19139c563D537F134dF8b05',
       },
       poolCategory: pool.category,
       projectLink: pool.project_url,

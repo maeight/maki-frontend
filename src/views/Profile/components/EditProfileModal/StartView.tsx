@@ -5,11 +5,11 @@ import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { Button, Flex, Text, InjectedModalProps } from 'makiswap-uikit'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import { getPancakeProfileAddress } from 'utils/addressHelpers'
-import { useCake } from 'hooks/useContract'
+import { useMaki } from 'hooks/useContract'
 import useI18n from 'hooks/useI18n'
 import { useProfile } from 'state/hooks'
 import useGetProfileCosts from 'views/Profile/hooks/useGetProfileCosts'
-import useHasCakeBalance from 'hooks/useHasCakeBalance'
+import useHasMakiBalance from 'hooks/useHasMakiBalance'
 import { UseEditProfileResponse } from './reducer'
 import ProfileAvatar from '../ProfileAvatar'
 
@@ -34,10 +34,10 @@ const StartPage: React.FC<StartPageProps> = ({ goToApprove, goToChange, goToRemo
   const [needsApproval, setNeedsApproval] = useState(null)
   const { profile } = useProfile()
   const { numberCakeToUpdate, numberCakeToReactivate } = useGetProfileCosts()
-  const hasMinimumCakeRequired = useHasCakeBalance(profile.isActive ? numberCakeToUpdate : numberCakeToReactivate)
+  const hasMinimumCakeRequired = useHasMakiBalance(profile.isActive ? numberCakeToUpdate : numberCakeToReactivate)
   const TranslateString = useI18n()
   const { account } = useWallet()
-  const cakeContract = useCake()
+  const cakeContract = useMaki()
   const cost = profile.isActive ? numberCakeToUpdate : numberCakeToReactivate
 
   /**
