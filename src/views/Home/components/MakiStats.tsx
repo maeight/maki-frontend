@@ -48,7 +48,7 @@ const MakiStats = () => {
         </Block>
         <Block>
           <Text color="primaryDark" style={{ lineHeight: '24px' }}>
-            25
+            16
           </Text>
           <Text style={{ lineHeight: '36px' }}>{TranslateString(298, 'New MAKI / Block')}</Text>
         </Block>
