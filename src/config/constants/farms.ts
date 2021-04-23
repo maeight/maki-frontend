@@ -4,9 +4,9 @@ import { FarmConfig, QuoteToken } from './types'
 const farms: FarmConfig[] = [
   {
     pid: 1,
-    lpSymbol: 'TTA',
+    lpSymbol: 'MAKI-HT',
     lpAddresses: {
-      256: '0x8F967c2514C7D2Efe185D0D22db8D4F63192AAB4', // UPDATE
+      256: '0xa0af5d360232e077decfd4650e8b95875fdd6aad',
       128: '0xA527a61703D82139F8a06Bc30097cC9CAA2df5A6',
     },
     tokenSymbol: 'MAKI',
