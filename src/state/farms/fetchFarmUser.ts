@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import erc20ABI from 'config/abi/erc20.json'
+import hrc20ABI from 'config/abi/hrc20.json'
 import masterchefABI from 'config/abi/masterchef.json'
 import multicall from 'utils/multicall'
 import farmsConfig from 'config/constants/farms'
@@ -13,7 +13,7 @@ export const fetchFarmUserAllowances = async (account: string) => {
     return { address: lpContractAddress, name: 'allowance', params: [account, masterChefAdress] }
   })
 
-  const rawLpAllowances = await multicall(erc20ABI, calls)
+  const rawLpAllowances = await multicall(hrc20ABI, calls)
   const parsedLpAllowances = rawLpAllowances.map((lpBalance) => {
     return new BigNumber(lpBalance).toJSON()
   })
@@ -30,7 +30,7 @@ export const fetchFarmUserTokenBalances = async (account: string) => {
     }
   })
 
-  const rawTokenBalances = await multicall(erc20ABI, calls)
+  const rawTokenBalances = await multicall(hrc20ABI, calls)
   const parsedTokenBalances = rawTokenBalances.map((tokenBalance) => {
     return new BigNumber(tokenBalance).toJSON()
   })

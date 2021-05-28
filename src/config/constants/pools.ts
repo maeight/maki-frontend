@@ -9,7 +9,7 @@ const pools: PoolConfig[] = [
     stakingTokenAddress: getMakiAddress(),
     contractAddress: {
       256: '0x734A1e360E4C57591CE67F008F1F53304CaC7BAB',
-      128: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
+      128: '0x73feaa1eE314F8c655E354234017bE2193C9E24E', // UPDATE WITH MASTERCHEF
     },
     poolCategory: PoolCategory.CORE,
     projectLink: 'https://app.makiswap.com/',

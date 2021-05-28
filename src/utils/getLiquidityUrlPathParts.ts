@@ -3,7 +3,7 @@
 // In the URL, using the quote token 'HT' is represented by 'ETH'
 const getLiquidityUrlPathParts = ({ quoteTokenAdresses, quoteTokenSymbol, tokenAddresses }) => {
   const chainId = process.env.REACT_APP_CHAIN_ID
-  const firstPart = quoteTokenSymbol === 'HT' ? 'ETH' : quoteTokenAdresses[chainId]
+  const firstPart = quoteTokenSymbol === 'HT' ? 'HT' : quoteTokenAdresses[chainId]
   const secondPart = tokenAddresses[chainId]
   return `${firstPart}/${secondPart}`
 }

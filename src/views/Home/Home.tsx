@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Heading, Text, BaseLayout } from 'makiswap-uikit'
-import useI18n from 'hooks/useI18n'
 import Page from 'components/layout/Page'
 import FarmStakingCard from 'views/Home/components/FarmStakingCard'
 import MakiStats from 'views/Home/components/MakiStats'
@@ -74,15 +73,13 @@ const CTACards = styled(BaseLayout)`
 `
 
 const Home: React.FC = () => {
-  const TranslateString = useI18n()
-
   return (
     <Page>
       <Hero>
         <Heading as="h1" size="xl" mb="24px" color="secondary">
-          {TranslateString(576, 'MakiSwap')}
+          MakiSwap
         </Heading>
-        <Text>{TranslateString(578, 'The #1 AMM and yield farm on Huobi ECO Chain.')}</Text>
+        <Text>The #1 AMM and yield farm on Huobi ECO Chain.</Text>
       </Hero>
       <div>
         <Cards>

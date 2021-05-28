@@ -1,6 +1,6 @@
 import { SettingsObject, SettingsType } from './types'
 
-const BASE_URL = 'https://maki-config-api-chefkai.makiswap.vercel.app'
+const BASE_URL = 'https://app.makiswap.com'
 const settings: SettingsObject[] = [
   {
     name: 'ifos',

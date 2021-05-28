@@ -9,7 +9,7 @@ const config: MenuEntry[] = [
   {
     label: 'Trade',
     icon: 'TradeIcon',
-    href: 'https://swap.maki-swap.finance',
+    href: 'https://swap.makiswap.com',
     //   items: [
     //     {
     //       label: 'Exchange',
@@ -37,19 +37,19 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Overview',
-        href: 'https://info.maki-swap.finance',
+        href: 'https://info.makiswap.com',
       },
       {
         label: 'Tokens',
-        href: 'https://info.maki-swap.finance/tokens',
+        href: 'https://info.makiswap.com/tokens',
       },
       {
         label: 'Pairs',
-        href: 'https://info.maki-swap.finance/pairs',
+        href: 'https://info.makiswap.com/pairs',
       },
       {
         label: 'Accounts',
-        href: 'https://info.maki-swap.finance/accounts',
+        href: 'https://info.makiswap.com/accounts',
       },
     ],
   },
