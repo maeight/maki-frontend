@@ -1,10 +1,10 @@
 import poolsConfig from 'config/constants/pools'
 import sousChefABI from 'config/abi/sousChef.json'
 import cakeABI from 'config/abi/cake.json'
-import whtABI from 'config/abi/weth.json'
+import whtABI from 'config/abi/wht.json'
 import { QuoteToken } from 'config/constants/types'
 import multicall from 'utils/multicall'
-import { getAddress, getWbnbAddress } from 'utils/addressHelpers'
+import { getAddress, getWhtAddress } from 'utils/addressHelpers'
 import BigNumber from 'bignumber.js'
 
 export const fetchPoolsBlockLimits = async () => {
@@ -50,7 +50,7 @@ export const fetchPoolsTotalStatking = async () => {
 
   const callsBnbPools = bnbPool.map((poolConfig) => {
     return {
-      address: getWbnbAddress(),
+      address: getWhtAddress(),
       name: 'balanceOf',
       params: [getAddress(poolConfig.contractAddress)],
     }

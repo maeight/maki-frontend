@@ -4,7 +4,7 @@ import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { provider } from 'web3-core'
 import cakeABI from 'config/abi/cake.json'
 import { getContract } from 'utils/web3'
-import { getTokenBalance } from 'utils/erc20'
+import { getTokenBalance } from 'utils/hrc20'
 import { getMakiAddress } from 'utils/addressHelpers'
 import useRefresh from './useRefresh'
 

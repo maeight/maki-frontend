@@ -5,7 +5,7 @@ import { Button, IconButton, useModal, AddIcon, Image } from 'makiswap-uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import UnlockButton from 'components/UnlockButton'
 import Label from 'components/Label'
-import { useERC20 } from 'hooks/useContract'
+import { useHRC20 } from 'hooks/useContract'
 import { useSousApprove } from 'hooks/useApprove'
 import useI18n from 'hooks/useI18n'
 import { useSousStake } from 'hooks/useStake'
@@ -55,7 +55,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   // Pools using native HT behave differently than pools using a token
   const isBnbPool = poolCategory === PoolCategory.BINANCE
   const TranslateString = useI18n()
-  const stakingTokenContract = useERC20(stakingTokenAddress)
+  const stakingTokenContract = useHRC20(stakingTokenAddress)
   const { account } = useWallet()
   const block = useBlock()
   const { onApprove } = useSousApprove(stakingTokenContract, sousId)

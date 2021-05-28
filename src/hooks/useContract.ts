@@ -17,7 +17,7 @@ import {
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
 import ifo from 'config/abi/ifo.json'
-import erc20 from 'config/abi/erc20.json'
+import hrc20 from 'config/abi/hrc20.json'
 import bunnyFactory from 'config/abi/bunnyFactory.json'
 import pancakeRabbits from 'config/abi/pancakeRabbits.json'
 import lottery from 'config/abi/lottery.json'
@@ -49,13 +49,13 @@ export const useIfoContract = (address: string) => {
   return useContract(ifoAbi, address)
 }
 
-export const useERC20 = (address: string) => {
-  const erc20Abi = (erc20 as unknown) as AbiItem
-  return useContract(erc20Abi, address)
+export const useHRC20 = (address: string) => {
+  const hrc20Abi = (hrc20 as unknown) as AbiItem
+  return useContract(hrc20Abi, address)
 }
 
 export const useMaki = () => {
-  return useERC20(getMakiAddress())
+  return useHRC20(getMakiAddress())
 }
 
 export const useBunnyFactory = () => {

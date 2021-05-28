@@ -14,10 +14,10 @@ export const getMasterChefAddress = () => {
   return getAddress(addresses.masterChef)
 }
 export const getMulticallAddress = () => {
-  return getAddress(addresses.mulltiCall)
+  return getAddress(addresses.multiCall)
 }
-export const getWbnbAddress = () => {
-  return getAddress(addresses.wbnb)
+export const getWhtAddress = () => {
+  return getAddress(addresses.wht)
 }
 export const getLotteryAddress = () => {
   return getAddress(addresses.lottery)

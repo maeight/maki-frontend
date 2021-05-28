@@ -2,7 +2,7 @@ import { AbiItem } from 'web3-utils'
 import poolsConfig from 'config/constants/pools'
 import masterChefABI from 'config/abi/masterchef.json'
 import sousChefABI from 'config/abi/sousChef.json'
-import erc20ABI from 'config/abi/erc20.json'
+import hrc20ABI from 'config/abi/hrc20.json'
 import { QuoteToken } from 'config/constants/types'
 import multicall from 'utils/multicall'
 import { getAddress, getMasterChefAddress } from 'utils/addressHelpers'
@@ -24,7 +24,7 @@ export const fetchPoolsAllowance = async (account) => {
     params: [account, getAddress(p.contractAddress)],
   }))
 
-  const allowances = await multicall(erc20ABI, calls)
+  const allowances = await multicall(hrc20ABI, calls)
   return nonBnbPools.reduce(
     (acc, pool, index) => ({ ...acc, [pool.sousId]: new BigNumber(allowances[index]).toJSON() }),
     {},
@@ -38,7 +38,7 @@ export const fetchUserBalances = async (account) => {
     name: 'balanceOf',
     params: [account],
   }))
-  const tokenBalancesRaw = await multicall(erc20ABI, calls)
+  const tokenBalancesRaw = await multicall(hrc20ABI, calls)
   const tokenBalances = nonBnbPools.reduce(
     (acc, pool, index) => ({ ...acc, [pool.sousId]: new BigNumber(tokenBalancesRaw[index]).toJSON() }),
     {},

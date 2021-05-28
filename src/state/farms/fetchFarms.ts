@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import erc20 from 'config/abi/erc20.json'
+import hrc20 from 'config/abi/hrc20.json'
 import masterchefABI from 'config/abi/masterchef.json'
 import multicall from 'utils/multicall'
 import { getAddress, getMasterChefAddress } from 'utils/addressHelpers'
@@ -52,7 +52,7 @@ const fetchFarms = async () => {
         lpTotalSupply,
         tokenDecimals,
         quoteTokenDecimals,
-      ] = await multicall(erc20, calls)
+      ] = await multicall(hrc20, calls)
 
       // Ratio in % a LP tokens that are in staking, vs the total number in circulation
       const lpTokenRatio = new BigNumber(lpTokenBalanceMC).div(new BigNumber(lpTotalSupply))
