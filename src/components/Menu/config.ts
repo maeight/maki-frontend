@@ -9,7 +9,7 @@ const config: MenuEntry[] = [
   {
     label: 'Trade',
     icon: 'TradeIcon',
-    href: 'https://swap.makiswap.com',
+    href: 'https://exchange.makiswap.com',
     //   items: [
     //     {
     //       label: 'Exchange',
