@@ -7,7 +7,7 @@ import { useAllHarvest } from 'hooks/useHarvest'
 import useFarmsWithBalance from 'hooks/useFarmsWithBalance'
 import UnlockButton from 'components/UnlockButton'
 import CakeHarvestBalance from './CakeHarvestBalance'
-import CakeWalletBalance from './CakeWalletBalance'
+import MakiWalletBalance from './MakiWalletBalance'
 
 const StyledFarmStakingCard = styled(Card)`
   background-image: url('/images/farm-bg.svg');
@@ -66,7 +66,7 @@ const FarmedStakingCard = () => {
         </Block>
         <Block>
           <Label>{TranslateString(546, 'MAKI in Wallet')}:</Label>
-          <CakeWalletBalance />
+          <MakiWalletBalance />
         </Block>
         <Actions>
           {account ? (

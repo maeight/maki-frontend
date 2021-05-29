@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { Text, Flex, Link, LinkExternal } from 'makiswap-uikit'
 
 export interface ExpandableSectionProps {
-  bscScanAddress?: string
+  hrcScanAddress?: string
   removed?: boolean
   totalValueFormated?: string
   lpLabel?: string
@@ -31,7 +31,7 @@ const StyledLinkExternal = styled(LinkExternal)`
 `
 
 const DetailsSection: React.FC<ExpandableSectionProps> = ({
-  bscScanAddress,
+  hrcScanAddress,
   removed,
   totalValueFormated,
   lpLabel,
@@ -47,13 +47,13 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
       </Flex>
       {!removed && (
         <Flex justifyContent="space-between">
-          <Text>{TranslateString(23, 'Total Liquidity')}:</Text>
+          <Text> Total Liquidity:</Text>
           <Text>{totalValueFormated}</Text>
         </Flex>
       )}
       <Flex justifyContent="flex-start">
-        <Link external href={bscScanAddress} bold={false}>
-          {TranslateString(356, 'View on HecoScan')}
+        <Link external href={hrcScanAddress} bold={false}>
+          View on HecoScan
         </Link>
       </Flex>
     </Wrapper>

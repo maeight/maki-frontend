@@ -47,6 +47,21 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.HUSD,
     quoteTokenAdresses: contracts.husd,
   },
+  // {
+  //   pid: 4,
+  //   lpSymbol: 'HUSD-HT',
+  //   lpAddresses: {
+  //     256: '',
+  //     128: '0x88b076F1C2EDcf558711a21639C15D01706938e8', // 
+  //   },
+  //   tokenSymbol: 'MAKI',
+  //   tokenAddresses: {
+  //     256: '0x6858a26bBBc8e185274969f6baf99674929Cf766', // 
+  //     128: '0x5fad6fbba4bba686ba9b8052cf0bd51699f38b93', //
+  //   },
+  //   quoteTokenSymbol: QuoteToken.HUSD,
+  //   quoteTokenAdresses: contracts.husd,
+  // },
 ]
 
 export default farms

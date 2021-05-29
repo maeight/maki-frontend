@@ -7,7 +7,7 @@ import useAllEarnings from 'hooks/useAllEarnings'
 import { usePriceMakiHusd } from 'state/hooks'
 import styled from 'styled-components'
 import CardValue from './CardValue'
-import CardBusdValue from './CardBusdValue'
+import CardHusdValue from './CardHusdValue'
 
 const Block = styled.div`
   margin-bottom: 24px;
@@ -21,7 +21,7 @@ const CakeHarvestBalance = () => {
   const earningsSum = allEarnings.reduce((accum, earning) => {
     return accum + new BigNumber(earning).div(new BigNumber(10).pow(18)).toNumber()
   }, 0)
-  const earningsBusd = new BigNumber(earningsSum).multipliedBy(usePriceMakiHusd()).toNumber()
+  const earningsHusd = new BigNumber(earningsSum).multipliedBy(usePriceMakiHusd()).toNumber()
 
   if (!account) {
     return (
@@ -34,7 +34,7 @@ const CakeHarvestBalance = () => {
   return (
     <Block>
       <CardValue value={earningsSum} lineHeight="1.5" />
-      <CardBusdValue value={earningsBusd} />
+      <CardHusdValue value={earningsHusd} />
     </Block>
   )
 }
