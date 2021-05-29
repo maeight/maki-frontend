@@ -2,8 +2,8 @@
   {
     "inputs": [
       {
-        "internalType": "contract CakeToken",
-        "name": "_cake",
+        "internalType": "contract MakiToken",
+        "name": "_maki",
         "type": "address"
       }
     ],
@@ -241,19 +241,6 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "cake",
-    "outputs": [
-      {
-        "internalType": "contract CakeToken",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "address",
@@ -470,6 +457,19 @@
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "maki",
+    "outputs": [
+      {
+        "internalType": "contract MakiToken",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "address",
@@ -590,7 +590,7 @@
         "type": "uint256"
       }
     ],
-    "name": "safeCakeTransfer",
+    "name": "safeMakiTransfer",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

@@ -114,7 +114,7 @@
 				"type": "address"
 			}
 		],
-		"name": "getEthBalance",
+		"name": "getHtBalance",
 		"outputs": [
 			{
 				"internalType": "uint256",
