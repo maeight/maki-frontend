@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 import useI18n from 'hooks/useI18n'
 import BigNumber from 'bignumber.js'
 import { QuoteToken } from 'config/constants/types'
-import { useFarms, usePriceBnbBusd } from 'state/hooks'
+import { useFarms, usePriceHtHusd } from 'state/hooks'
 import { BLOCKS_PER_YEAR, MAKI_PER_BLOCK, MAKI_POOL_PID } from 'config'
 
 const StyledFarmStakingCard = styled(Card)`
@@ -24,7 +24,7 @@ const CardMidContent = styled(Heading).attrs({ size: 'xl' })`
 const EarnAPYCard = () => {
   const TranslateString = useI18n()
   const farmsLP = useFarms()
-  const bnbPrice = usePriceBnbBusd()
+  const bnbPrice = usePriceHtHusd()
 
   const maxAPY = useRef(Number.MIN_VALUE)
 
@@ -50,7 +50,7 @@ const EarnAPYCard = () => {
         let apy = makiPriceVsHT.times(makiRewardPerYear).div(farm.lpTotalInQuoteToken)
 
         // FIX ** 
-        if (farm.quoteTokenSymbol === QuoteToken.BUSD) {
+        if (farm.quoteTokenSymbol === QuoteToken.HUSD) {
           apy = makiPriceVsHT.times(makiRewardPerYear).div(farm.lpTotalInQuoteToken).times(bnbPrice)
         } else if (farm.quoteTokenSymbol === QuoteToken.MAKI) {
           apy = makiRewardPerYear.div(farm.lpTotalInQuoteToken)

@@ -86,17 +86,17 @@ export const usePriceMakiHusd = (): BigNumber => {
   return farm.tokenPriceVsQuote ? new BigNumber(1).div(farm.tokenPriceVsQuote) : ZERO
 }
 
-export const usePriceBnbBusd = (): BigNumber => {
+export const usePriceHtHusd = (): BigNumber => {
   return new BigNumber(100) // FIX ** DISABLES CODE
-  const pid = 3 // BUSD-HT LP
+  const pid = 3 // HUSD-HT LP
   const farm = useFarmFromPid(pid)
   return farm.tokenPriceVsQuote ? new BigNumber(1).div(farm.tokenPriceVsQuote) : ZERO
 }
 
-export const usePriceCakeBusd = (): BigNumber => {
+export const usePriceMakiHt = (): BigNumber => {
   return new BigNumber(10) // FIX ** DISABLES CODE
   const pid = 1 // MAKI-HT LP
-  const bnbPriceUSD = usePriceBnbBusd()
+  const bnbPriceUSD = usePriceHtHusd()
   const farm = useFarmFromPid(pid)
   return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
 }
@@ -104,13 +104,13 @@ export const usePriceCakeBusd = (): BigNumber => {
 export const usePriceEthBusd = (): BigNumber => {
   return new BigNumber(1500) // FIX ** DISABLES CODE
   const pid = 14 // ETH-HT LP
-  const bnbPriceUSD = usePriceBnbBusd()
+  const bnbPriceUSD = usePriceHtHusd()
   const farm = useFarmFromPid(pid)
   return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
 }
 
 export const usePriceEthBnb = (): BigNumber => {
-  const priceBnbBusd = usePriceBnbBusd()
+  const priceBnbBusd = usePriceHtHusd()
   const priceEthBusd = usePriceEthBusd()
   return priceEthBusd.div(priceBnbBusd)
 }

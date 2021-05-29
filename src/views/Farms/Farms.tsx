@@ -5,10 +5,10 @@ import BigNumber from 'bignumber.js'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { provider } from 'web3-core'
 import { Heading } from 'makiswap-uikit'
-import { BLOCKS_PER_YEAR, MAKI_PER_BLOCK, MAKI_POOL_PID, } from 'config'
+import { BLOCKS_PER_YEAR, MAKI_PER_BLOCK, MAKI_POOL_PID } from 'config'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
-import { useFarms, usePriceMakiHusd, usePriceBnbBusd, usePriceCakeBusd, usePriceEthBusd } from 'state/hooks'
+import { useFarms, usePriceMakiHusd, usePriceHtHusd, usePriceEthBusd } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
 import { fetchFarmUserDataAsync } from 'state/actions'
 import { QuoteToken } from 'config/constants/types'
@@ -21,8 +21,7 @@ const Farms: React.FC = () => {
   const farmsLP = useFarms()
   const makiPrice = usePriceMakiHusd()
 
-  const cakePrice = usePriceCakeBusd() // FIX ** ? REMOVE
-  const bnbPrice = usePriceBnbBusd() // FIX ** ? REMOVE
+  const bnbPrice = usePriceHtHusd() // FIX ** ? REMOVE
   const ethPriceUsd = usePriceEthBusd() // FIX ** ? REMOVE
 
   const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
@@ -47,7 +46,7 @@ const Farms: React.FC = () => {
   // to retrieve assets prices against USD
   const farmsList = useCallback(
     (farmsToDisplay, removed: boolean) => {
-      const makiPriceVsHt = new BigNumber(farmsLP.find((farm) => farm.pid === MAKI_POOL_PID)?.tokenPriceVsQuote || 0)
+      const makiPriceVsHT = new BigNumber(farmsLP.find((farm) => farm.pid === MAKI_POOL_PID)?.tokenPriceVsQuote || 0)
       const farmsToDisplayWithAPY: FarmWithStakedValue[] = farmsToDisplay.map((farm) => {
         if (!farm.tokenAmount || !farm.lpTotalInQuoteToken || !farm.lpTotalInQuoteToken) {
           return farm
@@ -55,18 +54,18 @@ const Farms: React.FC = () => {
         const makiRewardPerBlock = MAKI_PER_BLOCK.times(farm.poolWeight)
         const makiRewardPerYear = makiRewardPerBlock.times(BLOCKS_PER_YEAR)
 
-        // cakePriceInQuote * makiRewardPerYear / lpTotalInQuoteToken
-        let apy = makiPriceVsHt.times(makiRewardPerYear).div(farm.lpTotalInQuoteToken)
+        // ovenPriceInQuote * makiRewardPerYear / lpTotalInQuoteToken
+        let apy = makiPriceVsHT.times(makiRewardPerYear).div(farm.lpTotalInQuoteToken)
 
-        if (farm.quoteTokenSymbol === QuoteToken.BUSD || farm.quoteTokenSymbol === QuoteToken.UST) {
-          apy = makiPriceVsHt.times(makiRewardPerYear).div(farm.lpTotalInQuoteToken)
-        } else if (farm.quoteTokenSymbol === QuoteToken.ETH) {
+        if (farm.quoteTokenSymbol === QuoteToken.HUSD || farm.quoteTokenSymbol === QuoteToken.UST) {
+          apy = makiPriceVsHT.times(makiRewardPerYear).div(farm.lpTotalInQuoteToken)
+        } else if (farm.quoteTokenSymbol === QuoteToken.HT) {
           apy = makiPrice.div(ethPriceUsd).times(makiRewardPerYear).div(farm.lpTotalInQuoteToken)
         } else if (farm.quoteTokenSymbol === QuoteToken.MAKI) {
           apy = makiRewardPerYear.div(farm.lpTotalInQuoteToken)
         } else if (farm.dual) {
           const makiApy =
-            farm && makiPriceVsHt.times(makiRewardPerBlock).times(BLOCKS_PER_YEAR).div(farm.lpTotalInQuoteToken)
+            farm && makiPriceVsHT.times(makiRewardPerBlock).times(BLOCKS_PER_YEAR).div(farm.lpTotalInQuoteToken)
           const dualApy =
             farm.tokenPriceVsQuote &&
             new BigNumber(farm.tokenPriceVsQuote)
