@@ -11,7 +11,7 @@ export const stake = async (masterChefContract, pid, amount, account) => {
   if (pid === 0) {
     return masterChefContract.methods
       .enterStaking(new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
-      .send({ from: account, gas: 200000 })
+      .send({ from: account, gas: 500000 })
       .on('transactionHash', (tx) => {
         return tx.transactionHash
       })
