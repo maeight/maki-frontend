@@ -36,16 +36,16 @@ const farms: FarmConfig[] = [
     pid: 3,
     lpSymbol: 'MAKI-HUSD',
     lpAddresses: {
-      256: '', // Is correct?
+      256: '',
       128: '0x88b076F1C2EDcf558711a21639C15D01706938e8', // UPDATED
     },
     tokenSymbol: 'MAKI',
     tokenAddresses: {
       256: '0x6858a26bBBc8e185274969f6baf99674929Cf766', // UPDATED
-      128: '0x6858a26bBBc8e185274969f6baf99674929Cf766', // UPDATED - ABI UPDATED
+      128: '0x5fad6fbba4bba686ba9b8052cf0bd51699f38b93', // UPDATED - ABI UPDATED
     },
-    quoteTokenSymbol: QuoteToken.HT,
-    quoteTokenAdresses: contracts.wht,
+    quoteTokenSymbol: QuoteToken.HUSD,
+    quoteTokenAdresses: contracts.husd,
   },
 ]
 
