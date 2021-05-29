@@ -73,6 +73,10 @@ const config: MenuEntry[] = [
         label: 'Chainsulting',
         href: 'https://github.com/chainsulting/Smart-Contract-Security-Audits/blob/master/MakiSwap/02_Smart%20Contract%20Audit_MakiSwap.pdf', 
       },
+      {
+        label: 'Certik',
+        href: 'https://www.certik.org/projects/makiswap', 
+      },
     ],
   },
 
