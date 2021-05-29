@@ -1,7 +1,7 @@
 export default {
   maki: {
     256: '0x6858a26bBBc8e185274969f6baf99674929Cf766',
-    128: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82', // UPDATE
+    128: '0x5FaD6fBBA4BbA686bA9B8052Cf0bd51699f38B93', // UPDATED
   },
   syrup: {
     256: '0xEd2Fb478f7fCef33E1E1d980a0135789B295a7F5',
@@ -9,11 +9,11 @@ export default {
   },
   masterChef: {
     256: '0xd1666190bE4fC9842b12397047B9B8Ad3A5D48c4',
-    128: '0x73feaa1eE314F8c655E354234017bE2193C9E24E', // UPDATE
+    128: '0x4cb4c9C8cC67B171Ce86eB947cf558AFDBcAB17E', // UPDATED
   },
   sousChef: {
     256: '0xB2ce55661A3a4c98D1e01EBd5531046da7029CaD',
-    128: '0x6ab8463a4185b80905e05a9ff80a2d6b714b9e95', // UPDATE
+    128: '0xDC421d23AafC788997cd4664E1516B93c2783e78', // UPDATED
   },
   wht: {
     256: '0x5b2da6f42ca09c77d577a12bead0446148830687',
@@ -29,7 +29,7 @@ export default {
   },
   multiCall: {
     128: '0x1ee38d535d541c55c9dae27b12edf090c608e6fb',
-    256: '0x560663f010Db671B5074b804F376339B21f48296', // UPDATE
+    256: '0xC678588909d18879E7ce9a5c11e89264900ec13D', // UPDATED
   },
   busd: {
     128: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
