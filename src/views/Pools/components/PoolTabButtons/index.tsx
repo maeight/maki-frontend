@@ -4,14 +4,14 @@ import { useRouteMatch, Link } from 'react-router-dom'
 import { ButtonMenu, ButtonMenuItem, Toggle, Text } from 'makiswap-uikit'
 import useI18n from 'hooks/useI18n'
 
-const PoolTabButtons = ({ stakedOnly, setStakedOnly }) => {
+const PoolTabButtons = ({ stackedOnly, setStackedOnly }) => {
   const { url, isExact } = useRouteMatch()
   const TranslateString = useI18n()
 
   return (
     <Wrapper>
       <ToggleWrapper>
-        <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
+        <Toggle checked={stackedOnly} onChange={() => setStackedOnly(!stackedOnly)} />
         <Text> {TranslateString(999, 'Staked only')}</Text>
       </ToggleWrapper>
       <ButtonMenu activeIndex={isExact ? 0 : 1} size="sm" variant="subtle">
