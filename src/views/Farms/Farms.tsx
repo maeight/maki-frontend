@@ -32,11 +32,11 @@ const Farms: React.FC = () => {
     }
   }, [account, dispatch, fastRefresh])
 
-  const [stakedOnly, setStakedOnly] = useState(false)
+  const [stackedOnly, setStackedOnly] = useState(false)
 
   const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X')
   const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X')
-  const stakedOnlyFarms = activeFarms.filter(
+  const stackedOnlyFarms = activeFarms.filter(
     (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
   )
   // /!\ This function will be removed soon
@@ -97,12 +97,12 @@ const Farms: React.FC = () => {
       <Heading as="h1" size="lg" color="secondary" mb="50px" style={{ textAlign: 'center' }}>
         Stake LP tokens to earn MAKI
       </Heading>
-      <FarmTabButtons stackedOnly={stakedOnly} setStackedOnly={setStakedOnly} />
+      <FarmTabButtons stackedOnly={stackedOnly} setStackedOnly={setStackedOnly} />
       <div>
         <Divider />
         <FlexLayout>
           <Route exact path={`${path}`}>
-            {stakedOnly ? farmsList(stakedOnlyFarms, false) : farmsList(activeFarms, false)}
+            {stackedOnly ? farmsList(stackedOnlyFarms, false) : farmsList(activeFarms, false)}
           </Route>
           <Route exact path={`${path}/history`}>
             {farmsList(inactiveFarms, true)}
