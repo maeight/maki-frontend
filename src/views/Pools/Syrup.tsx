@@ -10,7 +10,7 @@ import partition from 'lodash/partition'
 import useI18n from 'hooks/useI18n'
 import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useFarms, usePriceHtHusd, usePools, usePriceEthBnb } from 'state/hooks'
+import { useFarms, usePriceHtHusd, usePools, usePriceEthHt } from 'state/hooks'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
@@ -25,7 +25,7 @@ const Farm: React.FC = () => {
   const farms = useFarms()
   const pools = usePools(account)
   const htPriceUSD = usePriceHtHusd()
-  const ethPriceBnb = usePriceEthBnb()
+  const ethPriceBnb = usePriceEthHt()
   const block = useBlock()
   const [stackedOnly, setStackedOnly] = useState(false)
 

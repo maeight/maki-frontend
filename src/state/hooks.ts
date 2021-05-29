@@ -82,37 +82,37 @@ export const usePoolFromPid = (sousId): Pool => {
 
 // Calculates Maki price via Maki-Husd pool.
 export const usePriceMakiHusd = (): BigNumber => {
-  const farm = useFarmFromPid(2) // MAKI-HUSD
+  const farm = useFarmFromPid(3) // MAKI-HUSD
   return farm.tokenPriceVsQuote ? new BigNumber(1).div(farm.tokenPriceVsQuote) : ZERO
 }
 
 export const usePriceHtHusd = (): BigNumber => {
   return new BigNumber(100) // FIX ** DISABLES CODE
-  const pid = 3 // HUSD-HT LP
-  const farm = useFarmFromPid(pid)
-  return farm.tokenPriceVsQuote ? new BigNumber(1).div(farm.tokenPriceVsQuote) : ZERO
+  // const pid = 4 // HUSD-HT LP
+  // const farm = useFarmFromPid(pid)
+  // return farm.tokenPriceVsQuote ? new BigNumber(1).div(farm.tokenPriceVsQuote) : ZERO
 }
 
 export const usePriceMakiHt = (): BigNumber => {
-  return new BigNumber(10) // FIX ** DISABLES CODE
+  // return new BigNumber(10) // FIX ** DISABLES CODE
   const pid = 1 // MAKI-HT LP
-  const bnbPriceUSD = usePriceHtHusd()
+  const htPriceUSD = usePriceHtHusd()
   const farm = useFarmFromPid(pid)
-  return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
+  return farm.tokenPriceVsQuote ? htPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
 }
 
-export const usePriceEthBusd = (): BigNumber => {
+export const usePriceEthHusd = (): BigNumber => {
   return new BigNumber(1500) // FIX ** DISABLES CODE
   const pid = 14 // ETH-HT LP
-  const bnbPriceUSD = usePriceHtHusd()
+  const htPriceUSD = usePriceHtHusd()
   const farm = useFarmFromPid(pid)
-  return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
+  return farm.tokenPriceVsQuote ? htPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
 }
 
-export const usePriceEthBnb = (): BigNumber => {
-  const priceBnbBusd = usePriceHtHusd()
-  const priceEthBusd = usePriceEthBusd()
-  return priceEthBusd.div(priceBnbBusd)
+export const usePriceEthHt = (): BigNumber => {
+  const priceHtHusd = usePriceHtHusd()
+  const priceEthHusd = usePriceEthHusd()
+  return priceEthHusd.div(priceHtHusd)
 }
 
 // Toasts

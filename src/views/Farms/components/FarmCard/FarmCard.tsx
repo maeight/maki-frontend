@@ -46,14 +46,14 @@ const ExpandingWrapper = styled.div<{ expanded: boolean }>`
 interface FarmCardProps {
   farm: FarmWithStakedValue
   removed: boolean
-  cakePrice?: BigNumber
-  bnbPrice?: BigNumber
+  makiPrice?: BigNumber
+  htPrice?: BigNumber
   ethPrice?: BigNumber
   ethereum?: provider
   account?: string
 }
 
-const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice, ethPrice, ethereum, account }) => {
+const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, makiPrice, htPrice, ethPrice, ethereum, account }) => {
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
   const isCommunityFarm = communityFarms.includes(farm.tokenSymbol)
@@ -66,22 +66,22 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
       return null
     }
     if (farm.quoteTokenSymbol === QuoteToken.HT) {
-      return bnbPrice.times(farm.lpTotalInQuoteToken)
+      return htPrice.times(farm.lpTotalInQuoteToken)
     }
     if (farm.quoteTokenSymbol === QuoteToken.MAKI) {
-      return cakePrice.times(farm.lpTotalInQuoteToken)
+      return makiPrice.times(farm.lpTotalInQuoteToken)
     }
     if (farm.quoteTokenSymbol === QuoteToken.ETH) {
       return ethPrice.times(farm.lpTotalInQuoteToken)
     }
     return farm.lpTotalInQuoteToken
-  }, [bnbPrice, cakePrice, ethPrice, farm.lpTotalInQuoteToken, farm.quoteTokenSymbol])
+  }, [htPrice, makiPrice, ethPrice, farm.lpTotalInQuoteToken, farm.quoteTokenSymbol])
 
   const totalValueFormated = totalValue
     ? `$${Number(totalValue).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
 
-  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('PANMAKI', '')
+  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('MAKI-', '')
   const earnLabel = farm.dual ? farm.dual.earnLabel : 'MAKI'
   const farmAPY = farm.apy && farm.apy.times(new BigNumber(100)).toNumber().toLocaleString('en-US').slice(0, -1)
 
@@ -104,7 +104,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
           <Text bold style={{ display: 'flex', alignItems: 'center' }}>
             {farm.apy ? (
               <>
-                <ApyButton lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} cakePrice={cakePrice} apy={farm.apy} />
+                <ApyButton lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} makiPrice={makiPrice} apy={farm.apy} />
                 {farmAPY}%
               </>
             ) : (
@@ -126,7 +126,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
       <ExpandingWrapper expanded={showExpandableSection}>
         <DetailsSection
           removed={removed}
-          bscScanAddress={`https://testnet.hecoinfo.com/address/${farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}`}
+          hrcScanAddress={`https://hecoinfo.com/address/${farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}`}
           totalValueFormated={totalValueFormated}
           lpLabel={lpLabel}
           addLiquidityUrl={addLiquidityUrl}

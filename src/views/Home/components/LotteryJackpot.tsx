@@ -5,7 +5,7 @@ import { useTotalRewards } from 'hooks/useTickets'
 import useI18n from 'hooks/useI18n'
 import { usePriceMakiHusd } from 'state/hooks'
 import { BigNumber } from 'bignumber.js'
-import CardBusdValue from './CardBusdValue'
+import CardHusdValue from './CardHusdValue'
 
 const LotteryJackpot = () => {
   const TranslateString = useI18n()
@@ -21,7 +21,7 @@ const LotteryJackpot = () => {
       <Text bold fontSize="24px" style={{ lineHeight: '1.5' }}>
         {lotteryPrizeAmoutCake} {TranslateString(999, 'MAKI')}
       </Text>
-      <CardBusdValue value={lotteryPrizeAmountBusd} />
+      <CardHusdValue value={lotteryPrizeAmountBusd} />
     </>
   )
 }

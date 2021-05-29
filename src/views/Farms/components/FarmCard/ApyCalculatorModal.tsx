@@ -2,12 +2,12 @@ import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { Modal, Text, LinkExternal, Flex } from 'makiswap-uikit'
-import { calculateCakeEarnedPerThousandDollars, apyModalRoi } from 'utils/compoundApyHelpers'
+import { calculateMakiEarnedPerThousandDollars, apyModalRoi } from 'utils/compoundApyHelpers'
 
 interface ApyCalculatorModalProps {
   onDismiss?: () => void
   lpLabel?: string
-  cakePrice?: BigNumber
+  makiPrice?: BigNumber
   apy?: BigNumber
   addLiquidityUrl?: string
 }
@@ -31,17 +31,17 @@ const Description = styled(Text)`
 const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   onDismiss,
   lpLabel,
-  cakePrice,
+  makiPrice,
   apy,
   addLiquidityUrl,
 }) => {
   const farmApy = apy.times(new BigNumber(100)).toNumber()
-  const oneThousandDollarsWorthOfCake = 1000 / cakePrice.toNumber()
+  const oneThousandDollarsWorthOfMaki = 1000 / makiPrice.toNumber()
 
-  const cakeEarnedPerThousand1D = calculateCakeEarnedPerThousandDollars({ numberOfDays: 1, farmApy, cakePrice })
-  const cakeEarnedPerThousand7D = calculateCakeEarnedPerThousandDollars({ numberOfDays: 7, farmApy, cakePrice })
-  const cakeEarnedPerThousand30D = calculateCakeEarnedPerThousandDollars({ numberOfDays: 30, farmApy, cakePrice })
-  const cakeEarnedPerThousand365D = calculateCakeEarnedPerThousandDollars({ numberOfDays: 365, farmApy, cakePrice })
+  const makiEarnedPerThousand1D = calculateMakiEarnedPerThousandDollars({ numberOfDays: 1, farmApy, makiPrice })
+  const makiEarnedPerThousand7D = calculateMakiEarnedPerThousandDollars({ numberOfDays: 7, farmApy, makiPrice })
+  const makiEarnedPerThousand30D = calculateMakiEarnedPerThousandDollars({ numberOfDays: 30, farmApy, makiPrice })
+  const makiEarnedPerThousand365D = calculateMakiEarnedPerThousandDollars({ numberOfDays: 365, farmApy, makiPrice })
 
   return (
     <Modal title="ROI" onDismiss={onDismiss}>
@@ -67,11 +67,11 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         <GridItem>
           <Text>
-            {apyModalRoi({ amountEarned: cakeEarnedPerThousand1D, amountInvested: oneThousandDollarsWorthOfCake })}%
+            {apyModalRoi({ amountEarned: makiEarnedPerThousand1D, amountInvested: oneThousandDollarsWorthOfMaki })}%
           </Text>
         </GridItem>
         <GridItem>
-          <Text>{cakeEarnedPerThousand1D}</Text>
+          <Text>{makiEarnedPerThousand1D}</Text>
         </GridItem>
         {/* 7 day row */}
         <GridItem>
@@ -79,11 +79,11 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         <GridItem>
           <Text>
-            {apyModalRoi({ amountEarned: cakeEarnedPerThousand7D, amountInvested: oneThousandDollarsWorthOfCake })}%
+            {apyModalRoi({ amountEarned: makiEarnedPerThousand7D, amountInvested: oneThousandDollarsWorthOfMaki })}%
           </Text>
         </GridItem>
         <GridItem>
-          <Text>{cakeEarnedPerThousand7D}</Text>
+          <Text>{makiEarnedPerThousand7D}</Text>
         </GridItem>
         {/* 30 day row */}
         <GridItem>
@@ -91,11 +91,11 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         <GridItem>
           <Text>
-            {apyModalRoi({ amountEarned: cakeEarnedPerThousand30D, amountInvested: oneThousandDollarsWorthOfCake })}%
+            {apyModalRoi({ amountEarned: makiEarnedPerThousand30D, amountInvested: oneThousandDollarsWorthOfMaki })}%
           </Text>
         </GridItem>
         <GridItem>
-          <Text>{cakeEarnedPerThousand30D}</Text>
+          <Text>{makiEarnedPerThousand30D}</Text>
         </GridItem>
         {/* 365 day / APY row */}
         <GridItem>
@@ -103,11 +103,11 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         <GridItem>
           <Text>
-            {apyModalRoi({ amountEarned: cakeEarnedPerThousand365D, amountInvested: oneThousandDollarsWorthOfCake })}%
+            {apyModalRoi({ amountEarned: makiEarnedPerThousand365D, amountInvested: oneThousandDollarsWorthOfMaki })}%
           </Text>
         </GridItem>
         <GridItem>
-          <Text>{cakeEarnedPerThousand365D}</Text>
+          <Text>{makiEarnedPerThousand365D}</Text>
         </GridItem>
       </Grid>
       <Description fontSize="12px" color="textSubtle">

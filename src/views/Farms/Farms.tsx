@@ -8,7 +8,7 @@ import { Heading } from 'makiswap-uikit'
 import { BLOCKS_PER_YEAR, MAKI_PER_BLOCK, MAKI_POOL_PID } from 'config'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
-import { useFarms, usePriceMakiHusd, usePriceHtHusd, usePriceEthBusd } from 'state/hooks'
+import { useFarms, usePriceMakiHusd, usePriceHtHusd, usePriceEthHusd } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
 import { fetchFarmUserDataAsync } from 'state/actions'
 import { QuoteToken } from 'config/constants/types'
@@ -21,8 +21,8 @@ const Farms: React.FC = () => {
   const farmsLP = useFarms()
   const makiPrice = usePriceMakiHusd()
 
-  const bnbPrice = usePriceHtHusd() // FIX ** ? REMOVE
-  const ethPriceUsd = usePriceEthBusd() // FIX ** ? REMOVE
+  const htPrice = usePriceHtHusd() // FIX ** ? REMOVE
+  const ethPriceUsd = usePriceEthHusd() // FIX ** ? REMOVE
 
   const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
 
@@ -83,15 +83,15 @@ const Farms: React.FC = () => {
           key={farm.pid}
           farm={farm}
           removed={removed}
-          bnbPrice={bnbPrice}
-          cakePrice={makiPrice}
+          htPrice={htPrice}
+          makiPrice={makiPrice}
           ethPrice={ethPriceUsd}
           ethereum={ethereum}
           account={account}
         />
       ))
     },
-    [farmsLP, bnbPrice, ethPriceUsd, makiPrice, ethereum, account],
+    [farmsLP, htPrice, ethPriceUsd, makiPrice, ethereum, account],
   )
 
   return (

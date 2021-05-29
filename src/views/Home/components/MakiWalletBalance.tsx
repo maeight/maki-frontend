@@ -8,12 +8,12 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { usePriceMakiHusd } from 'state/hooks'
 import { BigNumber } from 'bignumber.js'
 import CardValue from './CardValue'
-import CardBusdValue from './CardBusdValue'
+import CardHusdValue from './CardHusdValue'
 
-const CakeWalletBalance = () => {
+const MakiWalletBalance = () => {
   const TranslateString = useI18n()
   const cakeBalance = useTokenBalance(getMakiAddress())
-  const busdBalance = new BigNumber(getBalanceNumber(cakeBalance)).multipliedBy(usePriceMakiHusd()).toNumber()
+  const husdBalance = new BigNumber(getBalanceNumber(cakeBalance)).multipliedBy(usePriceMakiHusd()).toNumber()
   const { account } = useWallet()
 
   if (!account) {
@@ -27,9 +27,9 @@ const CakeWalletBalance = () => {
   return (
     <>
       <CardValue value={getBalanceNumber(cakeBalance)} decimals={4} fontSize="24px" lineHeight="36px" />
-      <CardBusdValue value={busdBalance} />
+      <CardHusdValue value={husdBalance} />
     </>
   )
 }
 
-export default CakeWalletBalance
+export default MakiWalletBalance

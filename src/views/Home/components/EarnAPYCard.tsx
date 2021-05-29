@@ -24,7 +24,7 @@ const CardMidContent = styled(Heading).attrs({ size: 'xl' })`
 const EarnAPYCard = () => {
   const TranslateString = useI18n()
   const farmsLP = useFarms()
-  const bnbPrice = usePriceHtHusd()
+  const htPrice = usePriceHtHusd()
 
   const maxAPY = useRef(Number.MIN_VALUE)
 
@@ -51,7 +51,7 @@ const EarnAPYCard = () => {
 
         // FIX ** 
         if (farm.quoteTokenSymbol === QuoteToken.HUSD) {
-          apy = makiPriceVsHT.times(makiRewardPerYear).div(farm.lpTotalInQuoteToken).times(bnbPrice)
+          apy = makiPriceVsHT.times(makiRewardPerYear).div(farm.lpTotalInQuoteToken).times(htPrice)
         } else if (farm.quoteTokenSymbol === QuoteToken.MAKI) {
           apy = makiRewardPerYear.div(farm.lpTotalInQuoteToken)
         } else if (farm.dual) {
@@ -72,7 +72,7 @@ const EarnAPYCard = () => {
         return apy
       })
     },
-    [bnbPrice, farmsLP],
+    [htPrice, farmsLP],
   )
 
   return (
