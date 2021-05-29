@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 import useI18n from 'hooks/useI18n'
 import BigNumber from 'bignumber.js'
 import { QuoteToken } from 'config/constants/types'
-import { useFarms, usePriceBnbBusd } from 'state/hooks'
+import { useFarms, usePriceHtHusd } from 'state/hooks'
 import { BLOCKS_PER_YEAR, MAKI_PER_BLOCK, MAKI_POOL_PID } from 'config'
 
 const StyledFarmStakingCard = styled(Card)`
@@ -24,7 +24,7 @@ const CardMidContent = styled(Heading).attrs({ size: 'xl' })`
 const EarnAPYCard = () => {
   const TranslateString = useI18n()
   const farmsLP = useFarms()
-  const bnbPrice = usePriceBnbBusd()
+  const bnbPrice = usePriceHtHusd()
 
   const maxAPY = useRef(Number.MIN_VALUE)
 
@@ -38,24 +38,25 @@ const EarnAPYCard = () => {
 
   const calculateAPY = useCallback(
     (farmsToDisplay) => {
-      const cakePriceVsHT = new BigNumber(farmsLP.find((farm) => farm.pid === MAKI_POOL_PID)?.tokenPriceVsQuote || 0)
+      const makiPriceVsHT = new BigNumber(farmsLP.find((farm) => farm.pid === MAKI_POOL_PID)?.tokenPriceVsQuote || 0)
 
       farmsToDisplay.map((farm) => {
         if (!farm.tokenAmount || !farm.lpTotalInQuoteToken || !farm.lpTotalInQuoteToken) {
           return farm
         }
-        const cakeRewardPerBlock = MAKI_PER_BLOCK.times(farm.poolWeight)
-        const cakeRewardPerYear = cakeRewardPerBlock.times(BLOCKS_PER_YEAR)
+        const makiRewardPerBlock = MAKI_PER_BLOCK.times(farm.poolWeight)
+        const makiRewardPerYear = makiRewardPerBlock.times(BLOCKS_PER_YEAR)
 
-        let apy = cakePriceVsHT.times(cakeRewardPerYear).div(farm.lpTotalInQuoteToken)
+        let apy = makiPriceVsHT.times(makiRewardPerYear).div(farm.lpTotalInQuoteToken)
 
-        if (farm.quoteTokenSymbol === QuoteToken.BUSD) {
-          apy = cakePriceVsHT.times(cakeRewardPerYear).div(farm.lpTotalInQuoteToken).times(bnbPrice)
+        // FIX ** 
+        if (farm.quoteTokenSymbol === QuoteToken.HUSD) {
+          apy = makiPriceVsHT.times(makiRewardPerYear).div(farm.lpTotalInQuoteToken).times(bnbPrice)
         } else if (farm.quoteTokenSymbol === QuoteToken.MAKI) {
-          apy = cakeRewardPerYear.div(farm.lpTotalInQuoteToken)
+          apy = makiRewardPerYear.div(farm.lpTotalInQuoteToken)
         } else if (farm.dual) {
-          const cakeApy =
-            farm && cakePriceVsHT.times(cakeRewardPerBlock).times(BLOCKS_PER_YEAR).div(farm.lpTotalInQuoteToken)
+          const makiApy =
+            farm && makiPriceVsHT.times(makiRewardPerBlock).times(BLOCKS_PER_YEAR).div(farm.lpTotalInQuoteToken)
           const dualApy =
             farm.tokenPriceVsQuote &&
             new BigNumber(farm.tokenPriceVsQuote)
@@ -63,7 +64,7 @@ const EarnAPYCard = () => {
               .times(BLOCKS_PER_YEAR)
               .div(farm.lpTotalInQuoteToken)
 
-          apy = cakeApy && dualApy && cakeApy.plus(dualApy)
+          apy = makiApy && dualApy && makiApy.plus(dualApy)
         }
 
         if (maxAPY.current < apy.toNumber()) maxAPY.current = apy.toNumber()

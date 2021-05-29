@@ -26,11 +26,9 @@ export enum QuoteToken {
   'HT' = 'HT',
   'MAKI' = 'MAKI',
   'SYRUP' = 'SYRUP',
-  'BUSD' = 'BUSD',
-  'TWT' = 'TWT',
   'UST' = 'UST',
   'ETH' = 'ETH',
-  'COMP' = 'COMP',
+  "HUSD" = "HUSD",
 }
 
 export enum PoolCategory {

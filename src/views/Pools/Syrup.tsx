@@ -10,7 +10,7 @@ import partition from 'lodash/partition'
 import useI18n from 'hooks/useI18n'
 import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useFarms, usePriceBnbBusd, usePools, usePriceEthBnb } from 'state/hooks'
+import { useFarms, usePriceHtHusd, usePools, usePriceEthBnb } from 'state/hooks'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
@@ -24,7 +24,7 @@ const Farm: React.FC = () => {
   const { account } = useWallet()
   const farms = useFarms()
   const pools = usePools(account)
-  const bnbPriceUSD = usePriceBnbBusd()
+  const htPriceUSD = usePriceHtHusd()
   const ethPriceBnb = usePriceEthBnb()
   const block = useBlock()
   const [stackedOnly, setStackedOnly] = useState(false)
@@ -34,8 +34,8 @@ const Farm: React.FC = () => {
     if (tokenName === 'HT') {
       return new BigNumber(1)
     }
-    if (tokenPrice && quoteToken === QuoteToken.BUSD) {
-      return tokenPriceBN.div(bnbPriceUSD)
+    if (tokenPrice && quoteToken === QuoteToken.HUSD) {
+      return tokenPriceBN.div(htPriceUSD)
     }
     return tokenPriceBN
   }
@@ -47,7 +47,7 @@ const Farm: React.FC = () => {
 
     // tmp mulitplier to support ETH farms
     // Will be removed after the price api
-    const tempMultiplier = stakingTokenFarm?.quoteTokenSymbol === 'ETH' ? ethPriceBnb : 1
+    const tempMultiplier = stakingTokenFarm?.quoteTokenSymbol === 'HT' ? ethPriceBnb : 1
 
     // /!\ Assume that the farm quote price is HT
     const stakingTokenPriceInHT = isBnbPool

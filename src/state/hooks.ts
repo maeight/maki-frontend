@@ -80,31 +80,37 @@ export const usePoolFromPid = (sousId): Pool => {
 
 // Prices
 
-export const usePriceBnbBusd = (): BigNumber => {
-  return new BigNumber(100)
-  const pid = 3 // BUSD-HT LP
+// Calculates Maki price via Maki-Husd pool.
+export const usePriceMakiHusd = (): BigNumber => {
+  const farm = useFarmFromPid(2) // MAKI-HUSD
+  return farm.tokenPriceVsQuote ? new BigNumber(1).div(farm.tokenPriceVsQuote) : ZERO
+}
+
+export const usePriceHtHusd = (): BigNumber => {
+  return new BigNumber(100) // FIX ** DISABLES CODE
+  const pid = 3 // HUSD-HT LP
   const farm = useFarmFromPid(pid)
   return farm.tokenPriceVsQuote ? new BigNumber(1).div(farm.tokenPriceVsQuote) : ZERO
 }
 
-export const usePriceCakeBusd = (): BigNumber => {
-  return new BigNumber(10)
+export const usePriceMakiHt = (): BigNumber => {
+  return new BigNumber(10) // FIX ** DISABLES CODE
   const pid = 1 // MAKI-HT LP
-  const bnbPriceUSD = usePriceBnbBusd()
+  const bnbPriceUSD = usePriceHtHusd()
   const farm = useFarmFromPid(pid)
   return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
 }
 
 export const usePriceEthBusd = (): BigNumber => {
-  return new BigNumber(1500)
+  return new BigNumber(1500) // FIX ** DISABLES CODE
   const pid = 14 // ETH-HT LP
-  const bnbPriceUSD = usePriceBnbBusd()
+  const bnbPriceUSD = usePriceHtHusd()
   const farm = useFarmFromPid(pid)
   return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
 }
 
 export const usePriceEthBnb = (): BigNumber => {
-  const priceBnbBusd = usePriceBnbBusd()
+  const priceBnbBusd = usePriceHtHusd()
   const priceEthBusd = usePriceEthBusd()
   return priceEthBusd.div(priceBnbBusd)
 }

@@ -31,6 +31,51 @@ const config: MenuEntry[] = [
     icon: 'PoolIcon',
     href: '/pools',
   },
+  {
+    label: 'Contracts',
+    icon: 'InfoIcon',
+    items: [
+      {
+        label: 'MakiToken.sol',
+        href: 'https://hecoinfo.com/address/0x5FaD6fBBA4BbA686bA9B8052Cf0bd51699f38B93#code', 
+      },
+      {
+        label: 'SoyBar.sol',
+        href: 'https://hecoinfo.com/address/0xfb4C85B31b888e4F84aC131667865E029D6486F7#code',
+      },
+      {
+        label: 'MasterChef.sol',
+        href: 'https://hecoinfo.com/address/0x4cb4c9C8cC67B171Ce86eB947cf558AFDBcAB17E/#code',
+      },
+      {
+        label: 'SousChef.sol',
+        href: 'https://hecoinfo.com/address/0xDC421d23AafC788997cd4664E1516B93c2783e78/#code',
+      },
+      {
+        label: 'Multicall.sol',
+        href: 'https://hecoinfo.com/address/0xC678588909d18879E7ce9a5c11e89264900ec13D#code',
+      },
+      {
+        label: 'MakiswapFactory.sol',
+        href: 'https://hecoinfo.com/address/0x11cdc9bd86ff68b6a6152037342bae0c3a717f56#code',
+      },
+      {
+        label: 'MakiswapRouter.sol',
+        href: 'https://hecoinfo.com/address/0x7F88bC12aa1Ed9fF4605123649Ac90F2Cd9407eB/#code',
+      },
+    ],
+  },
+  {
+    label: 'Audit Reports',
+    icon: 'GroupsIcon',
+    items: [
+      {
+        label: 'Chainsulting',
+        href: 'https://github.com/chainsulting/Smart-Contract-Security-Audits/blob/master/MakiSwap/02_Smart%20Contract%20Audit_MakiSwap.pdf', 
+      },
+    ],
+  },
+
   // {
   //   label: 'IFO',
   //   icon: 'IfoIcon',
