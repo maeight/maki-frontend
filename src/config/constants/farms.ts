@@ -3,6 +3,21 @@ import { FarmConfig, QuoteToken } from './types'
 
 const farms: FarmConfig[] = [
   {
+    pid: 0,
+    lpSymbol: 'MAKI',
+    lpAddresses: {
+      256: '0x6858a26bBBc8e185274969f6baf99674929Cf766', // UPDATE
+      128: '0x6858a26bBBc8e185274969f6baf99674929Cf766', // UPDATED
+    },
+    tokenSymbol: 'SOY',
+    tokenAddresses: {
+      256: '0xfb4C85B31b888e4F84aC131667865E029D6486F7', // UPDATE
+      128: '0xfb4C85B31b888e4F84aC131667865E029D6486F7', // UPDATED - ABI UPDATED
+    },
+    quoteTokenSymbol: QuoteToken.HT,
+    quoteTokenAdresses: contracts.wht,
+  },
+  {
     pid: 1,
     lpSymbol: 'MAKI-HT',
     lpAddresses: {
