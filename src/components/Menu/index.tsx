@@ -1,31 +1,18 @@
-/* eslint-disable */
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { Menu as UikitMenu } from 'makiswap-uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { provider } from 'web3-core'
 import { allLanguages } from 'config/localisation/languageCodes'
 import { LanguageContext } from 'contexts/Localisation/languageContext'
 import useTheme from 'hooks/useTheme'
 import { usePriceMakiHusd, useProfile } from 'state/hooks'
-import { HECO_MAINNET } from 'config/constants/metamask_network'
 import config from './config'
 
 const Menu = (props) => {
-  const { account, connect, reset }: {account: string, ethereum: provider, connect: any, reset: any} = useWallet()
+  const { account, connect, reset } = useWallet()
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
   const { isDark, toggleTheme } = useTheme()
   const makiPriceUsd = usePriceMakiHusd()
   const { profile } = useProfile()
-  
-  useEffect(() => {
-    (window as any).ethereum
-        .request(HECO_MAINNET)
-        .then(() => {console.log('ok done~~~')})
-        .catch((error: any) => {
-          console.log(error)
-        })
-
-  }, [])
 
   return (
     <UikitMenu
