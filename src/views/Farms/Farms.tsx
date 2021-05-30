@@ -19,9 +19,8 @@ import Divider from './components/Divider'
 const Farms: React.FC = () => {
   const { path } = useRouteMatch()
   const farmsLP = useFarms()
-  const makiPrice = usePriceMakiHusd()
-
-  const htPrice = usePriceHtHusd() // FIX ** ? REMOVE
+  const makiPrice = usePriceMakiHusd() // Calculates MAKI price
+  const htPrice = usePriceHtHusd() // Calculates HT price
   const ethPriceUsd = usePriceEthHusd() // FIX ** ? REMOVE
 
   const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
@@ -54,11 +53,11 @@ const Farms: React.FC = () => {
         const makiRewardPerBlock = MAKI_PER_BLOCK.times(farm.poolWeight)
         const makiRewardPerYear = makiRewardPerBlock.times(BLOCKS_PER_YEAR)
 
-        // ovenPriceInQuote * makiRewardPerYear / lpTotalInQuoteToken
+        // makiPriceInQuote * makiRewardPerYear / lpTotalInQuoteToken
         let apy = makiPriceVsHT.times(makiRewardPerYear).div(farm.lpTotalInQuoteToken)
 
         if (farm.quoteTokenSymbol === QuoteToken.HUSD || farm.quoteTokenSymbol === QuoteToken.UST) {
-          apy = makiPriceVsHT.times(makiRewardPerYear).div(farm.lpTotalInQuoteToken)
+          apy = makiPrice
         } else if (farm.quoteTokenSymbol === QuoteToken.HT) {
           apy = makiPrice.div(ethPriceUsd).times(makiRewardPerYear).div(farm.lpTotalInQuoteToken)
         } else if (farm.quoteTokenSymbol === QuoteToken.MAKI) {

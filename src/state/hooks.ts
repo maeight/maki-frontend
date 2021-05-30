@@ -87,10 +87,8 @@ export const usePriceMakiHusd = (): BigNumber => {
 }
 
 export const usePriceHtHusd = (): BigNumber => {
-  return new BigNumber(100) // FIX ** DISABLES CODE
-  // const pid = 4 // HUSD-HT LP
-  // const farm = useFarmFromPid(pid)
-  // return farm.tokenPriceVsQuote ? new BigNumber(1).div(farm.tokenPriceVsQuote) : ZERO
+  const farm = useFarmFromPid(4) // HUSD-HT LP
+  return farm.tokenPriceVsQuote ? new BigNumber(1).div(farm.tokenPriceVsQuote) : ZERO
 }
 
 export const usePriceMakiHt = (): BigNumber => {
