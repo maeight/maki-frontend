@@ -1,12 +1,14 @@
-import React, { useCallback, useRef } from 'react'
 import styled from 'styled-components'
-import { Heading, Card, CardBody, Flex, ArrowForwardIcon, Skeleton } from 'makiswap-uikit'
+import { Heading, Card, CardBody, Flex, ArrowForwardIcon } from 'makiswap-uikit'
 import { NavLink } from 'react-router-dom'
-import useI18n from 'hooks/useI18n'
-import BigNumber from 'bignumber.js'
-import { QuoteToken } from 'config/constants/types'
-import { useFarms, usePriceHtHusd } from 'state/hooks'
-import { BLOCKS_PER_YEAR, MAKI_PER_BLOCK, MAKI_POOL_PID } from 'config'
+// import { useFarms, usePriceHtHusd } from 'state/hooks'
+import React from 'react'
+// import React, { useCallback, useRef } from 'react'
+// import { Heading, Card, CardBody, Flex, ArrowForwardIcon, Skeleton } from 'makiswap-uikit'
+// import BigNumber from 'bignumber.js'
+// import { QuoteToken } from 'config/constants/types'
+// import { BLOCKS_PER_YEAR, MAKI_PER_BLOCK, MAKI_POOL_PID } from 'config'
+
 
 const StyledFarmStakingCard = styled(Card)`
   margin-left: auto;
@@ -22,8 +24,7 @@ const CardMidContent = styled(Heading).attrs({ size: 'xl' })`
   line-height: 44px;
 `
 const EarnAPYCard = () => {
-  const TranslateString = useI18n()
-  const farmsLP = useFarms()
+/*  const farmsLP = useFarms()
   const htPrice = usePriceHtHusd()
 
   const maxAPY = useRef(Number.MIN_VALUE)
@@ -35,9 +36,11 @@ const EarnAPYCard = () => {
 
     return (maxAPY.current * 100).toLocaleString('en-US').slice(0, -1)
   }
+  
 
   const calculateAPY = useCallback(
     (farmsToDisplay) => {
+      // const makiPriceVsHT = new BigNumber(farmsLP.find((farm) => farm.pid === MAKI_POOL_PID)?.tokenPriceVsQuote || 0)
       const makiPriceVsHT = new BigNumber(farmsLP.find((farm) => farm.pid === MAKI_POOL_PID)?.tokenPriceVsQuote || 0)
 
       farmsToDisplay.map((farm) => {
@@ -74,19 +77,18 @@ const EarnAPYCard = () => {
     },
     [htPrice, farmsLP],
   )
-
+*/
   return (
     <StyledFarmStakingCard>
       <CardBody>
         <Heading color="text" size="lg">
-          Earn up to
+          Earn more than
         </Heading>
         <CardMidContent color="primaryDark">
-          {getHighestAPY() ? (
-            `${getHighestAPY()}% ${TranslateString(736, 'APR')}`
-          ) : (
-            <Skeleton animation="pulse" variant="rect" height="44px" />
-          )}
+          {/* {getHighestAPY() ? (
+            `${getHighestAPY()}% ${TranslateString(736, 'APY')}`
+          ) : ( */}
+          12,500% APY
         </CardMidContent>
         <Flex justifyContent="space-between">
           <Heading color="text" size="lg">
