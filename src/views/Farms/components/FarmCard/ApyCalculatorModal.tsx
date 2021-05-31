@@ -41,7 +41,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   const makiEarnedPerThousand1D = calculateMakiEarnedPerThousandDollars({ numberOfDays: 1, farmApy, makiPrice })
   const makiEarnedPerThousand7D = calculateMakiEarnedPerThousandDollars({ numberOfDays: 7, farmApy, makiPrice })
   const makiEarnedPerThousand30D = calculateMakiEarnedPerThousandDollars({ numberOfDays: 30, farmApy, makiPrice })
-  const makiEarnedPerThousand365D = calculateMakiEarnedPerThousandDollars({ numberOfDays: 365, farmApy, makiPrice })
+  // const makiEarnedPerThousand365D = calculateMakiEarnedPerThousandDollars({ numberOfDays: 365, farmApy, makiPrice })
 
   return (
     <Modal title="ROI" onDismiss={onDismiss}>
@@ -98,7 +98,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
           <Text>{makiEarnedPerThousand30D}</Text>
         </GridItem>
         {/* 365 day / APY row */}
-        <GridItem>
+       {/* <GridItem>
           <Text>365d(APY)</Text>
         </GridItem>
         <GridItem>
@@ -108,7 +108,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         <GridItem>
           <Text>{makiEarnedPerThousand365D}</Text>
-        </GridItem>
+        </GridItem> */}
       </Grid>
       <Description fontSize="12px" color="textSubtle">
         Calculated based on current rates. Compounding once daily. Rates are estimates provided for your convenience only, and by no means represent guaranteed returns.

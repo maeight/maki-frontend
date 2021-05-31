@@ -50,7 +50,7 @@ const MakiStats = () => {
           <Text color="primaryDark" style={{ lineHeight: '24px' }}>
             16
           </Text>
-          <Text style={{ lineHeight: '36px' }}>{TranslateString(298, 'New MAKI / Block')}</Text>
+          <Text style={{ lineHeight: '36px' }}>{TranslateString(298, 'MAKI / Block')}</Text>
         </Block>
       </CardBody>
     </StyledFarmStakingCard>
