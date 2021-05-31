@@ -11,21 +11,21 @@ import BigNumber from 'bignumber.js'
 
 // Pool 0, Cake / Cake is a different kind of contract (master chef)
 // HT pools use the native HT token (wrapping ? unwrapping is done at the contract level)
-const nonBnbPools = poolsConfig.filter((p) => p.stakingTokenName !== QuoteToken.HT)
-const bnbPools = poolsConfig.filter((p) => p.stakingTokenName === QuoteToken.HT)
+const nonHtPools = poolsConfig.filter((p) => p.stakingTokenName !== QuoteToken.HT)
+const htPools = poolsConfig.filter((p) => p.stakingTokenName === QuoteToken.HT)
 const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 0)
 const web3 = getWeb3()
 const masterChefContract = new web3.eth.Contract((masterChefABI as unknown) as AbiItem, getMasterChefAddress())
 
 export const fetchPoolsAllowance = async (account) => {
-  const calls = nonBnbPools.map((p) => ({
+  const calls = nonHtPools.map((p) => ({
     address: p.stakingTokenAddress,
     name: 'allowance',
     params: [account, getAddress(p.contractAddress)],
   }))
 
   const allowances = await multicall(hrc20ABI, calls)
-  return nonBnbPools.reduce(
+  return nonHtPools.reduce(
     (acc, pool, index) => ({ ...acc, [pool.sousId]: new BigNumber(allowances[index]).toJSON() }),
     {},
   )
@@ -33,25 +33,25 @@ export const fetchPoolsAllowance = async (account) => {
 
 export const fetchUserBalances = async (account) => {
   // Non HT pools
-  const calls = nonBnbPools.map((p) => ({
+  const calls = nonHtPools.map((p) => ({
     address: p.stakingTokenAddress,
     name: 'balanceOf',
     params: [account],
   }))
   const tokenBalancesRaw = await multicall(hrc20ABI, calls)
-  const tokenBalances = nonBnbPools.reduce(
+  const tokenBalances = nonHtPools.reduce(
     (acc, pool, index) => ({ ...acc, [pool.sousId]: new BigNumber(tokenBalancesRaw[index]).toJSON() }),
     {},
   )
 
   // HT pools
-  const bnbBalance = await web3.eth.getBalance(account)
-  const bnbBalances = bnbPools.reduce(
-    (acc, pool) => ({ ...acc, [pool.sousId]: new BigNumber(bnbBalance).toJSON() }),
+  const htBalance = await web3.eth.getBalance(account)
+  const htBalances = htPools.reduce(
+    (acc, pool) => ({ ...acc, [pool.sousId]: new BigNumber(htBalance).toJSON() }),
     {},
   )
 
-  return { ...tokenBalances, ...bnbBalances }
+  return { ...tokenBalances, ...htBalances }
 }
 
 export const fetchUserStakeBalances = async (account) => {
@@ -69,7 +69,7 @@ export const fetchUserStakeBalances = async (account) => {
     {},
   )
 
-  // Cake / Cake pool
+  // Maki / Maki pool
   const { amount: masterPoolAmount } = await masterChefContract.methods.userInfo('0', account).call()
 
   return { ...stakedBalances, 0: new BigNumber(masterPoolAmount).toJSON() }
@@ -90,7 +90,7 @@ export const fetchUserPendingRewards = async (account) => {
     {},
   )
 
-  // Cake / Cake pool
+  // Maki / Maki pool
   const pendingReward = await masterChefContract.methods.pendingMaki('0', account).call()
 
   return { ...pendingRewards, 0: new BigNumber(pendingReward).toJSON() }

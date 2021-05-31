@@ -14,7 +14,7 @@ const pools: PoolConfig[] = [
     poolCategory: PoolCategory.CORE,
     projectLink: 'https://app.makiswap.com/',
     harvest: true,
-    tokenPerBlock: '10',
+    tokenPerBlock: '14',
     sortOrder: 1,
     isFinished: false,
     tokenDecimals: 18,

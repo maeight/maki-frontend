@@ -21,7 +21,7 @@ const Farms: React.FC = () => {
   const farmsLP = useFarms()
   const makiPrice = usePriceMakiHusd() // Calculates MAKI price
   const htPrice = usePriceHtHusd() // Calculates HT price
-  const ethPriceUsd = usePriceEthHusd() // FIX ** ? REMOVE
+  const ethPrice = usePriceEthHusd() // Calculates ETH price
 
   const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
 
@@ -56,10 +56,12 @@ const Farms: React.FC = () => {
         // makiPriceInQuote * makiRewardPerYear / lpTotalInQuoteToken
         let apy = makiPriceVsHT.times(makiRewardPerYear).div(farm.lpTotalInQuoteToken)
 
-        if (farm.quoteTokenSymbol === QuoteToken.HUSD || farm.quoteTokenSymbol === QuoteToken.UST) {
-          apy = makiPrice
+        if (farm.quoteTokenSymbol === QuoteToken.HUSD || farm.quoteTokenSymbol === QuoteToken.USDT) {
+          apy = makiPrice.times(makiRewardPerYear).div(farm.lpTotalInQuoteToken)
         } else if (farm.quoteTokenSymbol === QuoteToken.HT) {
-          apy = makiPrice.div(ethPriceUsd).times(makiRewardPerYear).div(farm.lpTotalInQuoteToken)
+          apy = makiPrice.div(htPrice).times(makiRewardPerYear).div(farm.lpTotalInQuoteToken)
+        } else if (farm.quoteTokenSymbol === QuoteToken.ETH) {
+          apy = makiPrice.div(ethPrice).times(makiRewardPerYear).div(farm.lpTotalInQuoteToken)        
         } else if (farm.quoteTokenSymbol === QuoteToken.MAKI) {
           apy = makiRewardPerYear.div(farm.lpTotalInQuoteToken)
         } else if (farm.dual) {
@@ -83,14 +85,14 @@ const Farms: React.FC = () => {
           farm={farm}
           removed={removed}
           htPrice={htPrice}
+          ethPrice={ethPrice}
           makiPrice={makiPrice}
-          ethPrice={ethPriceUsd}
           ethereum={ethereum}
           account={account}
         />
       ))
     },
-    [farmsLP, htPrice, ethPriceUsd, makiPrice, ethereum, account],
+    [farmsLP, htPrice, ethPrice, makiPrice, ethereum, account],
   )
 
   return (

@@ -9,7 +9,7 @@ import { CommunityTag, CoreTag, BinanceTag } from 'components/Tags'
 import { PoolCategory } from 'config/constants/types'
 
 const tags = {
-  [PoolCategory.BINANCE]: BinanceTag,
+  [PoolCategory.HECO]: BinanceTag,
   [PoolCategory.CORE]: CoreTag,
   [PoolCategory.COMMUNITY]: CommunityTag,
 }

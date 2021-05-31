@@ -71,6 +71,9 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, makiPrice, htPrice, 
     if (farm.quoteTokenSymbol === QuoteToken.MAKI) {
       return makiPrice.times(farm.lpTotalInQuoteToken)
     }
+    if (farm.quoteTokenSymbol === QuoteToken.HUSD) {
+      return makiPrice
+    }
     if (farm.quoteTokenSymbol === QuoteToken.ETH) {
       return ethPrice.times(farm.lpTotalInQuoteToken)
     }
@@ -81,7 +84,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, makiPrice, htPrice, 
     ? `$${Number(totalValue).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
 
-  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('', '')
+  const lpLabel = farm.lpSymbol // && farm.lpSymbol.toUpperCase().replace('', '')
   const earnLabel = farm.dual ? farm.dual.earnLabel : 'MAKI'
   const farmAPY = farm.apy && farm.apy.times(new BigNumber(100)).toNumber().toLocaleString('en-US').slice(0, -1)
 
