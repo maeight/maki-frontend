@@ -57,7 +57,7 @@ export default {
   },
   eth: {
     256: '',
-    128: '0x62c10412D69823a98DB5c09cf6e82810e0dF5aD7',
+    128: '0x64ff637fb478863b7468bc97d30a5bf3a428a1fd',
   },
   claimRefund: {
     256: '',

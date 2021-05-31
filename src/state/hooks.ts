@@ -101,7 +101,7 @@ export const usePriceMakiHt = (): BigNumber => {
 
 export const usePriceEthHusd = (): BigNumber => {
   // return new BigNumber(1500) // FIX ** DISABLES CODE
-  const pid = 3 // ETH-HT LP
+  const pid = 5 // ETH-HT LP
   const htPriceUSD = usePriceHtHusd()
   const farm = useFarmFromPid(pid)
   return farm.tokenPriceVsQuote ? htPriceUSD.times(farm.tokenPriceVsQuote) : ZERO

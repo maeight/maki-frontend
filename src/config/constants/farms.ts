@@ -62,6 +62,21 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.HT,
     quoteTokenAdresses: contracts.wht,
   },
+  {
+    pid: 5,
+    lpSymbol: 'ETH-HUSD',
+    lpAddresses: {
+      256: '',
+      128: '0xBdb405E580774F1AbA1273f22aF06c9B81433e87', // (30/5/21)
+    },
+    tokenSymbol: 'ETH',
+    tokenAddresses: {
+      256: '', // 
+      128: '0x64ff637fb478863b7468bc97d30a5bf3a428a1fd', // (30/5/21)
+    },
+    quoteTokenSymbol: QuoteToken.HUSD,
+    quoteTokenAdresses: contracts.husd,
+  },
 ]
 
 export default farms
