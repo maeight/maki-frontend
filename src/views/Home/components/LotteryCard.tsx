@@ -12,7 +12,7 @@ import BuyModal from 'views/Lottery/components/TicketCard/BuyTicketModal'
 import { useLotteryAllowance } from 'hooks/useAllowance'
 import { useApproval } from 'hooks/useApproval'
 import PurchaseWarningModal from 'views/Lottery/components/TicketCard/PurchaseWarningModal'
-import CakeWinnings from './CakeWinnings'
+import MakiWinnings from './MakiWinnings'
 import LotteryJackpot from './LotteryJackpot'
 
 const StyledLotteryCard = styled(Card)`
@@ -51,7 +51,7 @@ const FarmedStakingCard = () => {
   const [onPresentApprove] = useModal(<PurchaseWarningModal />)
   const { claimAmount } = useTotalClaim()
   const { onMultiClaim } = useMultiClaimLottery()
-  const cakeBalance = useTokenBalance(getMakiAddress())
+  const makiBalance = useTokenBalance(getMakiAddress())
   const { handleApprove, requestedApproval } = useApproval(onPresentApprove)
 
   const handleClaim = useCallback(async () => {
@@ -82,7 +82,7 @@ const FarmedStakingCard = () => {
     )
   }
 
-  const [onPresentBuy] = useModal(<BuyModal max={cakeBalance} tokenName="MAKI" />)
+  const [onPresentBuy] = useModal(<BuyModal max={makiBalance} tokenName="MAKI" />)
 
   return (
     <StyledLotteryCard>
@@ -93,7 +93,7 @@ const FarmedStakingCard = () => {
         <CardImage src="/images/ticket.svg" alt="cake logo" width={64} height={64} />
         <Block>
           <Label>{TranslateString(552, 'MAKI to Collect')}:</Label>
-          <CakeWinnings />
+          <MakiWinnings />
         </Block>
         <Block>
           <Label>{TranslateString(554, 'Total jackpot this round')}:</Label>

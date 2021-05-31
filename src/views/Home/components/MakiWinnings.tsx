@@ -11,17 +11,17 @@ const Block = styled.div`
   margin-bottom: 24px;
  }
 `
-const CakeWinnings = () => {
+const MakiWinnings = () => {
   const { claimAmount } = useTotalClaim()
-  const cakeAmount = getBalanceNumber(claimAmount)
-  const claimAmountBusd = new BigNumber(cakeAmount).multipliedBy(usePriceMakiHusd()).toNumber()
+  const makiAmount = getBalanceNumber(claimAmount)
+  const claimAmountHusd = new BigNumber(makiAmount).multipliedBy(usePriceMakiHusd()).toNumber()
 
   return (
     <Block>
-      <CardValue value={cakeAmount} lineHeight="1.5" />
-      <CardHusdValue value={claimAmountBusd} decimals={2} />
+      <CardValue value={makiAmount} lineHeight="1.5" />
+      <CardHusdValue value={claimAmountHusd} decimals={2} />
     </Block>
   )
 }
 
-export default CakeWinnings
+export default MakiWinnings

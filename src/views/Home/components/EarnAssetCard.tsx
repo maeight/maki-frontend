@@ -19,8 +19,8 @@ const CardMidContent = styled(Heading).attrs({ size: 'xl' })`
   line-height: 44px;
 `
 const EarnAssetCard = () => {
-  const activeNonCakePools = pools.filter((pool) => !pool.isFinished && !pool.tokenName.includes('MAKI'))
-  const latestPools: Pool[] = orderBy(activeNonCakePools, ['sortOrder', 'pid'], ['desc', 'desc']).slice(0, 3)
+  const activeNonMakiPools = pools.filter((pool) => !pool.isFinished && !pool.tokenName.includes('MAKI'))
+  const latestPools: Pool[] = orderBy(activeNonMakiPools, ['sortOrder', 'pid'], ['desc', 'desc']).slice(0, 3)
   // Always include MAKI
   const assets = ['MAKI', ...latestPools.map((pool) => pool.tokenName)].join(', ')
 
@@ -35,7 +35,7 @@ const EarnAssetCard = () => {
           <Heading color="text" size="lg">
             in Pools
           </Heading>
-          <NavLink exact activeClassName="active" to="/syrup" id="pool-cta">
+          <NavLink exact activeClassName="active" to="/soy" id="pool-cta">
             <ArrowForwardIcon mt={30} color="primary" />
           </NavLink>
         </Flex>

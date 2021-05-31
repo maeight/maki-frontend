@@ -26,7 +26,8 @@ export enum QuoteToken {
   'HT' = 'HT',
   'MAKI' = 'MAKI',
   'SYRUP' = 'SYRUP',
-  'UST' = 'UST',
+  'SOY' = 'SOY',
+  'USDT' = 'USDT',
   'ETH' = 'ETH',
   "HUSD" = "HUSD",
 }
@@ -34,7 +35,7 @@ export enum QuoteToken {
 export enum PoolCategory {
   'COMMUNITY' = 'Community',
   'CORE' = 'Core',
-  'BINANCE' = 'Binance', // Pools using native HT behave differently than pools using a token
+  'HECO' = 'Huobi', // Pools using native HT behave differently than pools using a token
 }
 
 export interface Address {

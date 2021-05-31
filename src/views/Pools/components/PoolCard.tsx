@@ -53,15 +53,15 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
     stakingLimit,
   } = pool
   // Pools using native HT behave differently than pools using a token
-  const isBnbPool = poolCategory === PoolCategory.BINANCE
+  const isHtPool = poolCategory === PoolCategory.HECO
   const TranslateString = useI18n()
   const stakingTokenContract = useHRC20(stakingTokenAddress)
   const { account } = useWallet()
   const block = useBlock()
   const { onApprove } = useSousApprove(stakingTokenContract, sousId)
-  const { onStake } = useSousStake(sousId, isBnbPool)
+  const { onStake } = useSousStake(sousId, isHtPool)
   const { onUnstake } = useSousUnstake(sousId)
-  const { onReward } = useSousHarvest(sousId, isBnbPool)
+  const { onReward } = useSousHarvest(sousId, isHtPool)
 
   const [requestedApproval, setRequestedApproval] = useState(false)
   const [pendingTx, setPendingTx] = useState(false)
@@ -75,7 +75,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   const blocksRemaining = Math.max(endBlock - block, 0)
   const isOldSyrup = stakingTokenName === QuoteToken.SYRUP
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
-  const needsApproval = !accountHasStakedBalance && !allowance.toNumber() && !isBnbPool
+  const needsApproval = !accountHasStakedBalance && !allowance.toNumber() && !isHtPool
   const isCardActive = isFinished && accountHasStakedBalance
 
   const convertedLimit = new BigNumber(stakingLimit).multipliedBy(new BigNumber(10).pow(tokenDecimals))

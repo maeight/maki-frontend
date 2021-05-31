@@ -14,7 +14,7 @@ import useProfileCreation from './contexts/hook'
 import { MINT_COST, STARTER_BUNNY_IDS } from './config'
 
 const nfts = nftList.filter((nft) => STARTER_BUNNY_IDS.includes(nft.bunnyId))
-const minimumCakeBalanceToMint = new BigNumber(MINT_COST).multipliedBy(new BigNumber(10).pow(18))
+const minimumMakiBalanceToMint = new BigNumber(MINT_COST).multipliedBy(new BigNumber(10).pow(18))
 
 const Mint: React.FC = () => {
   const [bunnyId, setBunnyId] = useState(null)
@@ -24,7 +24,7 @@ const Mint: React.FC = () => {
   const cakeContract = useMaki()
   const bunnyFactoryContract = useBunnyFactory()
   const TranslateString = useI18n()
-  const hasMinimumCakeRequired = useHasMakiBalance(minimumCakeBalanceToMint)
+  const hasMinimumCakeRequired = useHasMakiBalance(minimumMakiBalanceToMint)
   const {
     isApproving,
     isApproved,

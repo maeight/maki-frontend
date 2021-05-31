@@ -25,11 +25,11 @@ const Farm: React.FC = () => {
   const farms = useFarms()
   const pools = usePools(account)
   const htPriceUSD = usePriceHtHusd()
-  const ethPriceBnb = usePriceEthHt()
+  const ethPriceHt = usePriceEthHt()
   const block = useBlock()
   const [stackedOnly, setStackedOnly] = useState(false)
 
-  const priceToBnb = (tokenName: string, tokenPrice: BigNumber, quoteToken: QuoteToken): BigNumber => {
+  const priceToHt = (tokenName: string, tokenPrice: BigNumber, quoteToken: QuoteToken): BigNumber => {
     const tokenPriceBN = new BigNumber(tokenPrice)
     if (tokenName === 'HT') {
       return new BigNumber(1)
@@ -41,19 +41,19 @@ const Farm: React.FC = () => {
   }
 
   const poolsWithApy = pools.map((pool) => {
-    const isBnbPool = pool.poolCategory === PoolCategory.BINANCE
+    const isHtPool = pool.poolCategory === PoolCategory.HECO
     const rewardTokenFarm = farms.find((f) => f.tokenSymbol === pool.tokenName)
     const stakingTokenFarm = farms.find((s) => s.tokenSymbol === pool.stakingTokenName)
 
     // tmp mulitplier to support ETH farms
     // Will be removed after the price api
-    const tempMultiplier = stakingTokenFarm?.quoteTokenSymbol === 'HT' ? ethPriceBnb : 1
+    const tempMultiplier = stakingTokenFarm?.quoteTokenSymbol === 'MAKI' ? ethPriceHt : 1
 
     // /!\ Assume that the farm quote price is HT
-    const stakingTokenPriceInHT = isBnbPool
+    const stakingTokenPriceInHT = isHtPool
       ? new BigNumber(1)
       : new BigNumber(stakingTokenFarm?.tokenPriceVsQuote).times(tempMultiplier)
-    const rewardTokenPriceInHT = priceToBnb(
+    const rewardTokenPriceInHT = priceToHt(
       pool.tokenName,
       rewardTokenFarm?.tokenPriceVsQuote,
       rewardTokenFarm?.quoteTokenSymbol,

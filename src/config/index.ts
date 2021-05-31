@@ -7,8 +7,9 @@ BigNumber.config({
 
 export const MAKI_PER_BLOCK = new BigNumber(16)
 export const BLOCKS_PER_YEAR = new BigNumber(10512000)
-export const BSC_BLOCK_TIME = 3
+export const HECO_BLOCK_TIME = 3
 export const MAKI_POOL_PID = 1
+export const MAKI_HUSD_POOL_PID = 3
 export const BASE_EXCHANGE_URL = 'https://exchange.makiswap.com'
 export const BASE_ADD_LIQUIDITY_URL = `${BASE_EXCHANGE_URL}/#/add`
 export const BASE_LIQUIDITY_POOL_URL = `${BASE_EXCHANGE_URL}/#/pool`

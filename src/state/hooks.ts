@@ -19,6 +19,7 @@ import { fetchProfile } from './profile'
 import { fetchTeam, fetchTeams } from './teams'
 import { fetchAchievements } from './achievements'
 
+
 const ZERO = new BigNumber(0)
 
 export const useFetchPublicData = () => {
@@ -80,31 +81,23 @@ export const usePoolFromPid = (sousId): Pool => {
 
 // Prices
 
-// Calculates Maki price via Maki-Husd pool.
-export const usePriceMakiHusd = (): BigNumber => {
-  const farm = useFarmFromPid(3) // MAKI-HUSD
-  return farm.tokenPriceVsQuote ? new BigNumber(1).div(farm.tokenPriceVsQuote) : ZERO
-}
-
 export const usePriceHtHusd = (): BigNumber => {
-  const farm = useFarmFromPid(4) // HUSD-HT LP
+  const pid = 4 // HUSD-HT LP
+  const farm = useFarmFromPid(pid)
   return farm.tokenPriceVsQuote ? new BigNumber(1).div(farm.tokenPriceVsQuote) : ZERO
 }
 
-export const usePriceMakiHt = (): BigNumber => {
-  // return new BigNumber(10) // FIX ** DISABLES CODE
-  const pid = 1 // MAKI-HT LP
-  const htPriceUSD = usePriceHtHusd()
+export const usePriceMakiHusd = (): BigNumber => {
+  const pid = 3 // MAKI-HT LP
   const farm = useFarmFromPid(pid)
-  return farm.tokenPriceVsQuote ? htPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
+  return farm.tokenPriceVsQuote ? new BigNumber(1).div(farm.tokenPriceVsQuote) : ZERO
 }
 
 export const usePriceEthHusd = (): BigNumber => {
   // return new BigNumber(1500) // FIX ** DISABLES CODE
-  const pid = 3 // ETH-HT LP
-  const htPriceUSD = usePriceHtHusd()
+  const pid = 5 // ETH-HUSD LP
   const farm = useFarmFromPid(pid)
-  return farm.tokenPriceVsQuote ? htPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
+  return farm.tokenPriceVsQuote ? new BigNumber(1).div(farm.tokenPriceVsQuote) : ZERO
 }
 
 export const usePriceEthHt = (): BigNumber => {

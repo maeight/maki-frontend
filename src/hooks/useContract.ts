@@ -90,7 +90,7 @@ export const useMasterchef = () => {
 
 export const useSousChef = (id) => {
   const config = poolsConfig.find((pool) => pool.sousId === id)
-  const rawAbi = config.poolCategory === PoolCategory.BINANCE ? sousChefHt : sousChef
+  const rawAbi = config.poolCategory === PoolCategory.HECO ? sousChefHt : sousChef
   const abi = (rawAbi as unknown) as AbiItem
   return useContract(abi, getAddress(config.contractAddress))
 }
