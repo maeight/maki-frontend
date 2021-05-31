@@ -32,7 +32,7 @@ const EarnAPYCard = () => {
 
     calculateAPY(activeFarms)
 
-    return new BigNumber(maxAPY.current * 1).toLocaleString().slice(0, -9)
+    return new BigNumber(maxAPY.current * 1).toLocaleString().slice(0, -10)
   }
   
 
