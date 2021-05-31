@@ -14,14 +14,14 @@ const LotteryJackpot = () => {
   const lotteryPrizeAmoutCake = balance.toLocaleString(undefined, {
     maximumFractionDigits: 2,
   })
-  const lotteryPrizeAmountBusd = new BigNumber(balance).multipliedBy(usePriceMakiHusd()).toNumber()
+  const lotteryPrizeAmountHusd = new BigNumber(balance).multipliedBy(usePriceMakiHusd()).toNumber()
 
   return (
     <>
       <Text bold fontSize="24px" style={{ lineHeight: '1.5' }}>
         {lotteryPrizeAmoutCake} {TranslateString(999, 'MAKI')}
       </Text>
-      <CardHusdValue value={lotteryPrizeAmountBusd} />
+      <CardHusdValue value={lotteryPrizeAmountHusd} />
     </>
   )
 }

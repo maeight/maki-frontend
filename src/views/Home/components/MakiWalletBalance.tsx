@@ -12,8 +12,8 @@ import CardHusdValue from './CardHusdValue'
 
 const MakiWalletBalance = () => {
   const TranslateString = useI18n()
-  const cakeBalance = useTokenBalance(getMakiAddress())
-  const husdBalance = new BigNumber(getBalanceNumber(cakeBalance)).multipliedBy(usePriceMakiHusd()).toNumber()
+  const makiBalance = useTokenBalance(getMakiAddress())
+  const husdBalance = new BigNumber(getBalanceNumber(makiBalance)).multipliedBy(usePriceMakiHusd()).toNumber()
   const { account } = useWallet()
 
   if (!account) {
@@ -26,7 +26,7 @@ const MakiWalletBalance = () => {
 
   return (
     <>
-      <CardValue value={getBalanceNumber(cakeBalance)} decimals={4} fontSize="24px" lineHeight="36px" />
+      <CardValue value={getBalanceNumber(makiBalance)} decimals={4} fontSize="24px" lineHeight="36px" />
       <CardHusdValue value={husdBalance} />
     </>
   )

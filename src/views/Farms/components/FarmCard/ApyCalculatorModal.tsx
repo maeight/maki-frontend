@@ -35,7 +35,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   apy,
   addLiquidityUrl,
 }) => {
-  const farmApy = apy.times(new BigNumber(100)).toNumber()
+  const farmApy = apy.times(new BigNumber(25)).toNumber()
   const oneThousandDollarsWorthOfMaki = 1000 / makiPrice.toNumber()
 
   const makiEarnedPerThousand1D = calculateMakiEarnedPerThousandDollars({ numberOfDays: 1, farmApy, makiPrice })

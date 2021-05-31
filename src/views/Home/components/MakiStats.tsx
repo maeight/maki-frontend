@@ -25,7 +25,7 @@ const MakiStats = () => {
   const TranslateString = useI18n()
   const totalSupply = useTotalSupply()
   const burnedBalance = useBurnedBalance(getMakiAddress())
-  const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
+  const makiSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
 
   return (
     <StyledFarmStakingCard>
@@ -33,10 +33,10 @@ const MakiStats = () => {
         <Heading color="primary" size="xl" mb="24px">
           {TranslateString(534, 'Maki Stats')}
         </Heading>
-        <CardImage src="/images/stats-img.png" alt="cake logo" width={64} height={64} />
+        <CardImage src="/images/stats-img.png" alt="maki logo" width={64} height={64} />
         <Block>
           <Text color="primaryDark" style={{ lineHeight: '24px' }}>
-            {cakeSupply}
+            {makiSupply}
           </Text>
           <Text style={{ lineHeight: '36px' }}>{TranslateString(298, 'Total MAKI Supply')}</Text>
         </Block>
