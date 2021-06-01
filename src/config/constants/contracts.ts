@@ -35,6 +35,14 @@ export default {
     256: '',
     128: '0x64ff637fb478863b7468bc97d30a5bf3a428a1fd',
   },
+  btc: {
+    256: '',
+    128: '0x66a79d23e58475d2738179ca52cd0b41d73f0bea',
+  },
+  BaseAudioContext: {
+    256: '',
+    128: '0x66a79d23e58475d2738179ca52cd0b41d73f0bea',
+  },
   lottery: {
     256: '0x99c2EcD51d52c036B00130d882Bc65f20Fdecf9f',
     128: '0x3C3f2049cc17C136a604bE23cF7E42745edf3b91',

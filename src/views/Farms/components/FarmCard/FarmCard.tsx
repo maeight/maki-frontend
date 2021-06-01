@@ -49,11 +49,12 @@ interface FarmCardProps {
   makiPrice?: BigNumber
   htPrice?: BigNumber
   ethPrice?: BigNumber
+  btcPrice?: BigNumber
   ethereum?: provider
   account?: string
 }
 
-const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, makiPrice, htPrice, ethPrice, ethereum, account }) => {
+const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, makiPrice, htPrice, ethPrice, btcPrice, ethereum, account }) => {
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
   const isCommunityFarm = communityFarms.includes(farm.tokenSymbol)
@@ -77,8 +78,11 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, makiPrice, htPrice, 
     if (farm.quoteTokenSymbol === QuoteToken.ETH) {
       return ethPrice.times(farm.lpTotalInQuoteToken)
     }
+    if (farm.quoteTokenSymbol === QuoteToken.BTC) {
+      return btcPrice.times(farm.lpTotalInQuoteToken)
+    }
     return farm.lpTotalInQuoteToken
-  }, [htPrice, makiPrice, ethPrice, farm.lpTotalInQuoteToken, farm.quoteTokenSymbol])
+  }, [htPrice, makiPrice, ethPrice, btcPrice, farm.lpTotalInQuoteToken, farm.quoteTokenSymbol])
 
   const totalValueFormated = totalValue
     ? `$${Number(totalValue).toLocaleString(undefined, { maximumFractionDigits: 0 })}`

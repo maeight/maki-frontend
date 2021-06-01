@@ -12,7 +12,7 @@ const farms: FarmConfig[] = [
     tokenSymbol: 'MAKI',
     tokenAddresses: {
       256: '0x6858a26bBBc8e185274969f6baf99674929Cf766', // UPDATED
-      128: '0x5fad6fbba4bba686ba9b8052cf0bd51699f38b93', // UPDATED - ABI UPDATED
+      128: '0x5FaD6fBBA4BbA686bA9B8052Cf0bd51699f38B93', // UPDATED - ABI UPDATED
     },
     quoteTokenSymbol: QuoteToken.HT,
     quoteTokenAdresses: contracts.wht,
@@ -84,13 +84,13 @@ const farms: FarmConfig[] = [
       256: '',
       128: '0x901a89e02cd610c04d0feb45791dbf64b8c20503', // (31/5/21)
     },
-    tokenSymbol: 'BTC',
+    tokenSymbol: 'HUSD',
     tokenAddresses: {
       256: '', // 
-      128: '0x66a79d23e58475d2738179ca52cd0b41d73f0bea', // (31/5/21)
+      128: '0x0298c2b32eae4da002a15f36fdf7615bea3da047', // (31/5/21)
     },
-    quoteTokenSymbol: QuoteToken.HUSD,
-    quoteTokenAdresses: contracts.husd,
+    quoteTokenSymbol: QuoteToken.BTC,
+    quoteTokenAdresses: contracts.btc,
   },
 ]
 
