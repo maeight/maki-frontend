@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { Heading, Card, CardBody, Text } from 'makiswap-uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
-import useI18n from 'hooks/useI18n'
 import { getMakiAddress } from 'utils/addressHelpers'
 
 const StyledFarmStakingCard = styled(Card)`
@@ -22,35 +21,39 @@ const CardImage = styled.img`
 `
 
 const MakiStats = () => {
-  const TranslateString = useI18n()
   const totalSupply = useTotalSupply()
   const burnedBalance = useBurnedBalance(getMakiAddress())
+
+    
   const makiSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
+  const makiSupplyFormated = makiSupply
+  ? `$${Number(makiSupply).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
+  : '-'
 
   return (
     <StyledFarmStakingCard>
       <CardBody>
         <Heading color="primary" size="xl" mb="24px">
-          {TranslateString(534, 'Maki Stats')}
+          Maki Stats
         </Heading>
         <CardImage src="/images/stats-img.png" alt="maki logo" width={64} height={64} />
         <Block>
           <Text color="primaryDark" style={{ lineHeight: '24px' }}>
-            {makiSupply}
+            {makiSupplyFormated}
           </Text>
-          <Text style={{ lineHeight: '36px' }}>{TranslateString(298, 'Total MAKI Supply')}</Text>
+          <Text style={{ lineHeight: '36px' }}> TOTAL SUPPLY </Text>
         </Block>
         <Block>
           <Text color="primaryDark" style={{ lineHeight: '24px' }}>
             {getBalanceNumber(burnedBalance)}
           </Text>
-          <Text style={{ lineHeight: '36px' }}>{TranslateString(298, 'Total MAKI Burned')}</Text>
+          <Text style={{ lineHeight: '36px' }}> MAKI BURNED </Text>
         </Block>
         <Block>
           <Text color="primaryDark" style={{ lineHeight: '24px' }}>
             16
           </Text>
-          <Text style={{ lineHeight: '36px' }}>{TranslateString(298, 'MAKI / Block')}</Text>
+          <Text style={{ lineHeight: '36px' }}> MAKI / BLOCK </Text>
         </Block>
       </CardBody>
     </StyledFarmStakingCard>
