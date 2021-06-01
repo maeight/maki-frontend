@@ -92,6 +92,21 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.BTC,
     quoteTokenAdresses: contracts.btc,
   },
+  {
+    pid: 7,
+    lpSymbol: 'USDT-HT',
+    lpAddresses: {
+      256: '',
+      128: '0x94c8C66670dE883c6667B8aa214c4961bFeeB04a', // (1/6/21)
+    },
+    tokenSymbol: 'USDT',
+    tokenAddresses: {
+      256: '', // 
+      128: '0xa71EdC38d189767582C38A3145b5873052c3e47a' // (1/6/21)
+    },
+    quoteTokenSymbol: QuoteToken.HT,
+    quoteTokenAdresses: contracts.wht,
+  },
 ]
 
 export default farms
