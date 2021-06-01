@@ -22,13 +22,13 @@ const EarnAssetCard = () => {
   const activeNonMakiPools = pools.filter((pool) => !pool.isFinished && !pool.tokenName.includes('MAKI'))
   const latestPools: Pool[] = orderBy(activeNonMakiPools, ['sortOrder', 'pid'], ['desc', 'desc']).slice(0, 3)
   // Always include MAKI
-  const assets = ['MAKI', ...latestPools.map((pool) => pool.tokenName)].join(', ')
+  const assets = ['SOY', ...latestPools.map((pool) => pool.tokenName)].join(', ')
 
   return (
     <StyledFarmStakingCard>
       <CardBody>
         <Heading color="text" size="lg">
-          Earn
+          Earn and Compound
         </Heading>
         <CardMidContent color="primaryDark">{assets}</CardMidContent>
         <Flex justifyContent="space-between">

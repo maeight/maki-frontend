@@ -33,12 +33,9 @@ const TotalValueLockedCard = () => {
   const MAKIVAL = F3
   const ETHVAL = F5
 
-
-
 /* SUM VALUE LOCKED */
-
-  const ttlVal = new BigNumber((HTVAL.plus(MAKIVAL).plus(ETHVAL)).times(2)).toLocaleString().slice(0,11)
-  const totalValueFormated = ttlVal
+const ttlVal = new BigNumber((HTVAL.plus(MAKIVAL).plus(ETHVAL)).times(2)).toLocaleString().slice(0,11)
+const totalValueFormated = ttlVal
   ? `$${Number(ttlVal).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
   : '-'
 
@@ -46,7 +43,7 @@ const TotalValueLockedCard = () => {
     <StyledTotalValueLockedCard>
       <CardBody>
         <Heading size="lg" mb="24px">
-          Total Value Locked (TVL)
+          Total Value (TVL)
         </Heading>
         {data ? (
           <>
