@@ -38,7 +38,9 @@ const TotalValueLockedCard = () => {
 /* SUM VALUE LOCKED */
 
   const ttlVal = new BigNumber((HTVAL.plus(MAKIVAL).plus(ETHVAL)).times(2)).toLocaleString().slice(0,11)
-  
+  const totalValueFormated = ttlVal
+  ? `$${Number(ttlVal).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
+  : '-'
 
   return (
     <StyledTotalValueLockedCard>
@@ -54,7 +56,7 @@ const TotalValueLockedCard = () => {
         ) : (
           <>
           {/* <Skeleton height={45} /> */}
-          <Heading size="xl">${ttlVal}</Heading>
+          <Heading size="xl">{totalValueFormated}</Heading>
           <Text color="textSubtle">Across all LPs and Maki Pools</Text>
           </>
         )}
