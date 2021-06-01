@@ -84,7 +84,7 @@ const farms: FarmConfig[] = [
       256: '',
       128: '0x901a89e02cd610c04d0feb45791dbf64b8c20503', // (31/5/21)
     },
-    tokenSymbol: 'HBTC',
+    tokenSymbol: 'BTC',
     tokenAddresses: {
       256: '', // 
       128: '0x66a79d23e58475d2738179ca52cd0b41d73f0bea', // (31/5/21)

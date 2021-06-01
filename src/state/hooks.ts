@@ -105,6 +105,11 @@ export const usePriceEthHt = (): BigNumber => {
   const priceEthHusd = usePriceEthHusd()
   return priceEthHusd.div(priceHtHusd)
 }
+export const usePriceBtcHusd = (): BigNumber => {
+  const pid = 6 // HUSD-HT LP
+  const farm = useFarmFromPid(pid)
+  return farm.tokenPriceVsQuote ? new BigNumber(1).div(farm.tokenPriceVsQuote) : ZERO
+}
 
 // Toasts
 export const useToast = () => {
