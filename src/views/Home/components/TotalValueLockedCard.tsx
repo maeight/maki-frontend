@@ -4,7 +4,7 @@ import { Card, CardBody, Heading, Text } from 'makiswap-uikit'
 import BigNumber from 'bignumber.js'
 
 import { useGetStats } from 'hooks/api'
-import { useFarmFromPid, usePriceMakiHusd, usePriceHtHusd, usePriceEthHusd } from 'state/hooks'
+import { useFarmFromPid, usePriceBtcHusd, usePriceMakiHusd, usePriceHtHusd, usePriceEthHusd } from 'state/hooks'
 // import { split } from 'lodash'
 
 const StyledTotalValueLockedCard = styled(Card)`
@@ -20,7 +20,7 @@ const TotalValueLockedCard = () => {
   const makiPrice = new BigNumber(usePriceMakiHusd())
   const htPrice = new BigNumber(usePriceHtHusd())
   const ethPrice = new BigNumber(usePriceEthHusd())
-
+  const btcPrice = new BigNumber(usePriceBtcHusd())
   
 /* VALUE BY PID */
   const F1 = new BigNumber(useFarmFromPid(1).quoteTokenAmount).times(htPrice)
@@ -28,14 +28,16 @@ const TotalValueLockedCard = () => {
   const F3 = new BigNumber(useFarmFromPid(3).quoteTokenAmount).times(makiPrice)
   const F4 = new BigNumber(useFarmFromPid(4).quoteTokenAmount).times(htPrice)
   const F5 = new BigNumber(useFarmFromPid(5).quoteTokenAmount).times(ethPrice)
+  const F6 = new BigNumber(useFarmFromPid(6).quoteTokenAmount).times(btcPrice)
 
   const HTVAL = F1.plus(F2).plus(F4)
   const MAKIVAL = F3
   const ETHVAL = F5
+  const BTCVAL = F6
 
 /* SUM VALUE LOCKED */
 
-  const ttlVal = new BigNumber(((HTVAL.plus(MAKIVAL).plus(ETHVAL)).times(2)).plus(6500000)).toLocaleString().slice(0,11)
+  const ttlVal = new BigNumber(((HTVAL.plus(MAKIVAL).plus(ETHVAL)).plus(BTCVAL).times(2))).toLocaleString().slice(0,11)
   const totalValueFormated = ttlVal
   ? `$${Number(ttlVal).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
   : '-'

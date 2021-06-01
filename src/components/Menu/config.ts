@@ -10,16 +10,16 @@ const config: MenuEntry[] = [
     label: 'Trade',
     icon: 'TradeIcon',
     href: 'https://exchange.makiswap.com',
-    //   items: [
-    //     {
-    //       label: 'Exchange',
-    //       href: 'https://exchange.makiswap.com',
-    //     },
-    //     {
-    //       label: 'Liquidity',
-    //       href: 'https://exchange.makiswap.com/#/pool',
-    //     },
-    //   ],
+      items: [
+        {
+          label: 'Exchange',
+          href: 'https://exchange.makiswap.com',
+        },
+        {
+          label: 'Liquidity',
+          href: 'https://exchange.makiswap.com/#/pool',
+        },
+      ],
   },
   {
     label: 'Farms',
@@ -46,14 +46,6 @@ const config: MenuEntry[] = [
       {
         label: 'MasterChef.sol',
         href: 'https://hecoinfo.com/address/0x4cb4c9C8cC67B171Ce86eB947cf558AFDBcAB17E/#code',
-      },
-      {
-        label: 'SousChef.sol',
-        href: 'https://hecoinfo.com/address/0xDC421d23AafC788997cd4664E1516B93c2783e78/#code',
-      },
-      {
-        label: 'Multicall.sol',
-        href: 'https://hecoinfo.com/address/0xC678588909d18879E7ce9a5c11e89264900ec13D#code',
       },
       {
         label: 'MakiswapFactory.sol',

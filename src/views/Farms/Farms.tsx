@@ -8,7 +8,7 @@ import { Heading } from 'makiswap-uikit'
 import { BLOCKS_PER_YEAR, MAKI_PER_BLOCK, MAKI_POOL_PID } from 'config'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
-import { useFarms, usePriceMakiHusd, usePriceHtHusd, usePriceEthHusd } from 'state/hooks'
+import { useFarms, usePriceBtcHusd, usePriceEthHusd, usePriceMakiHusd, usePriceHtHusd } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
 import { fetchFarmUserDataAsync } from 'state/actions'
 import { QuoteToken } from 'config/constants/types'
@@ -22,6 +22,7 @@ const Farms: React.FC = () => {
   const makiPrice = usePriceMakiHusd() // Calculates MAKI price
   const htPrice = usePriceHtHusd() // Calculates HT price
   const ethPrice = usePriceEthHusd() // Calculates ETH price
+  const btcPrice = usePriceBtcHusd() // Calculates BTC price
 
   const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
 
@@ -62,6 +63,8 @@ const Farms: React.FC = () => {
           apy = makiPrice.div(htPrice).times(makiRewardPerYear).div(farm.lpTotalInQuoteToken)
         } else if (farm.quoteTokenSymbol === QuoteToken.ETH) {
           apy = makiPrice.div(ethPrice).times(makiRewardPerYear).div(farm.lpTotalInQuoteToken)               
+        } else if (farm.quoteTokenSymbol === QuoteToken.BTC) {
+          apy = makiPrice.div(btcPrice).times(makiRewardPerYear).div(farm.lpTotalInQuoteToken)               
         } else if (farm.quoteTokenSymbol === QuoteToken.MAKI) {
           apy = makiRewardPerYear.div(farm.lpTotalInQuoteToken)
         } else if (farm.dual) {
@@ -87,12 +90,13 @@ const Farms: React.FC = () => {
           htPrice={htPrice}
           ethPrice={ethPrice}
           makiPrice={makiPrice}
+          btcPrice={btcPrice}
           ethereum={ethereum}
           account={account}
         />
       ))
     },
-    [farmsLP, htPrice, ethPrice, makiPrice, ethereum, account],
+    [farmsLP, htPrice, ethPrice, makiPrice, btcPrice, ethereum, account],
   )
 
   return (
