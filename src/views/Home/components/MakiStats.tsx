@@ -27,7 +27,7 @@ const MakiStats = () => {
     
   const makiSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
   const makiSupplyFormated = makiSupply
-  ? `$${Number(makiSupply).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
+  ? `${Number(makiSupply).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
   : '-'
 
   return (
