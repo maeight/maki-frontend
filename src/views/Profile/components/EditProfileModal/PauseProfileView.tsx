@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AutoRenewIcon, Button, Checkbox, Flex, InjectedModalProps, Text } from 'makiswap-uikit'
+import { AutoRenewIcon, Button, Checkbox, Flex, InjectedModalProps, Text } from 'maki-uikit'
 import useI18n from 'hooks/useI18n'
 import { useDispatch } from 'react-redux'
 import { useProfile, useToast } from 'state/hooks'

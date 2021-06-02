@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Card, CardBody, Heading, Text } from 'makiswap-uikit'
+import { Card, CardBody, Heading, Text } from 'maki-uikit'
 import BigNumber from 'bignumber.js'
 
 import { useGetStats } from 'hooks/api'
@@ -12,6 +12,7 @@ const StyledTotalValueLockedCard = styled(Card)`
   display: flex;
   flex: 1;
 `
+
 const TotalValueLockedCard = () => {
   const data = useGetStats()
   const tvl = data ? data.total_value_locked_all.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null
@@ -37,7 +38,6 @@ const TotalValueLockedCard = () => {
   const BTCVAL = F6
 
 /* SUM VALUE LOCKED */
-
   const ttlVal = new BigNumber(((HTVAL.plus(MAKIVAL).plus(ETHVAL)).plus(BTCVAL).times(2))).toLocaleString().slice(0,11)
   const totalValueFormated = ttlVal
   ? `$${Number(ttlVal).toLocaleString(undefined, { maximumFractionDigits: 0 })}`

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useRouteMatch, Link } from 'react-router-dom'
-import { ButtonMenu, ButtonMenuItem } from 'makiswap-uikit'
+import { ButtonMenu, ButtonMenuItem } from 'maki-uikit'
 
 const Wrapper = styled.div`
   display: flex;

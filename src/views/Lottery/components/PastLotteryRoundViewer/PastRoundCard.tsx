@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card } from 'makiswap-uikit'
+import { Card } from 'maki-uikit'
 import { DataResponse } from 'utils/getLotteryRoundData'
 import PastRoundCardError from './PastRoundCardError'
 import PastRoundCardDetails from './PastRoundCardDetails'

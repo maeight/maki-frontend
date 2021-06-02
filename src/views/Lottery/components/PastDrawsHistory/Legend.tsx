@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text } from 'makiswap-uikit'
+import { Text } from 'maki-uikit'
 import useI18n from 'hooks/useI18n'
 
 const Wrapper = styled.div`

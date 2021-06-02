@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, Flex, Text } from 'makiswap-uikit'
+import { Modal, Flex, Text } from 'maki-uikit'
 import { useDispatch } from 'react-redux'
 import BigNumber from 'bignumber.js'
 import useI18n from 'hooks/useI18n'

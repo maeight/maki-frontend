@@ -1,5 +1,5 @@
 import styled, { DefaultTheme } from 'styled-components'
-import { CardHeader as UIKitCardHeader } from 'makiswap-uikit'
+import { CardHeader as UIKitCardHeader } from 'maki-uikit'
 
 const getBackground = (theme: DefaultTheme) => {
   if (theme.isDark) {
