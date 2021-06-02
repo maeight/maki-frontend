@@ -107,6 +107,21 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.HT,
     quoteTokenAdresses: contracts.wht,
   },
+  {
+    pid: 8,
+    lpSymbol: 'USDT-HUSD',
+    lpAddresses: {
+      256: '',
+      128: '0x79DD12783DD8A1b33e6e530e77389B196962bBfa', // (2/6/21)
+    },
+    tokenSymbol: 'USDT',
+    tokenAddresses: {
+      256: '', // 
+      128: '0xa71EdC38d189767582C38A3145b5873052c3e47a' // (2/6/21)
+    },
+    quoteTokenSymbol: QuoteToken.HUSD,
+    quoteTokenAdresses: contracts.husd,
+  },
 ]
 
 export default farms

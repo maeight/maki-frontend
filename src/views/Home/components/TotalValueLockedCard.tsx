@@ -32,14 +32,16 @@ const TotalValueLockedCard = () => {
   const F5 = new BigNumber(useFarmFromPid(5).quoteTokenAmount).times(ethPrice)
   const F6 = new BigNumber(useFarmFromPid(6).quoteTokenAmount).times(btcPrice)
   const F7 = new BigNumber(useFarmFromPid(7).quoteTokenAmount).times(htPrice)
+  const F8 = new BigNumber(useFarmFromPid(8).quoteTokenAmount)
 
   const HTVAL = F1.plus(F2).plus(F4).plus(F7)
   const MAKIVAL = F3.plus(F0)
   const ETHVAL = F5
   const BTCVAL = F6
+  const USDVAL = F8
 
 /* SUM VALUE LOCKED */
-  const ttlVal = new BigNumber(((HTVAL.plus(MAKIVAL).plus(ETHVAL)).plus(BTCVAL).times(2))).toLocaleString().slice(0,11)
+  const ttlVal = new BigNumber(((HTVAL.plus(MAKIVAL).plus(ETHVAL)).plus(BTCVAL).plus(USDVAL)).times(2)).toLocaleString().slice(0,11)
   const totalValueFormated = ttlVal
   ? `$${Number(ttlVal).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
   : '-'
