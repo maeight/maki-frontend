@@ -24,6 +24,7 @@ const TotalValueLockedCard = () => {
   const btcPrice = new BigNumber(usePriceBtcHusd())
   
 /* VALUE BY PID */
+  const F0 = new BigNumber(1500000)
   const F1 = new BigNumber(useFarmFromPid(1).quoteTokenAmount).times(htPrice)
   const F2 = new BigNumber(useFarmFromPid(2).quoteTokenAmount).times(htPrice)
   const F3 = new BigNumber(useFarmFromPid(3).quoteTokenAmount).times(makiPrice)
@@ -33,7 +34,7 @@ const TotalValueLockedCard = () => {
   const F7 = new BigNumber(useFarmFromPid(7).quoteTokenAmount).times(htPrice)
 
   const HTVAL = F1.plus(F2).plus(F4).plus(F7)
-  const MAKIVAL = F3
+  const MAKIVAL = F3.plus(F0)
   const ETHVAL = F5
   const BTCVAL = F6
 
