@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button, Heading, Text, LogoIcon } from 'makiswap-uikit'
+import { Button, Heading, Text, LogoIcon } from 'maki-uikit'
 import Page from 'components/layout/Page'
 
 const StyledNotFound = styled.div`

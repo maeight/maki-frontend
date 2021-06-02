@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Card, CardBody, Text } from 'makiswap-uikit'
+import { Heading, Card, CardBody, Text } from 'maki-uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
 import { getMakiAddress } from 'utils/addressHelpers'

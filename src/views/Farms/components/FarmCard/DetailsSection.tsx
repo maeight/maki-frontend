@@ -1,7 +1,7 @@
 import React from 'react'
 import useI18n from 'hooks/useI18n'
 import styled from 'styled-components'
-import { Text, Flex, Link, LinkExternal } from 'makiswap-uikit'
+import { Text, Flex, Link, LinkExternal } from 'maki-uikit'
 
 export interface ExpandableSectionProps {
   hrcScanAddress?: string

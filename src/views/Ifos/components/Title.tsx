@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Heading } from 'makiswap-uikit'
+import { Heading } from 'maki-uikit'
 
 const Title = styled(Heading).attrs({ size: 'lg' })`
   color: ${({ theme }) => theme.colors.secondary};

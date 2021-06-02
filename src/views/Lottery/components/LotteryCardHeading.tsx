@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Heading, Text } from 'makiswap-uikit'
+import { Flex, Heading, Text } from 'maki-uikit'
 
 interface HeadingProps {
   valueToDisplay?: string

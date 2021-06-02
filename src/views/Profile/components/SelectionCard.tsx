@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Card, Radio } from 'makiswap-uikit'
+import { Card, Radio } from 'maki-uikit'
 
 interface SelectionCardProps {
   name: string

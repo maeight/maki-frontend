@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Progress } from 'makiswap-uikit'
+import { Progress } from 'maki-uikit'
 
 interface IfoCardProgressProps {
   progress: number

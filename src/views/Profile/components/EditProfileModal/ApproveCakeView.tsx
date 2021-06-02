@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { AutoRenewIcon, Button, Flex, InjectedModalProps, Text } from 'makiswap-uikit'
+import { AutoRenewIcon, Button, Flex, InjectedModalProps, Text } from 'maki-uikit'
 import useI18n from 'hooks/useI18n'
 import { useMaki } from 'hooks/useContract'
 import { useProfile, useToast } from 'state/hooks'

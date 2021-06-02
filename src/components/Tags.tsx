@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tag, VerifiedIcon, CommunityIcon, BinanceIcon } from 'makiswap-uikit'
+import { Tag, VerifiedIcon, CommunityIcon, BinanceIcon } from 'maki-uikit'
 
 const CoreTag = () => (
   <Tag variant="secondary" outline startIcon={<VerifiedIcon />}>

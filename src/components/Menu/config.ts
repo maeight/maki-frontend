@@ -1,4 +1,4 @@
-import { MenuEntry } from 'makiswap-uikit'
+import { MenuEntry } from 'maki-uikit'
 
 const config: MenuEntry[] = [
   {

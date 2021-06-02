@@ -15,7 +15,7 @@ import {
   useModal,
   Skeleton,
   Checkbox,
-} from 'makiswap-uikit'
+} from 'maki-uikit'
 import { parseISO, formatDistance } from 'date-fns'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { useToast } from 'state/hooks'

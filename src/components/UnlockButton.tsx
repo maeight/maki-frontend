@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, useWalletModal } from 'makiswap-uikit'
+import { Button, useWalletModal } from 'maki-uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 
 const UnlockButton = (props) => {

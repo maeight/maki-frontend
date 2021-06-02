@@ -1,5 +1,5 @@
 import React from 'react'
-import { ModalProvider } from 'makiswap-uikit'
+import { ModalProvider } from 'maki-uikit'
 import bsc, { UseWalletProvider } from '@binance-chain/bsc-use-wallet'
 import { Provider } from 'react-redux'
 import getRpcUrl from 'utils/getRpcUrl'

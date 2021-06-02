@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
-import { Breadcrumbs, Heading, Text } from 'makiswap-uikit'
+import { Breadcrumbs, Heading, Text } from 'maki-uikit'
 import useI18n from 'hooks/useI18n'
 import { ProfileCreationContext } from './contexts/ProfileCreationProvider'
 

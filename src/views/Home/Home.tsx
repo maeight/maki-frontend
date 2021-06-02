@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Text, BaseLayout } from 'makiswap-uikit'
+import { Heading, Text, BaseLayout } from 'maki-uikit'
 import Page from 'components/layout/Page'
 import FarmStakingCard from 'views/Home/components/FarmStakingCard'
 import MakiStats from 'views/Home/components/MakiStats'

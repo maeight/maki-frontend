@@ -1,4 +1,4 @@
-import { Toast } from 'makiswap-uikit'
+import { Toast } from 'maki-uikit'
 import BigNumber from 'bignumber.js'
 import { CampaignType, FarmConfig, Nft, PoolConfig, Team } from 'config/constants/types'
 

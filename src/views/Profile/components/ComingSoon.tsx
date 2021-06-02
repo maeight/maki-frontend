@@ -1,5 +1,5 @@
 import React from 'react'
-import { BunnyPlaceholderIcon, Flex, Heading } from 'makiswap-uikit'
+import { BunnyPlaceholderIcon, Flex, Heading } from 'maki-uikit'
 import useI18n from 'hooks/useI18n'
 
 interface ComingSoonProps {
