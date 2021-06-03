@@ -32,7 +32,7 @@ const EarnAPYCard = () => {
 
     calculateAPY(activeFarms)
 
-    return new BigNumber(maxAPY.current * 1).toLocaleString().slice(0, -10)
+    return new BigNumber(maxAPY.current * 1).toLocaleString().slice(0, -13)
   }
   
 
@@ -52,7 +52,7 @@ const EarnAPYCard = () => {
 
         // FIX ** 
         if (farm.quoteTokenSymbol === QuoteToken.HUSD) {
-          apy = makiPrice.times(makiRewardPerYear).div(farm.lpTotalInQuoteToken)   
+          apy = makiPrice.div(farm.lpTotalInQuoteToken).div(new BigNumber(1500))
         } else if (farm.quoteTokenSymbol === QuoteToken.HT) {
           apy = makiPriceVsHT.times(makiRewardPerYear).div(farm.lpTotalInQuoteToken).times(htPrice)
         } else if (farm.quoteTokenSymbol === QuoteToken.MAKI) {
