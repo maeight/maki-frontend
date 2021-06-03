@@ -98,7 +98,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, makiPrice, htPrice, 
 
   const isCommunityFarm = communityFarms.includes(farm.tokenSymbol)
   // We assume the token name is coin pair + lp e.g. MAKI-HT LP, LINK-HT LP,
-  // NAR-MAKI LP. The images should be cake-bnb.svg, link-bnb.svg, nar-cake.svg
+  // NAR-MAKI LP. The images should be maki-ht.svg, link-ht.svg, nar-maki.svg
   const farmImage = farm.lpSymbol.split(' ')[0].toLocaleLowerCase()
 
   const totalValue: BigNumber = useMemo(() => {
@@ -112,7 +112,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, makiPrice, htPrice, 
       return makiPrice.times(farm.lpTotalInQuoteToken)
     }
     if (farm.quoteTokenSymbol === QuoteToken.HUSD) {
-      return makiPrice
+      return makiPrice.div(farm.lpTotalInQuoteToken).times(new BigNumber(15900))
     }
     if (farm.quoteTokenSymbol === QuoteToken.ETH) {
       return ethPrice.times(farm.lpTotalInQuoteToken)
@@ -182,11 +182,5 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, makiPrice, htPrice, 
     </FCard>
   )
 }
-
-const StyledCardWrapper = styled.div`
-  display: flex;
-  width: calc((900px - ${(props) => props.theme.spacing[4]}px * 2) / 3);
-  position: relative;
-`
 
 export default FarmCard
