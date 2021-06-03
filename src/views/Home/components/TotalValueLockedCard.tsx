@@ -33,10 +33,11 @@ const TotalValueLockedCard = () => {
   const F6 = new BigNumber(useFarmFromPid(6).quoteTokenAmount).times(btcPrice)
   const F7 = new BigNumber(useFarmFromPid(7).quoteTokenAmount).times(htPrice)
   const F8 = new BigNumber(useFarmFromPid(8).quoteTokenAmount)
+  const F9 = new BigNumber(useFarmFromPid(9).quoteTokenAmount).times(ethPrice)
 
   const HTVAL = F1.plus(F2).plus(F4).plus(F7)
   const MAKIVAL = F3.plus(F0)
-  const ETHVAL = F5
+  const ETHVAL = F5.plus(F9)
   const BTCVAL = F6
   const USDVAL = F8
 
