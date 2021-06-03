@@ -35,7 +35,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   apy,
   addLiquidityUrl,
 }) => {
-  const farmApy = apy.times(new BigNumber(25)).toNumber()
+  const farmApy = apy.times(new BigNumber(250)).toNumber()
   const oneThousandDollarsWorthOfMaki = 1000 / makiPrice.toNumber()
 
   const makiEarnedPerThousand1D = calculateMakiEarnedPerThousandDollars({ numberOfDays: 1, farmApy, makiPrice })
@@ -48,7 +48,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
       <Grid>
         <GridItem>
           <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase" mb="20px">
-            Timeframe
+            Timeframe (Days)
           </Text>
         </GridItem>
         <GridItem>
@@ -63,7 +63,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         {/* 1 day row */}
         <GridItem>
-          <Text>1d</Text>
+          <Text>1D</Text>
         </GridItem>
         <GridItem>
           <Text>
@@ -75,7 +75,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         {/* 7 day row */}
         <GridItem>
-          <Text>7d</Text>
+          <Text>7D</Text>
         </GridItem>
         <GridItem>
           <Text>
@@ -87,7 +87,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         {/* 30 day row */}
         <GridItem>
-          <Text>30d</Text>
+          <Text>30D</Text>
         </GridItem>
         <GridItem>
           <Text>
@@ -99,7 +99,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         {/* 365 day / APY row */}
        {/* <GridItem>
-          <Text>365d(APY)</Text>
+          <Text>365D</Text>
         </GridItem>
         <GridItem>
           <Text>
