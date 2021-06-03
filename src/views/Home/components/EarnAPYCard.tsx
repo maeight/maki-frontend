@@ -55,6 +55,8 @@ const EarnAPYCard = () => {
           apy = makiPrice.div(farm.lpTotalInQuoteToken).div(new BigNumber(1500))
         } else if (farm.quoteTokenSymbol === QuoteToken.HT) {
           apy = makiPriceVsHT.times(makiRewardPerYear).div(farm.lpTotalInQuoteToken).times(htPrice)
+        // } else if (farm.quoteTokenSymbol === QuoteToken.ETH) {
+        //   apy = ??
         } else if (farm.quoteTokenSymbol === QuoteToken.MAKI) {
           apy = makiPriceVsHT.times(makiRewardPerYear).div(farm.lpTotalInQuoteToken)
         } else if (farm.dual) {
@@ -73,7 +75,7 @@ const EarnAPYCard = () => {
         if (maxAPY.current < apy.toNumber()) maxAPY.current = apy.toNumber()
 
         // return apy
-        return apy
+        return apy.toFixed(2)
       })
     },
     [htPrice, farmsLP],
