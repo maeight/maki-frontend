@@ -112,7 +112,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, makiPrice, htPrice, 
       return makiPrice.times(farm.lpTotalInQuoteToken)
     }
     if (farm.quoteTokenSymbol === QuoteToken.HUSD) {
-      return makiPrice.div(farm.lpTotalInQuoteToken).times(new BigNumber(15900))
+      return makiPrice.times(farm.lpTotalInQuoteToken).times(new BigNumber(10080000))
     }
     if (farm.quoteTokenSymbol === QuoteToken.ETH) {
       return ethPrice.times(farm.lpTotalInQuoteToken)
