@@ -71,34 +71,33 @@ const config: MenuEntry[] = [
       },
     ],
   },
-
   // {
   //   label: 'IFO',
   //   icon: 'IfoIcon',
   //   href: '/ifo'
   // },
-  // {
-  //   label: 'Info',
-  //   icon: 'InfoIcon',
-  //   items: [
-  //     {
-  //       label: 'Overview',
-  //       href: 'https://info.makiswap.com',
-  //     },
-  //     {
-  //       label: 'Tokens',
-  //       href: 'https://info.makiswap.com/tokens',
-  //     },
-  //     {
-  //       label: 'Pairs',
-  //       href: 'https://info.makiswap.com/pairs',
-  //     },
-  //     {
-  //       label: 'Accounts',
-  //       href: 'https://info.makiswap.com/accounts',
-  //     },
-  //   ],
-  // },
+  {
+     label: 'Info',
+     icon: 'InfoIcon',
+     items: [
+       {
+         label: 'Overview',
+         href: 'https://info.makiswap.com',
+       },
+       {
+         label: 'Tokens',
+         href: 'https://info.makiswap.com/tokens',
+       },
+       {
+         label: 'Pairs',
+         href: 'https://info.makiswap.com/pairs',
+       },
+       {
+         label: 'Accounts',
+         href: 'https://info.makiswap.com/accounts',
+       },
+     ],
+   },
 ]
 
 export default config
