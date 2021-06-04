@@ -10316,10 +10316,10 @@ makeerror@1.0.x:
   dependencies:
     tmpl "1.0.x"
 
-maki-uikit@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/maki-uikit/-/maki-uikit-2.0.0.tgz#8847ed605b7954dd22c911263fc72a08b4c51fc2"
-  integrity sha512-0DMpHrmeP1KS6Ue9jTq4IM2hhE0JnnQVDGSC96Vq9KHLASAd9TXL1OpTuCopaYAHgoRCHJ/h6YCUiZnrhzQwLg==
+maki-uikit@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/maki-uikit/-/maki-uikit-2.1.0.tgz#e7378de1090b9a03a73395e435c56c0d76030e87"
+  integrity sha512-Hn7PW4hqq8An3PN9uyz+wKCxOOQ7IkOzFuiV8/ANbtIbmN3cdyEEcvIcNCDpwJbXv+qOmVwZGg5hAhzKmPzYpg==
   dependencies:
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"
