@@ -167,6 +167,21 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.HT,
     quoteTokenAdresses: contracts.wht,
   },
+  {
+    pid: 12,
+    lpSymbol: 'AETH-HT',
+    lpAddresses: {
+      256: '',
+      128: '0xE4c81115014787905CdF0D4216BfFE262A53bEBE', // (June 5th, 2021)
+    },
+    tokenSymbol: 'AETH',
+    tokenAddresses: {
+      256: '', // 
+      128: '0x62c10412d69823a98db5c09cf6e82810e0df5ad7' // (June 5th, 2021)
+    },
+    quoteTokenSymbol: QuoteToken.HT,
+    quoteTokenAdresses: contracts.wht,
+  },
 ]
 
 export default farms
