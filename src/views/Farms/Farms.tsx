@@ -61,7 +61,7 @@ const Farms: React.FC = () => {
           apy = makiPrice.div(farm.lpTotalInQuoteToken).div(new BigNumber(1000))
         }
           else if (farm.quoteTokenSymbol === QuoteToken.USDT) {
-          apy = makiPrice.times(farm.lpTotalInQuoteToken)
+          apy = makiPrice.times(farm.lpTotalInQuoteToken).div(new BigNumber(125000))
         } else if (farm.quoteTokenSymbol === QuoteToken.HT) {
           apy = makiPrice.div(htPrice).times(makiRewardPerYear).div(farm.lpTotalInQuoteToken)
         } else if (farm.quoteTokenSymbol === QuoteToken.ETH) {
