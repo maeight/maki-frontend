@@ -31,6 +31,14 @@ export default {
     256: '',
     128: '0x0298c2b32eae4da002a15f36fdf7615bea3da047', // VERIFIED - (29/5/21)
   },
+  usdc: {
+    256: '',
+    128: '0x9362bbef4b8313a8aa9f0c9808b80577aa26b73b', // VERIFIED - (June 6th 2021)
+  },
+  usdt: {
+    256: '',
+    128: '0xa71edc38d189767582c38a3145b5873052c3e47a', // VERIFIED - (June 6th 2021)
+  },
   eth: {
     256: '',
     128: '0x64ff637fb478863b7468bc97d30a5bf3a428a1fd',
