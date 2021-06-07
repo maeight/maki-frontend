@@ -10,16 +10,16 @@ const config: MenuEntry[] = [
     label: 'Trade',
     icon: 'TradeIcon',
     href: 'https://exchange.makiswap.com',
-      items: [
-        {
-          label: 'Exchange',
-          href: 'https://exchange.makiswap.com',
-        },
-        {
-          label: 'Liquidity',
-          href: 'https://exchange.makiswap.com/#/pool',
-        },
-      ],
+      // items: [
+      //   {
+      //     label: 'Exchange',
+      //     href: 'https://exchange.makiswap.com',
+      //   },
+      //   {
+      //     label: 'Liquidity',
+      //     href: 'https://exchange.makiswap.com/#/pool',
+      //   },
+      // ],
   },
   {
     label: 'Farms',
@@ -33,7 +33,7 @@ const config: MenuEntry[] = [
   },
   {
     label: 'Contracts',
-    icon: 'InfoIcon',
+    icon: 'ContractsIcon',
     items: [
       {
         label: 'MakiToken.sol',

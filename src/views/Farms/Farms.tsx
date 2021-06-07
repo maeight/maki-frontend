@@ -1,125 +1,401 @@
-import React, { useEffect, useCallback, useState } from 'react'
-import { Route, useRouteMatch } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
+import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { provider } from 'web3-core'
-import { Heading } from 'maki-uikit'
-import { BLOCKS_PER_YEAR, MAKI_PER_BLOCK, MAKI_POOL_PID } from 'config'
+import { useWeb3React } from '@web3-react/core'
+import { Image, Heading, RowType, Toggle, Text } from 'maki-uikit'
+import styled from 'styled-components'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
-import { useFarms, usePriceBtcHusd, usePriceEthHusd, usePriceMakiHusd, usePriceHtHusd } from 'state/hooks'
-import useRefresh from 'hooks/useRefresh'
-import { fetchFarmUserDataAsync } from 'state/actions'
-import { QuoteToken } from 'config/constants/types'
+import { useFarms, usePollFarmsData, usePriceMakiHusd } from 'state/hooks'
+import usePersistState from 'hooks/usePersistState'
+import { Farm } from 'state/types'
+import { getBalanceNumber } from 'utils/formatBalance'
+import { getFarmApr } from 'utils/apr'
+import { orderBy } from 'lodash'
+import isArchivedPid from 'utils/farmHelpers'
+import { latinise } from 'utils/latinise'
+import PageHeader from 'components/PageHeader'
+import SearchInput from 'components/SearchInput'
+import Select, { OptionProps } from 'components/Select/Select'
 import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
+import Table from './components/FarmTable/FarmTable'
 import FarmTabButtons from './components/FarmTabButtons'
-import Divider from './components/Divider'
+import { RowProps } from './components/FarmTable/Row'
+import ToggleView from './components/ToggleView/ToggleView'
+import { DesktopColumnSchema, ViewMode } from './components/types'
+
+const ControlContainer = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  position: relative;
+
+  justify-content: space-between;
+  flex-direction: column;
+  margin-bottom: 32px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 16px 32px;
+    margin-bottom: 0;
+  }
+`
+
+const ToggleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+
+  ${Text} {
+    margin-left: 8px;
+  }
+`
+
+const LabelWrapper = styled.div`
+  > ${Text} {
+    font-size: 12px;
+  }
+`
+
+const FilterContainer = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 8px 0px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: auto;
+    padding: 0;
+  }
+`
+
+const ViewControls = styled.div`
+  flex-wrap: wrap;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  > div {
+    padding: 8px 0px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    justify-content: flex-start;
+    width: auto;
+
+    > div {
+      padding: 0;
+    }
+  }
+`
+
+const StyledImage = styled(Image)`
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 58px;
+`
+const NUMBER_OF_FARMS_VISIBLE = 12
 
 const Farms: React.FC = () => {
   const { path } = useRouteMatch()
-  const farmsLP = useFarms()
-  const makiPrice = usePriceMakiHusd() // Calculates MAKI price
-  const htPrice = usePriceHtHusd() // Calculates HT price
-  const ethPrice = usePriceEthHusd() // Calculates ETH price
-  const btcPrice = usePriceBtcHusd() // Calculates BTC price
+  const { pathname } = useLocation()
+  const { data: farmsLP, userDataLoaded } = useFarms()
+  const makiPrice = usePriceMakiHusd()
+  const [query, setQuery] = useState('')
+  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, 'maki_farm_view')
+  const { account } = useWeb3React()
+  const [sortOption, setSortOption] = useState('hot')
 
-  const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
+  const isArchived = pathname.includes('archived')
+  const isInactive = pathname.includes('history')
+  const isActive = !isInactive && !isArchived
 
-  const dispatch = useDispatch()
-  const { fastRefresh } = useRefresh()
+  usePollFarmsData(isArchived)
+
+  // Users with no wallet connected should see 0 as Earned amount
+  // Connected users should see loading indicator until first userData has loaded
+  const userDataReady = !account || (!!account && userDataLoaded)
+
+  const [stakedOnly, setStakedOnly] = useState(!isActive)
   useEffect(() => {
-    if (account) {
-      dispatch(fetchFarmUserDataAsync(account))
-    }
-  }, [account, dispatch, fastRefresh])
+    setStakedOnly(!isActive)
+  }, [isActive])
 
-  const [stackedOnly, setStackedOnly] = useState(false)
+  const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
+  const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
+  const archivedFarms = farmsLP.filter((farm) => isArchivedPid(farm.pid))
 
-  const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X')
-  const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X')
-  const stackedOnlyFarms = activeFarms.filter(
+  const stakedOnlyFarms = activeFarms.filter(
     (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
   )
-  // /!\ This function will be removed soon
-  // This function compute the APY for each farm and will be replaced when we have a reliable API
-  // to retrieve assets prices against USD
-  const farmsList = useCallback(
-    (farmsToDisplay, removed: boolean) => {
-      const makiPriceVsHT = new BigNumber(farmsLP.find((farm) => farm.pid === MAKI_POOL_PID)?.tokenPriceVsQuote || 0)
-      const farmsToDisplayWithAPY: FarmWithStakedValue[] = farmsToDisplay.map((farm) => {
-        if (!farm.tokenAmount || !farm.lpTotalInQuoteToken || !farm.lpTotalInQuoteToken) {
-          return farm
-        }
-        const makiRewardPerBlock = MAKI_PER_BLOCK.times(farm.poolWeight)
-        const makiRewardPerYear = makiRewardPerBlock.times(BLOCKS_PER_YEAR)
 
-        // makiPriceInQuote * makiRewardPerYear / lpTotalInQuoteToken
-        let apy = makiPriceVsHT.times(makiRewardPerYear).div(farm.lpTotalInQuoteToken)
-
-        if (farm.quoteTokenSymbol === QuoteToken.HUSD || farm.quoteTokenSymbol === QuoteToken.USDT) {
-          apy = makiPrice.div(farm.lpTotalInQuoteToken).div(new BigNumber(1000))
-        } else if (farm.quoteTokenSymbol === QuoteToken.HT) {
-          apy = makiPrice.div(htPrice).times(makiRewardPerYear).div(farm.lpTotalInQuoteToken)
-        } else if (farm.quoteTokenSymbol === QuoteToken.ETH) {
-          apy = makiPrice.div(ethPrice).times(makiRewardPerYear).div(farm.lpTotalInQuoteToken)               
-        } else if (farm.quoteTokenSymbol === QuoteToken.BTC) {
-          apy = makiPrice.div(btcPrice).times(makiRewardPerYear).div(farm.lpTotalInQuoteToken)               
-        } else if (farm.quoteTokenSymbol === QuoteToken.MAKI) {
-          apy = makiRewardPerYear.div(farm.lpTotalInQuoteToken)
-        } else if (farm.dual) {
-          const makiApy =
-            farm && makiPriceVsHT.times(makiRewardPerBlock).times(BLOCKS_PER_YEAR).div(farm.lpTotalInQuoteToken)
-          const dualApy =
-            farm.tokenPriceVsQuote &&
-            new BigNumber(farm.tokenPriceVsQuote)
-              .times(farm.dual.rewardPerBlock)
-              .times(BLOCKS_PER_YEAR)
-              .div(farm.lpTotalInQuoteToken)
-
-          apy = makiApy && dualApy && makiApy.plus(dualApy)
-        }
-
-        return { ...farm, apy }
-      })
-      return farmsToDisplayWithAPY.map((farm) => (
-        <FarmCard
-          key={farm.pid}
-          farm={farm}
-          removed={removed}
-          htPrice={htPrice}
-          ethPrice={ethPrice}
-          makiPrice={makiPrice}
-          btcPrice={btcPrice}
-          ethereum={ethereum}
-          account={account}
-        />
-      ))
-    },
-    [farmsLP, htPrice, ethPrice, makiPrice, btcPrice, ethereum, account],
+  const stakedInactiveFarms = inactiveFarms.filter(
+    (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
   )
 
-  return (
-    <Page>
-      <Heading as="h1" size="lg" color="secondary" mb="50px" style={{ textAlign: 'center' }}>
-        Stake LP tokens to earn MAKI
-      </Heading>
-      <FarmTabButtons stackedOnly={stackedOnly} setStackedOnly={setStackedOnly} />
+  const stakedArchivedFarms = archivedFarms.filter(
+    (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
+  )
+
+  const farmsList = useCallback(
+    (farmsToDisplay: Farm[]): FarmWithStakedValue[] => {
+      let farmsToDisplayWithAPR: FarmWithStakedValue[] = farmsToDisplay.map((farm) => {
+        if (!farm.lpTotalInQuoteToken || !farm.quoteToken.husdPrice) {
+          return farm
+        }
+        const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteToken.husdPrice)
+        const apr = isActive ? getFarmApr(new BigNumber(farm.poolWeight), makiPrice, totalLiquidity) : 0
+
+        return { ...farm, apr, liquidity: totalLiquidity }
+      })
+
+      if (query) {
+        const lowercaseQuery = latinise(query.toLowerCase())
+        farmsToDisplayWithAPR = farmsToDisplayWithAPR.filter((farm: FarmWithStakedValue) => {
+          return latinise(farm.lpSymbol.toLowerCase()).includes(lowercaseQuery)
+        })
+      }
+      return farmsToDisplayWithAPR
+    },
+    [makiPrice, query, isActive],
+  )
+
+  const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(event.target.value)
+  }
+
+  const loadMoreRef = useRef<HTMLDivElement>(null)
+
+  const [numberOfFarmsVisible, setNumberOfFarmsVisible] = useState(NUMBER_OF_FARMS_VISIBLE)
+  const [observerIsSet, setObserverIsSet] = useState(false)
+
+  const farmsStakedMemoized = useMemo(() => {
+    let farmsStaked = []
+
+    const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
+      switch (sortOption) {
+        case 'apr':
+          return orderBy(farms, (farm: FarmWithStakedValue) => farm.apr, 'desc')
+        case 'multiplier':
+          return orderBy(
+            farms,
+            (farm: FarmWithStakedValue) => (farm.multiplier ? Number(farm.multiplier.slice(0, -1)) : 0),
+            'desc',
+          )
+        case 'earned':
+          return orderBy(
+            farms,
+            (farm: FarmWithStakedValue) => (farm.userData ? Number(farm.userData.earnings) : 0),
+            'desc',
+          )
+        case 'liquidity':
+          return orderBy(farms, (farm: FarmWithStakedValue) => Number(farm.liquidity), 'desc')
+        default:
+          return farms
+      }
+    }
+
+    if (isActive) {
+      farmsStaked = stakedOnly ? farmsList(stakedOnlyFarms) : farmsList(activeFarms)
+    }
+    if (isInactive) {
+      farmsStaked = stakedOnly ? farmsList(stakedInactiveFarms) : farmsList(inactiveFarms)
+    }
+    if (isArchived) {
+      farmsStaked = stakedOnly ? farmsList(stakedArchivedFarms) : farmsList(archivedFarms)
+    }
+
+    return sortFarms(farmsStaked).slice(0, numberOfFarmsVisible)
+  }, [
+    sortOption,
+    activeFarms,
+    farmsList,
+    inactiveFarms,
+    archivedFarms,
+    isActive,
+    isInactive,
+    isArchived,
+    stakedArchivedFarms,
+    stakedInactiveFarms,
+    stakedOnly,
+    stakedOnlyFarms,
+    numberOfFarmsVisible,
+  ])
+
+  useEffect(() => {
+    const showMoreFarms = (entries) => {
+      const [entry] = entries
+      if (entry.isIntersecting) {
+        setNumberOfFarmsVisible((farmsCurrentlyVisible) => farmsCurrentlyVisible + NUMBER_OF_FARMS_VISIBLE)
+      }
+    }
+
+    if (!observerIsSet) {
+      const loadMoreObserver = new IntersectionObserver(showMoreFarms, {
+        rootMargin: '0px',
+        threshold: 1,
+      })
+      loadMoreObserver.observe(loadMoreRef.current)
+      setObserverIsSet(true)
+    }
+  }, [farmsStakedMemoized, observerIsSet])
+
+  const rowData = farmsStakedMemoized.map((farm) => {
+    const { token, quoteToken } = farm
+    const tokenAddress = token.address
+    const quoteTokenAddress = quoteToken.address
+    const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase().replace('MAKI', '')
+
+    const row: RowProps = {
+      apr: {
+        value: farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 }),
+        multiplier: farm.multiplier,
+        lpLabel,
+        tokenAddress,
+        quoteTokenAddress,
+        makiPrice,
+        originalValue: farm.apr,
+      },
+      farm: {
+        image: farm.lpSymbol.split(' ')[0].toLocaleLowerCase(),
+        label: lpLabel,
+        pid: farm.pid,
+      },
+      earned: {
+        earnings: getBalanceNumber(new BigNumber(farm.userData.earnings)),
+        pid: farm.pid,
+      },
+      liquidity: {
+        liquidity: farm.liquidity,
+      },
+      multiplier: {
+        multiplier: farm.multiplier,
+      },
+      details: farm,
+    }
+
+    return row
+  })
+
+  const renderContent = (): JSX.Element => {
+    if (viewMode === ViewMode.TABLE && rowData.length) {
+      const columnSchema = DesktopColumnSchema
+
+      const columns = columnSchema.map((column) => ({
+        id: column.id,
+        name: column.name,
+        label: column.label,
+        sort: (a: RowType<RowProps>, b: RowType<RowProps>) => {
+          switch (column.name) {
+            case 'farm':
+              return b.id - a.id
+            case 'apr':
+              if (a.original.apr.value && b.original.apr.value) {
+                return Number(a.original.apr.value) - Number(b.original.apr.value)
+              }
+
+              return 0
+            case 'earned':
+              return a.original.earned.earnings - b.original.earned.earnings
+            default:
+              return 1
+          }
+        },
+        sortable: column.sortable,
+      }))
+
+      return <Table data={rowData} columns={columns} userDataReady={userDataReady} />
+    }
+
+    return (
       <div>
-        <Divider />
         <FlexLayout>
           <Route exact path={`${path}`}>
-            {stackedOnly ? farmsList(stackedOnlyFarms, false) : farmsList(activeFarms, false)}
+            {farmsStakedMemoized.map((farm) => (
+              <FarmCard key={farm.pid} farm={farm} makiPrice={makiPrice} account={account} removed={false} />
+            ))}
           </Route>
           <Route exact path={`${path}/history`}>
-            {farmsList(inactiveFarms, true)}
+            {farmsStakedMemoized.map((farm) => (
+              <FarmCard key={farm.pid} farm={farm} makiPrice={makiPrice} account={account} removed />
+            ))}
+          </Route>
+          <Route exact path={`${path}/archived`}>
+            {farmsStakedMemoized.map((farm) => (
+              <FarmCard key={farm.pid} farm={farm} makiPrice={makiPrice} account={account} removed />
+            ))}
           </Route>
         </FlexLayout>
       </div>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <img src="/images/MakiTime.png" alt="Maki illustration" style={{ maxWidth: '100%' }} />
-      </div>
-    </Page>
+    )
+  }
+
+  const handleSortOptionChange = (option: OptionProps): void => {
+    setSortOption(option.value)
+  }
+
+  return (
+    <>
+      <PageHeader>
+        <Heading as="h1" size="xxl" color="secondary" mb="24px">
+          Farms
+        </Heading>
+        <Heading size="lg" color="text">
+          Stake Liquidity Pool (LP) tokens to earn.
+        </Heading>
+      </PageHeader>
+      <Page>
+        <ControlContainer>
+          <ViewControls>
+            <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
+            <ToggleWrapper>
+              <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
+              <Text> Staked only</Text>
+            </ToggleWrapper>
+            <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
+          </ViewControls>
+          <FilterContainer>
+            <LabelWrapper>
+              <Text textTransform="uppercase">Sort by</Text>
+              <Select
+                options={[
+                  {
+                    label: 'Hot',
+                    value: 'hot',
+                  },
+                  {
+                    label: 'APR',
+                    value: 'apr',
+                  },
+                  {
+                    label: 'Multiplier',
+                    value: 'multiplier',
+                  },
+                  {
+                    label: 'Earned',
+                    value: 'earned',
+                  },
+                  {
+                    label: 'Liquidity',
+                    value: 'liquidity',
+                  },
+                ]}
+                onChange={handleSortOptionChange}
+              />
+            </LabelWrapper>
+            <LabelWrapper style={{ marginLeft: 16 }}>
+              <Text textTransform="uppercase">Search</Text>
+              <SearchInput onChange={handleChangeQuery} placeholder="Search Farms" />
+            </LabelWrapper>
+          </FilterContainer>
+        </ControlContainer>
+        {renderContent()}
+        <div ref={loadMoreRef} />
+        <StyledImage src="/images/MakiTime.png" alt="Maki illustration" width={120} height={103} />
+      </Page>
+    </>
   )
 }
 

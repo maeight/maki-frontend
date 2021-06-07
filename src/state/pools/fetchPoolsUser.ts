@@ -6,7 +6,7 @@ import hrc20ABI from 'config/abi/hrc20.json'
 import { QuoteToken } from 'config/constants/types'
 import multicall from 'utils/multicall'
 import { getAddress, getMasterChefAddress } from 'utils/addressHelpers'
-import { getWeb3 } from 'utils/web3'
+import { getWeb3NoAccount } from 'utils/web3'
 import BigNumber from 'bignumber.js'
 
 // Pool 0, Cake / Cake is a different kind of contract (master chef)
@@ -14,7 +14,7 @@ import BigNumber from 'bignumber.js'
 const nonHtPools = poolsConfig.filter((p) => p.stakingTokenName !== QuoteToken.HT)
 const htPools = poolsConfig.filter((p) => p.stakingTokenName === QuoteToken.HT)
 const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 0)
-const web3 = getWeb3()
+const web3 = getWeb3NoAccount()
 const masterChefContract = new web3.eth.Contract((masterChefABI as unknown) as AbiItem, getMasterChefAddress())
 
 export const fetchPoolsAllowance = async (account) => {

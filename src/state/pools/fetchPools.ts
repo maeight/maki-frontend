@@ -1,6 +1,6 @@
 import poolsConfig from 'config/constants/pools'
 import sousChefABI from 'config/abi/sousChef.json'
-import makiABI from 'config/abi/cake.json'
+import makiABI from 'config/abi/maki.json'
 import whtABI from 'config/abi/wht.json'
 import { QuoteToken } from 'config/constants/types'
 import multicall from 'utils/multicall'

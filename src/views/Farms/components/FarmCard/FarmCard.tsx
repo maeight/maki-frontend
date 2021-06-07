@@ -1,12 +1,11 @@
-import React, { useMemo, useState } from 'react'
+import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
 import { Flex, Text, Skeleton } from 'maki-uikit'
-import { communityFarms } from 'config/constants'
 import { Farm } from 'state/types'
-import { provider } from 'web3-core'
+import { provider as ProviderType } from 'web3-core'
+import { getHecoInfoAddressUrl } from 'utils/hecoinfo'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
-import { QuoteToken } from 'config/constants/types'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import DetailsSection from './DetailsSection'
@@ -15,53 +14,40 @@ import CardActionsContainer from './CardActionsContainer'
 import ApyButton from './ApyButton'
 
 export interface FarmWithStakedValue extends Farm {
-  apy?: BigNumber
+  apr?: number
+  liquidity?: BigNumber
 }
 
-const RainbowLight = keyframes`
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+const AccentGradient = keyframes`  
+  0% {
+    background-position: 50% 0%;
+  }
+  50% {
+    background-position: 50% 100%;
+  }
+  100% {
+    background-position: 50% 0%;
+  }
 `
 
 const StyledCardAccent = styled.div`
-  background: linear-gradient(
-    45deg,
-    rgba(255, 0, 0, 1) 0%,
-    rgba(255, 154, 0, 1) 10%,
-    rgba(208, 222, 33, 1) 20%,
-    rgba(79, 220, 74, 1) 30%,
-    rgba(63, 218, 216, 1) 40%,
-    rgba(47, 201, 226, 1) 50%,
-    rgba(28, 127, 238, 1) 60%,
-    rgba(95, 21, 242, 1) 70%,
-    rgba(186, 12, 248, 1) 80%,
-    rgba(251, 7, 217, 1) 90%,
-    rgba(255, 0, 0, 1) 100%
-  );
-  background-size: 300% 300%;
-  animation: ${RainbowLight} 2s linear infinite;
-  border-radius: 12px;
-  filter: blur(6px);
+  background: ${({ theme }) => `linear-gradient(180deg, ${theme.colors.primaryBright}, ${theme.colors.secondary})`};
+  background-size: 400% 400%;
+  animation: ${AccentGradient} 2s linear infinite;
+  border-radius: 32px;
   position: absolute;
-  top: -2px;
-  right: -2px;
-  bottom: -2px;
-  left: -2px;
+  top: -1px;
+  right: -1px;
+  bottom: -3px;
+  left: -1px;
   z-index: -1;
 `
 
-const FCard = styled.div`
+const FCard = styled.div<{ isPromotedFarm: boolean }>`
   align-self: baseline;
   background: ${(props) => props.theme.card.background};
-  border-radius: 32px;
-  box-shadow: 0px 2px 12px -8px rgba(25, 19, 38, 0.1), 0px 1px 1px rgba(25, 19, 38, 0.05);
+  border-radius: ${({ theme, isPromotedFarm }) => (isPromotedFarm ? '31px' : theme.radii.card)};
+  box-shadow: 0px 1px 4px rgba(25, 19, 38, 0.15);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -86,73 +72,53 @@ interface FarmCardProps {
   farm: FarmWithStakedValue
   removed: boolean
   makiPrice?: BigNumber
-  htPrice?: BigNumber
-  ethPrice?: BigNumber
-  btcPrice?: BigNumber
-  ethereum?: provider
+  provider?: ProviderType
   account?: string
 }
 
-const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, makiPrice, htPrice, ethPrice, btcPrice, ethereum, account }) => {
+const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, makiPrice, account }) => {
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
-  const isCommunityFarm = communityFarms.includes(farm.tokenSymbol)
-  // We assume the token name is coin pair + lp e.g. MAKI-HT LP, LINK-HT LP,
-  // NAR-MAKI LP. The images should be maki-ht.svg, link-ht.svg, nar-maki.svg
+  // We assume the token name is coin pair + lp e.g. MAKI-BNB LP, LINK-BNB LP,
+  // NAR-MAKI LP. The images should be cake-bnb.svg, link-bnb.svg, nar-cake.svg
   const farmImage = farm.lpSymbol.split(' ')[0].toLocaleLowerCase()
 
-  const totalValue: BigNumber = useMemo(() => {
-    if (!farm.lpTotalInQuoteToken) {
-      return null
-    }
-    if (farm.quoteTokenSymbol === QuoteToken.HT) {
-      return htPrice.times(farm.lpTotalInQuoteToken)
-    }
-    if (farm.quoteTokenSymbol === QuoteToken.MAKI) {
-      return makiPrice.times(farm.lpTotalInQuoteToken)
-    }
-    if (farm.quoteTokenSymbol === QuoteToken.HUSD) {
-      return makiPrice.div(farm.lpTotalInQuoteToken).times(new BigNumber(20000))
-    }
-    if (farm.quoteTokenSymbol === QuoteToken.ETH) {
-      return ethPrice.times(farm.lpTotalInQuoteToken)
-    }
-    if (farm.quoteTokenSymbol === QuoteToken.BTC) {
-      return btcPrice.times(farm.lpTotalInQuoteToken)
-    }
-    return farm.lpTotalInQuoteToken
-  }, [htPrice, makiPrice, ethPrice, btcPrice, farm.lpTotalInQuoteToken, farm.quoteTokenSymbol])
+  const totalValueFormatted =
+    farm.liquidity && farm.liquidity.gt(0)
+      ? `$${farm.liquidity.toNumber().toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+      : ''
 
-  const totalValueFormated = totalValue
-    ? `$${Number(totalValue).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
-    : '-'
-
-  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('', '')
+  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('MAKI', '')
   const earnLabel = farm.dual ? farm.dual.earnLabel : 'MAKI'
-  const farmAPY = farm.apy && farm.apy.times(new BigNumber(100)).toNumber().toLocaleString('en-US').slice(0, -1)
 
-  const { quoteTokenAdresses, quoteTokenSymbol, tokenAddresses } = farm
-  const liquidityUrlPathParts = getLiquidityUrlPathParts({ quoteTokenAdresses, quoteTokenSymbol, tokenAddresses })
+  const farmAPR = farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 })
+
+  const liquidityUrlPathParts = getLiquidityUrlPathParts({
+    quoteTokenAddress: farm.quoteToken.address,
+    tokenAddress: farm.token.address,
+  })
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
+  const isPromotedFarm = farm.token.symbol === 'MAKI'
 
   return (
-    <FCard>
-      {farm.tokenSymbol === 'MAKI' && <StyledCardAccent />}
+    <FCard isPromotedFarm={isPromotedFarm}>
+      {isPromotedFarm && <StyledCardAccent />}
       <CardHeading
         lpLabel={lpLabel}
         multiplier={farm.multiplier}
-        isCommunityFarm={isCommunityFarm}
+        isCommunityFarm={farm.isCommunity}
         farmImage={farmImage}
-        tokenSymbol={farm.tokenSymbol}
+        tokenSymbol={farm.token.symbol}
       />
       {!removed && (
         <Flex justifyContent="space-between" alignItems="center">
-          <Text>APY:</Text>
+          <Text>APR:</Text>
           <Text bold style={{ display: 'flex', alignItems: 'center' }}>
-            {farm.apy ? (
+            {farm.apr ? (
               <>
-                <ApyButton lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} makiPrice={makiPrice} apy={farm.apy} />
-                {farmAPY}%
+                <ApyButton lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} makiPrice={makiPrice} apr={farm.apr} />
+                {farmAPR}%
               </>
             ) : (
               <Skeleton height={24} width={80} />
@@ -164,7 +130,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, makiPrice, htPrice, 
         <Text>Earn:</Text>
         <Text bold>{earnLabel}</Text>
       </Flex>
-      <CardActionsContainer farm={farm} ethereum={ethereum} account={account} addLiquidityUrl={addLiquidityUrl} />
+      <CardActionsContainer farm={farm} account={account} addLiquidityUrl={addLiquidityUrl} />
       <Divider />
       <ExpandableSectionButton
         onClick={() => setShowExpandableSection(!showExpandableSection)}
@@ -173,8 +139,9 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, makiPrice, htPrice, 
       <ExpandingWrapper expanded={showExpandableSection}>
         <DetailsSection
           removed={removed}
-          hrcScanAddress={`https://hecoinfo.com/address/${farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}`}
-          totalValueFormated={totalValueFormated}
+          etherscanAddress={getHecoInfoAddressUrl(farm.lpAddresses[process.env.REACT_APP_CHAIN_ID])}
+          infoAddress={`https://info.makiswap.com/pair/${lpAddress}`}
+          totalValueFormatted={totalValueFormatted}
           lpLabel={lpLabel}
           addLiquidityUrl={addLiquidityUrl}
         />

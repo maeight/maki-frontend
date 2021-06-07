@@ -4,7 +4,7 @@ import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { allLanguages } from 'config/localisation/languageCodes'
 import { LanguageContext } from 'contexts/Localisation/languageContext'
 import useTheme from 'hooks/useTheme'
-import { usePriceMakiHusd, useProfile } from 'state/hooks'
+import { usePriceMakiHusd } from 'state/hooks' // useProfile
 import config from './config'
 
 const Menu = (props) => {
@@ -12,7 +12,7 @@ const Menu = (props) => {
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
   const { isDark, toggleTheme } = useTheme()
   const makiPriceUsd = usePriceMakiHusd()
-  const { profile } = useProfile()
+  // const { profile } = useProfile()
 
   return (
     <UikitMenu
@@ -26,13 +26,13 @@ const Menu = (props) => {
       setLang={setSelectedLanguage}
       makiPriceUsd={makiPriceUsd.toNumber()}
       links={config}
-      profile={{
-        username: profile?.username,
-        image: profile?.nft ? `/images/nfts/${profile.nft?.images.sm}` : undefined,
-        profileLink: '/profile',
-        noProfileLink: '/profile',
-        showPip: !profile?.username,
-      }}
+      // profile={{
+      //   username: profile?.username,
+      //   image: profile?.nft ? `/images/nfts/${profile.nft?.images.sm}` : undefined,
+      //   profileLink: '/profile',
+      //   noProfileLink: '/profile',
+      //   showPip: !profile?.username,
+      // }}
       {...props}
     />
   )

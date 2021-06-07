@@ -13,7 +13,7 @@ export interface ExpandableSectionProps {
 
 const Wrapper = styled(Flex)`
   svg {
-    margin-right: 0.25rem;
+    margin-right: 4px;
   }
 `
 
@@ -30,9 +30,9 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
 }) => {
   return (
     <Wrapper justifyContent="space-between" alignItems="center" mb="12px">
-      <Image src={`/images/farms/${farmImage}.png`} alt={tokenSymbol} width={64} height={64} />
+      <Image src={`/images/farms/${farmImage}.svg`} alt={tokenSymbol} width={64} height={64} />
       <Flex flexDirection="column" alignItems="flex-end">
-        <Heading mb="4px">{lpLabel}</Heading>
+        <Heading mb="4px">{lpLabel.split(' ')[0]}</Heading>
         <Flex justifyContent="center">
           {isCommunityFarm ? <CommunityTag /> : <CoreTag />}
           <MultiplierTag variant="secondary">{multiplier}</MultiplierTag>

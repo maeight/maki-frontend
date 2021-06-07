@@ -3,22 +3,22 @@ import { Router, Redirect, Route, Switch } from 'react-router-dom'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { ResetCSS } from 'maki-uikit'
 import BigNumber from 'bignumber.js'
-import { useFetchProfile, useFetchPublicData } from 'state/hooks'
+import { usePollFarmsData } from 'state/hooks' // useFetchProfile
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import ToastListener from './components/ToastListener'
 import PageLoader from './components/PageLoader'
 import Pools from './views/Pools'
-import GlobalCheckBullHiccupClaimStatus from './views/Collectibles/components/GlobalCheckBullHiccupClaimStatus'
+// import GlobalCheckBullHiccupClaimStatus from './views/Collectibles/components/GlobalCheckBullHiccupClaimStatus'
 import history from './routerHistory'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page'
 const Home = lazy(() => import('./views/Home'))
 const Farms = lazy(() => import('./views/Farms'))
+const NotFound = lazy(() => import('./views/NotFound'))
 // const Lottery = lazy(() => import('./views/Lottery'))
 // const Ifos = lazy(() => import('./views/Ifos'))
-const NotFound = lazy(() => import('./views/NotFound'))
 // const Collectibles = lazy(() => import('./views/Collectibles'))
 // const Teams = lazy(() => import('./views/Teams'))
 // const Team = lazy(() => import('./views/Teams/Team'))
@@ -45,8 +45,8 @@ const App: React.FC = () => {
     }
   }, [account, connect])
 
-  useFetchPublicData()
-  useFetchProfile()
+  usePollFarmsData()
+  // useFetchProfile()
 
   return (
     <Router history={history}>
@@ -98,7 +98,7 @@ const App: React.FC = () => {
         </Suspense>
       </Menu>
       <ToastListener />
-      <GlobalCheckBullHiccupClaimStatus />
+      {/* <GlobalCheckBullHiccupClaimStatus /> */}
     </Router>
   )
 }

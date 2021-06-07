@@ -3,7 +3,6 @@ import React, { useCallback, useMemo, useState } from 'react'
 import { Button, Modal, LinkExternal } from 'maki-uikit'
 import ModalActions from 'components/ModalActions'
 import ModalInput from 'components/ModalInput'
-import useI18n from 'hooks/useI18n'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 
 interface DepositModalProps {
@@ -17,14 +16,18 @@ interface DepositModalProps {
 const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, tokenName = '', addLiquidityUrl }) => {
   const [val, setVal] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
-  const TranslateString = useI18n()
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(max)
   }, [max])
 
+  const valNumber = new BigNumber(val)
+  const fullBalanceNumber = new BigNumber(fullBalance)
+
   const handleChange = useCallback(
     (e: React.FormEvent<HTMLInputElement>) => {
-      setVal(e.currentTarget.value)
+      if (e.currentTarget.validity.valid) {
+        setVal(e.currentTarget.value.replace(/,/g, '.'))
+      }
     },
     [setVal],
   )
@@ -34,7 +37,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   }, [fullBalance, setVal])
 
   return (
-    <Modal title={TranslateString(1068, 'Stake LP tokens')} onDismiss={onDismiss}>
+    <Modal title='Stake LP tokens' onDismiss={onDismiss}>
       <ModalInput
         value={val}
         onSelectMax={handleSelectMax}
@@ -42,15 +45,15 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
         max={fullBalance}
         symbol={tokenName}
         addLiquidityUrl={addLiquidityUrl}
-        inputTitle={TranslateString(1070, 'Stake')}
+        inputTitle='Stake'
       />
       <ModalActions>
-        <Button variant="secondary" onClick={onDismiss} fullWidth>
-          {TranslateString(462, 'Cancel')}
+        <Button variant="secondary" onClick={onDismiss} fullWidth disabled={pendingTx}>
+          Cancel
         </Button>
         <Button
           fullWidth
-          disabled={pendingTx || fullBalance === '0' || Number(val) > Number(fullBalance) || !val}
+          disabled={pendingTx || !valNumber.isFinite() || valNumber.eq(0) || valNumber.gt(fullBalanceNumber)}
           onClick={async () => {
             setPendingTx(true)
             await onConfirm(val)
@@ -58,11 +61,11 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
             onDismiss()
           }}
         >
-          {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
+          {pendingTx ? 'Pending Confirmation' : 'Confirm'}
         </Button>
       </ModalActions>
       <LinkExternal href={addLiquidityUrl} style={{ alignSelf: 'center' }}>
-        {TranslateString(999, 'Get')} {tokenName}
+        Get {tokenName}
       </LinkExternal>
     </Modal>
   )

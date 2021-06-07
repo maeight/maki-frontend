@@ -3,9 +3,9 @@ import { SettingsObject, SettingsType } from './types'
 const BASE_URL = 'https://app.makiswap.com'
 const settings: SettingsObject[] = [
   {
-    name: 'ifos',
-    url: `${BASE_URL}/ifos`,
-    type: SettingsType.IFO,
+    name: 'farms',
+    url: `${BASE_URL}/farms`,
+    type: SettingsType.FARM,
   },
   {
     name: 'pools',
@@ -13,9 +13,9 @@ const settings: SettingsObject[] = [
     type: SettingsType.POOL,
   },
   {
-    name: 'farms',
-    url: `${BASE_URL}/farms`,
-    type: SettingsType.FARM,
+    name: 'ifos',
+    url: `${BASE_URL}/ifos`,
+    type: SettingsType.IFO,
   },
 ]
 export default settings

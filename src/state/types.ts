@@ -11,18 +11,23 @@ export type TranslatableText =
         [key: string]: string | number
       }
     }
+  
+export type SerializedBigNumber = string
 
 export interface Farm extends FarmConfig {
-  tokenAmount?: BigNumber
-  quoteTokenAmount?: BigNumber
-  lpTotalInQuoteToken?: BigNumber
-  tokenPriceVsQuote?: BigNumber
-  poolWeight?: BigNumber
+  tokenAmountMc?: SerializedBigNumber
+  quoteTokenAmountMc?: SerializedBigNumber
+  tokenAmountTotal?: SerializedBigNumber
+  quoteTokenAmountTotal?: SerializedBigNumber
+  lpTotalInQuoteToken?: SerializedBigNumber
+  lpTotalSupply?: SerializedBigNumber
+  tokenPriceVsQuote?: SerializedBigNumber
+  poolWeight?: SerializedBigNumber
   userData?: {
-    allowance: BigNumber
-    tokenBalance: BigNumber
-    stakedBalance: BigNumber
-    earnings: BigNumber
+    allowance: string
+    tokenBalance: string
+    stakedBalance: string
+    earnings: string
   }
 }
 
@@ -59,6 +64,8 @@ export interface ToastsState {
 
 export interface FarmsState {
   data: Farm[]
+  loadArchivedFarmsData: boolean
+  userDataLoaded: boolean
 }
 
 export interface PoolsState {
@@ -102,6 +109,13 @@ export interface Achievement {
 
 export interface AchievementState {
   data: Achievement[]
+}
+
+// Block
+
+export interface BlockState {
+  currentBlock: number
+  initialBlock: number
 }
 
 // Global state

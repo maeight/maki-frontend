@@ -1,96 +1,66 @@
-import contracts from './contracts'
-import { FarmConfig, QuoteToken } from './types'
+import tokens from './tokens'
+import { FarmConfig } from './types'
 
 const farms: FarmConfig[] = [
   {
     pid: 1,
     lpSymbol: 'MAKI-HT',
     lpAddresses: {
-      256: '0xa0af5d360232e077decfd4650e8b95875fdd6aad', // UPDATE
-      128: '0xC923E7Dd24A96Da2136Cbc3C99F544F225A46424', // UPDATED
+      256: '0xa0af5d360232e077decfd4650e8b95875fdd6aad',
+      128: '0xC923E7Dd24A96Da2136Cbc3C99F544F225A46424',
     },
-    tokenSymbol: 'MAKI',
-    tokenAddresses: {
-      256: '0x6858a26bBBc8e185274969f6baf99674929Cf766', // UPDATED
-      128: '0x5FaD6fBBA4BbA686bA9B8052Cf0bd51699f38B93', // UPDATED - ABI UPDATED
-    },
-    quoteTokenSymbol: QuoteToken.HT,
-    quoteTokenAdresses: contracts.wht,
+    token: tokens.soy,
+    quoteToken: tokens.wht,
   },
   {
     pid: 2,
     lpSymbol: 'LAYER-HT',
     lpAddresses: {
-      256: '0xa0af5d360232e077decfd4650e8b95875fdd6aad', // Is correct?
-      128: '0xc189d2699c7e077cb050d9bc666effa40bb31771', // UPDATED
+      256: '0xa0af5d360232e077decfd4650e8b95875fdd6aad',
+      128: '0xc189d2699c7e077cb050d9bc666effa40bb31771',
     },
-    tokenSymbol: 'LAYER',
-    tokenAddresses: {
-      256: '0x639a647fbe20b6c8ac19e48e2de44ea792c62c5c', // UPDATE
-      128: '0x639a647fbe20b6c8ac19e48e2de44ea792c62c5c', // UPDATED - ABI UPDATED
-    },
-    quoteTokenSymbol: QuoteToken.HT,
-    quoteTokenAdresses: contracts.wht,
+    token: tokens.layer,
+    quoteToken: tokens.wht,
   },
   {
     pid: 3,
     lpSymbol: 'MAKI-HUSD',
     lpAddresses: {
-      256: '',
-      128: '0x88b076F1C2EDcf558711a21639C15D01706938e8', // UPDATED
+      256: '0xa0af5d360232e077decfd4650e8b95875fdd6aad',
+      128: '0xc189d2699c7e077cb050d9bc666effa40bb31771',
     },
-    tokenSymbol: 'HUSD',
-    tokenAddresses: {
-      256: '',
-      128: '0x0298c2b32eae4da002a15f36fdf7615bea3da047', // UPDATED - ABI UPDATED
-    },
-    quoteTokenSymbol: QuoteToken.MAKI,
-    quoteTokenAdresses: contracts.maki,
+    token: tokens.maki,
+    quoteToken: tokens.husd,
   },
   {
     pid: 4,
     lpSymbol: 'HUSD-HT',
     lpAddresses: {
       256: '',
-      128: '0x12cb243CFa46f1cb98B0EAe80a1e2f757eDE2b3A', // (29/5/21)
+      128: '0x12cb243CFa46f1cb98B0EAe80a1e2f757eDE2b3A',
     },
-    tokenSymbol: 'HUSD',
-    tokenAddresses: {
-      256: '', // 
-      128: '0x0298c2b32eae4da002a15f36fdf7615bea3da047', // (29/5/21)
-    },
-    quoteTokenSymbol: QuoteToken.HT,
-    quoteTokenAdresses: contracts.wht,
+    token: tokens.husd,
+    quoteToken: tokens.wht,
   },
   {
     pid: 5,
     lpSymbol: 'ETH-HUSD',
     lpAddresses: {
       256: '',
-      128: '0xBdb405E580774F1AbA1273f22aF06c9B81433e87', // (30/5/21)
+      128: '0xBdb405E580774F1AbA1273f22aF06c9B81433e87',
     },
-    tokenSymbol: 'HUSD',
-    tokenAddresses: {
-      256: '', // 
-      128: '0x0298c2b32eae4da002a15f36fdf7615bea3da047', // (30/5/21)
-    },
-    quoteTokenSymbol: QuoteToken.ETH,
-    quoteTokenAdresses: contracts.eth,
+    token: tokens.eth,
+    quoteToken: tokens.husd,
   },
   {
     pid: 6,
     lpSymbol: 'BTC-HUSD',
     lpAddresses: {
       256: '',
-      128: '0x901a89e02cd610c04d0feb45791dbf64b8c20503', // (31/5/21)
+      128: '0x901a89e02cd610c04d0feb45791dbf64b8c20503',
     },
-    tokenSymbol: 'HUSD',
-    tokenAddresses: {
-      256: '', // 
-      128: '0x0298c2b32eae4da002a15f36fdf7615bea3da047', // (31/5/21)
-    },
-    quoteTokenSymbol: QuoteToken.BTC,
-    quoteTokenAdresses: contracts.btc,
+    token: tokens.btc,
+    quoteToken: tokens.husd,
   },
   {
     pid: 7,
@@ -99,13 +69,8 @@ const farms: FarmConfig[] = [
       256: '',
       128: '0x94c8C66670dE883c6667B8aa214c4961bFeeB04a', // (1/6/21)
     },
-    tokenSymbol: 'USDT',
-    tokenAddresses: {
-      256: '', // 
-      128: '0xa71EdC38d189767582C38A3145b5873052c3e47a' // (1/6/21)
-    },
-    quoteTokenSymbol: QuoteToken.HT,
-    quoteTokenAdresses: contracts.wht,
+    token: tokens.usdt,
+    quoteToken: tokens.wht,
   },
   {
     pid: 8,
@@ -114,13 +79,8 @@ const farms: FarmConfig[] = [
       256: '',
       128: '0x79DD12783DD8A1b33e6e530e77389B196962bBfa', // (2/6/21)
     },
-    tokenSymbol: 'USDT',
-    tokenAddresses: {
-      256: '', // 
-      128: '0xa71EdC38d189767582C38A3145b5873052c3e47a' // (2/6/21)
-    },
-    quoteTokenSymbol: QuoteToken.HUSD,
-    quoteTokenAdresses: contracts.husd,
+    token: tokens.usdt,
+    quoteToken: tokens.husd,
   },
   {
     pid: 9,
@@ -129,13 +89,8 @@ const farms: FarmConfig[] = [
       256: '',
       128: '0x82C12Ea7d9eD69E9CF631589A8911DD546615808', // (3/6/21)
     },
-    tokenSymbol: 'BTC',
-    tokenAddresses: {
-      256: '', // 
-      128: '0x66a79D23E58475D2738179Ca52cd0b41d73f0BEa' // (3/6/21)
-    },
-    quoteTokenSymbol: QuoteToken.ETH,
-    quoteTokenAdresses: contracts.eth,
+    token: tokens.btc,
+    quoteToken: tokens.eth,
   },
   {
     pid: 10,
@@ -144,13 +99,8 @@ const farms: FarmConfig[] = [
       256: '',
       128: '0x65d024d140756677073aA3b7f7010a72b7117eFF', // (4/6/21)
     },
-    tokenSymbol: 'ETH',
-    tokenAddresses: {
-      256: '', // 
-      128: '0x64ff637fb478863b7468bc97d30a5bf3a428a1fd' // (4/6/21)
-    },
-    quoteTokenSymbol: QuoteToken.HT,
-    quoteTokenAdresses: contracts.wht,
+    token: tokens.eth,
+    quoteToken: tokens.wht,
   },
 ]
 

@@ -1,5 +1,9 @@
 import { TranslatableText } from 'state/types'
 
+// ---------------------
+//  IFO
+// ---------------------
+
 export type IfoStatus = 'coming_soon' | 'live' | 'finished'
 
 export interface Ifo {
@@ -22,6 +26,19 @@ export interface Ifo {
   campaignId?: string
 }
 
+// ---------------------
+//  Address
+// ---------------------
+
+export interface Address {
+  256?: string
+  128: string
+}
+
+// ---------------------
+//  Token
+// ---------------------
+
 export enum QuoteToken {
   'HT' = 'HT',
   'MAKI' = 'MAKI',
@@ -33,25 +50,24 @@ export enum QuoteToken {
   'HUSD' = 'HUSD',
 }
 
-export enum PoolCategory {
-  'COMMUNITY' = 'Community',
-  'CORE' = 'Core',
-  'HECO' = 'Huobi', // Pools using native HT behave differently than pools using a token
+export interface Token {
+  symbol: string
+  address?: Address
+  decimals?: number
+  projectLink?: string
+  husdPrice?: string
 }
 
-export interface Address {
-  256?: string
-  128: string
-}
+// ---------------------
+//  Farm
+// ---------------------
 
 export interface FarmConfig {
   pid: number
   lpSymbol: string
   lpAddresses: Address
-  tokenSymbol: string
-  tokenAddresses: Address
-  quoteTokenSymbol: QuoteToken
-  quoteTokenAdresses: Address
+  token: Token
+  quoteToken: Token
   multiplier?: string
   isCommunity?: boolean
   dual?: {
@@ -59,6 +75,16 @@ export interface FarmConfig {
     earnLabel: string
     endBlock: number
   }
+}
+
+// ---------------------
+//  Pool
+// ---------------------
+
+export enum PoolCategory {
+  'COMMUNITY' = 'Community',
+  'CORE' = 'Core',
+  'HECO' = 'Huobi', // Pools using native HT behave differently than pools using a token
 }
 
 export interface PoolConfig {
@@ -78,12 +104,20 @@ export interface PoolConfig {
   tokenDecimals: number
 }
 
+// ---------------------
+//  Image
+// ---------------------
+
 export type Images = {
   lg: string
   md: string
   sm: string
   ipfs?: string
 }
+
+// ---------------------
+//  NFTs
+// ---------------------
 
 export type NftImages = {
   blur?: string
@@ -94,14 +128,39 @@ export type NftVideo = {
   mp4: string
 }
 
+export type NftSource = {
+  [key in NftType]: {
+    address: Address
+    identifierKey: string
+  }
+}
+
+export enum NftType {
+  // EASYBAKE = 'easybake',
+  // MAKI = 'maki',
+  PANCAKE = 'pancake',
+  MIXIE = 'mixie',
+}
+
 export type Nft = {
-  name: string
   description: string
+  name: string
   images: NftImages
   sortOrder: number
-  bunnyId: number
+  type: NftType
   video?: NftVideo
+
+  // Uniquely identifies the nft.
+  // Used for matching an NFT from the config with the data from the NFT's tokenURI
+  identifier: string
+
+  // Used to be "bunnyId". Used when minting NFT
+  variationId?: number | string
 }
+
+// --------------------
+// Team
+// --------------------
 
 export type TeamImages = {
   alt: string
@@ -118,6 +177,10 @@ export type Team = {
   background: string
   textColor: string
 }
+
+// ---------------------
+//  Campaign
+// ---------------------
 
 export type CampaignType = 'ifo'
 
