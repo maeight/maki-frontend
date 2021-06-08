@@ -197,6 +197,36 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.USDT,
     quoteTokenAdresses: contracts.usdt,
   },
+  {
+    pid: 14,
+    lpSymbol: 'MAKI-USDC',
+    lpAddresses: {
+      256: '',
+      128: '0xFE963b6E4091fFF01DD10e1150A53Eb608848E75', // (June 7th, 2021)
+    },
+    tokenSymbol: 'USDC',
+    tokenAddresses: {
+      256: '', // 
+      128: '0x9362bbef4b8313a8aa9f0c9808b80577aa26b73b' // (June 7th, 2021)
+    },
+    quoteTokenSymbol: QuoteToken.MAKI,
+    quoteTokenAdresses: contracts.maki,
+  },
+  {
+    pid: 15,
+    lpSymbol: 'MAKI-ETH',
+    lpAddresses: {
+      256: '',
+      128: '0xEA5447Db71205FFb834fbEB33177D98C0AdD13ef', // (June 7th, 2021)
+    },
+    tokenSymbol: 'ETH',
+    tokenAddresses: {
+      256: '', // 
+      128: '0x64ff637fb478863b7468bc97d30a5bf3a428a1fd' // (June 7th, 2021)
+    },
+    quoteTokenSymbol: QuoteToken.MAKI,
+    quoteTokenAdresses: contracts.maki,
+  },
 ]
 
 export default farms
