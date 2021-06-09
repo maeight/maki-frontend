@@ -24,7 +24,7 @@ const TotalValueLockedCard = () => {
   const btcPrice = new BigNumber(usePriceBtcHusd())
   
 /* VALUE BY PID */
-  const F0 = new BigNumber(3600000).times(makiPrice)
+  const F0 = new BigNumber(4000000).times(makiPrice)
   const F1 = new BigNumber(useFarmFromPid(1).quoteTokenAmount).times(htPrice)
   const F2 = new BigNumber(useFarmFromPid(2).quoteTokenAmount).times(htPrice)
   const F3 = new BigNumber(useFarmFromPid(3).quoteTokenAmount).times(makiPrice)
@@ -40,10 +40,13 @@ const TotalValueLockedCard = () => {
   const F13 = new BigNumber(useFarmFromPid(13).quoteTokenAmount)
   const F14 = new BigNumber(useFarmFromPid(14).quoteTokenAmount).times(makiPrice)
   const F15 = new BigNumber(useFarmFromPid(15).quoteTokenAmount).times(makiPrice)
+  const F16 = new BigNumber(useFarmFromPid(16).quoteTokenAmount).times(makiPrice)
+  const F17 = new BigNumber(useFarmFromPid(17).quoteTokenAmount).times(htPrice)
+  const F18 = new BigNumber(useFarmFromPid(18).quoteTokenAmount).times(makiPrice)
 
   const SOYVAL = F0
-  const HTVAL = F1.plus(F2).plus(F4).plus(F7).plus(F10).plus(F11).plus(F12)
-  const MAKIVAL = F3.plus(F14).plus(F15)
+  const HTVAL = F1.plus(F2).plus(F4).plus(F7).plus(F10).plus(F11).plus(F12).plus(F17)
+  const MAKIVAL = F3.plus(F14).plus(F15).plus(F16).plus(F18)
   const ETHVAL = F5.plus(F9)
   const BTCVAL = F6
   const USDVAL = F8.plus(F13)
