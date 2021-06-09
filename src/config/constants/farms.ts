@@ -272,6 +272,21 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.HT,
     quoteTokenAdresses: contracts.wht,
   },
+  {
+    pid: 19,
+    lpSymbol: 'MATIC-HT',
+    lpAddresses: {
+      256: '',
+      128: '0xcDbE5901b56d87Dfa9C0eAC815Ce3ddbB3e63714', // (June 8th, 2021)
+    },
+    tokenSymbol: 'MATIC',
+    tokenAddresses: {
+      256: '', // 
+      128: '0xdb11743fe8b129b49b11236e8a715004bdabe7e5' // (June 8th, 2021)
+    },
+    quoteTokenSymbol: QuoteToken.HT,
+    quoteTokenAdresses: contracts.wht,
+  },
 
 ]
 
