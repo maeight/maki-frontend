@@ -38,10 +38,12 @@ const TotalValueLockedCard = () => {
   const F11 = new BigNumber(useFarmFromPid(11).quoteTokenAmount).times(htPrice)
   const F12 = new BigNumber(useFarmFromPid(12).quoteTokenAmount).times(htPrice)
   const F13 = new BigNumber(useFarmFromPid(13).quoteTokenAmount)
+  const F14 = new BigNumber(useFarmFromPid(14).quoteTokenAmount).times(makiPrice)
+  const F15 = new BigNumber(useFarmFromPid(15).quoteTokenAmount).times(makiPrice)
 
   const SOYVAL = F0
   const HTVAL = F1.plus(F2).plus(F4).plus(F7).plus(F10).plus(F11).plus(F12)
-  const MAKIVAL = F3
+  const MAKIVAL = F3.plus(F14).plus(F15)
   const ETHVAL = F5.plus(F9)
   const BTCVAL = F6
   const USDVAL = F8.plus(F13)
