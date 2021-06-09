@@ -33,7 +33,7 @@ const config: MenuEntry[] = [
   },
   {
     label: 'Contracts',
-    icon: 'InfoIcon',
+    icon: 'ContractsIcon',
     items: [
       {
         label: 'MakiToken.sol',
