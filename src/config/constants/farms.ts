@@ -277,12 +277,27 @@ const farms: FarmConfig[] = [
     lpSymbol: 'MATIC-HT',
     lpAddresses: {
       256: '',
-      128: '0xcDbE5901b56d87Dfa9C0eAC815Ce3ddbB3e63714', // (June 8th, 2021)
+      128: '0xcDbE5901b56d87Dfa9C0eAC815Ce3ddbB3e63714', // (June 9th, 2021)
     },
     tokenSymbol: 'MATIC',
     tokenAddresses: {
       256: '', // 
-      128: '0xdb11743fe8b129b49b11236e8a715004bdabe7e5' // (June 8th, 2021)
+      128: '0xdb11743fe8b129b49b11236e8a715004bdabe7e5' // (June 9th, 2021)
+    },
+    quoteTokenSymbol: QuoteToken.HT,
+    quoteTokenAdresses: contracts.wht,
+  },
+  {
+    pid: 20,
+    lpSymbol: 'LINK-HT',
+    lpAddresses: {
+      256: '',
+      128: '0x8baaE305Bca59743F28761C2736D7160B0CDbd9a', // (June 10th, 2021)
+    },
+    tokenSymbol: 'LINK',
+    tokenAddresses: {
+      256: '', // 
+      128: '0x9e004545c59d359f6b7bfb06a26390b087717b42' // (June 10th, 2021)
     },
     quoteTokenSymbol: QuoteToken.HT,
     quoteTokenAdresses: contracts.wht,
