@@ -18,6 +18,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wht,
   },
   {
+    pid: 21,
+    lpSymbol: 'MAKI-AETH',
+    lpAddresses: {
+      256: '',
+      128: '0x3af1b17956f87c00d534438e90bdbf7ce5ed2be1', // (June 11th, 2021)
+    },
+    tokenSymbol: 'AETH',
+    tokenAddresses: {
+      256: '', // 
+      128: '0x62c10412d69823a98db5c09cf6e82810e0df5ad7' // (June 11th, 2021)
+    },
+    quoteTokenSymbol: QuoteToken.MAKI,
+    quoteTokenAdresses: contracts.maki,
+  },
+  {
     pid: 15,
     lpSymbol: 'MAKI-ETH',
     lpAddresses: {
@@ -287,7 +302,6 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.HUSD,
     quoteTokenAdresses: contracts.husd,
   },
-
   {
     pid: 13,
     lpSymbol: 'USDC-USDT',
