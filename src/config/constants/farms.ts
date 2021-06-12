@@ -17,6 +17,21 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.HT,
     quoteTokenAdresses: contracts.wht,
   },
+  { pid: 22,
+    lpSymbol: 'DOT-ETH',
+    lpAddresses: {
+      256: '', // UPDATE
+      128: '0x3B8552476Af84fF8F7885d1E8918c1E85D9D10f4', // June 12th, 2021
+    },
+    tokenSymbol: 'DOT',
+    tokenAddresses: {
+      256: '', // UPDATED
+      128: '0xa2c49cee16a5e5bdefde931107dc1fae9f7773e3', // June 12th, 2021
+    },
+    quoteTokenSymbol: QuoteToken.ETH,
+    quoteTokenAdresses: contracts.eth,
+
+  },
   {
     pid: 21,
     lpSymbol: 'MAKI-AETH',
