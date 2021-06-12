@@ -1,6 +1,6 @@
 import { Campaign } from 'config/constants/types'
-import { getPointCenterIfoAddress } from 'utils/addressHelpers'
-import { getContract } from 'utils/web3'
+import { getMasterChefAddress } from 'utils/addressHelpers'
+import { getContract } from 'utils/contractHelpers'
 import pointCenterIfo from 'config/abi/pointCenterIfo.json'
 import ifosList from 'config/constants/ifo'
 import { campaignMap } from 'config/constants/campaigns'
@@ -14,7 +14,7 @@ interface IfoMapResponse {
 }
 
 export const getPointCenterClaimContract = () => {
-  return getContract(pointCenterIfo, getPointCenterIfoAddress())
+  return getContract(pointCenterIfo, getMasterChefAddress())
 }
 
 export const getAchievementTitle = (campaign: Campaign): TranslatableText => {

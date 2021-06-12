@@ -5,7 +5,7 @@ import Page from 'components/layout/Page'
 import FarmStakingCard from 'views/Home/components/FarmStakingCard'
 import MakiStats from 'views/Home/components/MakiStats'
 import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
-import EarnAPYCard from 'views/Home/components/EarnAPYCard'
+import EarnAPYCard from 'views/Home/components/EarnAPRCard'
 import EarnAssetCard from 'views/Home/components/EarnAssetCard'
 
 const Hero = styled.div`

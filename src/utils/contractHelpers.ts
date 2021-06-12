@@ -4,7 +4,6 @@ import web3NoAccount from 'utils/web3'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
 import { DEFAULT_GAS_PRICE } from 'config'
-import { getSettings, getGasPriceInWei } from './settings'
 
 // -----------------
 // Addresses
@@ -27,6 +26,7 @@ import masterChef from 'config/abi/masterchef.json'
 import sousChef from 'config/abi/sousChef.json'
 import sousChefHt from 'config/abi/sousChefHt.json'
 
+import { getSettings, getGasPriceInWei } from './settings'
 // -----------------
 //  Functions
 // -----------------

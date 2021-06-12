@@ -1,9 +1,9 @@
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { useEffect, useReducer } from 'react'
-import { getPancakeRabbitContract } from 'utils/contractHelpers'
+import { getMasterchefContract } from 'utils/contractHelpers'
 import makeBatchRequest from 'utils/makeBatchRequest'
 
-const pancakeRabbitsContract = getPancakeRabbitContract()
+const pancakeRabbitsContract = getMasterchefContract()
 
 export type NftMap = {
   [key: number]: {
