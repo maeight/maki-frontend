@@ -43,11 +43,16 @@ const TotalValueLockedCard = () => {
   const F16 = new BigNumber(useFarmFromPid(16).quoteTokenAmount).times(makiPrice)
   const F17 = new BigNumber(useFarmFromPid(17).quoteTokenAmount).times(htPrice)
   const F18 = new BigNumber(useFarmFromPid(18).quoteTokenAmount).times(makiPrice)
+  const F19 = new BigNumber(useFarmFromPid(19).quoteTokenAmount).times(htPrice)
+  const F20 = new BigNumber(useFarmFromPid(20).quoteTokenAmount).times(htPrice)
+  const F21 = new BigNumber(useFarmFromPid(21).quoteTokenAmount).times(makiPrice)
+  const F22 = new BigNumber(useFarmFromPid(22).quoteTokenAmount).times(ethPrice)
+  const F23 = new BigNumber(useFarmFromPid(23).quoteTokenAmount).times(htPrice)
 
   const SOYVAL = F0
-  const HTVAL = F1.plus(F2).plus(F4).plus(F7).plus(F10).plus(F11).plus(F12).plus(F17)
-  const MAKIVAL = F3.plus(F14).plus(F15).plus(F16).plus(F18)
-  const ETHVAL = F5.plus(F9)
+  const HTVAL = F1.plus(F2).plus(F4).plus(F7).plus(F10).plus(F11).plus(F12).plus(F17).plus(F19).plus(F20).plus(F23)
+  const MAKIVAL = F3.plus(F14).plus(F15).plus(F16).plus(F18).plus(F21)
+  const ETHVAL = F5.plus(F9).plus(F22)
   const BTCVAL = F6
   const USDVAL = F8.plus(F13)
 
