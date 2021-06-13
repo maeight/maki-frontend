@@ -89,19 +89,15 @@ export enum PoolCategory {
 
 export interface PoolConfig {
   sousId: number
-  image?: string
-  tokenName: string
-  stakingTokenName: QuoteToken
-  stakingLimit?: number
-  stakingTokenAddress?: string
+  earningToken: Token
+  stakingToken: Token
   contractAddress: Address
   poolCategory: PoolCategory
-  projectLink: string
   tokenPerBlock: string
   sortOrder?: number
   harvest?: boolean
   isFinished?: boolean
-  tokenDecimals: number
+  enableEmergencyWithdraw?: boolean
 }
 
 // ---------------------

@@ -79,8 +79,8 @@ interface FarmCardProps {
 const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, makiPrice, account }) => {
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
-  // We assume the token name is coin pair + lp e.g. MAKI-BNB LP, LINK-BNB LP,
-  // NAR-MAKI LP. The images should be cake-bnb.svg, link-bnb.svg, nar-cake.svg
+  // We assume the token name is coin pair + lp e.g. MAKI-HT LP, LINK-HT LP,
+  // NAR-MAKI LP. The images should be maki-ht.svg, link-ht.svg, nar-maki.svg
   const farmImage = farm.lpSymbol.split(' ')[0].toLocaleLowerCase()
 
   const totalValueFormatted =

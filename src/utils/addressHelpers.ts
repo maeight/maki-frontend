@@ -22,6 +22,9 @@ export const getMasterChefAddress = () => {
 export const getMulticallAddress = () => {
   return getAddress(addresses.multiCall)
 }
+export const getMakiVaultAddress = () => {
+  return getAddress(addresses.makiVault)
+}
 
 // Pancakeswap
 // export const getLotteryAddress = () => {

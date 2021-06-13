@@ -1,11 +1,12 @@
+import BigNumber from 'bignumber.js'
 import poolsConfig from 'config/constants/pools'
 import sousChefABI from 'config/abi/sousChef.json'
-import makiABI from 'config/abi/maki.json'
-import whtABI from 'config/abi/wht.json'
-import { QuoteToken } from 'config/constants/types'
+import cakeABI from 'config/abi/cake.json'
+import wbnbABI from 'config/abi/weth.json'
 import multicall from 'utils/multicall'
-import { getAddress, getWhtAddress } from 'utils/addressHelpers'
-import BigNumber from 'bignumber.js'
+import { getAddress, getWbnbAddress } from 'utils/addressHelpers'
+import { BIG_ZERO } from 'utils/bigNumber'
+import { getSouschefV2Contract } from 'utils/contractHelpers'
 
 export const fetchPoolsBlockLimits = async () => {
   const poolsWithEnd = poolsConfig.filter((p) => p.sousId !== 0)
@@ -36,37 +37,67 @@ export const fetchPoolsBlockLimits = async () => {
   })
 }
 
-export const fetchPoolsTotalStatking = async () => {
-  const nonHtPools = poolsConfig.filter((p) => p.stakingTokenName !== QuoteToken.HT)
-  const bnbPool = poolsConfig.filter((p) => p.stakingTokenName === QuoteToken.HT)
+export const fetchPoolsTotalStaking = async () => {
+  const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'BNB')
+  const bnbPool = poolsConfig.filter((p) => p.stakingToken.symbol === 'BNB')
 
-  const callsNonHtPools = nonHtPools.map((poolConfig) => {
+  const callsNonBnbPools = nonBnbPools.map((poolConfig) => {
     return {
-      address: poolConfig.stakingTokenAddress,
+      address: getAddress(poolConfig.stakingToken.address),
       name: 'balanceOf',
       params: [getAddress(poolConfig.contractAddress)],
     }
   })
 
-  const callsHtPools = bnbPool.map((poolConfig) => {
+  const callsBnbPools = bnbPool.map((poolConfig) => {
     return {
-      address: getWhtAddress(),
+      address: getWbnbAddress(),
       name: 'balanceOf',
       params: [getAddress(poolConfig.contractAddress)],
     }
   })
 
-  const nonHtPoolsTotalStaked = await multicall(makiABI, callsNonHtPools)
-  const htPoolsTotalStaked = await multicall(whtABI, callsHtPools)
+  const nonBnbPoolsTotalStaked = await multicall(cakeABI, callsNonBnbPools)
+  const bnbPoolsTotalStaked = await multicall(wbnbABI, callsBnbPools)
 
   return [
-    ...nonHtPools.map((p, index) => ({
+    ...nonBnbPools.map((p, index) => ({
       sousId: p.sousId,
-      totalStaked: new BigNumber(nonHtPoolsTotalStaked[index]).toJSON(),
+      totalStaked: new BigNumber(nonBnbPoolsTotalStaked[index]).toJSON(),
     })),
     ...bnbPool.map((p, index) => ({
       sousId: p.sousId,
-      totalStaked: new BigNumber(htPoolsTotalStaked[index]).toJSON(),
+      totalStaked: new BigNumber(bnbPoolsTotalStaked[index]).toJSON(),
     })),
   ]
+}
+
+export const fetchPoolStakingLimit = async (sousId: number): Promise<BigNumber> => {
+  try {
+    const sousContract = getSouschefV2Contract(sousId)
+    const stakingLimit = await sousContract.methods.poolLimitPerUser().call()
+    return new BigNumber(stakingLimit)
+  } catch (error) {
+    return BIG_ZERO
+  }
+}
+
+export const fetchPoolsStakingLimits = async (
+  poolsWithStakingLimit: number[],
+): Promise<{ [key: string]: BigNumber }> => {
+  const validPools = poolsConfig
+    .filter((p) => p.stakingToken.symbol !== 'BNB' && !p.isFinished)
+    .filter((p) => !poolsWithStakingLimit.includes(p.sousId))
+
+  // Get the staking limit for each valid pool
+  // Note: We cannot batch the calls via multicall because V1 pools do not have "poolLimitPerUser" and will throw an error
+  const stakingLimitPromises = validPools.map((validPool) => fetchPoolStakingLimit(validPool.sousId))
+  const stakingLimits = await Promise.all(stakingLimitPromises)
+
+  return stakingLimits.reduce((accum, stakingLimit, index) => {
+    return {
+      ...accum,
+      [validPools[index].sousId]: stakingLimit,
+    }
+  }, {})
 }

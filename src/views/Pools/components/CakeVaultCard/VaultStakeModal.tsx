@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Modal, Text, Flex, Image, Button, Slider, BalanceInput, AutoRenewIcon } from 'maki-uikit'
-import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
 import { BASE_EXCHANGE_URL } from 'config'
 import { useAppDispatch } from 'state'
 import { BIG_TEN } from 'utils/bigNumber'
 import { useCakeVault, usePriceCakeBusd } from 'state/hooks'
-import { useCakeVaultContract } from 'hooks/useContract'
+import { useMakiVault } from 'hooks/useContract'
 import useTheme from 'hooks/useTheme'
-import useWithdrawalFeeTimer from 'hooks/cakeVault/useWithdrawalFeeTimer'
+import useWithdrawalFeeTimer from 'hooks/makiVault/useWithdrawalFeeTimer'
 import BigNumber from 'bignumber.js'
 import { getFullDisplayBalance, formatNumber, getDecimalAmount } from 'utils/formatBalance'
 import useToast from 'hooks/useToast'
@@ -33,12 +32,11 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
   const dispatch = useAppDispatch()
   const { stakingToken } = pool
   const { account } = useWeb3React()
-  const cakeVaultContract = useCakeVaultContract()
+  const cakeVaultContract = useMakiVault()
   const {
     userData: { lastDepositedTime, userShares },
     pricePerFullShare,
   } = useCakeVault()
-  const { t } = useTranslation()
   const { theme } = useTheme()
   const { toastSuccess, toastError } = useToast()
   const [pendingTx, setPendingTx] = useState(false)
@@ -87,7 +85,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
           setPendingTx(true)
         })
         .on('receipt', () => {
-          toastSuccess(t('Unstaked!'), t('Your earnings have also been harvested to your wallet'))
+          toastSuccess('Unstaked!', 'Your earnings have also been harvested to your wallet')
           setPendingTx(false)
           onDismiss()
           dispatch(fetchCakeVaultUserData({ account }))
@@ -95,7 +93,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         .on('error', (error) => {
           console.error(error)
           // Remove message from toast before prod
-          toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
+          toastError('Error', `${error.message} - Please try again.`)
           setPendingTx(false)
         })
     } else {
@@ -108,7 +106,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
           setPendingTx(true)
         })
         .on('receipt', () => {
-          toastSuccess(t('Unstaked!'), t('Your earnings have also been harvested to your wallet'))
+          toastSuccess('Unstaked!', 'Your earnings have also been harvested to your wallet')
           setPendingTx(false)
           onDismiss()
           dispatch(fetchCakeVaultUserData({ account }))
@@ -116,7 +114,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         .on('error', (error) => {
           console.error(error)
           // Remove message from toast before prod
-          toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
+          toastError('Error', `${error.message} - Please try again.`)
           setPendingTx(false)
         })
     }
@@ -132,7 +130,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         setPendingTx(true)
       })
       .on('receipt', () => {
-        toastSuccess(t('Staked!'), t('Your funds have been staked in the pool'))
+        toastSuccess('Staked!', 'Your funds have been staked in the pool')
         setPendingTx(false)
         onDismiss()
         dispatch(fetchCakeVaultUserData({ account }))
@@ -140,7 +138,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
       .on('error', (error) => {
         console.error(error)
         // Remove message from toast before prod
-        toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
+        toastError('Error', `${error.message} - Please try again.`)
         setPendingTx(false)
       })
   }
@@ -159,7 +157,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
 
   return (
     <Modal
-      title={isRemovingStake ? t('Unstake') : t('Stake in Pool')}
+      title={isRemovingStake ? 'Unstake' : 'Stake in Pool'}
       onDismiss={onDismiss}
       headerBackground={theme.colors.gradients.cardHeader}
     >
@@ -178,7 +176,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         currencyValue={cakePriceBusd.gt(0) && `~${usdValueStaked || 0} USD`}
       />
       <Text mt="8px" ml="auto" color="textSubtle" fontSize="12px" mb="8px">
-        {t('Balance: %balance%', { balance: getFullDisplayBalance(stakingMax, stakingToken.decimals) })}
+        Balance: {getFullDisplayBalance(stakingMax, stakingToken.decimals)}
       </Text>
       <Slider
         min={0}
@@ -190,16 +188,16 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         step={1}
       />
       <Flex alignItems="center" justifyContent="space-between" mt="8px">
-        <StyledButton scale="xs" mx="2px" p="4px 16px" variant="tertiary" onClick={() => handleChangePercent(25)}>
+        <StyledButton size="xs" mx="2px" p="4px 16px" variant="tertiary" onClick={() => handleChangePercent(25)}>
           25%
         </StyledButton>
-        <StyledButton scale="xs" mx="2px" p="4px 16px" variant="tertiary" onClick={() => handleChangePercent(50)}>
+        <StyledButton size="xs" mx="2px" p="4px 16px" variant="tertiary" onClick={() => handleChangePercent(50)}>
           50%
         </StyledButton>
-        <StyledButton scale="xs" mx="2px" p="4px 16px" variant="tertiary" onClick={() => handleChangePercent(75)}>
+        <StyledButton size="xs" mx="2px" p="4px 16px" variant="tertiary" onClick={() => handleChangePercent(75)}>
           75%
         </StyledButton>
-        <StyledButton scale="xs" mx="2px" p="4px 16px" variant="tertiary" onClick={() => handleChangePercent(100)}>
+        <StyledButton size="xs" mx="2px" p="4px 16px" variant="tertiary" onClick={() => handleChangePercent(100)}>
           MAX
         </StyledButton>
       </Flex>
@@ -213,11 +211,11 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         disabled={!stakeAmount || parseFloat(stakeAmount) === 0}
         mt="24px"
       >
-        {pendingTx ? t('Confirming') : t('Confirm')}
+        {pendingTx ? 'Confirming' : 'Confirm'}
       </Button>
       {!isRemovingStake && (
         <Button mt="8px" as="a" external href={BASE_EXCHANGE_URL} variant="secondary">
-          {t('Get %symbol%', { symbol: stakingToken.symbol })}
+          Get {stakingToken.symbol}
         </Button>
       )}
     </Modal>
