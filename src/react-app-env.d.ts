@@ -1,6 +1,7 @@
 /// <reference types="react-scripts" />
-declare global {
-    interface Window {
-        ethereum: any;
+interface WindowChain {
+    ethereum?: {
+      isMetaMask?: true
+      request?: (...args: any[]) => void
     }
   }
