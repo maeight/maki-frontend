@@ -9,11 +9,12 @@ const config: MenuEntry[] = [
   {
     label: 'Trade',
     icon: 'TradeIcon',
+    initialOpenState: true,
     href: 'https://exchange.makiswap.com',
       items: [
         {
           label: 'Exchange',
-          href: 'https://exchange.makiswap.com',
+          href: 'https://exchange.makiswap.com/#/swap',
         },
         {
           label: 'Liquidity',
@@ -31,6 +32,28 @@ const config: MenuEntry[] = [
     icon: 'PoolIcon',
     href: '/pools',
   },
+  {
+     label: 'Info',
+     icon: 'InfoIcon',
+     items: [
+       {
+         label: 'Overview',
+         href: 'https://info.makiswap.com',
+       },
+       {
+         label: 'Tokens',
+         href: 'https://info.makiswap.com/tokens',
+       },
+       {
+         label: 'Pairs',
+         href: 'https://info.makiswap.com/pairs',
+       },
+       {
+         label: 'Accounts',
+         href: 'https://info.makiswap.com/accounts',
+       },
+     ],
+   },
   {
     label: 'Contracts',
     icon: 'ContractsIcon',
@@ -58,7 +81,7 @@ const config: MenuEntry[] = [
     ],
   },
   {
-    label: 'Audit Reports',
+    label: 'Audits',
     icon: 'GroupsIcon',
     items: [
       {
@@ -66,38 +89,18 @@ const config: MenuEntry[] = [
         href: 'https://github.com/chainsulting/Smart-Contract-Security-Audits/blob/master/MakiSwap/02_Smart%20Contract%20Audit_MakiSwap.pdf', 
       },
       {
-        label: 'Certik',
-        href: 'https://www.certik.org/projects/makiswap', 
+        label: 'CertiK',
+        href: 'https://github.com/chainsulting/Smart-Contract-Security-Audits/blob/master/MakiSwap/02_Smart%20Contract%20Audit_MakiSwap.pdf', 
       },
     ],
   },
+
   // {
   //   label: 'IFO',
   //   icon: 'IfoIcon',
   //   href: '/ifo'
   // },
-  {
-     label: 'Info',
-     icon: 'InfoIcon',
-     items: [
-       {
-         label: 'Overview',
-         href: 'https://info.makiswap.com',
-       },
-       {
-         label: 'Tokens',
-         href: 'https://info.makiswap.com/tokens',
-       },
-       {
-         label: 'Pairs',
-         href: 'https://info.makiswap.com/pairs',
-       },
-       {
-         label: 'Accounts',
-         href: 'https://info.makiswap.com/accounts',
-       },
-     ],
-   },
+
 ]
 
 export default config
