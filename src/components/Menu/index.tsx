@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { Menu as UikitMenu } from 'maki-uikit'
 import { LanguageContext } from 'contexts/Localisation/languageContext'
 import { HECO_MAINNET } from 'config/constants/metamask_network'
@@ -11,24 +11,11 @@ import config from './config'
 
 
 const Menu = (props) => {
-  // const { login, logout } = useAuth()
-  const { account, connect, reset }: {account: string, ethereum: provider, connect: any, reset: any} = useWallet()
+  const { account, connect, reset } = useWallet()
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
   const { isDark, toggleTheme } = useTheme()
   const makiPriceUsd = usePriceMakiHusd()
   const { profile } = useProfile()
-
-  useEffect(() => {
-    (window as any).ethereum
-        .request(HECO_MAINNET)
-        // eslint-disable-next-line
-        .then(() => {console.log('ok done')})
-        .catch((error: any) => {
-          // eslint-disable-next-line
-          console.log(error)
-        })
-
-  }, [])
 
   return (
     <UikitMenu
