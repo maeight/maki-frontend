@@ -9,6 +9,7 @@ import Page from 'components/layout/Page'
 import { useFarms, usePollFarmsData, usePriceMakiHusd } from 'state/hooks'
 import usePersistState from 'hooks/usePersistState'
 import { Farm } from 'state/types'
+import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getFarmApr } from 'utils/apr'
 import { orderBy } from 'lodash'
@@ -101,10 +102,11 @@ const NUMBER_OF_FARMS_VISIBLE = 12
 const Farms: React.FC = () => {
   const { path } = useRouteMatch()
   const { pathname } = useLocation()
+  const { t } = useTranslation()
   const { data: farmsLP, userDataLoaded } = useFarms()
   const makiPrice = usePriceMakiHusd()
   const [query, setQuery] = useState('')
-  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, 'pancake_farm_view')
+  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'pancake_farm_view' })
   const { account } = useWeb3React()
   const [sortOption, setSortOption] = useState('hot')
 
@@ -246,7 +248,7 @@ const Farms: React.FC = () => {
     const { token, quoteToken } = farm
     const tokenAddress = token.address
     const quoteTokenAddress = quoteToken.address
-    const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase().replace('MAKI', '')
+    const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase().replace('PANCAKE', '')
 
     const row: RowProps = {
       apr: {
@@ -339,11 +341,11 @@ const Farms: React.FC = () => {
   return (
     <>
       <PageHeader>
-        <Heading as="h1" size="xxl" color="secondary" mb="24px">
-          Farms
+        <Heading as="h1" scale="xxl" color="secondary" mb="24px">
+          {t('Farms')}
         </Heading>
-        <Heading size="lg" color="text">
-          Stake Liquidity Pool (LP) tokens to earn.
+        <Heading scale="lg" color="text">
+          {t('Stake Liquidity Pool (LP) tokens to earn.')}
         </Heading>
       </PageHeader>
       <Page>
@@ -352,33 +354,33 @@ const Farms: React.FC = () => {
             <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
             <ToggleWrapper>
               <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
-              <Text> Staked only</Text>
+              <Text> {t('Staked only')}</Text>
             </ToggleWrapper>
             <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
           </ViewControls>
           <FilterContainer>
             <LabelWrapper>
-              <Text textTransform="uppercase">Sort by</Text>
+              <Text textTransform="uppercase">{t('Sort by')}</Text>
               <Select
                 options={[
                   {
-                    label: 'Hot',
+                    label: t('Hot'),
                     value: 'hot',
                   },
                   {
-                    label: 'APR',
+                    label: t('APR'),
                     value: 'apr',
                   },
                   {
-                    label: 'Multiplier',
+                    label: t('Multiplier'),
                     value: 'multiplier',
                   },
                   {
-                    label: 'Earned',
+                    label: t('Earned'),
                     value: 'earned',
                   },
                   {
-                    label: 'Liquidity',
+                    label: t('Liquidity'),
                     value: 'liquidity',
                   },
                 ]}
@@ -386,14 +388,14 @@ const Farms: React.FC = () => {
               />
             </LabelWrapper>
             <LabelWrapper style={{ marginLeft: 16 }}>
-              <Text textTransform="uppercase">Search</Text>
+              <Text textTransform="uppercase">{t('Search')}</Text>
               <SearchInput onChange={handleChangeQuery} placeholder="Search Farms" />
             </LabelWrapper>
           </FilterContainer>
         </ControlContainer>
         {renderContent()}
         <div ref={loadMoreRef} />
-        <StyledImage src="/images/MakiTime.png" alt="Maki illustration" width={120} height={103} />
+        <StyledImage src="/images/3dpan.png" alt="Pancake illustration" width={120} height={103} />
       </Page>
     </>
   )

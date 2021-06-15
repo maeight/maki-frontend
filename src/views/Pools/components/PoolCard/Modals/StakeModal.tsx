@@ -42,6 +42,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
   const [pendingTx, setPendingTx] = useState(false)
   const [stakeAmount, setStakeAmount] = useState('')
   const [hasReachedStakeLimit, setHasReachedStakedLimit] = useState(false)
+  // eslint-disable-next-line
   const [percent, setPercent] = useState(0)
   const getCalculatedStakingLimit = () => {
     if (isRemovingStake) {

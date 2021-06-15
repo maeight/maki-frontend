@@ -43,7 +43,8 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
   const { toastSuccess, toastError } = useToast()
   const [pendingTx, setPendingTx] = useState(false)
   const [stakeAmount, setStakeAmount] = useState('')
-  const [percent, setPercent] = useState(0)
+  // eslint-disable-next-line
+  const [percent, setPercent] = useState(0) // percent
   const { hasUnstakingFee } = useWithdrawalFeeTimer(parseInt(lastDepositedTime, 10), userShares)
   const makiPriceHusd = usePriceMakiHusd()
   const usdValueStaked =

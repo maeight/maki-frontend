@@ -4,7 +4,7 @@ import { LinkExternal, Text } from 'maki-uikit'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { getHecoInfoAddressUrl } from 'utils/hecoinfo'
-import { CommunityTag, CoreTag } from 'components/Tags'
+import { CommunityTag, CoreTag, DualTag } from 'components/Tags'
 
 import HarvestAction from './HarvestAction'
 import StakedAction from './StakedAction'
@@ -146,14 +146,14 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   })
   const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
   const etherscan = getHecoInfoAddressUrl(lpAddress)
-  const info = `https://pancakeswap.info/pair/${lpAddress}`
+  const info = `https://info.makiswap.com/pair/${lpAddress}`
 
   return (
     <Container expanded={expanded}>
       <InfoContainer>
         {isActive && (
           <StakeContainer>
-            <StyledLinkExternal href={`https://exchange.pancakeswap.finance/#/add/${liquidityUrlPathParts}`}>
+            <StyledLinkExternal href={`https://exchange.makiswap.com/#/add/${liquidityUrlPathParts}`}>
               {`Get ${lpLabel}%`}
             </StyledLinkExternal>
           </StakeContainer>
@@ -162,7 +162,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
         <StyledLinkExternal href={info}>See Pair Info</StyledLinkExternal>
         <TagsContainer>
           {farm.isCommunity ? <CommunityTag /> : <CoreTag />}
-          {/* {dual ? <DualTag /> : null} */}
+          {dual ? <DualTag /> : null}
         </TagsContainer>
       </InfoContainer>
       <ValueContainer>

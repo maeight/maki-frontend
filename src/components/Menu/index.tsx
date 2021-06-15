@@ -1,31 +1,33 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Menu as UikitMenu } from 'maki-uikit'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWeb3React } from '@web3-react/core'
 import { languageList } from 'config/localization/languages'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
+import useAuth from 'hooks/useAuth'
 import { usePriceMakiHusd } from 'state/hooks' // useProfile
 import config from './config'
 
 const Menu = (props) => {
-  const { account, connect, reset } = useWallet()
-  const { currentLanguage, setLanguage } = useTranslation()
+  const { account } = useWeb3React()
+  const { login, logout } = useAuth()
   const { isDark, toggleTheme } = useTheme()
   const makiPriceUsd = usePriceMakiHusd()
   // const { profile } = useProfile()
+  const { currentLanguage, setLanguage, t } = useTranslation()
 
   return (
     <UikitMenu
       account={account}
-      login={connect}
-      logout={reset}
+      login={login}
+      logout={logout}
       isDark={isDark}
       toggleTheme={toggleTheme}
       currentLang={currentLanguage.code}
       langs={languageList}
       setLang={setLanguage}
       makiPriceUsd={makiPriceUsd.toNumber()}
-      links={config}
+      links={config(t)}
       // profile={{
       //   username: profile?.username,
       //   image: profile?.nft ? `/images/nfts/${profile.nft?.images.sm}` : undefined,
