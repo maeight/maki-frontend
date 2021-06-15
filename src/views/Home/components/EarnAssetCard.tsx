@@ -19,10 +19,10 @@ const CardMidContent = styled(Heading).attrs({ size: 'xl' })`
   line-height: 44px;
 `
 const EarnAssetCard = () => {
-  const activeNonMakiPools = pools.filter((pool) => !pool.isFinished && !pool.tokenName.includes('MAKI'))
+  const activeNonMakiPools = pools.filter((pool) => !pool.isFinished && !pool.earningToken.symbol.includes('MAKI'))
   const latestPools: Pool[] = orderBy(activeNonMakiPools, ['sortOrder', 'pid'], ['desc', 'desc']).slice(0, 3)
   // Always include MAKI
-  const assets = ['SOY', ...latestPools.map((pool) => pool.tokenName)].join(', ')
+  const assets = ['SOY', ...latestPools.map((pool) => pool.earningToken.symbol)].join(', ')
 
   return (
     <StyledFarmStakingCard>

@@ -4,7 +4,7 @@ import BigNumber from 'bignumber.js'
 import { Button, useModal, IconButton, AddIcon, MinusIcon, Skeleton, useTooltip, Flex, Text } from 'maki-uikit'
 import UnlockButton from 'components/UnlockButton'
 import { useWeb3React } from '@web3-react/core'
-import { useCakeVault } from 'state/hooks'
+import { useMakiVault } from 'state/hooks'
 import { Pool } from 'state/types'
 import Balance from 'components/Balance'
 import { useTranslation } from 'contexts/Localization'
@@ -13,12 +13,12 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { PoolCategory } from 'config/constants/types'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { getAddress } from 'utils/addressHelpers'
-import { useERC20 } from 'hooks/useContract'
-import { convertSharesToCake } from 'views/Pools/helpers'
+import { useHRC20 } from 'hooks/useContract'
+import { convertSharesToMaki } from 'views/Pools/helpers'
 import { ActionContainer, ActionTitles, ActionContent } from './styles'
 import NotEnoughTokensModal from '../../PoolCard/Modals/NotEnoughTokensModal'
 import StakeModal from '../../PoolCard/Modals/StakeModal'
-import VaultStakeModal from '../../CakeVaultCard/VaultStakeModal'
+import VaultStakeModal from '../../MakiVaultCard/VaultStakeModal'
 
 const IconButtonWrapper = styled.div`
   display: flex;
@@ -44,7 +44,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
   const { t } = useTranslation()
   const { account } = useWeb3React()
 
-  const stakingTokenContract = useERC20(stakingToken.address ? getAddress(stakingToken.address) : '')
+  const stakingTokenContract = useHRC20(stakingToken.address ? getAddress(stakingToken.address) : '')
   const { handleApprove: handlePoolApprove, requestedApproval: requestedPoolApproval } = useSousApprove(
     stakingTokenContract,
     sousId,
@@ -58,7 +58,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
   const handleApprove = isAutoVault ? handleVaultApprove : handlePoolApprove
   const requestedApproval = isAutoVault ? requestedVaultApproval : requestedPoolApproval
 
-  const isHtPool = poolCategory === PoolCategory.BINANCE
+  const isHtPool = poolCategory === PoolCategory.HECO
   const allowance = userData?.allowance ? new BigNumber(userData.allowance) : BIG_ZERO
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
   const isNotVaultAndHasStake = !isAutoVault && stakedBalance.gt(0)
@@ -74,12 +74,12 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
   const {
     userData: { userShares },
     pricePerFullShare,
-  } = useCakeVault()
+  } = useMakiVault()
 
-  const { cakeAsBigNumber, cakeAsNumberBalance } = convertSharesToCake(userShares, pricePerFullShare)
+  const { makiAsBigNumber, makiAsNumberBalance } = convertSharesToMaki(userShares, pricePerFullShare)
   const hasSharesStaked = userShares && userShares.gt(0)
   const isVaultWithShares = isAutoVault && hasSharesStaked
-  const stakedAutoDollarValue = getBalanceNumber(cakeAsBigNumber.multipliedBy(stakingTokenPrice), stakingToken.decimals)
+  const stakedAutoDollarValue = getBalanceNumber(makiAsBigNumber.multipliedBy(stakingTokenPrice), stakingToken.decimals)
 
   const needsApproval = isAutoVault ? !isVaultApproved : !allowance.gt(0) && !isHtPool
 
@@ -106,7 +106,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     />,
   )
 
-  const [onPresentVaultUnstake] = useModal(<VaultStakeModal stakingMax={cakeAsBigNumber} pool={pool} isRemovingStake />)
+  const [onPresentVaultUnstake] = useModal(<VaultStakeModal stakingMax={makiAsBigNumber} pool={pool} isRemovingStake />)
 
   const onStake = () => {
     if (isAutoVault) {
@@ -197,7 +197,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
               bold
               fontSize="20px"
               decimals={5}
-              value={isAutoVault ? cakeAsNumberBalance : stakedTokenBalance}
+              value={isAutoVault ? makiAsNumberBalance : stakedTokenBalance}
             />
             <Balance
               fontSize="12px"

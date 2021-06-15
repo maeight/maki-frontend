@@ -7,7 +7,7 @@ import BigNumber from 'bignumber.js'
 import { useAppDispatch } from 'state'
 import { updateUserAllowance } from 'state/actions'
 import { approve } from 'utils/callHelpers'
-import { useMasterchef, useMaki, useSousChef, useMakiVault } from './useContract' // disabled: useLottery
+import { useMasterchef, useMaki, useSousChef, useMakiVaultContract, useLottery } from './useContract'
 import useToast from './useToast'
 import useLastUpdated from './useLastUpdated'
 
@@ -66,7 +66,7 @@ export const useVaultApprove = (setLastUpdated: () => void) => {
   const { account } = useWeb3React()
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { toastSuccess, toastError } = useToast()
-  const makiVaultContract = useMakiVault()
+  const makiVaultContract = useMakiVaultContract()
   const makiContract = useMaki()
 
   const handleApprove = () => {
@@ -95,7 +95,7 @@ export const useCheckVaultApprovalStatus = () => {
   const [isVaultApproved, setIsVaultApproved] = useState(false)
   const { account } = useWeb3React()
   const makiContract = useMaki()
-  const makiVaultContract = useMakiVault()
+  const makiVaultContract = useMakiVaultContract()
   const { lastUpdated, setLastUpdated } = useLastUpdated()
   useEffect(() => {
     const checkApprovalStatus = async () => {
@@ -116,22 +116,22 @@ export const useCheckVaultApprovalStatus = () => {
 
 // Approve the lottery
 
-// export const useLotteryApprove = () => {
-//   const { account }: { account: string } = useWallet()
-//   const makiContract = useMaki()
-//   const lotteryContract = useLottery()
+export const useLotteryApprove = () => {
+  const { account }: { account: string } = useWallet()
+  const makiContract = useMaki()
+  const lotteryContract = useLottery()
 
-//   const handleApprove = useCallback(async () => {
-//     try {
-//       const tx = await approve(makiContract, lotteryContract, account)
-//       return tx
-//     } catch (e) {
-//       return false
-//     }
-//   }, [account, makiContract, lotteryContract])
+  const handleApprove = useCallback(async () => {
+    try {
+      const tx = await approve(makiContract, lotteryContract, account)
+      return tx
+    } catch (e) {
+      return false
+    }
+  }, [account, makiContract, lotteryContract])
 
-//   return { onApprove: handleApprove }
-// }
+  return { onApprove: handleApprove }
+}
 
 // Approve an IFO
 

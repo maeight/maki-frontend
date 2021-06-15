@@ -1194,9 +1194,9 @@
     regenerator-runtime "^0.13.4"
 
 "@babel/runtime@^7.8.7":
-  version "7.14.5"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.14.5.tgz#665450911c6031af38f81db530f387ec04cd9a98"
-  integrity sha512-121rumjddw9c3NCQ55KGkyE1h/nzWhU/owjhw0l4mQrkzz4x9SGS1X8gFLraHwX7td3Yo4QTL+qj0NcIzN87BA==
+  version "7.14.6"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.14.6.tgz#535203bc0892efc7dec60bdc27b2ecf6e409062d"
+  integrity sha512-/PCB2uJ7oM44tz8YhC4Z/6PeOKXp4K588f+5M3clr1M4zbqztlo0XEfJ2LEzj/FgwfgGcIdl8n7YYjTCI0BYwg==
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -10333,10 +10333,10 @@ makeerror@1.0.x:
   dependencies:
     tmpl "1.0.x"
 
-maki-uikit@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/maki-uikit/-/maki-uikit-2.3.0.tgz#bdb0f51b67600eda6b6573762a6fa95703d4e19a"
-  integrity sha512-67N++Je+7ZI7u1xHwrCPuRDQjVO571rvMQr8F/A3Ly35wfT9qvxS/9kriN6TlHFKR4G/KfEL9d/5Zyhw+S37JA==
+maki-uikit@^2.3.7:
+  version "2.3.7"
+  resolved "https://registry.yarnpkg.com/maki-uikit/-/maki-uikit-2.3.7.tgz#462e53e3264ca482f53483b9eb779142838c5760"
+  integrity sha512-/0bwqaPA9IgXkxdLLHsQVxcY7LIhB2OEWqJUjUiZrTvfekZAbpHwTD0OQpgs1fyRtpQ2YMqb6mBzu+DJ/5yZHQ==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.162"

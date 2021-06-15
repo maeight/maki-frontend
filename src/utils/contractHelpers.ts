@@ -11,7 +11,8 @@ import { DEFAULT_GAS_PRICE } from 'config'
 import {
   getAddress,
   getMakiAddress,
-  getMasterChefAddress,  
+  getMasterChefAddress,
+  getMakiVaultAddress
 } from 'utils/addressHelpers'
 
 // -----------------
@@ -25,6 +26,7 @@ import makiAbi from 'config/abi/maki.json'
 import masterChef from 'config/abi/masterchef.json'
 import sousChef from 'config/abi/sousChef.json'
 import sousChefHt from 'config/abi/sousChefHt.json'
+import makiVaultAbi from 'config/abi/makiVault.json' // NEEDS TO BE UPDATED W/ MULTICALL V2
 
 import { getSettings, getGasPriceInWei } from './settings'
 // -----------------
@@ -49,6 +51,9 @@ export const getLpContract = (address: string, web3?: Web3) => {
 }
 export const getMakiContract = (web3?: Web3) => {
   return getContract(makiAbi, getMakiAddress(), web3)
+}
+export const getMakiVaultContract = (web3?: Web3) => {
+  return getContract(makiVaultAbi, getMakiVaultAddress(), web3)
 }
 export const getMasterchefContract = (web3?: Web3) => {
   return getContract(masterChef, getMasterChefAddress(), web3)

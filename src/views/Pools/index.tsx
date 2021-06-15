@@ -8,7 +8,7 @@ import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
 import usePersistState from 'hooks/usePersistState'
-import { usePools, useFetchCakeVault, useFetchPublicPoolsData, usePollFarmsData, useCakeVault } from 'state/hooks'
+import { usePools, useFetchMakiVault, useFetchPublicPoolsData, usePollFarmsData, useMakiVault } from 'state/hooks'
 import { latinise } from 'utils/latinise'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
@@ -17,13 +17,13 @@ import SearchInput from 'components/SearchInput'
 import Select, { OptionProps } from 'components/Select/Select'
 import { Pool } from 'state/types'
 import PoolCard from './components/PoolCard'
-import CakeVaultCard from './components/CakeVaultCard'
+import MakiVaultCard from './components/MakiVaultCard'
 import PoolTabButtons from './components/PoolTabButtons'
 import BountyCard from './components/BountyCard'
 import HelpButton from './components/HelpButton'
 import PoolsTable from './components/PoolsTable/PoolsTable'
 import { ViewMode } from './components/ToggleView/ToggleView'
-import { getAprData, getCakeVaultEarnings } from './helpers'
+import { getAprData, getMakiVaultEarnings } from './helpers'
 
 const CardLayout = styled(FlexLayout)`
   justify-content: center;
@@ -63,18 +63,18 @@ const Pools: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [sortOption, setSortOption] = useState('hot')
   const {
-    userData: { cakeAtLastUserAction, userShares },
+    userData: { makiAtLastUserAction, userShares },
     fees: { performanceFee },
     pricePerFullShare,
-    totalCakeInVault,
-  } = useCakeVault()
+    totalMakiInVault,
+  } = useMakiVault()
   const accountHasVaultShares = userShares && userShares.gt(0)
   const performanceFeeAsDecimal = performanceFee && performanceFee / 100
 
   const pools = useMemo(() => {
-    const cakePool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
-    const cakeAutoVault = { ...cakePool, isAutoVault: true }
-    return [cakeAutoVault, ...poolsWithoutAutoVault]
+    const makiPool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
+    const makiAutoVault = { ...makiPool, isAutoVault: true }
+    return [makiAutoVault, ...poolsWithoutAutoVault]
   }, [poolsWithoutAutoVault])
 
   // TODO aren't arrays in dep array checked just by reference, i.e. it will rerender every time reference changes?
@@ -102,7 +102,7 @@ const Pools: React.FC = () => {
   const hasStakeInFinishedPools = stakedOnlyFinishedPools.length > 0
 
   usePollFarmsData()
-  useFetchCakeVault()
+  useFetchMakiVault()
   useFetchPublicPoolsData()
 
   useEffect(() => {
@@ -150,9 +150,9 @@ const Pools: React.FC = () => {
               return 0
             }
             return pool.isAutoVault
-              ? getCakeVaultEarnings(
+              ? getMakiVaultEarnings(
                   account,
-                  cakeAtLastUserAction,
+                  makiAtLastUserAction,
                   userShares,
                   pricePerFullShare,
                   pool.earningTokenPrice,
@@ -164,7 +164,7 @@ const Pools: React.FC = () => {
       case 'totalStaked':
         return orderBy(
           poolsToSort,
-          (pool: Pool) => (pool.isAutoVault ? totalCakeInVault.toNumber() : pool.totalStaked.toNumber()),
+          (pool: Pool) => (pool.isAutoVault ? totalMakiInVault.toNumber() : pool.totalStaked.toNumber()),
           'desc',
         )
       default:
@@ -194,7 +194,7 @@ const Pools: React.FC = () => {
     <CardLayout>
       {poolsToShow().map((pool) =>
         pool.isAutoVault ? (
-          <CakeVaultCard key="auto-cake" pool={pool} showStakedOnly={stakedOnly} />
+          <MakiVaultCard key="auto-cake" pool={pool} showStakedOnly={stakedOnly} />
         ) : (
           <PoolCard key={pool.sousId} pool={pool} account={account} />
         ),

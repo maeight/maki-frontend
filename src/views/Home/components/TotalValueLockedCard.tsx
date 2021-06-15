@@ -4,7 +4,7 @@ import { Card, CardBody, Heading, Text } from 'maki-uikit'
 import BigNumber from 'bignumber.js'
 
 import { useGetStats } from 'hooks/api'
-import { useFarmFromPid, usePriceBtcHusd, usePriceMakiHusd, usePriceHtHusd, usePriceEthHusd } from 'state/hooks'
+import { useFarmFromPid, usePriceBtcHusd, usePriceEthHusd, usePriceMakiHusd, usePriceHtHusd } from 'state/hooks'
 // import { split } from 'lodash'
 
 const StyledTotalValueLockedCard = styled(Card)`

@@ -325,15 +325,26 @@ export const useMakiVault = () => {
 //   return achievements
 // }
 
+export const usePriceMakiHusd = (): BigNumber => {
+  const makiHusdFarm = useFarmFromPid(3)
+  return new BigNumber(makiHusdFarm.token.husdPrice)
+}
+
 export const usePriceHtHusd = (): BigNumber => {
   const htHusdFarm = useFarmFromPid(4)
   return new BigNumber(htHusdFarm.quoteToken.husdPrice)
 }
 
-export const usePriceMakiHusd = (): BigNumber => {
-  const makiHusdFarm = useFarmFromPid(3)
-  return new BigNumber(makiHusdFarm.token.husdPrice)
+export const usePriceEthHusd = (): BigNumber => {
+  const ethHusdFarm = useFarmFromPid(5)
+  return new BigNumber(ethHusdFarm.token.husdPrice)
 }
+
+export const usePriceBtcHusd = (): BigNumber => {
+  const btcHusdFarm = useFarmFromPid(6)
+  return new BigNumber(btcHusdFarm.quoteToken.husdPrice)
+}
+
 
 // Block
 export const useBlock = () => {

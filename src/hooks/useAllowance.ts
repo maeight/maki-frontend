@@ -10,20 +10,20 @@ export const useLotteryAllowance = () => {
   const [allowance, setAllowance] = useState(new BigNumber(0))
   const { account }: { account: string } = useWallet()
   const lotteryContract = useLottery()
-  const cakeContract = useMaki()
+  const makiContract = useMaki()
 
   useEffect(() => {
     const fetchAllowance = async () => {
-      const res = await getAllowance(cakeContract, lotteryContract, account)
+      const res = await getAllowance(makiContract, lotteryContract, account)
       setAllowance(new BigNumber(res))
     }
 
-    if (account && cakeContract && cakeContract) {
+    if (account && makiContract && makiContract) {
       fetchAllowance()
     }
     const refreshInterval = setInterval(fetchAllowance, 10000)
     return () => clearInterval(refreshInterval)
-  }, [account, cakeContract, lotteryContract])
+  }, [account, makiContract, lotteryContract])
 
   return allowance
 }

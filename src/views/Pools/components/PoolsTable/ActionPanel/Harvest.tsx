@@ -2,18 +2,18 @@ import React from 'react'
 import { Button, Text, useModal, Flex, TooltipText, useTooltip, Skeleton } from 'maki-uikit'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { getCakeVaultEarnings } from 'views/Pools/helpers'
+import { getMakiVaultEarnings } from 'views/Pools/helpers'
 import { PoolCategory } from 'config/constants/types'
 import { formatNumber, getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import { useTranslation } from 'contexts/Localization'
 import Balance from 'components/Balance'
-import { useCakeVault } from 'state/hooks'
+import { useMakiVault } from 'state/hooks'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { Pool } from 'state/types'
 
 import { ActionContainer, ActionTitles, ActionContent } from './styles'
 import CollectModal from '../../PoolCard/Modals/CollectModal'
-import UnstakingFeeCountdownRow from '../../CakeVaultCard/UnstakingFeeCountdownRow'
+import UnstakingFeeCountdownRow from '../../MakiVaultCard/UnstakingFeeCountdownRow'
 
 interface HarvestActionProps extends Pool {
   userDataLoaded: boolean
@@ -32,7 +32,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   const { account } = useWeb3React()
 
   const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
-  // These will be reassigned later if its Auto CAKE vault
+  // These will be reassigned later if its Auto MAKI vault
   let earningTokenBalance = getBalanceNumber(earnings, earningToken.decimals)
   let earningTokenDollarBalance = getBalanceNumber(earnings.multipliedBy(earningTokenPrice), earningToken.decimals)
   let hasEarnings = earnings.gt(0)
@@ -40,23 +40,23 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   const formattedBalance = formatNumber(earningTokenBalance, 3, 3)
   const earningsDollarValue = formatNumber(earningTokenDollarBalance)
   const isCompoundPool = sousId === 0
-  const isHtPool = poolCategory === PoolCategory.BINANCE
+  const isHtPool = poolCategory === PoolCategory.HECO
 
-  // Auto CAKE vault calculations
+  // Auto MAKI vault calculations
   const {
-    userData: { cakeAtLastUserAction, userShares },
+    userData: { makiAtLastUserAction, userShares },
     pricePerFullShare,
     fees: { performanceFee },
-  } = useCakeVault()
-  const { hasAutoEarnings, autoCakeToDisplay, autoUsdToDisplay } = getCakeVaultEarnings(
+  } = useMakiVault()
+  const { hasAutoEarnings, autoMakiToDisplay, autoUsdToDisplay } = getMakiVaultEarnings(
     account,
-    cakeAtLastUserAction,
+    makiAtLastUserAction,
     userShares,
     pricePerFullShare,
     earningTokenPrice,
   )
 
-  earningTokenBalance = isAutoVault ? autoCakeToDisplay : earningTokenBalance
+  earningTokenBalance = isAutoVault ? autoMakiToDisplay : earningTokenBalance
   hasEarnings = isAutoVault ? hasAutoEarnings : hasEarnings
   earningTokenDollarBalance = isAutoVault ? autoUsdToDisplay : earningTokenDollarBalance
 
@@ -74,13 +74,13 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   )
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
-    t('Subtracted automatically from each yield harvest and burned.'),
+    'Subtracted automatically from each yield harvest and burned.',
     { placement: 'bottom-start' },
   )
 
   const actionTitle = isAutoVault ? (
     <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
-      {t('Recent CAKE profit')}
+      {t('Recent MAKI profit')}
     </Text>
   ) : (
     <>
@@ -99,7 +99,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
         <ActionTitles>{actionTitle}</ActionTitles>
         <ActionContent>
           <Balance pt="8px" lineHeight="1" bold fontSize="20px" decimals={5} value={0} />
-          <Button disabled>{isCompoundPool ? t('Collect') : t('Harvest')}</Button>
+          <Button disabled>{isCompoundPool ? 'Collect' : 'Harvest'}</Button>
         </ActionContent>
       </ActionContainer>
     )
@@ -155,7 +155,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
           </Flex>
         ) : (
           <Button disabled={!hasEarnings} onClick={onPresentCollect}>
-            {isCompoundPool ? t('Collect') : t('Harvest')}
+            {isCompoundPool ? 'Collect' : 'Harvest'}
           </Button>
         )}
       </ActionContent>

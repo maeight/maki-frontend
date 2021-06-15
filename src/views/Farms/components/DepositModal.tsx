@@ -48,11 +48,11 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
         inputTitle='Stake'
       />
       <ModalActions>
-        <Button variant="secondary" onClick={onDismiss} fullWidth disabled={pendingTx}>
+        <Button variant="secondary" onClick={onDismiss} width='100%' disabled={pendingTx}>
           Cancel
         </Button>
         <Button
-          fullWidth
+          width='100%'
           disabled={pendingTx || !valNumber.isFinite() || valNumber.eq(0) || valNumber.gt(fullBalanceNumber)}
           onClick={async () => {
             setPendingTx(true)

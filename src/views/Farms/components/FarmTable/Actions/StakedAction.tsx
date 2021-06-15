@@ -144,7 +144,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
         </ActionTitles>
         <ActionContent>
           <Button
-            fullWidth
+            width='100%'
             onClick={onPresentDeposit}
             variant="secondary"
             disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
@@ -175,7 +175,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
         <Subtle>ENABLE FARM</Subtle>
       </ActionTitles>
       <ActionContent>
-        <Button fullWidth disabled={requestedApproval} onClick={handleApprove} variant="secondary">
+        <Button width='100%' disabled={requestedApproval} onClick={handleApprove} variant="secondary">
           Enable
         </Button>
       </ActionContent>

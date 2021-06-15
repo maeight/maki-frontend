@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { convertSharesToCake } from 'views/Pools/helpers'
+import { convertSharesToMaki } from 'views/Pools/helpers'
 import { getMakiVaultContract } from 'utils/contractHelpers'
 import makeBatchRequest from 'utils/makeBatchRequest'
 
@@ -15,11 +15,11 @@ export const fetchPublicVaultData = async () => {
     ])
     const totalSharesAsBigNumber = new BigNumber(shares as string)
     const sharePriceAsBigNumber = new BigNumber(sharePrice as string)
-    const totalMakiInVaultEstimate = convertSharesToCake(totalSharesAsBigNumber, sharePriceAsBigNumber)
+    const totalMakiInVaultEstimate = convertSharesToMaki(totalSharesAsBigNumber, sharePriceAsBigNumber)
     return {
       totalShares: totalSharesAsBigNumber.toJSON(),
       pricePerFullShare: sharePriceAsBigNumber.toJSON(),
-      totalMakiInVault: totalMakiInVaultEstimate.cakeAsBigNumber.toJSON(),
+      totalMakiInVault: totalMakiInVaultEstimate.makiAsBigNumber.toJSON(),
       estimatedMakiBountyReward: new BigNumber(estimatedMakiBountyReward as string).toJSON(),
       totalPendingMakiHarvest: new BigNumber(totalPendingMakiHarvest as string).toJSON(),
     }

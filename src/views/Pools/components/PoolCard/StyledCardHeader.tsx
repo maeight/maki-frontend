@@ -1,7 +1,6 @@
 import React from 'react'
 import { CardHeader, Heading, Text, Flex, Image } from 'maki-uikit'
 import styled from 'styled-components'
-import { useTranslation } from 'contexts/Localization'
 
 const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string }>`
   background: ${({ isFinished, background, theme }) =>
@@ -16,34 +15,33 @@ const StyledCardHeader: React.FC<{
   isFinished?: boolean
   isStaking?: boolean
 }> = ({ earningTokenSymbol, stakingTokenSymbol, isFinished = false, isAutoVault = false, isStaking = false }) => {
-  const { t } = useTranslation()
   const poolImageSrc = isAutoVault
-    ? `cake-cakevault.svg`
+    ? `maki-makivault.svg`
     : `${earningTokenSymbol}-${stakingTokenSymbol}.svg`.toLocaleLowerCase()
-  const isCakePool = earningTokenSymbol === 'CAKE' && stakingTokenSymbol === 'CAKE'
+  const isMakiPool = earningTokenSymbol === 'MAKI' && stakingTokenSymbol === 'MAKI'
   const background = isStaking ? 'bubblegum' : 'cardHeader'
 
   const getHeadingPrefix = () => {
     if (isAutoVault) {
       // vault
-      return t('Auto')
+      return 'Auto'
     }
-    if (isCakePool) {
-      // manual cake
-      return t('Manual')
+    if (isMakiPool) {
+      // manual maki
+      return 'Manual'
     }
     // all other pools
-    return t('Earn')
+    return 'Earn'
   }
 
   const getSubHeading = () => {
     if (isAutoVault) {
-      return t('Automatic restaking')
+      return 'Automatic restaking'
     }
-    if (isCakePool) {
-      return t('Earn CAKE, stake CAKE')
+    if (isMakiPool) {
+      return 'Earn MAKI, stake MAKI'
     }
-    return t('Stake %symbol%', { symbol: stakingTokenSymbol })
+    return `Stake ${stakingTokenSymbol}`
   }
 
   return (

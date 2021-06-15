@@ -3,7 +3,7 @@ import { useWeb3React } from '@web3-react/core'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { useDispatch } from 'react-redux'
 import { updateUserBalance, updateUserPendingReward } from 'state/actions'
-import { soushHarvest, soushHarvestBnb, harvest } from 'utils/callHelpers'
+import { soushHarvest, soushHarvestHt, harvest } from 'utils/callHelpers'
 import { useMasterchef, useSousChef } from './useContract'
 
 export const useHarvest = (farmPid: number) => {
@@ -43,7 +43,7 @@ export const useSousHarvest = (sousId, isUsingBnb = false) => {
     if (sousId === 0) {
       await harvest(masterChefContract, 0, account)
     } else if (isUsingBnb) {
-      await soushHarvestBnb(sousChefContract, account)
+      await soushHarvestHt(sousChefContract, account)
     } else {
       await soushHarvest(sousChefContract, account)
     }

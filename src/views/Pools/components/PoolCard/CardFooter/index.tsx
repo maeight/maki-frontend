@@ -10,7 +10,7 @@ import ExpandedFooter from './ExpandedFooter'
 interface FooterProps {
   pool: Pool
   account: string
-  totalCakeInVault?: BigNumber
+  totalMakiInVault?: BigNumber
 }
 
 const ExpandableButtonWrapper = styled(Flex)`

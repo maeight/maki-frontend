@@ -89,7 +89,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
       try {
         await onUnstake(stakeAmount, stakingToken.decimals)
         toastSuccess(
-          `${t('Unstaked')}!`,
+          `Unstaked!`,
           t('Your %symbol% earnings have also been harvested to your wallet!', {
             symbol: earningToken.symbol,
           }),
@@ -105,7 +105,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
         // staking
         await onStake(stakeAmount, stakingToken.decimals)
         toastSuccess(
-          `${t('Staked')}!`,
+          `Staked!`,
           t('Your %symbol% funds have been staked in the pool!', {
             symbol: stakingToken.symbol,
           }),
@@ -113,7 +113,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
         setPendingTx(false)
         onDismiss()
       } catch (e) {
-        toastError(t('Canceled'), t('Please try again and confirm the transaction.'))
+        toastError('Canceled', 'Please try again and confirm the transaction.')
         setPendingTx(false)
       }
     }
@@ -134,7 +134,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
         </Text>
       )}
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
-        <Text bold>{isRemovingStake ? t('Unstake') : t('Stake')}:</Text>
+        <Text bold>{isRemovingStake ? 'Unstake' : 'Stake'}:</Text>
         <Flex alignItems="center" minWidth="70px">
           <Image src={`/images/tokens/${stakingToken.symbol}.png`} width={24} height={24} alt={stakingToken.symbol} />
           <Text ml="4px" bold>

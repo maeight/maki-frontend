@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useRef } from 'react'
 import { noop } from 'lodash'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { useToast } from 'state/hooks'
+import useToast from 'hooks/useToast'
 
 type Web3Payload = Record<string, unknown> | null
 

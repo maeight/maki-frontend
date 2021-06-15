@@ -1,15 +1,15 @@
 import React, { useContext } from 'react'
 import { Menu as UikitMenu } from 'maki-uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { allLanguages } from 'config/localisation/languageCodes'
-import { LanguageContext } from 'contexts/Localisation/languageContext'
+import { languageList } from 'config/localization/languages'
+import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import { usePriceMakiHusd } from 'state/hooks' // useProfile
 import config from './config'
 
 const Menu = (props) => {
   const { account, connect, reset } = useWallet()
-  const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
+  const { currentLanguage, setLanguage } = useTranslation()
   const { isDark, toggleTheme } = useTheme()
   const makiPriceUsd = usePriceMakiHusd()
   // const { profile } = useProfile()
@@ -21,9 +21,9 @@ const Menu = (props) => {
       logout={reset}
       isDark={isDark}
       toggleTheme={toggleTheme}
-      currentLang={selectedLanguage && selectedLanguage.code}
-      langs={allLanguages}
-      setLang={setSelectedLanguage}
+      currentLang={currentLanguage.code}
+      langs={languageList}
+      setLang={setLanguage}
       makiPriceUsd={makiPriceUsd.toNumber()}
       links={config}
       // profile={{

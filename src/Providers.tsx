@@ -3,7 +3,7 @@ import { ModalProvider } from 'maki-uikit'
 import bsc, { UseWalletProvider } from '@binance-chain/bsc-use-wallet'
 import { Provider } from 'react-redux'
 import getRpcUrl from 'utils/getRpcUrl'
-import { LanguageContextProvider } from 'contexts/Localisation/languageContext'
+import { LanguageProvider } from 'contexts/Localization'
 import { ThemeContextProvider } from 'contexts/ThemeContext'
 import { BlockContextProvider } from 'contexts/BlockContext'
 import { RefreshContextProvider } from 'contexts/RefreshContext'
@@ -15,7 +15,7 @@ const Providers: React.FC = ({ children }) => {
   return (
     <Provider store={store}>
       <ThemeContextProvider>
-        <LanguageContextProvider>
+        <LanguageProvider>
           <UseWalletProvider
             chainId={parseInt(process.env.REACT_APP_CHAIN_ID)}
             connectors={{
@@ -29,7 +29,7 @@ const Providers: React.FC = ({ children }) => {
               </RefreshContextProvider>
             </BlockContextProvider>
           </UseWalletProvider>
-        </LanguageContextProvider>
+        </LanguageProvider>
       </ThemeContextProvider>
     </Provider>
   )

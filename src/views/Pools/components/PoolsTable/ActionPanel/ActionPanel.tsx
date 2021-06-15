@@ -14,8 +14,8 @@ import {
   useTooltip,
 } from 'maki-uikit'
 import { BASE_URL } from 'config'
-import { getBscScanBlockCountdownUrl } from 'utils/bscscan'
-import { useBlock, useCakeVault } from 'state/hooks'
+import { getHecoInfoBlockCountdownUrl } from 'utils/hecoinfo'
+import { useBlock, useMakiVault } from 'state/hooks'
 import BigNumber from 'bignumber.js'
 import { Pool } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
@@ -57,7 +57,7 @@ const StyledActionPanel = styled.div<{ expanded: boolean }>`
           ${collapseAnimation} 300ms linear forwards
         `};
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.dropdown};
+  background: ${({ theme }) => theme.colors.modalBackground};
   display: flex;
   flex-direction: column-reverse;
   justify-content: center;
@@ -123,20 +123,20 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   const imageSrc = `${BASE_URL}/images/tokens/${earningToken.symbol.toLowerCase()}.png`
 
   const {
-    totalCakeInVault,
+    totalMakiInVault,
     fees: { performanceFee },
-  } = useCakeVault()
+  } = useMakiVault()
 
   const performanceFeeAsDecimal = performanceFee && performanceFee / 100
-  const isManualCakePool = sousId === 0
+  const isManualMakiPool = sousId === 0
 
   const getTotalStakedBalance = () => {
     if (isAutoVault) {
-      return getBalanceNumber(totalCakeInVault, stakingToken.decimals)
+      return getBalanceNumber(totalMakiInVault, stakingToken.decimals)
     }
-    if (isManualCakePool) {
-      const manualCakeTotalMinusAutoVault = new BigNumber(totalStaked).minus(totalCakeInVault)
-      return getBalanceNumber(manualCakeTotalMinusAutoVault, stakingToken.decimals)
+    if (isManualMakiPool) {
+      const manualMakiTotalMinusAutoVault = new BigNumber(totalStaked).minus(totalMakiInVault)
+      return getBalanceNumber(manualMakiTotalMinusAutoVault, stakingToken.decimals)
     }
     return getBalanceNumber(totalStaked, stakingToken.decimals)
   }
@@ -174,7 +174,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
       <Flex mb="8px" justifyContent="space-between">
         <Text>{hasPoolStarted ? t('Ends in') : t('Starts in')}:</Text>
         <Flex>
-          <Link external href={getBscScanBlockCountdownUrl(endBlock)}>
+          <Link external href={getHecoInfoBlockCountdownUrl(endBlock)}>
             <Balance fontSize="16px" value={blocksToDisplay} decimals={0} color="primary" />
             <Text ml="4px" color="primary" textTransform="lowercase">
               {t('Blocks')}

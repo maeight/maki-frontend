@@ -63,7 +63,7 @@ export const useSousChef = (id) => {
 }
 
 // FIX ** NEED TO ADD
-export const useMakiVault = () => {
+export const useMakiVaultContract = () => {
   const abi = (makiVault as unknown) as AbiItem
   return useContract(abi, getMakiVaultAddress())
 }
@@ -89,10 +89,10 @@ export const useMakiVault = () => {
 //   return useContract(profileABIAbi, getMakiAddress())
 // }
 
-// export const useLottery = () => {
-//   const abi = (hrc20 as unknown) as AbiItem
-//   return useContract(abi, getMakiAddress())
-// }
+export const useLottery = () => {
+  const abi = (hrc20 as unknown) as AbiItem
+  return useContract(abi, getMakiAddress())
+}
 
 // export const useLotteryTicket = () => {
 //   const abi = (hrc20 as unknown) as AbiItem
