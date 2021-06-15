@@ -18,19 +18,19 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wht,
   },
   {
-    pid: 24,
-    lpSymbol: 'MAKI-DOT',
+    pid: 25,
+    lpSymbol: 'BCH-HT',
     lpAddresses: {
-      256: '', // 
-      128: '0x4Ce51c76bBd6aD0aBdF13119e925c41512342c17', // June 14th, 2021
+      256: '', // UPDATE
+      128: '0xA9d73cf74A1Bf493Cc64eDc45Cdbbbbfa276d580', // June 15th, 2021
     },
-    tokenSymbol: 'DOT',
+    tokenSymbol: 'BCH',
     tokenAddresses: {
-      256: '', // 
-      128: '0xa2c49cee16a5e5bdefde931107dc1fae9f7773e3', // June 14th, 2021
+      256: '', // UPDATED
+      128: '0xef3cebd77e0c52cb6f60875d9306397b5caca375', // June 15th, 2021
     },
-    quoteTokenSymbol: QuoteToken.MAKI,
-    quoteTokenAdresses: contracts.maki,
+    quoteTokenSymbol: QuoteToken.HT,
+    quoteTokenAdresses: contracts.wht,
   },
   {
     pid: 21,
@@ -73,6 +73,21 @@ const farms: FarmConfig[] = [
     tokenAddresses: {
       256: '', // 
       128: '0x66a79D23E58475D2738179Ca52cd0b41d73f0BEa' // (June 9th, 2021)
+    },
+    quoteTokenSymbol: QuoteToken.MAKI,
+    quoteTokenAdresses: contracts.maki,
+  },
+  {
+    pid: 24,
+    lpSymbol: 'MAKI-DOT',
+    lpAddresses: {
+      256: '', // 
+      128: '0x4Ce51c76bBd6aD0aBdF13119e925c41512342c17', // June 14th, 2021
+    },
+    tokenSymbol: 'DOT',
+    tokenAddresses: {
+      256: '', // 
+      128: '0xa2c49cee16a5e5bdefde931107dc1fae9f7773e3', // June 14th, 2021
     },
     quoteTokenSymbol: QuoteToken.MAKI,
     quoteTokenAdresses: contracts.maki,
