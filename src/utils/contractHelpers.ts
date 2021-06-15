@@ -12,7 +12,8 @@ import {
   getAddress,
   getMakiAddress,
   getMasterChefAddress,
-  getMakiVaultAddress
+  getMakiVaultAddress,
+  getProfileAddress,
 } from 'utils/addressHelpers'
 
 // -----------------
@@ -21,6 +22,7 @@ import {
 import hrc20Abi from 'config/abi/erc20.json'
 import erc721Abi from 'config/abi/erc721.json'
 import lpTokenAbi from 'config/abi/uni_v2_lp.json'
+import profileAbi from 'config/abi/pancakeProfile.json'
 
 import makiAbi from 'config/abi/maki.json'
 import masterChef from 'config/abi/masterchef.json'
@@ -62,4 +64,7 @@ export const getSouschefContract = (id: number, web3?: Web3) => {
   const config = poolsConfig.find((pool) => pool.sousId === id)
   const abi = config.poolCategory === PoolCategory.HECO ? sousChefHt : sousChef
   return getContract(abi, getAddress(config.contractAddress), web3)
+}
+export const getProfileContract = (web3?: Web3) => {
+  return getContract(profileAbi, getProfileAddress(), web3)
 }

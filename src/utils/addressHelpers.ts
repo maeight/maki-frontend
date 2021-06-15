@@ -25,6 +25,9 @@ export const getMulticallAddress = () => {
 export const getMakiVaultAddress = () => {
   return getAddress(addresses.makiVault)
 }
+export const getProfileAddress = () => {
+  return getAddress(addresses.makiProfile)
+}
 
 // Pancakeswap
 // export const getLotteryAddress = () => {
@@ -32,9 +35,6 @@ export const getMakiVaultAddress = () => {
 // }
 // export const getLotteryTicketAddress = () => {
 //   return getAddress(addresses.lotteryNFT)
-// }
-// export const getPancakeProfileAddress = () => {
-//   return getAddress(addresses.pancakeProfile)
 // }
 // export const getPancakeRabbitsAddress = () => {
 //   return getAddress(addresses.pancakeRabbits)

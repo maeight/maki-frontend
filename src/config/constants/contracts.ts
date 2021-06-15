@@ -30,6 +30,10 @@ export default {
     256: '',
     128: '',  // FIX ** AWAITING UPDATE
   },
+  makiProfile: {
+    256: '',
+    128: '0x4B683C7E13B6d5D7fd1FeA9530F451954c1A7c8A', // OUTDATED
+  },
 
   // Tokens
 
