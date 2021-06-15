@@ -264,7 +264,7 @@ export interface State {
   farms: FarmsState
   pools: PoolsState
   // predictions: PredictionsState
-  // profile: ProfileState
+  profile: ProfileState
   // teams: TeamsState
   // collectibles: CollectiblesState
 }

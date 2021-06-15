@@ -21,8 +21,8 @@ import {
   fetchMakiVaultFees,
   setBlock,
 } from './actions'
-import { State, Farm, Pool, FarmsState } from './types' // disabled: ProfileState, TeamsState, AchievementState
-// import { fetchProfile } from './profile'
+import { State, Farm, Pool, FarmsState, ProfileState } from './types' // disabled: TeamsState, AchievementState
+import { fetchProfile } from './profile'
 // import { fetchTeam, fetchTeams } from './teams'
 // import { fetchAchievements } from './achievements'
 // import { fetchWalletNfts } from './collectibles'
@@ -51,8 +51,8 @@ export const usePollFarmsData = (includeArchive = false) => {
 
 /**
  * Fetches the "core" farm data used globally
- * 251 = CAKE-BNB LP
- * 252 = BUSD-BNB LP
+ * 1 = MAKI-HT LP
+ * 2 = MAKI-HT LP
  */
 export const usePollCoreFarmData = () => {
   const dispatch = useAppDispatch()
@@ -60,7 +60,7 @@ export const usePollCoreFarmData = () => {
   const web3 = getWeb3NoAccount()
 
   useEffect(() => {
-    dispatch(fetchFarmsPublicDataAsync([251, 252]))
+    dispatch(fetchFarmsPublicDataAsync([1, 2])) // UPDATE
   }, [dispatch, fastRefresh, web3])
 }
 
@@ -177,6 +177,7 @@ export const usePools = (account): { pools: Pool[]; userDataLoaded: boolean } =>
   return { pools: pools.map(transformPool), userDataLoaded }
 }
 
+
 export const usePoolFromPid = (sousId: number): Pool => {
   const pool = useSelector((state: State) => state.pools.data.find((p) => p.sousId === sousId))
   return transformPool(pool)
@@ -267,21 +268,21 @@ export const useMakiVault = () => {
   }
 }
 
-// // Profile
+// Profile
 
-// export const useFetchProfile = () => {
-//   const { account } = useWeb3React()
-//   const dispatch = useAppDispatch()
+export const useFetchProfile = () => {
+  const { account } = useWeb3React()
+  const dispatch = useAppDispatch()
 
-//   useEffect(() => {
-//     dispatch(fetchProfile(account))
-//   }, [account, dispatch])
-// }
+  useEffect(() => {
+    dispatch(fetchProfile(account))
+  }, [account, dispatch])
+}
 
-// export const useProfile = () => {
-//   const { isInitialized, isLoading, data, hasRegistered }: ProfileState = useSelector((state: State) => state.profile)
-//   return { profile: data, hasProfile: isInitialized && hasRegistered, isInitialized, isLoading }
-// }
+export const useProfile = () => {
+  const { isInitialized, isLoading, data, hasRegistered }: ProfileState = useSelector((state: State) => state.profile)
+  return { profile: data, hasProfile: isInitialized && hasRegistered, isInitialized, isLoading }
+}
 
 // // Teams
 

@@ -8,7 +8,8 @@ import {
   getAddress,
   getMasterChefAddress,
   getMakiAddress,
-  getMakiVaultAddress
+  getMakiVaultAddress,
+  getProfileAddress,
 } from 'utils/addressHelpers'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
@@ -19,9 +20,9 @@ import masterChef from 'config/abi/masterchef.json'
 import sousChef from 'config/abi/sousChef.json'
 import sousChefHt from 'config/abi/sousChefHt.json'
 import makiVault from 'config/abi/makiVault.json'
+import profile from 'config/abi/pancakeProfile.json'
 
 // import ifo from 'config/abi/ifo.json'
-// import profile from 'config/abi/pancakeProfile.json'
 // import pointCenterIfo from 'config/abi/pointCenterIfo.json'
 // import bunnySpecial from 'config/abi/bunnySpecial.json'
 // import lottery from 'config/abi/lottery.json'
@@ -84,10 +85,10 @@ export const useMakiVaultContract = () => {
 //   return useContract(pancakeRabbitsAbi, getMakiAddress())
 // }
 
-// export const useProfile = () => {
-//   const profileABIAbi = (hrc20 as unknown) as AbiItem
-//   return useContract(profileABIAbi, getMakiAddress())
-// }
+export const useProfile = () => {
+  const abi = (profile as unknown) as AbiItem
+  return useContract(abi, getProfileAddress())
+}
 
 export const useLottery = () => {
   const abi = (hrc20 as unknown) as AbiItem

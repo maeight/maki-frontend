@@ -5,7 +5,7 @@ import { languageList } from 'config/localization/languages'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import useAuth from 'hooks/useAuth'
-import { usePriceMakiHusd } from 'state/hooks' // useProfile
+import { usePriceMakiHusd, useProfile } from 'state/hooks'
 import config from './config'
 
 const Menu = (props) => {
@@ -13,7 +13,7 @@ const Menu = (props) => {
   const { login, logout } = useAuth()
   const { isDark, toggleTheme } = useTheme()
   const makiPriceUsd = usePriceMakiHusd()
-  // const { profile } = useProfile()
+  const { profile } = useProfile()
   const { currentLanguage, setLanguage, t } = useTranslation()
 
   return (
@@ -22,19 +22,19 @@ const Menu = (props) => {
       login={login}
       logout={logout}
       isDark={isDark}
-      toggleTheme={toggleTheme}
+      toggleTheme={toggleTheme}zw
       currentLang={currentLanguage.code}
       langs={languageList}
       setLang={setLanguage}
       makiPriceUsd={makiPriceUsd.toNumber()}
       links={config(t)}
-      // profile={{
-      //   username: profile?.username,
-      //   image: profile?.nft ? `/images/nfts/${profile.nft?.images.sm}` : undefined,
-      //   profileLink: '/profile',
-      //   noProfileLink: '/profile',
-      //   showPip: !profile?.username,
-      // }}
+      profile={{
+        username: profile?.username,
+        image: profile?.nft ? `/images/nfts/${profile.nft?.images.sm}` : undefined,
+        profileLink: '/profile',
+        noProfileLink: '/profile',
+        showPip: !profile?.username,
+      }}
       {...props}
     />
   )
