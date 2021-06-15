@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tag, VerifiedIcon, CommunityIcon, BinanceIcon, RefreshIcon, AutoRenewIcon, TagProps } from 'maki-uikit'
+import { Tag, VerifiedIcon, CommunityIcon, HuobiIcon, AutoRenewIcon, TagProps } from 'maki-uikit'
 import { useTranslation } from 'contexts/Localization'
 
 const CoreTag: React.FC<TagProps> = (props) => {
@@ -20,9 +20,9 @@ const CommunityTag: React.FC<TagProps> = (props) => {
   )
 }
 
-const BinanceTag: React.FC<TagProps> = (props) => {
+const HuobiTag: React.FC<TagProps> = (props) => {
   return (
-    <Tag variant="binance" outline startIcon={<BinanceIcon width="18px" color="secondary" mr="4px" />} {...props}>
+    <Tag variant="huobi" outline startIcon={<HuobiIcon width="18px" color="secondary" mr="4px" />} {...props}>
       Binance
     </Tag>
   )
@@ -55,4 +55,4 @@ const CompoundingPoolTag: React.FC<TagProps> = (props) => {
   )
 }
 
-export { CoreTag, CommunityTag, BinanceTag, DualTag, ManualPoolTag, CompoundingPoolTag }
+export { CoreTag, CommunityTag, HuobiTag, DualTag, ManualPoolTag, CompoundingPoolTag }

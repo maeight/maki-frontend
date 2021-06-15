@@ -10333,10 +10333,10 @@ makeerror@1.0.x:
   dependencies:
     tmpl "1.0.x"
 
-maki-uikit@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/maki-uikit/-/maki-uikit-3.0.0.tgz#609b3b8d3c503678fcc63f00b1190400e02d5ecb"
-  integrity sha512-4E9YZRz8ccLlFbzYsVsvC39iMAqKBkwhojvN61uDr+Wg/dQ/h8WAUiJgLPpOgm6QySjoJDnowXln1vH5gpUHXA==
+maki-uikit@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/maki-uikit/-/maki-uikit-3.1.0.tgz#45fc8abe314a1d74586486b0ca806fca9e15ac36"
+  integrity sha512-G6++Azq7jPyKZojWEi+fFX1HSqjFmVc94AyhiiYAUFUR3QLfRBcaoi4zUd/hfdN3K/MqD9fqnCxt8XNM0ceixA==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.162"
