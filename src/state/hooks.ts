@@ -3,9 +3,9 @@ import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
-import { orderBy } from 'lodash'
-import { Team } from 'config/constants/types'
-import Nfts from 'config/constants/nfts'
+// import { orderBy } from 'lodash'
+// import { Team } from 'config/constants/types'
+// import Nfts from 'config/constants/nfts'
 import { farmsConfig } from 'config/constants'
 import { getWeb3NoAccount } from 'utils/web3'
 import { getBalanceAmount } from 'utils/formatBalance'
@@ -16,12 +16,12 @@ import {
   fetchFarmsPublicDataAsync,
   fetchPoolsPublicDataAsync,
   fetchPoolsUserDataAsync,
-  fetchCakeVaultPublicData,
-  fetchCakeVaultUserData,
-  fetchCakeVaultFees,
+  fetchMakiVaultPublicData,
+  fetchMakiVaultUserData,
+  fetchMakiVaultFees,
   setBlock,
 } from './actions'
-import { State, Farm, Pool, ProfileState, TeamsState, AchievementState, FarmsState } from './types'
+import { State, Farm, Pool, FarmsState } from './types' // disabled: ProfileState, TeamsState, AchievementState
 // import { fetchProfile } from './profile'
 // import { fetchTeam, fetchTeams } from './teams'
 // import { fetchAchievements } from './achievements'
@@ -114,20 +114,20 @@ export const useFarmFromTokenSymbol = (tokenSymbol: string, preferredQuoteTokens
 }
 
 // Return the base token price for a farm, from a given pid
-export const useBusdPriceFromPid = (pid: number): BigNumber => {
+export const useHusdPriceFromPid = (pid: number): BigNumber => {
   const farm = useFarmFromPid(pid)
   return farm && new BigNumber(farm.token.husdPrice)
 }
 
-export const useBusdPriceFromToken = (tokenSymbol: string): BigNumber => {
+export const useHusdPriceFromToken = (tokenSymbol: string): BigNumber => {
   const tokenFarm = useFarmFromTokenSymbol(tokenSymbol)
-  const tokenPrice = useBusdPriceFromPid(tokenFarm?.pid)
+  const tokenPrice = useHusdPriceFromPid(tokenFarm?.pid)
   return tokenPrice
 }
 
 export const useLpTokenPrice = (symbol: string) => {
   const farm = useFarmFromLpSymbol(symbol)
-  const farmTokenPriceInUsd = useBusdPriceFromPid(farm.pid)
+  const farmTokenPriceInUsd = useHusdPriceFromPid(farm.pid)
   let lpTokenPrice = BIG_ZERO
 
   if (farm.lpTotalSupply && farm.lpTotalInQuoteToken) {
@@ -182,48 +182,48 @@ export const usePoolFromPid = (sousId: number): Pool => {
   return transformPool(pool)
 }
 
-export const useFetchCakeVault = () => {
+export const useFetchMakiVault = () => {
   const { account } = useWeb3React()
   const { fastRefresh } = useRefresh()
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(fetchCakeVaultPublicData())
+    dispatch(fetchMakiVaultPublicData())
   }, [dispatch, fastRefresh])
 
   useEffect(() => {
-    dispatch(fetchCakeVaultUserData({ account }))
+    dispatch(fetchMakiVaultUserData({ account }))
   }, [dispatch, fastRefresh, account])
 
   useEffect(() => {
-    dispatch(fetchCakeVaultFees())
+    dispatch(fetchMakiVaultFees())
   }, [dispatch])
 }
 
-export const useCakeVault = () => {
+export const useMakiVault = () => {
   const {
     totalShares: totalSharesAsString,
     pricePerFullShare: pricePerFullShareAsString,
-    totalCakeInVault: totalCakeInVaultAsString,
-    estimatedCakeBountyReward: estimatedCakeBountyRewardAsString,
-    totalPendingCakeHarvest: totalPendingCakeHarvestAsString,
+    totalMakiInVault: totalMakiInVaultAsString,
+    estimatedMakiBountyReward: estimatedMakiBountyRewardAsString,
+    totalPendingMakiHarvest: totalPendingMakiHarvestAsString,
     fees: { performanceFee, callFee, withdrawalFee, withdrawalFeePeriod },
     userData: {
       isLoading,
       userShares: userSharesAsString,
-      cakeAtLastUserAction: cakeAtLastUserActionAsString,
+      makiAtLastUserAction: makiAtLastUserActionAsString,
       lastDepositedTime,
       lastUserActionTime,
     },
-  } = useSelector((state: State) => state.pools.cakeVault)
+  } = useSelector((state: State) => state.pools.makiVault)
 
-  const estimatedCakeBountyReward = useMemo(() => {
-    return new BigNumber(estimatedCakeBountyRewardAsString)
-  }, [estimatedCakeBountyRewardAsString])
+  const estimatedMakiBountyReward = useMemo(() => {
+    return new BigNumber(estimatedMakiBountyRewardAsString)
+  }, [estimatedMakiBountyRewardAsString])
 
-  const totalPendingCakeHarvest = useMemo(() => {
-    return new BigNumber(totalPendingCakeHarvestAsString)
-  }, [totalPendingCakeHarvestAsString])
+  const totalPendingMakiHarvest = useMemo(() => {
+    return new BigNumber(totalPendingMakiHarvestAsString)
+  }, [totalPendingMakiHarvestAsString])
 
   const totalShares = useMemo(() => {
     return new BigNumber(totalSharesAsString)
@@ -233,24 +233,24 @@ export const useCakeVault = () => {
     return new BigNumber(pricePerFullShareAsString)
   }, [pricePerFullShareAsString])
 
-  const totalCakeInVault = useMemo(() => {
-    return new BigNumber(totalCakeInVaultAsString)
-  }, [totalCakeInVaultAsString])
+  const totalMakiInVault = useMemo(() => {
+    return new BigNumber(totalMakiInVaultAsString)
+  }, [totalMakiInVaultAsString])
 
   const userShares = useMemo(() => {
     return new BigNumber(userSharesAsString)
   }, [userSharesAsString])
 
-  const cakeAtLastUserAction = useMemo(() => {
-    return new BigNumber(cakeAtLastUserActionAsString)
-  }, [cakeAtLastUserActionAsString])
+  const makiAtLastUserAction = useMemo(() => {
+    return new BigNumber(makiAtLastUserActionAsString)
+  }, [makiAtLastUserActionAsString])
 
   return {
     totalShares,
     pricePerFullShare,
-    totalCakeInVault,
-    estimatedCakeBountyReward,
-    totalPendingCakeHarvest,
+    totalMakiInVault,
+    estimatedMakiBountyReward,
+    totalPendingMakiHarvest,
     fees: {
       performanceFee,
       callFee,
@@ -260,14 +260,14 @@ export const useCakeVault = () => {
     userData: {
       isLoading,
       userShares,
-      cakeAtLastUserAction,
+      makiAtLastUserAction,
       lastDepositedTime,
       lastUserActionTime,
     },
   }
 }
 
-// Profile
+// // Profile
 
 // export const useFetchProfile = () => {
 //   const { account } = useWeb3React()
@@ -278,12 +278,12 @@ export const useCakeVault = () => {
 //   }, [account, dispatch])
 // }
 
-export const useProfile = () => {
-  const { isInitialized, isLoading, data, hasRegistered }: ProfileState = useSelector((state: State) => state.profile)
-  return { profile: data, hasProfile: isInitialized && hasRegistered, isInitialized, isLoading }
-}
+// export const useProfile = () => {
+//   const { isInitialized, isLoading, data, hasRegistered }: ProfileState = useSelector((state: State) => state.profile)
+//   return { profile: data, hasProfile: isInitialized && hasRegistered, isInitialized, isLoading }
+// }
 
-// Teams
+// // Teams
 
 // export const useTeam = (id: number) => {
 //   const team: Team = useSelector((state: State) => state.teams.data[id])
@@ -307,7 +307,7 @@ export const useProfile = () => {
 //   return { teams: data, isInitialized, isLoading }
 // }
 
-// Achievements
+// // Achievements
 
 // export const useFetchAchievements = () => {
 //   const { account } = useWeb3React()
@@ -320,19 +320,19 @@ export const useProfile = () => {
 //   }, [account, dispatch])
 // }
 
-export const useAchievements = () => {
-  const achievements: AchievementState['data'] = useSelector((state: State) => state.achievements.data)
-  return achievements
-}
+// export const useAchievements = () => {
+//   const achievements: AchievementState['data'] = useSelector((state: State) => state.achievements.data)
+//   return achievements
+// }
 
-export const usePriceBnbBusd = (): BigNumber => {
-  const htHusdFarm = useFarmFromPid(252)
+export const usePriceHtHusd = (): BigNumber => {
+  const htHusdFarm = useFarmFromPid(4)
   return new BigNumber(htHusdFarm.quoteToken.husdPrice)
 }
 
-export const usePriceCakeBusd = (): BigNumber => {
-  const cakeBnbFarm = useFarmFromPid(251)
-  return new BigNumber(cakeBnbFarm.token.husdPrice)
+export const usePriceMakiHusd = (): BigNumber => {
+  const makiHusdFarm = useFarmFromPid(3)
+  return new BigNumber(makiHusdFarm.token.husdPrice)
 }
 
 // Block
@@ -344,7 +344,7 @@ export const useInitialBlock = () => {
   return useSelector((state: State) => state.block.initialBlock)
 }
 
-// Predictions
+// // Predictions
 // export const useIsHistoryPaneOpen = () => {
 //   return useSelector((state: State) => state.predictions.isHistoryPaneOpen)
 // }

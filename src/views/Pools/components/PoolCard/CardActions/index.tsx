@@ -22,12 +22,12 @@ interface CardActionsProps {
 const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
   const { sousId, stakingToken, earningToken, harvest, poolCategory, userData, earningTokenPrice } = pool
   // Pools using native BNB behave differently than pools using a token
-  const isBnbPool = poolCategory === PoolCategory.HECO
+  const isHtPool = poolCategory === PoolCategory.BINANCE
   const { t } = useTranslation()
   const allowance = userData?.allowance ? new BigNumber(userData.allowance) : BIG_ZERO
   const stakingTokenBalance = userData?.stakingTokenBalance ? new BigNumber(userData.stakingTokenBalance) : BIG_ZERO
   const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
-  const needsApproval = !allowance.gt(0) && !isBnbPool
+  const needsApproval = !allowance.gt(0) && !isHtPool
   const isStaked = stakedBalance.gt(0)
   const isLoading = !userData
 
@@ -49,7 +49,7 @@ const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
               earningToken={earningToken}
               sousId={sousId}
               earningTokenPrice={earningTokenPrice}
-              isBnbPool={isBnbPool}
+              isHtPool={isHtPool}
               isLoading={isLoading}
             />
           </>
@@ -70,7 +70,7 @@ const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
             pool={pool}
             stakingTokenBalance={stakingTokenBalance}
             stakedBalance={stakedBalance}
-            isBnbPool={isBnbPool}
+            isHtPool={isHtPool}
             isStaked={isStaked}
           />
         )}

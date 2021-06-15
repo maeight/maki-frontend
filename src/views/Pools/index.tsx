@@ -19,7 +19,7 @@ import { Pool } from 'state/types'
 import PoolCard from './components/PoolCard'
 import CakeVaultCard from './components/CakeVaultCard'
 import PoolTabButtons from './components/PoolTabButtons'
-// import BountyCard from './components/BountyCard'
+import BountyCard from './components/BountyCard'
 import HelpButton from './components/HelpButton'
 import PoolsTable from './components/PoolsTable/PoolsTable'
 import { ViewMode } from './components/ToggleView/ToggleView'
@@ -55,11 +55,11 @@ const Pools: React.FC = () => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const { pools: poolsWithoutAutoVault, userDataLoaded } = usePools(account)
-  const [stakedOnly, setStakedOnly] = usePersistState(false, 'maki_pool_staked')
+  const [stakedOnly, setStakedOnly] = usePersistState(false, { localStorageKey: 'pancake_pool_staked' })
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
   const [observerIsSet, setObserverIsSet] = useState(false)
   const loadMoreRef = useRef<HTMLDivElement>(null)
-  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, 'maki_farm_view')
+  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'pancake_farm_view' })
   const [searchQuery, setSearchQuery] = useState('')
   const [sortOption, setSortOption] = useState('hot')
   const {
@@ -164,10 +164,7 @@ const Pools: React.FC = () => {
       case 'totalStaked':
         return orderBy(
           poolsToSort,
-          (pool: Pool) => (
-            // pool.isAutoVault ? totalCakeInVault.toNumber() : 
-            pool.totalStaked.toNumber()
-            ),
+          (pool: Pool) => (pool.isAutoVault ? totalCakeInVault.toNumber() : pool.totalStaked.toNumber()),
           'desc',
         )
       default:
@@ -196,11 +193,11 @@ const Pools: React.FC = () => {
   const cardLayout = (
     <CardLayout>
       {poolsToShow().map((pool) =>
-        // pool.isAutoVault ? (
-        //   <CakeVaultCard key="auto-cake" pool={pool} showStakedOnly={stakedOnly} />
-        // ) : (
+        pool.isAutoVault ? (
+          <CakeVaultCard key="auto-cake" pool={pool} showStakedOnly={stakedOnly} />
+        ) : (
           <PoolCard key={pool.sousId} pool={pool} account={account} />
-        // ),
+        ),
       )}
     </CardLayout>
   )
@@ -213,19 +210,19 @@ const Pools: React.FC = () => {
         <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
           <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
             <Heading as="h1" scale="xxl" color="secondary" mb="24px">
-              Soy Pools
+              {t('Syrup Pools')}
             </Heading>
             <Heading scale="md" color="text">
-              Just stake some tokens to earn.
+              {t('Just stake some tokens to earn.')}
             </Heading>
             <Heading scale="md" color="text">
-              High APR, low risk.
+              {t('High APR, low risk.')}
             </Heading>
           </Flex>
-          {/* <Flex flex="1" height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>
+          <Flex flex="1" height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>
             <HelpButton />
             <BountyCard />
-          </Flex> */}
+          </Flex>
         </Flex>
       </PageHeader>
       <Page>
@@ -240,7 +237,7 @@ const Pools: React.FC = () => {
           <SearchSortContainer>
             <Flex flexDirection="column" width="50%">
               <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
-                Sort by
+                {t('Sort by')}
               </Text>
               <ControlStretch>
                 <Select
@@ -268,7 +265,7 @@ const Pools: React.FC = () => {
             </Flex>
             <Flex flexDirection="column" width="50%">
               <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
-                Search
+                {t('Search')}
               </Text>
               <ControlStretch>
                 <SearchInput onChange={handleChangeSearchQuery} placeholder="Search Pools" />
@@ -283,6 +280,14 @@ const Pools: React.FC = () => {
         )}
         {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
         <div ref={loadMoreRef} />
+        <Image
+          mx="auto"
+          mt="12px"
+          src="/images/3d-syrup-bunnies.png"
+          alt="Pancake illustration"
+          width={192}
+          height={184.5}
+        />
       </Page>
     </>
   )

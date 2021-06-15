@@ -1,8 +1,10 @@
 export { fetchFarmsPublicDataAsync, fetchFarmUserDataAsync } from './farms'
-export { clear, remove, push } from './toasts'
 export {
   fetchPoolsPublicDataAsync,
   fetchPoolsUserDataAsync,
+  fetchMakiVaultPublicData,
+  fetchMakiVaultUserData,
+  fetchMakiVaultFees,
   updateUserAllowance,
   updateUserBalance,
   updateUserPendingReward,
@@ -10,3 +12,4 @@ export {
 } from './pools'
 // export { profileFetchStart, profileFetchSucceeded, profileFetchFailed } from './profile'
 // export { fetchStart, teamFetchSucceeded, fetchFailed, teamsFetchSucceeded } from './teams'
+export { setBlock } from './block'

@@ -1,7 +1,8 @@
 import React from 'react'
 import { Flex, Text, TooltipText, useTooltip } from 'maki-uikit'
+import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
-import useWithdrawalFeeTimer from 'hooks/makiVault/useWithdrawalFeeTimer'
+import useWithdrawalFeeTimer from 'hooks/cakeVault/useWithdrawalFeeTimer'
 import { useCakeVault } from 'state/hooks'
 import WithdrawalFeeTimer from './WithdrawalFeeTimer'
 
@@ -10,6 +11,7 @@ interface UnstakingFeeCountdownRowProps {
 }
 
 const UnstakingFeeCountdownRow: React.FC<UnstakingFeeCountdownRowProps> = ({ isTableVariant }) => {
+  const { t } = useTranslation()
   const { account } = useWeb3React()
   const {
     userData: { lastDepositedTime, userShares },
@@ -19,12 +21,12 @@ const UnstakingFeeCountdownRow: React.FC<UnstakingFeeCountdownRowProps> = ({ isT
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     <>
       <Text bold mb="4px">
-        Unstaking fee: {feeAsDecimal}%
+        {t('Unstaking fee: %fee%%', { fee: feeAsDecimal })}
       </Text>
       <Text>
-        
-          Only applies within 3 days of staking. Unstaking after 3 days will not include a fee. Timer resets every time you stake new CAKE in the pool.
-        
+        {t(
+          'Only applies within 3 days of staking. Unstaking after 3 days will not include a fee. Timer resets every time you stake new CAKE in the pool.',
+        )}
       </Text>
     </>,
     { placement: 'bottom-start' },
@@ -44,12 +46,12 @@ const UnstakingFeeCountdownRow: React.FC<UnstakingFeeCountdownRowProps> = ({ isT
 
   const getRowText = () => {
     if (noFeeToPay) {
-      return 'Unstaking Fee'.toLowerCase()
+      return t('Unstaking Fee').toLowerCase()
     }
     if (shouldShowTimer) {
-      return 'unstaking fee until'
+      return t('unstaking fee until')
     }
-    return 'unstaking fee if withdrawn within 72h'
+    return t('unstaking fee if withdrawn within 72h')
   }
 
   return (

@@ -14,8 +14,8 @@ import {
   useTooltip,
   Button,
 } from 'maki-uikit'
-import { BASE_BSC_SCAN_URL, BASE_URL } from 'config'
-import { useBlock, useCakeVault } from 'state/hooks'
+import { BASE_HECO_INFO_URL, BASE_URL } from 'config'
+import { useBlock, useMakiVault } from 'state/hooks'
 import { Pool } from 'state/types'
 import { getAddress, getCakeVaultAddress } from 'utils/addressHelpers'
 import { registerToken } from 'utils/wallet'
@@ -126,7 +126,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
           <LinkExternal
             bold={false}
             small
-            href={`${BASE_BSC_SCAN_URL}/address/${isAutoVault ? cakeVaultContractAddress : poolContractAddress}`}
+            href={`${BASE_HECO_INFO_URL}/address/${isAutoVault ? cakeVaultContractAddress : poolContractAddress}`}
           >
             {t('View Contract')}
           </LinkExternal>

@@ -1,17 +1,17 @@
 import BigNumber from 'bignumber.js'
-import { getCakeVaultContract } from 'utils/contractHelpers'
+import { getMakiVaultContract } from 'utils/contractHelpers'
 
-const cakeVaultContract = getCakeVaultContract()
+const makiVaultContract = getMakiVaultContract()
 
 const fetchVaultUser = async (account: string) => {
   try {
-    const userContractResponse = await cakeVaultContract.methods.userInfo(account).call()
+    const userContractResponse = await makiVaultContract.methods.userInfo(account).call()
     return {
       isLoading: false,
       userShares: new BigNumber(userContractResponse.shares).toJSON(),
       lastDepositedTime: userContractResponse.lastDepositedTime as string,
       lastUserActionTime: userContractResponse.lastUserActionTime as string,
-      cakeAtLastUserAction: new BigNumber(userContractResponse.cakeAtLastUserAction).toJSON(),
+      makiAtLastUserAction: new BigNumber(userContractResponse.makiAtLastUserAction).toJSON(),
     }
   } catch (error) {
     return {
@@ -19,7 +19,7 @@ const fetchVaultUser = async (account: string) => {
       userShares: null,
       lastDepositedTime: null,
       lastUserActionTime: null,
-      cakeAtLastUserAction: null,
+      makiAtLastUserAction: null,
     }
   }
 }

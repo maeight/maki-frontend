@@ -81,23 +81,23 @@ export interface VaultFees {
 export interface VaultUser {
   isLoading: boolean
   userShares: string
-  cakeAtLastUserAction: string
+  makiAtLastUserAction: string
   lastDepositedTime: string
   lastUserActionTime: string
 }
-export interface CakeVault {
+export interface MakiVault {
   totalShares?: string
   pricePerFullShare?: string
-  totalCakeInVault?: string
-  estimatedCakeBountyReward?: string
-  totalPendingCakeHarvest?: string
+  totalMakiInVault?: string
+  estimatedMakiBountyReward?: string
+  totalPendingMakiHarvest?: string
   fees?: VaultFees
   userData?: VaultUser
 }
 
 export interface PoolsState {
   data: Pool[]
-  cakeVault: CakeVault
+  makiVault: MakiVault
   userDataLoaded: boolean
 }
 
@@ -259,12 +259,12 @@ export interface PredictionsState {
 // Global state
 
 export interface State {
-  achievements: AchievementState
+  // achievements: AchievementState
   block: BlockState
   farms: FarmsState
   pools: PoolsState
-  predictions: PredictionsState
-  profile: ProfileState
-  teams: TeamsState
-  collectibles: CollectiblesState
+  // predictions: PredictionsState
+  // profile: ProfileState
+  // teams: TeamsState
+  // collectibles: CollectiblesState
 }

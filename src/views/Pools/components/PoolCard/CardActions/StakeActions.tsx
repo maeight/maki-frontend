@@ -12,7 +12,7 @@ interface StakeActionsProps {
   pool: Pool
   stakingTokenBalance: BigNumber
   stakedBalance: BigNumber
-  isBnbPool: boolean
+  isHtPool: boolean
   isStaked: ConstrainBoolean
   isLoading?: boolean
 }
@@ -21,7 +21,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   pool,
   stakingTokenBalance,
   stakedBalance,
-  isBnbPool,
+  isHtPool,
   isStaked,
   isLoading = false,
 }) => {
@@ -37,7 +37,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
 
   const [onPresentStake] = useModal(
     <StakeModal
-      isBnbPool={isBnbPool}
+      isHtPool={isHtPool}
       pool={pool}
       stakingTokenBalance={stakingTokenBalance}
       stakingTokenPrice={stakingTokenPrice}
@@ -47,7 +47,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   const [onPresentUnstake] = useModal(
     <StakeModal
       stakingTokenBalance={stakingTokenBalance}
-      isBnbPool={isBnbPool}
+      isHtPool={isHtPool}
       pool={pool}
       stakingTokenPrice={stakingTokenPrice}
       isRemovingStake

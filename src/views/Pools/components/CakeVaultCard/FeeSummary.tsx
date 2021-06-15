@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text, Flex, useTooltip, TooltipText } from 'maki-uikit'
+import { useTranslation } from 'contexts/Localization'
 import { useCakeVault } from 'state/hooks'
 import UnstakingFeeCountdownRow from './UnstakingFeeCountdownRow'
 
@@ -9,6 +10,7 @@ interface FeeSummaryProps {
 }
 
 const FeeSummary: React.FC<FeeSummaryProps> = ({ stakingTokenSymbol, stakeAmount }) => {
+  const { t } = useTranslation()
   const {
     fees: { withdrawalFee },
   } = useCakeVault()
@@ -17,10 +19,12 @@ const FeeSummary: React.FC<FeeSummaryProps> = ({ stakingTokenSymbol, stakeAmount
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     <>
       <Text bold mb="4px">
-        Unstaking fee: {feeAsDecimal},
+        {t('Unstaking fee: %fee%%', { fee: feeAsDecimal })}
       </Text>
       <Text>
-          Only applies within 3 days of staking. Unstaking after 3 days will not include a fee. Timer resets every time you stake new CAKE in the pool.,
+        {t(
+          'Only applies within 3 days of staking. Unstaking after 3 days will not include a fee. Timer resets every time you stake new CAKE in the pool.',
+        )}
       </Text>
     </>,
     { placement: 'top-start' },
@@ -31,7 +35,7 @@ const FeeSummary: React.FC<FeeSummaryProps> = ({ stakingTokenSymbol, stakeAmount
       <Flex mt="24px" alignItems="center" justifyContent="space-between">
         {tooltipVisible && tooltip}
         <TooltipText ref={targetRef} small>
-          Unstaking Fee
+          {t('Unstaking Fee')}
         </TooltipText>
         <Text fontSize="14px">
           {stakeAmount ? feeInCake : '-'} {stakingTokenSymbol}

@@ -1,35 +1,35 @@
 import BigNumber from 'bignumber.js'
 import { convertSharesToCake } from 'views/Pools/helpers'
-import { getCakeVaultContract } from 'utils/contractHelpers'
+import { getMakiVaultContract } from 'utils/contractHelpers'
 import makeBatchRequest from 'utils/makeBatchRequest'
 
-const cakeVaultContract = getCakeVaultContract()
+const makiVaultContract = getMakiVaultContract()
 
 export const fetchPublicVaultData = async () => {
   try {
-    const [sharePrice, shares, estimatedCakeBountyReward, totalPendingCakeHarvest] = await makeBatchRequest([
-      cakeVaultContract.methods.getPricePerFullShare().call,
-      cakeVaultContract.methods.totalShares().call,
-      cakeVaultContract.methods.calculateHarvestCakeRewards().call,
-      cakeVaultContract.methods.calculateTotalPendingCakeRewards().call,
+    const [sharePrice, shares, estimatedMakiBountyReward, totalPendingMakiHarvest] = await makeBatchRequest([
+      makiVaultContract.methods.getPricePerFullShare().call,
+      makiVaultContract.methods.totalShares().call,
+      makiVaultContract.methods.calculateHarvestCakeRewards().call,
+      makiVaultContract.methods.calculateTotalPendingCakeRewards().call,
     ])
     const totalSharesAsBigNumber = new BigNumber(shares as string)
     const sharePriceAsBigNumber = new BigNumber(sharePrice as string)
-    const totalCakeInVaultEstimate = convertSharesToCake(totalSharesAsBigNumber, sharePriceAsBigNumber)
+    const totalMakiInVaultEstimate = convertSharesToCake(totalSharesAsBigNumber, sharePriceAsBigNumber)
     return {
       totalShares: totalSharesAsBigNumber.toJSON(),
       pricePerFullShare: sharePriceAsBigNumber.toJSON(),
-      totalCakeInVault: totalCakeInVaultEstimate.cakeAsBigNumber.toJSON(),
-      estimatedCakeBountyReward: new BigNumber(estimatedCakeBountyReward as string).toJSON(),
-      totalPendingCakeHarvest: new BigNumber(totalPendingCakeHarvest as string).toJSON(),
+      totalMakiInVault: totalMakiInVaultEstimate.cakeAsBigNumber.toJSON(),
+      estimatedMakiBountyReward: new BigNumber(estimatedMakiBountyReward as string).toJSON(),
+      totalPendingMakiHarvest: new BigNumber(totalPendingMakiHarvest as string).toJSON(),
     }
   } catch (error) {
     return {
       totalShares: null,
       pricePerFullShare: null,
-      totalCakeInVault: null,
-      estimatedCakeBountyReward: null,
-      totalPendingCakeHarvest: null,
+      totalMakiInVault: null,
+      estimatedMakiBountyReward: null,
+      totalPendingMakiHarvest: null,
     }
   }
 }
@@ -37,10 +37,10 @@ export const fetchPublicVaultData = async () => {
 export const fetchVaultFees = async () => {
   try {
     const [performanceFee, callFee, withdrawalFee, withdrawalFeePeriod] = await makeBatchRequest([
-      cakeVaultContract.methods.performanceFee().call,
-      cakeVaultContract.methods.callFee().call,
-      cakeVaultContract.methods.withdrawFee().call,
-      cakeVaultContract.methods.withdrawFeePeriod().call,
+      makiVaultContract.methods.performanceFee().call,
+      makiVaultContract.methods.callFee().call,
+      makiVaultContract.methods.withdrawFee().call,
+      makiVaultContract.methods.withdrawFeePeriod().call,
     ])
     return {
       performanceFee: parseInt(performanceFee as string, 10),

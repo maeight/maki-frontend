@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Modal, Text, Flex, Image, Button, Slider, BalanceInput, AutoRenewIcon, Link } from 'maki-uikit'
+import { Modal, Text, Flex, Image, Button, BalanceInput, AutoRenewIcon, Link } from 'maki-uikit'
 import { useTranslation } from 'contexts/Localization'
 import { BASE_EXCHANGE_URL } from 'config'
 import { useSousStake } from 'hooks/useStake'
@@ -13,7 +13,7 @@ import { Pool } from 'state/types'
 import PercentageButton from './PercentageButton'
 
 interface StakeModalProps {
-  isBnbPool: boolean
+  isHtPool: boolean
   pool: Pool
   stakingTokenBalance: BigNumber
   stakingTokenPrice: number
@@ -26,7 +26,7 @@ const StyledLink = styled(Link)`
 `
 
 const StakeModal: React.FC<StakeModalProps> = ({
-  isBnbPool,
+  isHtPool,
   pool,
   stakingTokenBalance,
   stakingTokenPrice,
@@ -36,7 +36,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
   const { sousId, stakingToken, userData, stakingLimit, earningToken } = pool
   const { t } = useTranslation()
   const { theme } = useTheme()
-  const { onStake } = useSousStake(sousId, isBnbPool)
+  const { onStake } = useSousStake(sousId, isHtPool)
   const { onUnstake } = useSousUnstake(sousId, pool.enableEmergencyWithdraw)
   const { toastSuccess, toastError } = useToast()
   const [pendingTx, setPendingTx] = useState(false)
@@ -147,6 +147,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
         onUserInput={handleStakeInputChange}
         currencyValue={stakingTokenPrice !== 0 && `~${usdValueStaked || 0} USD`}
         isWarning={hasReachedStakeLimit}
+        decimals={stakingToken.decimals}
       />
       {hasReachedStakeLimit && (
         <Text color="failure" fontSize="12px" style={{ textAlign: 'right' }} mt="4px">
@@ -161,20 +162,11 @@ const StakeModal: React.FC<StakeModalProps> = ({
           balance: getFullDisplayBalance(getCalculatedStakingLimit(), stakingToken.decimals),
         })}
       </Text>
-      <Slider
-        min={0}
-        max={100}
-        value={percent}
-        onValueChanged={handleChangePercent}
-        name="stake"
-        valueLabel={`${percent}%`}
-        step={1}
-      />
       <Flex alignItems="center" justifyContent="space-between" mt="8px">
         <PercentageButton onClick={() => handleChangePercent(25)}>25%</PercentageButton>
         <PercentageButton onClick={() => handleChangePercent(50)}>50%</PercentageButton>
         <PercentageButton onClick={() => handleChangePercent(75)}>75%</PercentageButton>
-        <PercentageButton onClick={() => handleChangePercent(100)}>MAX</PercentageButton>
+        <PercentageButton onClick={() => handleChangePercent(100)}>Max</PercentageButton>
       </Flex>
       <Button
         isLoading={pendingTx}
@@ -183,7 +175,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
         disabled={!stakeAmount || parseFloat(stakeAmount) === 0 || hasReachedStakeLimit}
         mt="24px"
       >
-        {pendingTx ? t('Confirming') : t('Confirm')}
+        {pendingTx ? 'Confirming' : 'Confirm'}
       </Button>
       {!isRemovingStake && (
         <StyledLink external href={BASE_EXCHANGE_URL}>
