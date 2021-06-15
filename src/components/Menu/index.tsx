@@ -5,7 +5,7 @@ import { allLanguages } from 'config/localisation/languageCodes'
 import { LanguageContext } from 'contexts/Localisation/languageContext'
 import useTheme from 'hooks/useTheme'
 import { usePriceMakiHusd, useProfile } from 'state/hooks'
-import { HECO_MAINNET } from 'config/constants/metamask_network'
+// import { HECO_MAINNET } from 'config/constants/metamask_network'
 import config from './config'
 
 const Menu = (props) => {
