@@ -3,7 +3,7 @@ import { Router, Redirect, Route, Switch } from 'react-router-dom'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { ResetCSS } from 'maki-uikit'
 import BigNumber from 'bignumber.js'
-import { usePollFarmsData } from 'state/hooks' // useFetchProfile
+import { usePollFarmsData } from 'state/hooks' // disabled until implemented: useFetchProfile
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import ToastListener from './components/ToastListener'

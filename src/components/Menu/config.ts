@@ -100,6 +100,24 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
        },
      ],
    },
+   {
+    label: 'More',
+    icon: 'MoreIcon',
+    items: [
+      {
+        label: 'Docs',
+        href: 'https://docs.makiswap.com/', 
+      },
+      {
+        label: 'Github',
+        href: 'https://github.com/MakiSwap-Protocol', 
+      },
+      {
+        label: 'Contact',
+        href: 'https://docs.makiswap.com/jiro-ono/contact-us/business-and-partnerships', 
+      },
+    ]
+   }
 ]
 
 export default config

@@ -1,9 +1,7 @@
-import react from 'react' // disables file
+import react from 'react' // for disabling file
 
 // import { Campaign } from 'config/constants/types'
-// import { getMasterChefAddress } from 'utils/addressHelpers'
-// import { getContract } from 'utils/contractHelpers'
-// import pointCenterIfo from 'config/abi/pointCenterIfo.json'
+// import { getPointCenterIfoContract } from 'utils/contractHelpers'
 // import ifosList from 'config/constants/ifo'
 // import { campaignMap } from 'config/constants/campaigns'
 // import { Achievement, TranslatableText } from 'state/types'
@@ -15,18 +13,13 @@ import react from 'react' // disables file
 //   numberPoints: string
 // }
 
-// export const getPointCenterClaimContract = () => {
-//   return getContract(pointCenterIfo, getMasterChefAddress())
-// }
-
 // export const getAchievementTitle = (campaign: Campaign): TranslatableText => {
 //   switch (campaign.type) {
 //     case 'ifo':
 //       return {
-//         id: 999,
-//         fallback: `IFO Shopper: ${campaign.title}`,
+//         key: 'IFO Shopper: %title%',
 //         data: {
-//           name: campaign.title as string,
+//           title: campaign.title as string,
 //         },
 //       }
 //     default:
@@ -38,10 +31,9 @@ import react from 'react' // disables file
 //   switch (campaign.type) {
 //     case 'ifo':
 //       return {
-//         id: 999,
-//         fallback: `Committed more than $5 worth of LP in the ${campaign.title} IFO`,
+//         key: 'Committed more than $5 worth of LP in the %title% IFO',
 //         data: {
-//           name: campaign.title as string,
+//           title: campaign.title as string,
 //         },
 //       }
 //     default:
@@ -50,12 +42,12 @@ import react from 'react' // disables file
 // }
 
 // /**
-//  * Checks if a wallet is eligble to claim points from valid IFO's
+//  * Checks if a wallet is eligible to claim points from valid IFO's
 //  */
 // export const getClaimableIfoData = async (account: string): Promise<Achievement[]> => {
 //   const ifoCampaigns = ifosList.filter((ifoItem) => ifoItem.campaignId !== undefined)
 //   const ifoCampaignAddresses = ifoCampaigns.map((ifoItem) => ifoItem.address)
-//   const pointCenterContract = getPointCenterClaimContract()
+//   const pointCenterContract = getPointCenterIfoContract()
 
 //   // Returns the claim status of every IFO with a campaign ID
 //   const claimStatuses = (await pointCenterContract.methods

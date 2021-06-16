@@ -8,7 +8,6 @@ export const getAddress = (address: Address): string => {
   return address[chainId] ? address[chainId] : address[mainNetChainId]
 }
 
-
 // Native
 export const getWhtAddress = () => {
   return getAddress(tokens.wht.address)
@@ -22,14 +21,30 @@ export const getMasterChefAddress = () => {
 export const getMulticallAddress = () => {
   return getAddress(addresses.multiCall)
 }
+
+// Awaiting Implementation
 export const getMakiVaultAddress = () => {
   return getAddress(addresses.makiVault)
 }
 export const getProfileAddress = () => {
   return getAddress(addresses.makiProfile)
 }
+export const getBunnyFactoryAddress = () => {
+  return getAddress(addresses.bunnyFactory)
+}
+export const getBunnySpecialAddress = () => {
+  return getAddress(addresses.bunnySpecial)
+}
+export const getClaimRefundAddress = () => {
+  return getAddress(addresses.claimRefund)
+}
+export const getPointCenterIfoAddress = () => {
+  return getAddress(addresses.pointCenterIfo)
+}
+
 
 // Pancakeswap
+
 // export const getLotteryAddress = () => {
 //   return getAddress(addresses.lottery)
 // }
@@ -39,14 +54,8 @@ export const getProfileAddress = () => {
 // export const getPancakeRabbitsAddress = () => {
 //   return getAddress(addresses.pancakeRabbits)
 // }
-// export const getBunnyFactoryAddress = () => {
-//   return getAddress(addresses.bunnyFactory)
-// }
 // export const getClaimRefundAddress = () => {
 //   return getAddress(addresses.claimRefund)
-// }
-// export const getPointCenterIfoAddress = () => {
-//   return getAddress(addresses.pointCenterIfo)
 // }
 // export const getBunnySpecialAddress = () => {
 //   return getAddress(addresses.bunnySpecial)

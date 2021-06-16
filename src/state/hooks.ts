@@ -21,7 +21,7 @@ import {
   fetchMakiVaultFees,
   setBlock,
 } from './actions'
-import { State, Farm, Pool, FarmsState, ProfileState } from './types' // disabled: TeamsState, AchievementState
+import { State, Farm, Pool, FarmsState } from './types' // disabled until implemented: ProfileState, TeamsState, AchievementState
 import { fetchProfile } from './profile'
 // import { fetchTeam, fetchTeams } from './teams'
 // import { fetchAchievements } from './achievements'
@@ -279,10 +279,10 @@ export const useFetchProfile = () => {
   }, [account, dispatch])
 }
 
-export const useProfile = () => {
-  const { isInitialized, isLoading, data, hasRegistered }: ProfileState = useSelector((state: State) => state.profile)
-  return { profile: data, hasProfile: isInitialized && hasRegistered, isInitialized, isLoading }
-}
+// export const useProfile = () => {
+//   const { isInitialized, isLoading, data, hasRegistered }: ProfileState = useSelector((state: State) => state.profile)
+//   return { profile: data, hasProfile: isInitialized && hasRegistered, isInitialized, isLoading }
+// }
 
 // // Teams
 

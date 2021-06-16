@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { createContext, ReactNode, useCallback, useState } from 'react'
 import { kebabCase } from 'lodash'
 import { Toast, toastTypes } from 'maki-uikit'
@@ -32,16 +31,16 @@ export const ToastsProvider: React.FC = ({ children }) => {
   )
 
   const toastError = (title: string, description?: ReactNode) => {
-    return toast({ title, type: toastTypes.DANGER })
+    return toast({ title, description, type: toastTypes.DANGER })
   }
   const toastInfo = (title: string, description?: ReactNode) => {
-    return toast({ title, type: toastTypes.INFO })
+    return toast({ title, description, type: toastTypes.INFO })
   }
   const toastSuccess = (title: string, description?: ReactNode) => {
-    return toast({ title, type: toastTypes.SUCCESS })
+    return toast({ title, description, type: toastTypes.SUCCESS })
   }
   const toastWarning = (title: string, description?: ReactNode) => {
-    return toast({ title, type: toastTypes.WARNING })
+    return toast({ title, description, type: toastTypes.WARNING })
   }
   const clear = () => setToasts([])
   const remove = (id: string) => {
