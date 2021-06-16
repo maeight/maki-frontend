@@ -2,12 +2,12 @@
   {
     "inputs": [
       {
-        "internalType": "contract IERC20",
+        "internalType": "contract IHRC20",
         "name": "_token",
         "type": "address"
       },
       {
-        "internalType": "contract IERC20",
+        "internalType": "contract IHRC20",
         "name": "_receiptToken",
         "type": "address"
       },
@@ -261,7 +261,7 @@
   },
   {
     "inputs": [],
-    "name": "calculateHarvestCakeRewards",
+    "name": "calculateHarvestMakiRewards",
     "outputs": [
       {
         "internalType": "uint256",
@@ -274,7 +274,7 @@
   },
   {
     "inputs": [],
-    "name": "calculateTotalPendingCakeRewards",
+    "name": "calculateTotalPendingMakiRewards",
     "outputs": [
       {
         "internalType": "uint256",
@@ -307,13 +307,6 @@
       }
     ],
     "name": "deposit",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "emergencyWithdraw",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -428,7 +421,7 @@
     "name": "receiptToken",
     "outputs": [
       {
-        "internalType": "contract IERC20",
+        "internalType": "contract IHRC20",
         "name": "",
         "type": "address"
       }
@@ -526,7 +519,7 @@
     "name": "token",
     "outputs": [
       {
-        "internalType": "contract IERC20",
+        "internalType": "contract IHRC20",
         "name": "",
         "type": "address"
       }

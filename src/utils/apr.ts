@@ -6,7 +6,7 @@ import { BLOCKS_PER_YEAR, MAKI_PER_YEAR } from 'config'
  * @param stakingTokenPrice Token price in the same quote currency
  * @param rewardTokenPrice Token price in the same quote currency
  * @param totalStaked Total amount of stakingToken in the pool
- * @param tokenPerBlock Amount of new oven allocated to the pool for each new block
+ * @param tokenPerBlock Amount of new maki allocated to the pool for each new block
  * @returns Null if the APR is NaN or infinite.
  */
 export const getPoolApr = (
@@ -24,13 +24,13 @@ export const getPoolApr = (
 /**
  * Get farm APR value in %
  * @param poolWeight allocationPoint / totalAllocationPoint
- * @param ovenPriceUsd Oven price in USD
+ * @param makiPriceUsd Maki price in USD
  * @param poolLiquidityUsd Total pool liquidity in USD
  * @returns
  */
-export const getFarmApr = (poolWeight: BigNumber, ovenPriceUsd: BigNumber, poolLiquidityUsd: BigNumber): number => {
-  const yearlyOvenRewardAllocation = MAKI_PER_YEAR.times(poolWeight)
-  const apr = yearlyOvenRewardAllocation.times(ovenPriceUsd).div(poolLiquidityUsd).times(100)
+export const getFarmApr = (poolWeight: BigNumber, makiPriceUsd: BigNumber, poolLiquidityUsd: BigNumber): number => {
+  const yearlyMakiRewardAllocation = MAKI_PER_YEAR.times(poolWeight)
+  const apr = yearlyMakiRewardAllocation.times(makiPriceUsd).div(poolLiquidityUsd).times(100)
   return apr.isNaN() || !apr.isFinite() ? null : apr.toNumber()
 }
 

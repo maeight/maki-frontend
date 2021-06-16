@@ -85,6 +85,12 @@ export enum PoolCategory {
   'COMMUNITY' = 'Community',
   'CORE' = 'Core',
   'HECO' = 'Huobi', // Pools using native HT behave differently than pools using a token
+  'AUTO' = 'Auto',
+}
+
+export enum PoolIds {
+  poolBasic = 'poolBasic',
+  poolUnlimited = 'poolUnlimited',
 }
 
 export interface PoolConfig {
@@ -186,4 +192,14 @@ export type Campaign = {
   title?: TranslatableText
   description?: TranslatableText
   badge?: string
+}
+
+// ---------------------
+//  Page Meta
+// ---------------------
+
+export type PageMeta = {
+  title: string
+  description?: string
+  image?: string
 }

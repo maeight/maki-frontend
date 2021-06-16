@@ -1,6 +1,6 @@
 const tokens = {
   wht: {
-    symbol: 'wHT',
+    symbol: 'WHT',
     address: {
       256: '0x5b2da6f42ca09c77d577a12bead0446148830687',
       128: '0x5545153ccfca01fbd7dd11c0b23ba694d9509a6f',
@@ -39,15 +39,6 @@ const tokens = {
     },
     decimals: 8,
   },
-  syrup: {
-    symbol: 'SYRUP',
-    address: {
-      256: '0xEd2Fb478f7fCef33E1E1d980a0135789B295a7F5',
-      128: '0xfb4C85B31b888e4F84aC131667865E029D6486F7',
-    },
-    decimals: 18,
-    projectLink: 'https://makiswap.com/',
-  },
   soy: {
     symbol: 'SOY',
     address: {
@@ -73,7 +64,7 @@ const tokens = {
       128: '0x639a647fbe20b6c8ac19e48e2de44ea792c62c5c',
     },
     decimals: 18,
-    projectLink: 'https://unilayer.com/',
+    projectLink: 'https://unilayer.app/',
   },
 }
 

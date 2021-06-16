@@ -2,6 +2,19 @@ import tokens from './tokens'
 import { FarmConfig } from './types'
 
 const farms: FarmConfig[] = [
+    /**
+   * These 3 farms (PID 0, 1, 4) should always be at the top of the file.
+   */
+     {
+      pid: 0,
+      lpSymbol: 'MAKI',
+      lpAddresses: {
+        256: '0x6858a26bBBc8e185274969f6baf99674929Cf766',
+        128: '0x5fad6fbba4bba686ba9b8052cf0bd51699f38b93', // June 15th, 2021
+      },
+      token: tokens.soy,
+      quoteToken: tokens.wht,
+    },
   {
     pid: 1,
     lpSymbol: 'MAKI-HT',
@@ -9,9 +22,20 @@ const farms: FarmConfig[] = [
       256: '0xa0af5d360232e077decfd4650e8b95875fdd6aad',
       128: '0xC923E7Dd24A96Da2136Cbc3C99F544F225A46424',
     },
-    token: tokens.soy,
+    token: tokens.maki,
     quoteToken: tokens.wht,
   },
+  {
+    pid: 4,
+    lpSymbol: 'HUSD-HT',
+    lpAddresses: {
+      256: '',
+      128: '0x12cb243CFa46f1cb98B0EAe80a1e2f757eDE2b3A',
+    },
+    token: tokens.husd,
+    quoteToken: tokens.wht,
+  },
+  //
   {
     pid: 2,
     lpSymbol: 'LAYER-HT',
@@ -31,16 +55,6 @@ const farms: FarmConfig[] = [
     },
     token: tokens.maki,
     quoteToken: tokens.husd,
-  },
-  {
-    pid: 4,
-    lpSymbol: 'HUSD-HT',
-    lpAddresses: {
-      256: '',
-      128: '0x12cb243CFa46f1cb98B0EAe80a1e2f757eDE2b3A',
-    },
-    token: tokens.husd,
-    quoteToken: tokens.wht,
   },
   {
     pid: 5,

@@ -43,18 +43,19 @@ export const useSousApprove = (lpContract: Contract, sousId, earningTokenSymbol)
       dispatch(updateUserAllowance(sousId, account))
       if (tx) {
         toastSuccess(
-          'Contract Enabled',
-          `You can now stake in the ${earningTokenSymbol} pool!`,
+          ('Contract Enabled'),
+          // eslint-disable-next-line
+          ('You can now stake in the pool: ' + { symbol: earningTokenSymbol }),
         )
         setRequestedApproval(false)
       } else {
         // user rejected tx or didn't go thru
-        toastError('Error', 'Please try again. Confirm the transaction and make sure you are paying enough gas!')
+        toastError(('Error'), ('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
         setRequestedApproval(false)
       }
     } catch (e) {
       console.error(e)
-      toastError('Error', e?.message)
+      toastError(('Error'), e?.message)
     }
   }, [account, dispatch, lpContract, sousChefContract, sousId, earningTokenSymbol, toastError, toastSuccess])
 

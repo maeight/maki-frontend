@@ -33,8 +33,8 @@ export const useTotalSupply = () => {
 
   useEffect(() => {
     async function fetchTotalSupply() {
-      const cakeContract = getContract(makiABI, getMakiAddress())
-      const supply = await cakeContract.methods.totalSupply().call()
+      const makiContract = getContract(makiABI, getMakiAddress())
+      const supply = await makiContract.methods.totalSupply().call()
       setTotalSupply(new BigNumber(supply))
     }
 

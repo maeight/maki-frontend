@@ -88,7 +88,7 @@ import React, { useState, useCallback } from 'react'
 //         <Heading size="xl" mb="24px">
 //           Your Lottery Winnings
 //         </Heading>
-//         <CardImage src="/images/ticket.svg" alt="oven logo" width={64} height={64} />
+//         <CardImage src="/images/ticket.svg" alt="maki logo" width={64} height={64} />
 //         <Block>
 //           <Label>MAKI to Collect:</Label>
 //           <MakiWinnings />
