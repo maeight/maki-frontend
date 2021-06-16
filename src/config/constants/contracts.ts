@@ -75,10 +75,10 @@ export default {
   //   256: '',
   //   128: '0x66a79d23e58475d2738179ca52cd0b41d73f0bea',
   // },
-  // lottery: {
-  //   256: '0x99c2EcD51d52c036B00130d882Bc65f20Fdecf9f',
-  //   128: '0x3C3f2049cc17C136a604bE23cF7E42745edf3b91',
-  // },
+  lottery: {
+    256: '0x99c2EcD51d52c036B00130d882Bc65f20Fdecf9f', // BAD ADDRESS
+    128: '0x3C3f2049cc17C136a604bE23cF7E42745edf3b91', // BAD ADDRESS
+  },
   // lotteryNFT: {
   //   256: '0x8175c10383511b3a1C68f9dB222dc14A19CC950e',
   //   128: '0x5e74094Cd416f55179DBd0E45b1a8ED030e396A1',

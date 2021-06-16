@@ -10,6 +10,7 @@ import {
   getMakiAddress,
   getMakiVaultAddress,
   getProfileAddress,
+  getLotteryAddress,
 } from 'utils/addressHelpers'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
@@ -25,8 +26,8 @@ import profile from 'config/abi/pancakeProfile.json'
 // import ifo from 'config/abi/ifo.json'
 // import pointCenterIfo from 'config/abi/pointCenterIfo.json'
 // import bunnySpecial from 'config/abi/bunnySpecial.json'
-// import lottery from 'config/abi/lottery.json'
-// import lotteryTicket from 'config/abi/lotteryNft.json'
+import lottery from 'config/abi/lottery.json'
+import lotteryTicket from 'config/abi/lotteryNft.json'
 
 const useContract = (abi: AbiItem, address: string, contractOptions?: ContractOptions) => {
   const web3 = useWeb3()
@@ -91,14 +92,14 @@ export const useProfile = () => {
 }
 
 export const useLottery = () => {
-  const abi = (hrc20 as unknown) as AbiItem
-  return useContract(abi, getMakiAddress())
+  const abi = (lottery as unknown) as AbiItem
+  return useContract(abi, getLotteryAddress())
 }
 
-// export const useLotteryTicket = () => {
-//   const abi = (hrc20 as unknown) as AbiItem
-//   return useContract(abi, getMakiAddress())
-// }
+export const useLotteryTicket = () => {
+  const abi = (lotteryTicket as unknown) as AbiItem
+  return useContract(abi, getLotteryAddress()) // UPDATE get()
+}
 
 
 // export const usePointCenterIfoContract = () => {

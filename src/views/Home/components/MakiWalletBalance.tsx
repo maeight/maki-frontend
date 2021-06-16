@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text } from 'maki-uikit'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWeb3React } from '@web3-react/core'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { getMakiAddress } from 'utils/addressHelpers'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -10,9 +10,10 @@ import CardValue from './CardValue'
 import CardHusdValue from './CardHusdValue'
 
 const MakiWalletBalance = () => {
-  const makiBalance = useTokenBalance(getMakiAddress())
-  const husdBalance = new BigNumber(getBalanceNumber(makiBalance)).multipliedBy(usePriceMakiHusd()).toNumber()
-  const { account } = useWallet()
+  const { balance: makiBalance } = useTokenBalance(getMakiAddress())
+  const makiPriceHusd = usePriceMakiHusd()
+  const busdBalance = new BigNumber(getBalanceNumber(makiBalance)).multipliedBy(makiPriceHusd).toNumber()
+  const { account } = useWeb3React()
 
   if (!account) {
     return (
@@ -25,7 +26,7 @@ const MakiWalletBalance = () => {
   return (
     <>
       <CardValue value={getBalanceNumber(makiBalance)} decimals={4} fontSize="24px" lineHeight="36px" />
-      <CardHusdValue value={husdBalance} />
+      {makiPriceHusd.gt(0) ? <CardHusdValue value={busdBalance} /> : <br />}
     </>
   )
 }

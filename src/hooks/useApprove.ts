@@ -1,14 +1,12 @@
-// eslint-disable
 import { useCallback, useEffect, useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { Contract } from 'web3-eth-contract'
 import { ethers } from 'ethers'
 import BigNumber from 'bignumber.js'
 import { useAppDispatch } from 'state'
 import { updateUserAllowance } from 'state/actions'
 import { approve } from 'utils/callHelpers'
-import { useMasterchef, useMaki, useSousChef, useMakiVaultContract, useLottery } from './useContract'
+import { useMasterchef, useMaki, useSousChef, useLottery, useMakiVaultContract } from './useContract'
 import useToast from './useToast'
 import useLastUpdated from './useLastUpdated'
 
@@ -117,9 +115,8 @@ export const useCheckVaultApprovalStatus = () => {
 }
 
 // Approve the lottery
-
 export const useLotteryApprove = () => {
-  const { account }: { account: string } = useWallet()
+  const { account } = useWeb3React()
   const makiContract = useMaki()
   const lotteryContract = useLottery()
 
@@ -136,18 +133,11 @@ export const useLotteryApprove = () => {
 }
 
 // Approve an IFO
-
 // export const useIfoApprove = (tokenContract: Contract, spenderAddress: string) => {
-//   const { account } = useWallet()
+//   const { account } = useWeb3React()
 //   const onApprove = useCallback(async () => {
-//     try {
-//       const tx = await tokenContract.methods
-//         .approve(spenderAddress, ethers.constants.MaxUint256)
-//         .send({ from: account })
-//       return tx
-//     } catch {
-//       return false
-//     }
+//     const tx = await tokenContract.methods.approve(spenderAddress, ethers.constants.MaxUint256).send({ from: account })
+//     return tx
 //   }, [account, spenderAddress, tokenContract])
 
 //   return onApprove
