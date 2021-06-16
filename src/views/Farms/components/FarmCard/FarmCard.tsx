@@ -86,9 +86,9 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, makiPrice, account }
   const totalValueFormatted =
     farm.liquidity && farm.liquidity.gt(0)
       ? `$${farm.liquidity.toNumber().toLocaleString(undefined, { maximumFractionDigits: 0 })}`
-      : ''
+      : '0'
 
-  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('MAKI', '')
+  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('', '')
   const earnLabel = farm.dual ? farm.dual.earnLabel : 'MAKI'
 
   const farmAPR = farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 })
@@ -139,7 +139,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, makiPrice, account }
       <ExpandingWrapper expanded={showExpandableSection}>
         <DetailsSection
           removed={removed}
-          etherscanAddress={getHecoInfoAddressUrl(farm.lpAddresses[process.env.REACT_APP_CHAIN_ID])}
+          hecoscanAddress={getHecoInfoAddressUrl(farm.lpAddresses[process.env.REACT_APP_CHAIN_ID])}
           infoAddress={`https://info.makiswap.com/pair/${lpAddress}`}
           totalValueFormatted={totalValueFormatted}
           lpLabel={lpLabel}

@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
 import { useWeb3React } from '@web3-react/core'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from 'state'
 import { updateUserStakedBalance, updateUserBalance } from 'state/actions'
-import { stake, sousStake } from 'utils/callHelpers'
+import { stake, sousStake, sousStakeHt } from 'utils/callHelpers'
 import { useMasterchef, useSousChef } from './useContract'
 
 const useStake = (pid: number) => {
@@ -20,8 +20,8 @@ const useStake = (pid: number) => {
   return { onStake: handleStake }
 }
 
-export const useSousStake = (sousId) => { // removed: isUsingHt = false
-  const dispatch = useDispatch()
+export const useSousStake = (sousId: number, isUsingHt = false) => {
+  const dispatch = useAppDispatch()
   const { account } = useWeb3React()
   const masterChefContract = useMasterchef()
   const sousChefContract = useSousChef(sousId)
@@ -30,15 +30,15 @@ export const useSousStake = (sousId) => { // removed: isUsingHt = false
     async (amount: string, decimals: number) => {
       if (sousId === 0) {
         await stake(masterChefContract, 0, amount, account)
-      // } else if (isUsingHt) {
-      //   await sousStakeHt(sousChefContract, amount, account)
+      } else if (isUsingHt) {
+        await sousStakeHt(sousChefContract, amount, account)
       } else {
         await sousStake(sousChefContract, amount, decimals, account)
       }
       dispatch(updateUserStakedBalance(sousId, account))
       dispatch(updateUserBalance(sousId, account))
     },
-    [account, dispatch, masterChefContract, sousChefContract, sousId], // removed: isUsingHt
+    [account, dispatch, isUsingHt, masterChefContract, sousChefContract, sousId],
   )
 
   return { onStake: handleStake }

@@ -22,7 +22,7 @@ import {
   setBlock,
 } from './actions'
 import { State, Farm, Pool, FarmsState } from './types' // Removed: TeamsState, AchievementState, ProfileState
-import { fetchProfile } from './profile'
+// import { fetchProfile } from './profile'
 // import { fetchTeam, fetchTeams } from './teams'
 // import { fetchAchievements } from './achievements'
 // import { fetchWalletNfts } from './collectibles'
@@ -50,15 +50,15 @@ export const usePollFarmsData = (includeArchive = false) => {
 
 /**
  * Fetches the "core" farm data used globally
- * 251 = MAKI-HT LP
- * 252 = HUSD-HT LP
+ * 1 = MAKI-HT LP
+ * 4 = HUSD-HT LP
  */
 export const usePollCoreFarmData = () => {
   const dispatch = useAppDispatch()
   const { fastRefresh } = useRefresh()
 
   useEffect(() => {
-    dispatch(fetchFarmsPublicDataAsync([251, 252]))
+    dispatch(fetchFarmsPublicDataAsync([1, 4]))
   }, [dispatch, fastRefresh])
 }
 
@@ -265,14 +265,14 @@ export const useMakiVault = () => {
 
 // Profile
 
-export const useFetchProfile = () => {
-  const { account } = useWeb3React()
-  const dispatch = useAppDispatch()
+// export const useFetchProfile = () => {
+//   const { account } = useWeb3React()
+//   const dispatch = useAppDispatch()
 
-  useEffect(() => {
-    dispatch(fetchProfile(account))
-  }, [account, dispatch])
-}
+//   useEffect(() => {
+//     dispatch(fetchProfile(account))
+//   }, [account, dispatch])
+// }
 
 // export const useProfile = () => {
 //   const { isInitialized, isLoading, data, hasRegistered }: ProfileState = useSelector((state: State) => state.profile)
@@ -321,9 +321,9 @@ export const useFetchProfile = () => {
 //   return achievements
 // }
 
-export const usePriceBnbHusd = (): BigNumber => {
-  const bnbHusdFarm = useFarmFromPid(252)
-  return new BigNumber(bnbHusdFarm.quoteToken.husdPrice)
+export const usePriceHtHusd = (): BigNumber => {
+  const htHusdFarm = useFarmFromPid(3)
+  return new BigNumber(htHusdFarm.quoteToken.husdPrice)
 }
 
 export const usePriceMakiHusd = (): BigNumber => {

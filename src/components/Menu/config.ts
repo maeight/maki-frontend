@@ -12,16 +12,16 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     label: t('Trade'),
     icon: 'TradeIcon',
     href: 'https://exchange.makiswap.com',
-      // items: [
-      //   {
-      //     label: 'Exchange',
-      //     href: 'https://exchange.makiswap.com',
-      //   },
-      //   {
-      //     label: 'Liquidity',
-      //     href: 'https://exchange.makiswap.com/#/pool',
-      //   },
-      // ],
+      items: [
+        {
+          label: 'Exchange',
+          href: 'https://exchange.makiswap.com',
+        },
+        {
+          label: 'Liquidity',
+          href: 'https://exchange.makiswap.com/#/pool',
+        },
+      ],
   },
   {
     label: t('Farms'),

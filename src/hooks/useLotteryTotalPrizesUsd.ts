@@ -6,10 +6,10 @@ import react from 'react' // to disable file
 
 // const useLotteryTotalPrizesUsd = () => {
 //   const totalRewards = useTotalRewards()
-//   const totalCake = getBalanceNumber(totalRewards)
+//   const totalMaki = getBalanceNumber(totalRewards)
 //   const makiPriceHusd = usePriceMakiHusd()
 
-//   return totalCake * makiPriceHusd.toNumber()
+//   return totalMaki * makiPriceHusd.toNumber()
 // }
 
 // export default useLotteryTotalPrizesUsd

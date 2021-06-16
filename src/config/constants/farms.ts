@@ -5,16 +5,16 @@ const farms: FarmConfig[] = [
     /**
    * These 3 farms (PID 0, 1, 4) should always be at the top of the file.
    */
-     {
-      pid: 0,
-      lpSymbol: 'MAKI',
-      lpAddresses: {
-        256: '0x6858a26bBBc8e185274969f6baf99674929Cf766',
-        128: '0x5fad6fbba4bba686ba9b8052cf0bd51699f38b93', // June 15th, 2021
-      },
-      token: tokens.soy,
-      quoteToken: tokens.wht,
+    {
+    pid: 0,
+    lpSymbol: 'MAKI',
+    lpAddresses: {
+      256: '0x6858a26bBBc8e185274969f6baf99674929Cf766',
+      128: '0x5fad6fbba4bba686ba9b8052cf0bd51699f38b93', // June 15th, 2021
     },
+    token: tokens.maki,
+    quoteToken: tokens.wht,
+  },
   {
     pid: 1,
     lpSymbol: 'MAKI-HT',

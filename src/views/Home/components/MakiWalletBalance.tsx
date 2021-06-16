@@ -12,7 +12,7 @@ import CardHusdValue from './CardHusdValue'
 const MakiWalletBalance = () => {
   const { balance: makiBalance } = useTokenBalance(getMakiAddress())
   const makiPriceHusd = usePriceMakiHusd()
-  const busdBalance = new BigNumber(getBalanceNumber(makiBalance)).multipliedBy(makiPriceHusd).toNumber()
+  const husdBalance = new BigNumber(getBalanceNumber(makiBalance)).multipliedBy(makiPriceHusd).toNumber()
   const { account } = useWeb3React()
 
   if (!account) {
@@ -26,7 +26,7 @@ const MakiWalletBalance = () => {
   return (
     <>
       <CardValue value={getBalanceNumber(makiBalance)} decimals={4} fontSize="24px" lineHeight="36px" />
-      {makiPriceHusd.gt(0) ? <CardHusdValue value={busdBalance} /> : <br />}
+      {makiPriceHusd.gt(0) ? <CardHusdValue value={husdBalance} /> : <br />}
     </>
   )
 }

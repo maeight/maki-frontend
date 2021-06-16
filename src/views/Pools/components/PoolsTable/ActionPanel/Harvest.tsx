@@ -3,7 +3,7 @@ import { Button, Text, useModal, Flex, TooltipText, useTooltip, Skeleton } from 
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { getMakiVaultEarnings } from 'views/Pools/helpers'
-// import { PoolCategory } from 'config/constants/types'
+import { PoolCategory } from 'config/constants/types'
 import { formatNumber, getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import { useTranslation } from 'contexts/Localization'
 import Balance from 'components/Balance'
@@ -21,7 +21,7 @@ interface HarvestActionProps extends Pool {
 
 const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   sousId,
-  // poolCategory,
+  poolCategory,
   earningToken,
   userData,
   userDataLoaded,
@@ -40,7 +40,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   const formattedBalance = formatNumber(earningTokenBalance, 3, 3)
   const earningsDollarValue = formatNumber(earningTokenDollarBalance)
   const isCompoundPool = sousId === 0
-  // const isHtPool = poolCategory === PoolCategory.HECO
+  const isHtPool = poolCategory === PoolCategory.HECO
 
   // Auto MAKI vault calculations
   const {
@@ -68,7 +68,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
       earningToken={earningToken}
       earningsDollarValue={earningsDollarValue}
       sousId={sousId}
-      // isHtPool={isHtPool}
+      isHtPool={isHtPool}
       isCompoundPool={isCompoundPool}
     />,
   )

@@ -46,18 +46,18 @@ export const sousStake = async (sousChefContract, amount, decimals = 18, account
     })
 }
 
-// export const sousStakeHt = async (sousChefContract, amount, account) => {
-//   return sousChefContract.methods
-//     .deposit()
-//     .send({
-//       from: account,
-//       gas: DEFAULT_GAS_LIMIT,
-//       value: new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(),
-//     })
-//     .on('transactionHash', (tx) => {
-//       return tx.transactionHash
-//     })
-// }
+export const sousStakeHt = async (sousChefContract, amount, account) => {
+  return sousChefContract.methods
+    .deposit()
+    .send({
+      from: account,
+      gas: DEFAULT_GAS_LIMIT,
+      value: new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(),
+    })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
 
 export const unstake = async (masterChefContract, pid, amount, account) => {
   if (pid === 0) {
@@ -122,14 +122,14 @@ export const soushHarvest = async (sousChefContract, account) => {
     })
 }
 
-// export const soushHarvestHt = async (sousChefContract, account) => {
-//   return sousChefContract.methods
-//     .deposit()
-//     .send({ from: account, gas: DEFAULT_GAS_LIMIT, value: BIG_ZERO })
-//     .on('transactionHash', (tx) => {
-//       return tx.transactionHash
-//     })
-// }
+export const soushHarvestHt = async (sousChefContract, account) => {
+  return sousChefContract.methods
+    .deposit()
+    .send({ from: account, gas: DEFAULT_GAS_LIMIT, value: BIG_ZERO })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
 
 const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
 const makiHtPid = 1
@@ -137,7 +137,7 @@ const makiHtFarm = farms.find((farm) => farm.pid === makiHtPid)
 
 const MAKI_TOKEN = new Token(chainId, getMakiAddress(), 18)
 const WHT_TOKEN = new Token(chainId, tokens.wht.address[chainId], 18)
-const MAKI_BNB_TOKEN = new Token(chainId, getAddress(makiHtFarm.lpAddresses), 18)
+const MAKI_HT_TOKEN = new Token(chainId, getAddress(makiHtFarm.lpAddresses), 18)
 
 /**
  * Returns the total MAKI staked in the MAKI-BNB LP
@@ -156,14 +156,14 @@ export const getUserStakeInMakiHtLp = async (account: string, block?: number) =>
     )
     const makiLPBalance = pair.getLiquidityValue(
       pair.token0,
-      new TokenAmount(MAKI_BNB_TOKEN, totalSupplyLP.toString()),
-      new TokenAmount(MAKI_BNB_TOKEN, makiHtBalance.amount.toString()),
+      new TokenAmount(MAKI_HT_TOKEN, totalSupplyLP.toString()),
+      new TokenAmount(MAKI_HT_TOKEN, makiHtBalance.amount.toString()),
       false,
     )
 
     return new BigNumber(makiLPBalance.toSignificant(18))
   } catch (error) {
-    console.error(`MAKI-BNB LP error: ${error}`)
+    console.error(`MAKI-HT LP error: ${error}`)
     return BIG_ZERO
   }
 }

@@ -3,7 +3,7 @@ import { Router, Redirect, Route, Switch } from 'react-router-dom'
 import { ResetCSS } from 'maki-uikit'
 import BigNumber from 'bignumber.js'
 import useEagerConnect from 'hooks/useEagerConnect'
-import { usePollCoreFarmData, useFetchProfile, usePollBlockNumber } from 'state/hooks'
+import { usePollCoreFarmData, usePollBlockNumber } from 'state/hooks' // removed: useFetchProfile
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import SuspenseWithChunkError from './components/SuspenseWithChunkError'
@@ -34,7 +34,7 @@ BigNumber.config({
 const App: React.FC = () => {
   usePollBlockNumber()
   useEagerConnect()
-  useFetchProfile()
+  // useFetchProfile()
   usePollCoreFarmData()
 
   return (

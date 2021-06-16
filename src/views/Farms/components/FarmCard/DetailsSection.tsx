@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Text, Flex, LinkExternal, Skeleton } from 'maki-uikit'
 
 export interface ExpandableSectionProps {
-  etherscanAddress?: string
+  hecoscanAddress?: string
   infoAddress?: string
   removed?: boolean
   totalValueFormatted?: string
@@ -20,7 +20,7 @@ const StyledLinkExternal = styled(LinkExternal)`
 `
 
 const DetailsSection: React.FC<ExpandableSectionProps> = ({
-  etherscanAddress,
+  hecoscanAddress,
   infoAddress,
   removed,
   totalValueFormatted,
@@ -36,7 +36,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
       {!removed && (
         <StyledLinkExternal href={addLiquidityUrl}>{`Get ${lpLabel}%`}</StyledLinkExternal>
       )}
-      <StyledLinkExternal href={etherscanAddress}>View Contract</StyledLinkExternal>
+      <StyledLinkExternal href={hecoscanAddress}>View Contract</StyledLinkExternal>
       <StyledLinkExternal href={infoAddress}>See Pair Info</StyledLinkExternal>
     </Wrapper>
   )

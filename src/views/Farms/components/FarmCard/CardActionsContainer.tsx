@@ -1,14 +1,13 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { provider as ProviderType } from 'web3-core'
 import BigNumber from 'bignumber.js'
 import { Button, Flex, Text } from 'maki-uikit'
 import { getAddress } from 'utils/addressHelpers'
-import { getHrc20Contract } from 'utils/contractHelpers'
 import { useAppDispatch } from 'state'
 import { fetchFarmUserDataAsync } from 'state/farms'
 import { Farm } from 'state/types'
-import useWeb3 from 'hooks/useWeb3'
+import { useTranslation } from 'contexts/Localization'
+import { useHRC20 } from 'hooks/useContract'
 import { useApprove } from 'hooks/useApprove'
 import UnlockButton from 'components/UnlockButton'
 import StakeAction from './StakeAction'
@@ -23,12 +22,12 @@ export interface FarmWithStakedValue extends Farm {
 
 interface FarmCardActionsProps {
   farm: FarmWithStakedValue
-  provider?: ProviderType
   account?: string
   addLiquidityUrl?: string
 }
 
 const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidityUrl }) => {
+  const { t } = useTranslation()
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { pid, lpAddresses } = farm
   const {
@@ -42,12 +41,10 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
   const stakedBalance = new BigNumber(stakedBalanceAsString)
   const earnings = new BigNumber(earningsAsString)
   const lpAddress = getAddress(lpAddresses)
-  const lpName = farm.lpSymbol.toUpperCase()
   const isApproved = account && allowance && allowance.isGreaterThan(0)
-  const web3 = useWeb3()
   const dispatch = useAppDispatch()
 
-  const lpContract = getHrc20Contract(lpAddress, web3)
+  const lpContract = useHRC20(lpAddress)
 
   const { onApprove } = useApprove(lpContract)
 
@@ -67,13 +64,13 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
       <StakeAction
         stakedBalance={stakedBalance}
         tokenBalance={tokenBalance}
-        tokenName={lpName}
+        tokenName={farm.lpSymbol}
         pid={pid}
         addLiquidityUrl={addLiquidityUrl}
       />
     ) : (
-      <Button mt="8px" width='100%' disabled={requestedApproval} onClick={handleApprove}>
-        Approve Contract
+      <Button mt="8px" width="100%" disabled={requestedApproval} onClick={handleApprove}>
+        {t('Approve Contract')}
       </Button>
     )
   }
@@ -81,23 +78,23 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
   return (
     <Action>
       <Flex>
-        <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="3px">
+        <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
           MAKI
         </Text>
         <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
-          Earned
+          {t('Earned')}
         </Text>
       </Flex>
       <HarvestAction earnings={earnings} pid={pid} />
       <Flex>
-        <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="3px">
-          {lpName}
+        <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
+          {farm.lpSymbol}
         </Text>
         <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
-          Staked
+          {t('Staked')}
         </Text>
       </Flex>
-      {!account ? <UnlockButton mt="8px" fullwidth /> : renderApprovalOrStakeButton()}
+      {!account ? <UnlockButton mt="8px" width="100%" /> : renderApprovalOrStakeButton()}
     </Action>
   )
 }

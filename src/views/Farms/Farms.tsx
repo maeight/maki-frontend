@@ -91,13 +91,13 @@ const ViewControls = styled.div`
     }
   }
 `
-
+// eslint-disable-next-line
 const StyledImage = styled(Image)`
   margin-left: auto;
   margin-right: auto;
   margin-top: 58px;
 `
-const NUMBER_OF_FARMS_VISIBLE = 12
+const NUMBER_OF_FARMS_VISIBLE = 42
 
 const Farms: React.FC = () => {
   const { path } = useRouteMatch()
@@ -106,7 +106,7 @@ const Farms: React.FC = () => {
   const { data: farmsLP, userDataLoaded } = useFarms()
   const makiPrice = usePriceMakiHusd()
   const [query, setQuery] = useState('')
-  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'pancake_farm_view' })
+  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'maki_farm_view' })
   const { account } = useWeb3React()
   const [sortOption, setSortOption] = useState('hot')
 
@@ -248,7 +248,7 @@ const Farms: React.FC = () => {
     const { token, quoteToken } = farm
     const tokenAddress = token.address
     const quoteTokenAddress = quoteToken.address
-    const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase().replace('MAKI', '')
+    const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase().replace('', '')
 
     const row: RowProps = {
       apr: {
@@ -395,7 +395,7 @@ const Farms: React.FC = () => {
         </ControlContainer>
         {renderContent()}
         <div ref={loadMoreRef} />
-        <StyledImage src="/images/3dpan.png" alt="Pancake illustration" width={120} height={103} />
+        {/* <StyledImage src="/images/3dpan.png" alt="Pancake illustration" width={120} height={103} /> */}
       </Page>
     </>
   )

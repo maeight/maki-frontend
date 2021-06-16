@@ -24,7 +24,7 @@ interface CollectModalProps {
   earningToken: Token
   earningsDollarValue: string
   sousId: number
-  // isHtPool: boolean
+  isHtPool: boolean
   isCompoundPool?: boolean
   onDismiss?: () => void
 }
@@ -35,15 +35,15 @@ const CollectModal: React.FC<CollectModalProps> = ({
   earningToken,
   earningsDollarValue,
   sousId,
-  // isHtPool,
+  isHtPool,
   isCompoundPool = false,
   onDismiss,
 }) => {
   const { t } = useTranslation()
   const { theme } = useTheme()
   const { toastSuccess, toastError } = useToast()
-  const { onReward } = useSousHarvest(sousId) // removed: isHtPool
-  const { onStake } = useSousStake(sousId) // removed: isHtPool
+  const { onReward } = useSousHarvest(sousId, isHtPool) 
+  const { onStake } = useSousStake(sousId, isHtPool)
   const [pendingTx, setPendingTx] = useState(false)
   const [shouldCompound, setShouldCompound] = useState(isCompoundPool)
   const { targetRef, tooltip, tooltipVisible } = useTooltip(

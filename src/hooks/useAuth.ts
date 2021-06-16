@@ -15,8 +15,10 @@ import { setupNetwork } from 'utils/wallet'
 import useToast from 'hooks/useToast'
 import { profileClear } from 'state/profile'
 import { useAppDispatch } from 'state'
+import { useTranslation } from 'contexts/Localization'
 
 const useAuth = () => {
+  const { t } = useTranslation()
   const dispatch = useAppDispatch()
   const { activate, deactivate } = useWeb3React()
   const { toastError } = useToast()
@@ -43,17 +45,17 @@ const useAuth = () => {
                 const walletConnector = connector as WalletConnectConnector
                 walletConnector.walletConnectProvider = null
               }
-              toastError(('Authorization Error'), ('Please authorize to access your account'))
+              toastError(t('Authorization Error'), t('Please authorize to access your account'))
             } else {
               toastError(error.name, error.message)
             }
           }
         })
       } else {
-        toastError(('Unable to find connector'), ('The connector config is wrong'))
+        toastError(t('Unable to find connector'), t('The connector config is wrong'))
       }
     },
-    [activate, toastError],  // removed t
+    [t, activate, toastError],
   )
 
   const logout = useCallback(() => {

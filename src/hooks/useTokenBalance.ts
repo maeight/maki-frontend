@@ -56,8 +56,8 @@ export const useTotalSupply = () => {
 
   useEffect(() => {
     async function fetchTotalSupply() {
-      const cakeContract = getMakiContract()
-      const supply = await cakeContract.methods.totalSupply().call()
+      const makiContract = getMakiContract()
+      const supply = await makiContract.methods.totalSupply().call()
       setTotalSupply(new BigNumber(supply))
     }
 
@@ -84,7 +84,7 @@ export const useBurnedBalance = (tokenAddress: string) => {
   return balance
 }
 
-export const useGetBnbBalance = () => {
+export const useGetHtBalance = () => {
   const [balance, setBalance] = useState(BIG_ZERO)
   const { account } = useWeb3React()
   const { lastUpdated, setLastUpdated } = useLastUpdated()

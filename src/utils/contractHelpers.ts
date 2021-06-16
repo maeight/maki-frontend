@@ -81,6 +81,7 @@ export const getSousChefContract = (id: number, web3?: Web3) => {
   const abi = config.poolCategory === PoolCategory.HECO ? sousChefHt : sousChef
   return getContract(abi, getAddress(config.contractAddress), web3)
 }
+
 export const getMulticallContract = (web3?: Web3) => {
   return getContract(multiCall, getMulticallAddress(), web3)
 }

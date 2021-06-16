@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { Button, Flex, Heading } from 'maki-uikit'
+import { useTranslation } from 'contexts/Localization'
 import { useAppDispatch } from 'state'
 import { fetchFarmUserDataAsync } from 'state/farms'
 import { useHarvest } from 'hooks/useHarvest'
-import { getBalanceNumber } from 'utils/formatBalance'
+import { getBalanceAmount } from 'utils/formatBalance'
+import { BIG_ZERO } from 'utils/bigNumber'
 import { useWeb3React } from '@web3-react/core'
 import { usePriceMakiHusd } from 'state/hooks'
-import CardHusdValue from '../../../Home/components/CardHusdValue'
+import Balance from 'components/Balance'
 
 interface FarmCardActionsProps {
   earnings?: BigNumber
@@ -16,22 +18,25 @@ interface FarmCardActionsProps {
 
 const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
   const { account } = useWeb3React()
+  const { t } = useTranslation()
   const [pendingTx, setPendingTx] = useState(false)
   const { onReward } = useHarvest(pid)
   const makiPrice = usePriceMakiHusd()
   const dispatch = useAppDispatch()
-  const rawEarningsBalance = account ? getBalanceNumber(earnings) : 0
-  const displayBalance = rawEarningsBalance.toLocaleString()
-  const earningsHusd = rawEarningsBalance ? new BigNumber(rawEarningsBalance).multipliedBy(makiPrice).toNumber() : 0
+  const rawEarningsBalance = account ? getBalanceAmount(earnings) : BIG_ZERO
+  const displayBalance = rawEarningsBalance.toFixed(3, BigNumber.ROUND_DOWN)
+  const earningsHusd = rawEarningsBalance ? rawEarningsBalance.multipliedBy(makiPrice).toNumber() : 0
 
   return (
     <Flex mb="8px" justifyContent="space-between" alignItems="center">
-      <Heading color={rawEarningsBalance === 0 ? 'textDisabled' : 'text'}>
-        {displayBalance}
-        {earningsHusd > 0 && <CardHusdValue value={earningsHusd} />}
-      </Heading>
+      <Flex flexDirection="column" alignItems="flex-start">
+        <Heading color={rawEarningsBalance.eq(0) ? 'textDisabled' : 'text'}>{displayBalance}</Heading>
+        {earningsHusd > 0 && (
+          <Balance fontSize="12px" color="textSubtle" decimals={2} value={earningsHusd} unit=" USD" prefix="~" />
+        )}
+      </Flex>
       <Button
-        disabled={rawEarningsBalance === 0 || pendingTx}
+        disabled={rawEarningsBalance.eq(0) || pendingTx}
         onClick={async () => {
           setPendingTx(true)
           await onReward()
@@ -40,7 +45,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
           setPendingTx(false)
         }}
       >
-        Harvest
+        {t('Harvest')}
       </Button>
     </Flex>
   )

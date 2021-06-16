@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, Flex, Image, Text } from 'maki-uikit'
+import { Heading, Flex, Text } from 'maki-uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
@@ -48,18 +48,18 @@ const ControlStretch = styled(Flex)`
   }
 `
 
-const NUMBER_OF_POOLS_VISIBLE = 12
+const NUMBER_OF_POOLS_VISIBLE = 18
 
 const Pools: React.FC = () => {
   const location = useLocation()
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const { pools: poolsWithoutAutoVault, userDataLoaded } = usePools(account)
-  const [stakedOnly, setStakedOnly] = usePersistState(false, { localStorageKey: 'pancake_pool_staked' })
+  const [stakedOnly, setStakedOnly] = usePersistState(false, { localStorageKey: 'maki_pool_staked' })
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
   const [observerIsSet, setObserverIsSet] = useState(false)
   const loadMoreRef = useRef<HTMLDivElement>(null)
-  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'pancake_farm_view' })
+  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'maki_farm_view' })
   const [searchQuery, setSearchQuery] = useState('')
   const [sortOption, setSortOption] = useState('hot')
   const {
@@ -194,7 +194,7 @@ const Pools: React.FC = () => {
     <CardLayout>
       {poolsToShow().map((pool) =>
         pool.isAutoVault ? (
-          <MakiVaultCard key="auto-cake" pool={pool} showStakedOnly={stakedOnly} />
+          <MakiVaultCard key="auto-maki" pool={pool} showStakedOnly={stakedOnly} />
         ) : (
           <PoolCard key={pool.sousId} pool={pool} account={account} />
         ),
@@ -210,7 +210,7 @@ const Pools: React.FC = () => {
         <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
           <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
             <Heading as="h1" scale="xxl" color="secondary" mb="24px">
-              {t('Syrup Pools')}
+              {t('Soy Pools')}
             </Heading>
             <Heading scale="md" color="text">
               {t('Just stake some tokens to earn.')}
@@ -280,14 +280,14 @@ const Pools: React.FC = () => {
         )}
         {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
         <div ref={loadMoreRef} />
-        <Image
+        {/* <Image
           mx="auto"
           mt="12px"
           src="/images/3d-syrup-bunnies.png"
           alt="Pancake illustration"
           width={192}
           height={184.5}
-        />
+        /> */}
       </Page>
     </>
   )

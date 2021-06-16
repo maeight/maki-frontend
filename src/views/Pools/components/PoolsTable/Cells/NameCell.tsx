@@ -33,7 +33,7 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
 
   const stakingTokenSymbol = stakingToken.symbol
   const earningTokenSymbol = earningToken.symbol
-  const iconFile = `${earningTokenSymbol}-${stakingTokenSymbol}.svg`.toLocaleLowerCase()
+  const iconFile = `${earningTokenSymbol}-${stakingTokenSymbol}.png`.toLocaleLowerCase()
 
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
   const isStaked = stakedBalance.gt(0)
@@ -47,7 +47,7 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
 
   if (isAutoVault) {
     title = t('Auto MAKI')
-    subtitle = t('Automatic restaking')
+    subtitle = t('Automatic Compound')
   } else if (isManualMakiPool) {
     title = t('Manual MAKI')
     subtitle = `${t('Earn')} MAKI ${t('Stake').toLocaleLowerCase()} MAKI`

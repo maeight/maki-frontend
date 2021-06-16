@@ -1,6 +1,6 @@
 const tokens = {
   wht: {
-    symbol: 'WHT',
+    symbol: 'HT',
     address: {
       256: '0x5b2da6f42ca09c77d577a12bead0446148830687',
       128: '0x5545153ccfca01fbd7dd11c0b23ba694d9509a6f',
