@@ -24,3 +24,4 @@ export const LOTTERY_TICKET_PRICE = 1
 
 export const DEFAULT_GAS_LIMIT = 200000
 export const DEFAULT_GAS_PRICE = 5
+export const DEFAULT_TOKEN_DECIMAL = 18

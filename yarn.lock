@@ -5941,6 +5941,11 @@ decamelize@^1.1.0, decamelize@^1.2.0:
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
   integrity sha1-9lNNFRSCabIDUue+4m9QH5oZEpA=
 
+decimal.js-light@^2.5.0:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/decimal.js-light/-/decimal.js-light-2.5.1.tgz#134fd32508f19e208f4fb2f8dac0d2626a867934"
+  integrity sha512-qIMFpTMZmny+MMIitAB6D7iVPEorVw6YQRWkvarTkT4tBeSLLiHzcwj6q0MmYSFCiVpiqPJTJEYIrpcPzVEIvg==
+
 decimal.js@^10.2.1:
   version "10.2.1"
   resolved "https://registry.yarnpkg.com/decimal.js/-/decimal.js-10.2.1.tgz#238ae7b0f0c793d3e3cea410108b35a2c01426a3"
@@ -10333,10 +10338,10 @@ makeerror@1.0.x:
   dependencies:
     tmpl "1.0.x"
 
-maki-uikit@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/maki-uikit/-/maki-uikit-3.1.0.tgz#45fc8abe314a1d74586486b0ca806fca9e15ac36"
-  integrity sha512-G6++Azq7jPyKZojWEi+fFX1HSqjFmVc94AyhiiYAUFUR3QLfRBcaoi4zUd/hfdN3K/MqD9fqnCxt8XNM0ceixA==
+maki-uikit@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/maki-uikit/-/maki-uikit-2.4.0.tgz#f17816b05fda1a711f3aa2dd1c446fc51d03efc3"
+  integrity sha512-wnoNWUuHBVrDnTgGQQvd5yoofXMdPfdvFWXdLP/Fc2/9MPUqQXKI/Pew9ZbBJ7ZH8F7dy5kqf0K5e/KKl76F0Q==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.162"
@@ -10345,6 +10350,18 @@ maki-uikit@^3.1.0:
     react-popper "^2.2.5"
     react-transition-group "^4.4.1"
     styled-system "^5.1.5"
+
+makiswap-sdk@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/makiswap-sdk/-/makiswap-sdk-1.0.0.tgz#26df04538b276a2d6ace3318ec3f91db48b0d6ab"
+  integrity sha512-gyT4+nWy9PlLdARpx5GO0DdEoXQymbaJ5O6XoRmncRwA7UG0dCOyIhPKBFVSqgvX+bDXXH7NryqBGk7UtTRB2g==
+  dependencies:
+    big.js "^5.2.2"
+    decimal.js-light "^2.5.0"
+    jsbi "^3.1.1"
+    tiny-invariant "^1.1.0"
+    tiny-warning "^1.0.3"
+    toformat "^2.0.0"
 
 map-cache@^0.2.2:
   version "0.2.2"
@@ -14818,7 +14835,7 @@ timsort@^0.3.0:
   resolved "https://registry.yarnpkg.com/timsort/-/timsort-0.3.0.tgz#405411a8e7e6339fe64db9a234de11dc31e02bd4"
   integrity sha1-QFQRqOfmM5/mTbmiNN4R3DHgK9Q=
 
-tiny-invariant@^1.0.2, tiny-invariant@^1.0.6:
+tiny-invariant@^1.0.2, tiny-invariant@^1.0.6, tiny-invariant@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.1.0.tgz#634c5f8efdc27714b7f386c35e6760991d230875"
   integrity sha512-ytxQvrb1cPc9WBEI/HSeYYoGD0kWnGEOR8RY6KomWLBVhqz0RgTwVO9dLrGz7dC+nN9llyI7OKAgRq8Vq4ZBSw==
@@ -14891,6 +14908,11 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     extend-shallow "^3.0.2"
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
+
+toformat@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/toformat/-/toformat-2.0.0.tgz#7a043fd2dfbe9021a4e36e508835ba32056739d8"
+  integrity sha512-03SWBVop6nU8bpyZCx7SodpYznbZF5R4ljwNLBcTQzKOD9xuihRo/psX58llS1BMFhhAI08H3luot5GoXJz2pQ==
 
 toidentifier@1.0.0:
   version "1.0.0"

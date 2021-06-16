@@ -4,7 +4,7 @@ import { ethers } from 'ethers'
 import { Pair, TokenAmount, Token } from 'makiswap-sdk'
 import { getLpContract, getMasterchefContract } from 'utils/contractHelpers'
 import farms from 'config/constants/farms'
-import { getAddress, getCakeAddress } from 'utils/addressHelpers'
+import { getAddress, getMakiAddress } from 'utils/addressHelpers'
 import tokens from 'config/constants/tokens'
 import pools from 'config/constants/pools'
 import sousChefABI from 'config/abi/sousChef.json'
@@ -122,7 +122,7 @@ export const soushHarvest = async (sousChefContract, account) => {
     })
 }
 
-export const soushHarvestBnb = async (sousChefContract, account) => {
+export const soushHarvestHt = async (sousChefContract, account) => {
   return sousChefContract.methods
     .deposit()
     .send({ from: account, gas: DEFAULT_GAS_LIMIT, value: BIG_ZERO })
@@ -132,39 +132,39 @@ export const soushHarvestBnb = async (sousChefContract, account) => {
 }
 
 const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
-const cakeBnbPid = 251
-const cakeBnbFarm = farms.find((farm) => farm.pid === cakeBnbPid)
+const makiHtPid = 1
+const makiHtFarm = farms.find((farm) => farm.pid === makiHtPid)
 
-const CAKE_TOKEN = new Token(chainId, getCakeAddress(), 18)
-const WBNB_TOKEN = new Token(chainId, tokens.wbnb.address[chainId], 18)
-const CAKE_BNB_TOKEN = new Token(chainId, getAddress(cakeBnbFarm.lpAddresses), 18)
+const MAKI_TOKEN = new Token(chainId, getMakiAddress(), 18)
+const WHT_TOKEN = new Token(chainId, tokens.wht.address[chainId], 18)
+const MAKI_HT_TOKEN = new Token(chainId, getAddress(makiHtFarm.lpAddresses), 18)
 
 /**
- * Returns the total CAKE staked in the CAKE-BNB LP
+ * Returns the total MAKI staked in the MAKI-HT LP
  */
-export const getUserStakeInCakeBnbLp = async (account: string, block?: number) => {
+export const getUserStakeInMakiHtLp = async (account: string, block?: number) => {
   try {
     const archivedWeb3 = getWeb3WithArchivedNodeProvider()
     const masterContract = getMasterchefContract(archivedWeb3)
-    const cakeBnbContract = getLpContract(getAddress(cakeBnbFarm.lpAddresses), archivedWeb3)
+    const cakeBnbContract = getLpContract(getAddress(makiHtFarm.lpAddresses), archivedWeb3)
     const totalSupplyLP = await cakeBnbContract.methods.totalSupply().call(undefined, block)
     const reservesLP = await cakeBnbContract.methods.getReserves().call(undefined, block)
-    const cakeBnbBalance = await masterContract.methods.userInfo(cakeBnbPid, account).call(undefined, block)
+    const cakeBnbBalance = await masterContract.methods.userInfo(makiHtPid, account).call(undefined, block)
 
     const pair: Pair = new Pair(
-      new TokenAmount(CAKE_TOKEN, reservesLP._reserve0.toString()),
-      new TokenAmount(WBNB_TOKEN, reservesLP._reserve1.toString()),
+      new TokenAmount(MAKI_TOKEN, reservesLP._reserve0.toString()),
+      new TokenAmount(WHT_TOKEN, reservesLP._reserve1.toString()),
     )
     const cakeLPBalance = pair.getLiquidityValue(
       pair.token0,
-      new TokenAmount(CAKE_BNB_TOKEN, totalSupplyLP.toString()),
-      new TokenAmount(CAKE_BNB_TOKEN, cakeBnbBalance.amount.toString()),
+      new TokenAmount(MAKI_HT_TOKEN, totalSupplyLP.toString()),
+      new TokenAmount(MAKI_HT_TOKEN, cakeBnbBalance.amount.toString()),
       false,
     )
 
     return new BigNumber(cakeLPBalance.toSignificant(18))
   } catch (error) {
-    console.error(`CAKE-BNB LP error: ${error}`)
+    console.error(`MAKI-HT LP error: ${error}`)
     return BIG_ZERO
   }
 }
@@ -180,7 +180,7 @@ export const getUserStakeInCakePool = async (account: string, block?: number) =>
 
     return getBalanceAmount(new BigNumber(response.amount))
   } catch (error) {
-    console.error('Error getting stake in CAKE pool', error)
+    console.error('Error getting stake in MAKI pool', error)
     return BIG_ZERO
   }
 }

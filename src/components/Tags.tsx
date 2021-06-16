@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tag, VerifiedIcon, CommunityIcon, HuobiIcon, RefreshIcon, AutoRenewIcon, TagProps } from 'maki-uikit'
+import { Tag, VerifiedIcon, CommunityIcon, RefreshIcon, AutoRenewIcon, TagProps } from 'maki-uikit' // Disabled until implemented: HuobiIcon
 import { useTranslation } from 'contexts/Localization'
 
 const CoreTag: React.FC<TagProps> = (props) => {
@@ -20,13 +20,13 @@ const CommunityTag: React.FC<TagProps> = (props) => {
   )
 }
 
-const HuobiTag: React.FC<TagProps> = (props) => {
-  return (
-    <Tag variant="huobi" outline startIcon={<HuobiIcon width="18px" color="secondary" mr="4px" />} {...props}>
-      Binance
-    </Tag>
-  )
-}
+// const HuobiTag: React.FC<TagProps> = (props) => {
+//   return (
+//     <Tag variant="huobi" outline startIcon={<HuobiIcon width="18px" color="secondary" mr="4px" />} {...props}>
+//       Binance
+//     </Tag>
+//   )
+// }
 
 const DualTag: React.FC<TagProps> = (props) => {
   const { t } = useTranslation()
