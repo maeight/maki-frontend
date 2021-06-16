@@ -9,7 +9,7 @@ import tokens from 'config/constants/tokens'
 import pools from 'config/constants/pools'
 import sousChefABI from 'config/abi/sousChef.json'
 import { multicallv2 } from './multicall'
-import { getWeb3WithArchivedNodeProvider } from './web3'
+import { web3WithArchivedNodeProvider } from './web3'
 import { getBalanceAmount } from './formatBalance'
 import { BIG_TEN, BIG_ZERO } from './bigNumber'
 
@@ -46,7 +46,7 @@ export const sousStake = async (sousChefContract, amount, decimals = 18, account
     })
 }
 
-// export const sousStakeBnb = async (sousChefContract, amount, account) => {
+// export const sousStakeHt = async (sousChefContract, amount, account) => {
 //   return sousChefContract.methods
 //     .deposit()
 //     .send({
@@ -137,19 +137,18 @@ const makiHtFarm = farms.find((farm) => farm.pid === makiHtPid)
 
 const MAKI_TOKEN = new Token(chainId, getMakiAddress(), 18)
 const WHT_TOKEN = new Token(chainId, tokens.wht.address[chainId], 18)
-const MAKI_HT_TOKEN = new Token(chainId, getAddress(makiHtFarm.lpAddresses), 18)
+const MAKI_BNB_TOKEN = new Token(chainId, getAddress(makiHtFarm.lpAddresses), 18)
 
 /**
- * Returns the total MAKI staked in the MAKI-HT LP
+ * Returns the total MAKI staked in the MAKI-BNB LP
  */
 export const getUserStakeInMakiHtLp = async (account: string, block?: number) => {
   try {
-    const archivedWeb3 = getWeb3WithArchivedNodeProvider()
-    const masterContract = getMasterchefContract(archivedWeb3)
-    const cakeBnbContract = getLpContract(getAddress(makiHtFarm.lpAddresses), archivedWeb3)
-    const totalSupplyLP = await cakeBnbContract.methods.totalSupply().call(undefined, block)
-    const reservesLP = await cakeBnbContract.methods.getReserves().call(undefined, block)
-    const cakeBnbBalance = await masterContract.methods.userInfo(makiHtPid, account).call(undefined, block)
+    const masterContract = getMasterchefContract(web3WithArchivedNodeProvider)
+    const makiHtContract = getLpContract(getAddress(makiHtFarm.lpAddresses), web3WithArchivedNodeProvider)
+    const totalSupplyLP = await makiHtContract.methods.totalSupply().call(undefined, block)
+    const reservesLP = await makiHtContract.methods.getReserves().call(undefined, block)
+    const makiHtBalance = await masterContract.methods.userInfo(makiHtPid, account).call(undefined, block)
 
     const pair: Pair = new Pair(
       new TokenAmount(MAKI_TOKEN, reservesLP._reserve0.toString()),
@@ -157,14 +156,14 @@ export const getUserStakeInMakiHtLp = async (account: string, block?: number) =>
     )
     const makiLPBalance = pair.getLiquidityValue(
       pair.token0,
-      new TokenAmount(MAKI_HT_TOKEN, totalSupplyLP.toString()),
-      new TokenAmount(MAKI_HT_TOKEN, cakeBnbBalance.amount.toString()),
+      new TokenAmount(MAKI_BNB_TOKEN, totalSupplyLP.toString()),
+      new TokenAmount(MAKI_BNB_TOKEN, makiHtBalance.amount.toString()),
       false,
     )
 
     return new BigNumber(makiLPBalance.toSignificant(18))
   } catch (error) {
-    console.error(`MAKI-HT LP error: ${error}`)
+    console.error(`MAKI-BNB LP error: ${error}`)
     return BIG_ZERO
   }
 }
@@ -172,10 +171,9 @@ export const getUserStakeInMakiHtLp = async (account: string, block?: number) =>
 /**
  * Gets the cake staked in the main pool
  */
-export const getUserStakeInCakePool = async (account: string, block?: number) => {
+export const getUserStakeInMakiPool = async (account: string, block?: number) => {
   try {
-    const archivedWeb3 = getWeb3WithArchivedNodeProvider()
-    const masterContract = getMasterchefContract(archivedWeb3)
+    const masterContract = getMasterchefContract(web3WithArchivedNodeProvider)
     const response = await masterContract.methods.userInfo(0, account).call(undefined, block)
 
     return getBalanceAmount(new BigNumber(response.amount))
@@ -191,7 +189,7 @@ export const getUserStakeInCakePool = async (account: string, block?: number) =>
 export const getUserStakeInPools = async (account: string, block?: number) => {
   try {
     const multicallOptions = {
-      web3: getWeb3WithArchivedNodeProvider(),
+      web3: web3WithArchivedNodeProvider,
       blockNumber: block,
       requireSuccess: false,
     }

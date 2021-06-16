@@ -22,13 +22,13 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
   const dispatch = useAppDispatch()
   const rawEarningsBalance = account ? getBalanceNumber(earnings) : 0
   const displayBalance = rawEarningsBalance.toLocaleString()
-  const earningsBusd = rawEarningsBalance ? new BigNumber(rawEarningsBalance).multipliedBy(makiPrice).toNumber() : 0
+  const earningsHusd = rawEarningsBalance ? new BigNumber(rawEarningsBalance).multipliedBy(makiPrice).toNumber() : 0
 
   return (
     <Flex mb="8px" justifyContent="space-between" alignItems="center">
       <Heading color={rawEarningsBalance === 0 ? 'textDisabled' : 'text'}>
         {displayBalance}
-        {earningsBusd > 0 && <CardHusdValue value={earningsBusd} />}
+        {earningsHusd > 0 && <CardHusdValue value={earningsHusd} />}
       </Heading>
       <Button
         disabled={rawEarningsBalance === 0 || pendingTx}

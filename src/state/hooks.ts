@@ -7,7 +7,7 @@ import { useAppDispatch } from 'state'
 // import { Team } from 'config/constants/types'
 // import Nfts from 'config/constants/nfts'
 import { farmsConfig } from 'config/constants'
-import { getWeb3NoAccount } from 'utils/web3'
+import web3NoAccount from 'utils/web3'
 import { getBalanceAmount } from 'utils/formatBalance'
 import { BIG_ZERO } from 'utils/bigNumber'
 import useRefresh from 'hooks/useRefresh'
@@ -21,7 +21,7 @@ import {
   fetchMakiVaultFees,
   setBlock,
 } from './actions'
-import { State, Farm, Pool, FarmsState } from './types' // disabled until implemented: ProfileState, TeamsState, AchievementState
+import { State, Farm, Pool, FarmsState } from './types' // Removed: TeamsState, AchievementState, ProfileState
 import { fetchProfile } from './profile'
 // import { fetchTeam, fetchTeams } from './teams'
 // import { fetchAchievements } from './achievements'
@@ -34,7 +34,6 @@ import { fetchFarmUserDataAsync, nonArchivedFarms } from './farms'
 export const usePollFarmsData = (includeArchive = false) => {
   const dispatch = useAppDispatch()
   const { slowRefresh } = useRefresh()
-  const web3 = getWeb3NoAccount()
   const { account } = useWeb3React()
 
   useEffect(() => {
@@ -46,36 +45,34 @@ export const usePollFarmsData = (includeArchive = false) => {
     if (account) {
       dispatch(fetchFarmUserDataAsync({ account, pids }))
     }
-  }, [includeArchive, dispatch, slowRefresh, web3, account])
+  }, [includeArchive, dispatch, slowRefresh, account])
 }
 
 /**
  * Fetches the "core" farm data used globally
- * 1 = MAKI-HT LP
- * 2 = MAKI-HT LP
+ * 251 = MAKI-HT LP
+ * 252 = HUSD-HT LP
  */
 export const usePollCoreFarmData = () => {
   const dispatch = useAppDispatch()
   const { fastRefresh } = useRefresh()
-  const web3 = getWeb3NoAccount()
 
   useEffect(() => {
-    dispatch(fetchFarmsPublicDataAsync([1, 2])) // UPDATE
-  }, [dispatch, fastRefresh, web3])
+    dispatch(fetchFarmsPublicDataAsync([251, 252]))
+  }, [dispatch, fastRefresh])
 }
 
 export const usePollBlockNumber = () => {
   const dispatch = useAppDispatch()
-  const web3 = getWeb3NoAccount()
 
   useEffect(() => {
     const interval = setInterval(async () => {
-      const blockNumber = await web3.eth.getBlockNumber()
+      const blockNumber = await web3NoAccount.eth.getBlockNumber()
       dispatch(setBlock(blockNumber))
     }, 6000)
 
     return () => clearInterval(interval)
-  }, [dispatch, web3])
+  }, [dispatch])
 }
 
 // Farms
@@ -148,17 +145,16 @@ export const useLpTokenPrice = (symbol: string) => {
 export const useFetchPublicPoolsData = () => {
   const dispatch = useAppDispatch()
   const { slowRefresh } = useRefresh()
-  const web3 = getWeb3NoAccount()
 
   useEffect(() => {
     const fetchPoolsPublicData = async () => {
-      const blockNumber = await web3.eth.getBlockNumber()
+      const blockNumber = await web3NoAccount.eth.getBlockNumber()
       dispatch(fetchPoolsPublicDataAsync(blockNumber))
     }
 
     fetchPoolsPublicData()
     dispatch(fetchPoolsStakingLimitsAsync())
-  }, [dispatch, slowRefresh, web3])
+  }, [dispatch, slowRefresh])
 }
 
 export const usePools = (account): { pools: Pool[]; userDataLoaded: boolean } => {
@@ -176,7 +172,6 @@ export const usePools = (account): { pools: Pool[]; userDataLoaded: boolean } =>
   }))
   return { pools: pools.map(transformPool), userDataLoaded }
 }
-
 
 export const usePoolFromPid = (sousId: number): Pool => {
   const pool = useSelector((state: State) => state.pools.data.find((p) => p.sousId === sousId))
@@ -284,7 +279,7 @@ export const useFetchProfile = () => {
 //   return { profile: data, hasProfile: isInitialized && hasRegistered, isInitialized, isLoading }
 // }
 
-// // Teams
+// Teams
 
 // export const useTeam = (id: number) => {
 //   const team: Team = useSelector((state: State) => state.teams.data[id])
@@ -308,7 +303,7 @@ export const useFetchProfile = () => {
 //   return { teams: data, isInitialized, isLoading }
 // }
 
-// // Achievements
+// Achievements
 
 // export const useFetchAchievements = () => {
 //   const { account } = useWeb3React()
@@ -326,26 +321,15 @@ export const useFetchProfile = () => {
 //   return achievements
 // }
 
+export const usePriceBnbHusd = (): BigNumber => {
+  const bnbHusdFarm = useFarmFromPid(252)
+  return new BigNumber(bnbHusdFarm.quoteToken.husdPrice)
+}
+
 export const usePriceMakiHusd = (): BigNumber => {
-  const makiHusdFarm = useFarmFromPid(3)
-  return new BigNumber(makiHusdFarm.token.husdPrice)
+  const makiHtFarm = useFarmFromPid(1)
+  return new BigNumber(makiHtFarm.token.husdPrice)
 }
-
-export const usePriceHtHusd = (): BigNumber => {
-  const htHusdFarm = useFarmFromPid(4)
-  return new BigNumber(htHusdFarm.quoteToken.husdPrice)
-}
-
-export const usePriceEthHusd = (): BigNumber => {
-  const ethHusdFarm = useFarmFromPid(5)
-  return new BigNumber(ethHusdFarm.token.husdPrice)
-}
-
-export const usePriceBtcHusd = (): BigNumber => {
-  const btcHusdFarm = useFarmFromPid(6)
-  return new BigNumber(btcHusdFarm.quoteToken.husdPrice)
-}
-
 
 // Block
 export const useBlock = () => {
@@ -356,7 +340,7 @@ export const useInitialBlock = () => {
   return useSelector((state: State) => state.block.initialBlock)
 }
 
-// // Predictions
+// Predictions
 // export const useIsHistoryPaneOpen = () => {
 //   return useSelector((state: State) => state.predictions.isHistoryPaneOpen)
 // }
@@ -481,5 +465,5 @@ export const useInitialBlock = () => {
 //     isLoading,
 //     tokenIds: data,
 //     nftsInWallet: Nfts.filter((nft) => identifiers.includes(nft.identifier)),
-//   }
+  // }
 // }

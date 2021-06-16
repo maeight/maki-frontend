@@ -13,6 +13,7 @@ import {
   getMakiAddress,
   getMasterChefAddress,
   getMakiVaultAddress,
+  getMulticallAddress,
   getProfileAddress,
   getBunnyFactoryAddress,
   getBunnySpecialAddress,
@@ -34,6 +35,7 @@ import masterChef from 'config/abi/masterchef.json'
 import sousChef from 'config/abi/sousChef.json'
 import sousChefHt from 'config/abi/sousChefHt.json'
 import makiVaultAbi from 'config/abi/makiVault.json' // NEEDS TO BE UPDATED W/ MULTICALL V2
+import multiCall from 'config/abi/Multicall.json' // NEEDS TO BE UPDATED W/ MULTICALL V2
 
 // Not implemented yet
 import profileAbi from 'config/abi/pancakeProfile.json'
@@ -74,10 +76,13 @@ export const getMakiVaultContract = (web3?: Web3) => {
 export const getMasterchefContract = (web3?: Web3) => {
   return getContract(masterChef, getMasterChefAddress(), web3)
 }
-export const getSouschefContract = (id: number, web3?: Web3) => {
+export const getSousChefContract = (id: number, web3?: Web3) => {
   const config = poolsConfig.find((pool) => pool.sousId === id)
   const abi = config.poolCategory === PoolCategory.HECO ? sousChefHt : sousChef
   return getContract(abi, getAddress(config.contractAddress), web3)
+}
+export const getMulticallContract = (web3?: Web3) => {
+  return getContract(multiCall, getMulticallAddress(), web3)
 }
 
 // Not implemented yet - here to avoid errors

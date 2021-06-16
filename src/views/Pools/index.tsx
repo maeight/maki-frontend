@@ -275,7 +275,7 @@ const Pools: React.FC = () => {
         </PoolControls>
         {showFinishedPools && (
           <Text fontSize="20px" color="failure" pb="32px">
-            {t('These pools are no longer distributing rewards. Please unstake your tokens.')}
+            {t('These pools are no longer distributing rewards. Please unstake.')}
           </Text>
         )}
         {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
