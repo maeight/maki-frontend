@@ -90,7 +90,7 @@ const config: MenuEntry[] = [
       },
       {
         label: 'CertiK',
-        href: 'https://github.com/chainsulting/Smart-Contract-Security-Audits/blob/master/MakiSwap/02_Smart%20Contract%20Audit_MakiSwap.pdf', 
+        href: 'https://certik.org/projects/makiswap', 
       },
     ],
   },
