@@ -19,6 +19,7 @@
 # misc
 .DS_Store
 .eslintcache
+*.iCloud
 
 # local env files
 .env.local
@@ -30,5 +31,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-

@@ -101,7 +101,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
      ],
    },
    {
-    label: 'More',
+    label: t('More'),
     icon: 'MoreIcon',
     items: [
       {

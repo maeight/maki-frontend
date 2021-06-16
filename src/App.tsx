@@ -1,15 +1,16 @@
-import React, { useEffect, Suspense, lazy } from 'react'
+import React, { lazy } from 'react'
 import { Router, Redirect, Route, Switch } from 'react-router-dom'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { ResetCSS } from 'maki-uikit'
 import BigNumber from 'bignumber.js'
-import { usePollFarmsData } from 'state/hooks' // disabled until implemented: useFetchProfile
+import useEagerConnect from 'hooks/useEagerConnect'
+import { usePollCoreFarmData, useFetchProfile, usePollBlockNumber } from 'state/hooks'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
+import SuspenseWithChunkError from './components/SuspenseWithChunkError'
 import ToastListener from './components/ToastListener'
 import PageLoader from './components/PageLoader'
+// import EasterEgg from './components/EasterEgg'
 import Pools from './views/Pools'
-// import GlobalCheckBullHiccupClaimStatus from './views/Collectibles/components/GlobalCheckBullHiccupClaimStatus'
 import history from './routerHistory'
 
 // Route-based code splitting
@@ -31,29 +32,17 @@ BigNumber.config({
 })
 
 const App: React.FC = () => {
-  const { account, connect } = useWallet()
-
-  // Monkey patch warn() because of web3 flood
-  // To be removed when web3 1.3.5 is released
-  useEffect(() => {
-    console.warn = () => null
-  }, [])
-
-  useEffect(() => {
-    if (!account && window.localStorage.getItem('accountStatus')) {
-      connect('injected')
-    }
-  }, [account, connect])
-
-  usePollFarmsData()
-  // useFetchProfile()
+  usePollBlockNumber()
+  useEagerConnect()
+  useFetchProfile()
+  usePollCoreFarmData()
 
   return (
     <Router history={history}>
       <ResetCSS />
       <GlobalStyle />
       <Menu>
-        <Suspense fallback={<PageLoader />}>
+      <SuspenseWithChunkError fallback={<PageLoader />}>
           <Switch>
             <Route path="/" exact>
               <Home />
@@ -95,10 +84,9 @@ const App: React.FC = () => {
             {/* 404 */}
             <Route component={NotFound} />
           </Switch>
-        </Suspense>
+        </SuspenseWithChunkError>
       </Menu>
       <ToastListener />
-      {/* <GlobalCheckBullHiccupClaimStatus /> */}
     </Router>
   )
 }

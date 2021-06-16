@@ -8,6 +8,7 @@ import useAuth from 'hooks/useAuth'
 import { usePriceMakiHusd } from 'state/hooks' // Disabled until implemented: useProfile
 import config from './config'
 
+// eslint-disable-next-line
 const Menu = (props) => {
   const { account } = useWeb3React()
   const { login, logout } = useAuth()
@@ -22,7 +23,7 @@ const Menu = (props) => {
       login={login}
       logout={logout}
       isDark={isDark}
-      toggleTheme={toggleTheme}zw
+      toggleTheme={toggleTheme}
       currentLang={currentLanguage.code}
       langs={languageList}
       setLang={setLanguage}

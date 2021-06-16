@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Skeleton, Text, useTooltip, HelpIcon, Flex, Box, useModal, useMatchBreakpoints } from 'maki-uikit'
 import { Pool } from 'state/types'
 import BigNumber from 'bignumber.js'
-import { PoolCategory } from 'config/constants/types'
+// import { PoolCategory } from 'config/constants/types'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { formatNumber, getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import Balance from 'components/Balance'
@@ -33,7 +33,7 @@ const HelpIconWrapper = styled.div`
 const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoaded }) => {
   const { t } = useTranslation()
   const { isXs, isSm } = useMatchBreakpoints()
-  const { sousId, earningToken, poolCategory, userData, earningTokenPrice, isAutoVault } = pool
+  const { sousId, earningToken, userData, earningTokenPrice, isAutoVault } = pool // removed: poolCategory
   const isManualMakiPool = sousId === 0
 
   const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
@@ -44,7 +44,7 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
   const fullBalance = getFullDisplayBalance(earnings, earningToken.decimals)
   const formattedBalance = formatNumber(earningTokenBalance, 3, 3)
   const earningsDollarValue = formatNumber(earningTokenDollarBalance)
-  const isHtPool = poolCategory === PoolCategory.HECO
+  // const isHtPool = poolCategory === PoolCategory.HECO
 
   // Auto MAKI vault calculations
   const {
@@ -58,7 +58,7 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
     pricePerFullShare,
     earningTokenPrice,
   )
-
+  // eslint-disable-next-line
   const lastActionInMs = lastUserActionTime && parseInt(lastUserActionTime) * 1000
   const dateTimeLastAction = new Date(lastActionInMs)
   const dateStringToDisplay = dateTimeLastAction.toLocaleString()
@@ -85,7 +85,7 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
       earningToken={earningToken}
       earningsDollarValue={earningsDollarValue}
       sousId={sousId}
-      isHtPool={isHtPool}
+      // isHtPool={isHtPool}
       isCompoundPool={isManualMakiPool}
     />,
   )

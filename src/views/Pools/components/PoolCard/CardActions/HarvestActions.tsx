@@ -20,7 +20,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
   earnings,
   earningToken,
   sousId,
-  isHtPool,
+  // isHtPool,
   earningTokenPrice,
   isLoading = false,
 }) => {
@@ -42,7 +42,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
       earningToken={earningToken}
       earningsDollarValue={earningsDollarValue}
       sousId={sousId}
-      isHtPool={isHtPool}
+      // isHtPool={isHtPool}
       isCompoundPool={isCompoundPool}
     />,
   )

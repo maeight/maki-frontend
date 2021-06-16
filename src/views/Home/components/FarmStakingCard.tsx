@@ -1,15 +1,16 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
 import { Heading, Card, CardBody, Button } from 'maki-uikit'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { useAllHarvest } from 'hooks/useHarvest'
+import { harvest } from 'utils/callHelpers'
+import { useWeb3React } from '@web3-react/core'
 import useFarmsWithBalance from 'hooks/useFarmsWithBalance'
+import { useMasterchef } from 'hooks/useContract'
 import UnlockButton from 'components/UnlockButton'
 import MakiHarvestBalance from './MakiHarvestBalance'
 import MakiWalletBalance from './MakiWalletBalance'
 
 const StyledFarmStakingCard = styled(Card)`
-  background-image: url('/images/farm-bg.svg');
+  background-image: url('/images/cake-bg.svg');
   background-repeat: no-repeat;
   background-position: top right;
   min-height: 376px;
@@ -24,7 +25,7 @@ const CardImage = styled.img`
 `
 
 const Label = styled.div`
-  color: ${({ theme }) => theme.colors.primaryDark};
+  color: ${({ theme }) => theme.colors.textSubtle};
   font-size: 14px;
 `
 
@@ -34,28 +35,30 @@ const Actions = styled.div`
 
 const FarmedStakingCard = () => {
   const [pendingTx, setPendingTx] = useState(false)
-  const { account } = useWallet()
+  const { account } = useWeb3React()
   const farmsWithBalance = useFarmsWithBalance()
+  const masterChefContract = useMasterchef()
   const balancesWithValue = farmsWithBalance.filter((balanceType) => balanceType.balance.toNumber() > 0)
-
-  const { onReward } = useAllHarvest(balancesWithValue.map((farmWithBalance) => farmWithBalance.pid))
 
   const harvestAllFarms = useCallback(async () => {
     setPendingTx(true)
-    try {
-      await onReward()
-    } catch (error) {
-      // TODO: find a way to handle when the user rejects transaction or it fails
-    } finally {
-      setPendingTx(false)
+    // eslint-disable-next-line no-restricted-syntax
+    for (const farmWithBalance of balancesWithValue) {
+      try {
+        // eslint-disable-next-line no-await-in-loop
+        await harvest(masterChefContract, farmWithBalance.pid, account)
+      } catch (error) {
+        // TODO: find a way to handle when the user rejects transaction or it fails
+      }
     }
-  }, [onReward])
+    setPendingTx(false)
+  }, [account, balancesWithValue, masterChefContract])
 
   return (
     <StyledFarmStakingCard>
       <CardBody>
         <Heading color="primary" size="xl" mb="24px">
-          Farms & Staking
+          Farms and Staking
         </Heading>
         <CardImage src="/images/farms-img.svg" alt="maki logo" width={117} height={67} />
         <Block>

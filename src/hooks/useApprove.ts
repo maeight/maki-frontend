@@ -1,3 +1,4 @@
+// eslint-disable
 import { useCallback, useEffect, useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { useWallet } from '@binance-chain/bsc-use-wallet'

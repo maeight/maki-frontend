@@ -21,7 +21,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   pool,
   stakingTokenBalance,
   stakedBalance,
-  isHtPool,
+  // isHtPool,
   isStaked,
   isLoading = false,
 }) => {
@@ -37,7 +37,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
 
   const [onPresentStake] = useModal(
     <StakeModal
-      isHtPool={isHtPool}
+      // isHtPool={isHtPool}
       pool={pool}
       stakingTokenBalance={stakingTokenBalance}
       stakingTokenPrice={stakingTokenPrice}
@@ -47,7 +47,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   const [onPresentUnstake] = useModal(
     <StakeModal
       stakingTokenBalance={stakingTokenBalance}
-      isHtPool={isHtPool}
+      // isHtPool={isHtPool}
       pool={pool}
       stakingTokenPrice={stakingTokenPrice}
       isRemovingStake

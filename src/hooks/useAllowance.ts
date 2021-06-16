@@ -1,37 +1,37 @@
 import { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWeb3React } from '@web3-react/core'
 import { Contract } from 'web3-eth-contract'
-import { useMaki, useLottery } from './useContract'
-import { getAllowance } from '../utils/hrc20'
+import { getLotteryAddress } from 'utils/addressHelpers'
+import { BIG_ZERO } from 'utils/bigNumber'
+import { useMaki } from './useContract'
+import useRefresh from './useRefresh'
 
 // Retrieve lottery allowance
 export const useLotteryAllowance = () => {
-  const [allowance, setAllowance] = useState(new BigNumber(0))
-  const { account }: { account: string } = useWallet()
-  const lotteryContract = useLottery()
+  const [allowance, setAllowance] = useState(BIG_ZERO)
+  const { account } = useWeb3React()
   const makiContract = useMaki()
+  const { fastRefresh } = useRefresh()
 
   useEffect(() => {
     const fetchAllowance = async () => {
-      const res = await getAllowance(makiContract, lotteryContract, account)
+      const res = await makiContract.methods.allowance(account, getLotteryAddress()).call()
       setAllowance(new BigNumber(res))
     }
 
-    if (account && makiContract && makiContract) {
+    if (account) {
       fetchAllowance()
     }
-    const refreshInterval = setInterval(fetchAllowance, 10000)
-    return () => clearInterval(refreshInterval)
-  }, [account, makiContract, lotteryContract])
+  }, [account, makiContract, fastRefresh])
 
   return allowance
 }
 
 // Retrieve IFO allowance
-export const useIfoAllowance = (tokenContract: Contract, spenderAddress: string, dependency?: any) => {
-  const { account }: { account: string } = useWallet()
-  const [allowance, setAllowance] = useState(null)
+export const useIfoAllowance = (tokenContract: Contract, spenderAddress: string, dependency?: any): BigNumber => {
+  const { account } = useWeb3React()
+  const [allowance, setAllowance] = useState(BIG_ZERO)
 
   useEffect(() => {
     const fetch = async () => {
@@ -39,10 +39,13 @@ export const useIfoAllowance = (tokenContract: Contract, spenderAddress: string,
         const res = await tokenContract.methods.allowance(account, spenderAddress).call()
         setAllowance(new BigNumber(res))
       } catch (e) {
-        setAllowance(null)
+        console.error(e)
       }
     }
-    fetch()
+
+    if (account) {
+      fetch()
+    }
   }, [account, spenderAddress, tokenContract, dependency])
 
   return allowance

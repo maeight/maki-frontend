@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
 import { DEFAULT_GAS_LIMIT, DEFAULT_TOKEN_DECIMAL } from 'config'
 import { ethers } from 'ethers'
-import { Pair, TokenAmount, Token } from 'makiswap-sdk'
+import { Pair, TokenAmount, Token } from 'maki-sdk'
 import { getLpContract, getMasterchefContract } from 'utils/contractHelpers'
 import farms from 'config/constants/farms'
 import { getAddress, getMakiAddress } from 'utils/addressHelpers'
@@ -46,18 +46,18 @@ export const sousStake = async (sousChefContract, amount, decimals = 18, account
     })
 }
 
-export const sousStakeBnb = async (sousChefContract, amount, account) => {
-  return sousChefContract.methods
-    .deposit()
-    .send({
-      from: account,
-      gas: DEFAULT_GAS_LIMIT,
-      value: new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(),
-    })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
-}
+// export const sousStakeBnb = async (sousChefContract, amount, account) => {
+//   return sousChefContract.methods
+//     .deposit()
+//     .send({
+//       from: account,
+//       gas: DEFAULT_GAS_LIMIT,
+//       value: new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(),
+//     })
+//     .on('transactionHash', (tx) => {
+//       return tx.transactionHash
+//     })
+// }
 
 export const unstake = async (masterChefContract, pid, amount, account) => {
   if (pid === 0) {
@@ -122,14 +122,14 @@ export const soushHarvest = async (sousChefContract, account) => {
     })
 }
 
-export const soushHarvestHt = async (sousChefContract, account) => {
-  return sousChefContract.methods
-    .deposit()
-    .send({ from: account, gas: DEFAULT_GAS_LIMIT, value: BIG_ZERO })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
-}
+// export const soushHarvestHt = async (sousChefContract, account) => {
+//   return sousChefContract.methods
+//     .deposit()
+//     .send({ from: account, gas: DEFAULT_GAS_LIMIT, value: BIG_ZERO })
+//     .on('transactionHash', (tx) => {
+//       return tx.transactionHash
+//     })
+// }
 
 const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
 const makiHtPid = 1
@@ -155,14 +155,14 @@ export const getUserStakeInMakiHtLp = async (account: string, block?: number) =>
       new TokenAmount(MAKI_TOKEN, reservesLP._reserve0.toString()),
       new TokenAmount(WHT_TOKEN, reservesLP._reserve1.toString()),
     )
-    const cakeLPBalance = pair.getLiquidityValue(
+    const makiLPBalance = pair.getLiquidityValue(
       pair.token0,
       new TokenAmount(MAKI_HT_TOKEN, totalSupplyLP.toString()),
       new TokenAmount(MAKI_HT_TOKEN, cakeBnbBalance.amount.toString()),
       false,
     )
 
-    return new BigNumber(cakeLPBalance.toSignificant(18))
+    return new BigNumber(makiLPBalance.toSignificant(18))
   } catch (error) {
     console.error(`MAKI-HT LP error: ${error}`)
     return BIG_ZERO

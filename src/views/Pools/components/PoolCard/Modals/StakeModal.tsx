@@ -13,7 +13,7 @@ import { Pool } from 'state/types'
 import PercentageButton from './PercentageButton'
 
 interface StakeModalProps {
-  isHtPool: boolean
+  // isHtPool: boolean
   pool: Pool
   stakingTokenBalance: BigNumber
   stakingTokenPrice: number
@@ -26,7 +26,7 @@ const StyledLink = styled(Link)`
 `
 
 const StakeModal: React.FC<StakeModalProps> = ({
-  isHtPool,
+  // isHtPool,
   pool,
   stakingTokenBalance,
   stakingTokenPrice,
@@ -36,7 +36,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
   const { sousId, stakingToken, userData, stakingLimit, earningToken } = pool
   const { t } = useTranslation()
   const { theme } = useTheme()
-  const { onStake } = useSousStake(sousId, isHtPool)
+  const { onStake } = useSousStake(sousId) // removed: isHtPool
   const { onUnstake } = useSousUnstake(sousId, pool.enableEmergencyWithdraw)
   const { toastSuccess, toastError } = useToast()
   const [pendingTx, setPendingTx] = useState(false)

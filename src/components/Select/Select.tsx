@@ -98,7 +98,7 @@ export interface SelectProps {
 
 export interface OptionProps {
   label: string
-  value: any
+  value: string // from any to string
 }
 
 const Select: React.FunctionComponent<SelectProps> = ({ options, onChange }) => {
