@@ -16,8 +16,8 @@ const StyledCardHeader: React.FC<{
   isStaking?: boolean
 }> = ({ earningTokenSymbol, stakingTokenSymbol, isFinished = false, isAutoVault = false, isStaking = false }) => {
   const poolImageSrc = isAutoVault
-    ? `maki-makivault.svg`
-    : `${earningTokenSymbol}-${stakingTokenSymbol}.svg`.toLocaleLowerCase()
+    ? `maki-makivault.png`
+    : `${earningTokenSymbol}-${stakingTokenSymbol}.png`.toLocaleLowerCase()
   const isMakiPool = earningTokenSymbol === 'MAKI' && stakingTokenSymbol === 'MAKI'
   const background = isStaking ? 'bubblegum' : 'cardHeader'
 
