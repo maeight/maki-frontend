@@ -1,5 +1,5 @@
 import React, { lazy } from 'react'
-import { Router, Redirect, Route, Switch } from 'react-router-dom'
+import { Redirect, Router, Route, Switch } from 'react-router-dom'
 import { ResetCSS } from 'maki-uikit'
 import BigNumber from 'bignumber.js'
 import useEagerConnect from 'hooks/useEagerConnect'
@@ -12,6 +12,7 @@ import PageLoader from './components/PageLoader'
 // import EasterEgg from './components/EasterEgg'
 import Pools from './views/Pools'
 import history from './routerHistory'
+// import NotFound from 'views/NotFound'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page'
@@ -44,7 +45,7 @@ const App: React.FC = () => {
       <Menu>
       <SuspenseWithChunkError fallback={<PageLoader />}>
           <Switch>
-            <Route path="/" exact>
+            <Route path="/" >
               <Home />
             </Route>
             <Route path="/farms">
@@ -83,6 +84,7 @@ const App: React.FC = () => {
             </Route> */}
             {/* 404 */}
             <Route component={NotFound} />
+
           </Switch>
         </SuspenseWithChunkError>
       </Menu>

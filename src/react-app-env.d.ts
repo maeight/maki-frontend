@@ -1,7 +1,7 @@
 /// <reference types="react-scripts" />
 
 interface WindowChain {
-    ethereum?: {
+    huobi?: {
       isMetaMask?: true
       request?: (...args: any[]) => void
     }

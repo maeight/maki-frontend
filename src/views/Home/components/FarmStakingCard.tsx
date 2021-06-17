@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Heading, Card, CardBody, Button } from 'maki-uikit'
 import { harvest } from 'utils/callHelpers'
 import { useWeb3React } from '@web3-react/core'
+import { useTranslation } from 'contexts/Localization'
 import useFarmsWithBalance from 'hooks/useFarmsWithBalance'
 import { useMasterchef } from 'hooks/useContract'
 import UnlockButton from 'components/UnlockButton'
@@ -36,6 +37,7 @@ const Actions = styled.div`
 const FarmedStakingCard = () => {
   const [pendingTx, setPendingTx] = useState(false)
   const { account } = useWeb3React()
+  const { t } = useTranslation()
   const farmsWithBalance = useFarmsWithBalance()
   const masterChefContract = useMasterchef()
   const balancesWithValue = farmsWithBalance.filter((balanceType) => balanceType.balance.toNumber() > 0)
@@ -57,16 +59,16 @@ const FarmedStakingCard = () => {
   return (
     <StyledFarmStakingCard>
       <CardBody>
-        <Heading color="primary" size="xl" mb="24px">
-          Farms and Staking
+        <Heading scale="xl" mb="24px">
+          {t('Farms & Staking')}
         </Heading>
-        <CardImage src="/images/farms-img.svg" alt="maki logo" width={117} height={67} />
+        <CardImage src="/images/logo.svg" alt="maki logo" width={64} height={64} />
         <Block>
-          <Label>MAKI to Harvest:</Label>
+          <Label>{t('MAKI to Harvest')}:</Label>
           <MakiHarvestBalance />
         </Block>
         <Block>
-          <Label>MAKI in Wallet:</Label>
+          <Label>{t('MAKI in Wallet')}:</Label>
           <MakiWalletBalance />
         </Block>
         <Actions>
@@ -75,14 +77,16 @@ const FarmedStakingCard = () => {
               id="harvest-all"
               disabled={balancesWithValue.length <= 0 || pendingTx}
               onClick={harvestAllFarms}
-              width='100%'
+              width="100%"
             >
               {pendingTx
-                ? 'Collecting MAKI'
-                : `Harvest all (${balancesWithValue.length})`}
+                ? t('Collecting MAKI')
+                : t('Harvest all (%count%)', {
+                    count: balancesWithValue.length,
+                  })}
             </Button>
           ) : (
-            <UnlockButton width='100%' />
+            <UnlockButton width="100%" />
           )}
         </Actions>
       </CardBody>

@@ -48,7 +48,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
   const poolContractAddress = getAddress(contractAddress)
   const makiVaultContractAddress = getMakiVaultAddress()
   const imageSrc = `${BASE_URL}/images/tokens/${earningToken.symbol.toLowerCase()}.png`
-  const isMetaMaskInScope = !!(window as WindowChain).ethereum?.isMetaMask
+  const isMetaMaskInScope = !!(window as WindowChain).huobi?.isMetaMask
   const isManualMakiPool = sousId === 0
 
   const { shouldShowBlockCountdown, blocksUntilStart, blocksRemaining, hasPoolStarted, blocksToDisplay } =

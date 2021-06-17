@@ -3,8 +3,8 @@ import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
 import { Flex, Text, Skeleton } from 'maki-uikit'
 import { Farm } from 'state/types'
-import { provider as ProviderType } from 'web3-core'
 import { getHecoInfoAddressUrl } from 'utils/hecoinfo'
+import { useTranslation } from 'contexts/Localization'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
@@ -72,23 +72,24 @@ interface FarmCardProps {
   farm: FarmWithStakedValue
   removed: boolean
   makiPrice?: BigNumber
-  provider?: ProviderType
   account?: string
 }
 
 const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, makiPrice, account }) => {
+  const { t } = useTranslation()
+
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
   // We assume the token name is coin pair + lp e.g. MAKI-HT LP, LINK-HT LP,
-  // NAR-MAKI LP. The images should be maki-ht.svg, link-ht.svg, nar-maki.svg
+  // OVEN-MAKI LP. The images should be maki-ht.png, link-ht.png, oven-maki.png
   const farmImage = farm.lpSymbol.split(' ')[0].toLocaleLowerCase()
 
   const totalValueFormatted =
     farm.liquidity && farm.liquidity.gt(0)
       ? `$${farm.liquidity.toNumber().toLocaleString(undefined, { maximumFractionDigits: 0 })}`
-      : '0'
+      : ''
 
-  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('', '')
+  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('MAKI', '')
   const earnLabel = farm.dual ? farm.dual.earnLabel : 'MAKI'
 
   const farmAPR = farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 })
@@ -113,7 +114,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, makiPrice, account }
       />
       {!removed && (
         <Flex justifyContent="space-between" alignItems="center">
-          <Text>APR:</Text>
+          <Text>{t('APR')}:</Text>
           <Text bold style={{ display: 'flex', alignItems: 'center' }}>
             {farm.apr ? (
               <>
@@ -127,7 +128,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, makiPrice, account }
         </Flex>
       )}
       <Flex justifyContent="space-between">
-        <Text>Earn:</Text>
+        <Text>{t('Earn')}:</Text>
         <Text bold>{earnLabel}</Text>
       </Flex>
       <CardActionsContainer farm={farm} account={account} addLiquidityUrl={addLiquidityUrl} />

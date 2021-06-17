@@ -140,7 +140,7 @@ const WHT_TOKEN = new Token(chainId, tokens.wht.address[chainId], 18)
 const MAKI_HT_TOKEN = new Token(chainId, getAddress(makiHtFarm.lpAddresses), 18)
 
 /**
- * Returns the total MAKI staked in the MAKI-BNB LP
+ * Returns the total MAKI staked in the MAKI-HT LP
  */
 export const getUserStakeInMakiHtLp = async (account: string, block?: number) => {
   try {
@@ -169,7 +169,7 @@ export const getUserStakeInMakiHtLp = async (account: string, block?: number) =>
 }
 
 /**
- * Gets the cake staked in the main pool
+ * Gets the maki staked in the main pool
  */
 export const getUserStakeInMakiPool = async (account: string, block?: number) => {
   try {

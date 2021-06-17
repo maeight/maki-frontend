@@ -6,7 +6,7 @@ import Page from 'components/layout/Page'
 import FarmStakingCard from 'views/Home/components/FarmStakingCard'
 // import LotteryCard from 'views/Home/components/LotteryCard'
 import MakiStats from 'views/Home/components/MakiStats'
-// import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
+import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
 import EarnAPRCard from 'views/Home/components/EarnAPRCard'
 import EarnAssetCard from 'views/Home/components/EarnAssetCard'
 // import WinCard from 'views/Home/components/WinCard'
@@ -106,7 +106,7 @@ const Home: React.FC = () => {
         </CTACards>
         <Cards>
           <MakiStats />
-          {/* <TotalValueLockedCard /> */}
+          <TotalValueLockedCard />
         </Cards>
       </div>
     </Page>

@@ -8,7 +8,7 @@ import { nodes } from './getRpcUrl'
  * @returns {boolean} true if the setup succeeded, false otherwise
  */
 export const setupNetwork = async () => {
-  const provider = (window as WindowChain).ethereum
+  const provider = (window as WindowChain).huobi
   if (provider) {
     const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
     try {
@@ -19,8 +19,8 @@ export const setupNetwork = async () => {
             chainId: `0x${chainId.toString(16)}`,
             chainName: 'Huobi Smart Chain Mainnet',
             nativeCurrency: {
-              name: 'HT',
-              symbol: 'ht',
+              name: 'Huobi Token',
+              symbol: 'HT',
               decimals: 18,
             },
             rpcUrls: nodes,
@@ -53,7 +53,7 @@ export const setupNetwork = async () => {
   tokenDecimals: number,
   tokenImage: string,
 ) => {
-  const tokenAdded = await (window as WindowChain).ethereum.request({
+  const tokenAdded = await (window as WindowChain).huobi.request({
     method: 'wallet_watchAsset',
     params: {
       type: 'HRC20',

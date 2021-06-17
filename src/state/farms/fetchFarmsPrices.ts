@@ -16,7 +16,7 @@ const getFarmBaseTokenPrice = (farm: Farm, quoteTokenFarm: Farm, htPriceHusd: Bi
     return hasTokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : BIG_ZERO
   }
 
-  if (farm.quoteToken.symbol === 'WHT') {
+  if (farm.quoteToken.symbol === 'HT') {
     return hasTokenPriceVsQuote ? htPriceHusd.times(farm.tokenPriceVsQuote) : BIG_ZERO
   }
 
@@ -30,7 +30,7 @@ const getFarmBaseTokenPrice = (farm: Farm, quoteTokenFarm: Farm, htPriceHusd: Bi
   // If the farm's quote token isn't HUSD or WHT, we then use the quote token, of the original farm's quote token
   // i.e. for farm PNT - pBTC we use the pBTC farm's quote token - HT, (pBTC - HT)
   // from the HT - pBTC price, we can calculate the PNT - HUSD price
-  if (quoteTokenFarm.quoteToken.symbol === 'WHT') {
+  if (quoteTokenFarm.quoteToken.symbol === 'HT') {
     const quoteTokenInHusd = htPriceHusd.times(quoteTokenFarm.tokenPriceVsQuote)
     return hasTokenPriceVsQuote && quoteTokenInHusd
       ? new BigNumber(farm.tokenPriceVsQuote).times(quoteTokenInHusd)

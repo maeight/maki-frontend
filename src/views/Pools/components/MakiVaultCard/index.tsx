@@ -12,7 +12,7 @@ import CardFooter from '../PoolCard/CardFooter'
 import StyledCardHeader from '../PoolCard/StyledCardHeader'
 import VaultCardActions from './VaultCardActions'
 import UnstakingFeeCountdownRow from './UnstakingFeeCountdownRow'
-import RecentCakeProfitRow from './RecentMakiProfitRow'
+import RecentMakiProfitRow from './RecentMakiProfitRow'
 
 const StyledCardBody = styled(CardBody)<{ isLoading: boolean }>`
   min-height: ${({ isLoading }) => (isLoading ? '0' : '254px')};
@@ -52,7 +52,7 @@ const MakiVaultCard: React.FC<MakiVaultProps> = ({ pool, showStakedOnly }) => {
         <StyledCardBody isLoading={isLoading}>
           <AprRow pool={pool} performanceFee={performanceFeeAsDecimal} />
           <Box mt="24px">
-            <RecentCakeProfitRow />
+            <RecentMakiProfitRow />
           </Box>
           <Box mt="8px">
             <UnstakingFeeCountdownRow />

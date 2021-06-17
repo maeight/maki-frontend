@@ -23,7 +23,7 @@ const CommunityTag: React.FC<TagProps> = (props) => {
 const HuobiTag: React.FC<TagProps> = (props) => {
   return (
     <Tag variant="huobi" outline startIcon={<HuobiIcon width="18px" color="secondary" mr="4px" />} {...props}>
-      Binance
+      Huobi
     </Tag>
   )
 }

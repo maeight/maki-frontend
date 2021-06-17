@@ -1,6 +1,6 @@
 import poolsConfig from 'config/constants/pools'
 import sousChefABI from 'config/abi/sousChef.json'
-import erc20ABI from 'config/abi/erc20.json'
+import hrc20ABI from 'config/abi/hrc20.json'
 import multicall from 'utils/multicall'
 import { getMasterchefContract } from 'utils/contractHelpers'
 import { getAddress } from 'utils/addressHelpers'
@@ -8,9 +8,9 @@ import web3NoAccount from 'utils/web3'
 import BigNumber from 'bignumber.js'
 
 // Pool 0, Maki / Maki is a different kind of contract (master chef)
-// BNB pools use the native BNB token (wrapping ? unwrapping is done at the contract level)
-const nonHtPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'BNB')
-const htPools = poolsConfig.filter((p) => p.stakingToken.symbol === 'BNB')
+// HT pools use the native HT token (wrapping ? unwrapping is done at the contract level)
+const nonHtPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'HT')
+const htPools = poolsConfig.filter((p) => p.stakingToken.symbol === 'HT')
 const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 0)
 const masterChefContract = getMasterchefContract()
 
@@ -21,7 +21,7 @@ export const fetchPoolsAllowance = async (account) => {
     params: [account, getAddress(p.contractAddress)],
   }))
 
-  const allowances = await multicall(erc20ABI, calls)
+  const allowances = await multicall(hrc20ABI, calls)
   return nonHtPools.reduce(
     (acc, pool, index) => ({ ...acc, [pool.sousId]: new BigNumber(allowances[index]).toJSON() }),
     {},
@@ -29,19 +29,19 @@ export const fetchPoolsAllowance = async (account) => {
 }
 
 export const fetchUserBalances = async (account) => {
-  // Non BNB pools
+  // Non HT pools
   const calls = nonHtPools.map((p) => ({
     address: getAddress(p.stakingToken.address),
     name: 'balanceOf',
     params: [account],
   }))
-  const tokenBalancesRaw = await multicall(erc20ABI, calls)
+  const tokenBalancesRaw = await multicall(hrc20ABI, calls)
   const tokenBalances = nonHtPools.reduce(
     (acc, pool, index) => ({ ...acc, [pool.sousId]: new BigNumber(tokenBalancesRaw[index]).toJSON() }),
     {},
   )
 
-  // BNB pools
+  // HT pools
   const htBalance = await web3NoAccount.eth.getBalance(account)
   const htBalances = htPools.reduce(
     (acc, pool) => ({ ...acc, [pool.sousId]: new BigNumber(htBalance).toJSON() }),
