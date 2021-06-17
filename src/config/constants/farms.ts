@@ -18,16 +18,16 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wht,
   },
   {
-    pid: 25,
-    lpSymbol: 'BCH-HT',
+    pid: 26,
+    lpSymbol: 'ADA-HT',
     lpAddresses: {
-      256: '', // UPDATE
-      128: '0xA9d73cf74A1Bf493Cc64eDc45Cdbbbbfa276d580', // June 15th, 2021
+      256: '',
+      128: '0x32e9dF1057049AD672b01B4f7fdB54d922c38713', // (June 11th, 2021)
     },
-    tokenSymbol: 'BCH',
+    tokenSymbol: 'ADA',
     tokenAddresses: {
-      256: '', // UPDATED
-      128: '0xef3cebd77e0c52cb6f60875d9306397b5caca375', // June 15th, 2021
+      256: '', // 
+      128: '0x843af718ef25708765a8e0942f89edeae1d88df0' // (June 11th, 2021)
     },
     quoteTokenSymbol: QuoteToken.HT,
     quoteTokenAdresses: contracts.wht,
@@ -240,6 +240,21 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BTC,
     quoteTokenAdresses: contracts.btc,
+  },
+  {
+    pid: 25,
+    lpSymbol: 'BCH-HT',
+    lpAddresses: {
+      256: '', // UPDATE
+      128: '0xA9d73cf74A1Bf493Cc64eDc45Cdbbbbfa276d580', // June 15th, 2021
+    },
+    tokenSymbol: 'BCH',
+    tokenAddresses: {
+      256: '', // UPDATED
+      128: '0xef3cebd77e0c52cb6f60875d9306397b5caca375', // June 15th, 2021
+    },
+    quoteTokenSymbol: QuoteToken.HT,
+    quoteTokenAdresses: contracts.wht,
   },
   {
     pid: 7,
