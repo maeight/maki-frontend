@@ -145,7 +145,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
     tokenAddress: token.address,
   })
   const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
-  const etherscan = getHecoInfoAddressUrl(lpAddress)
+  const hecoinfo = getHecoInfoAddressUrl(lpAddress)
   const info = `https://info.makiswap.com/pair/${lpAddress}`
 
   return (
@@ -154,11 +154,11 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
         {isActive && (
           <StakeContainer>
             <StyledLinkExternal href={`https://exchange.makiswap.com/#/add/${liquidityUrlPathParts}`}>
-              {`Get ${lpLabel}%`}
+              Get ${lpLabel}
             </StyledLinkExternal>
           </StakeContainer>
         )}
-        <StyledLinkExternal href={etherscan}>View Contract</StyledLinkExternal>
+        <StyledLinkExternal href={hecoinfo}>View Contract</StyledLinkExternal>
         <StyledLinkExternal href={info}>See Pair Info</StyledLinkExternal>
         <TagsContainer>
           {farm.isCommunity ? <CommunityTag /> : <CoreTag />}

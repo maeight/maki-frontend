@@ -90,7 +90,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, makiPrice, account }
       ? `$${farm.liquidity.toNumber().toLocaleString(undefined, { maximumFractionDigits: 0 })}`
       : ''
 
-  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('MAKI', '')
+  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('MAKISWAP', '')
   const earnLabel = farm.dual ? farm.dual.earnLabel : 'MAKI'
 
   const farmAPR = farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 })

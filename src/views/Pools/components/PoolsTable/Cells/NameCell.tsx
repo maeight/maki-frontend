@@ -50,7 +50,7 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
     subtitle = t('Automatic Compound')
   } else if (isManualMakiPool) {
     title = t('Manual MAKI')
-    subtitle = `${t('Earn')} MAKI ${t('Stake').toLocaleLowerCase()} MAKI`
+    subtitle = `${t('Stake')} MAKI ${t('earn')} MAKI`
   }
 
   return (
