@@ -1,15 +1,13 @@
 import { MenuEntry } from 'maki-uikit'
-import { ContextApi } from 'contexts/Localization/types'
 
-// const config: MenuEntry[] = [
-const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
+const config: MenuEntry[] = [
     {
-    label: t('Home'),
+    label: 'Home',
     icon: 'HomeIcon',
     href: '/home',
   },
   {
-    label: t('Trade'),
+    label: 'Trade',
     icon: 'TradeIcon',
     href: 'https://exchange.makiswap.com',
       items: [
@@ -24,17 +22,17 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
       ],
   },
   {
-    label: t('Farms'),
+    label: 'Farms',
     icon: 'FarmIcon',
     href: '/farms',
   },
   {
-    label: t('Pools'),
+    label: 'Pools',
     icon: 'PoolIcon',
     href: '/pools',
   },
   {
-    label: t('Contracts'),
+    label: 'Contracts',
     icon: 'ContractsIcon',
     items: [
       {
@@ -60,7 +58,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     ],
   },
   {
-    label: t('Audits'),
+    label: 'Audits',
     icon: 'GroupsIcon',
     items: [
       {
@@ -79,7 +77,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   //   href: '/ifo'
   // },
   {
-     label: t('Info'),
+     label: 'Info',
      icon: 'InfoIcon',
      items: [
        {
@@ -101,7 +99,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
      ],
    },
    {
-    label: t('More'),
+    label: 'More',
     icon: 'MoreIcon',
     items: [
       {

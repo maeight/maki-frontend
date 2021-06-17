@@ -15,7 +15,7 @@ const Menu = (props) => {
   const { isDark, toggleTheme } = useTheme()
   const makiPriceUsd = usePriceMakiHusd()
   // const { profile } = useProfile()
-  const { currentLanguage, setLanguage, t } = useTranslation()
+  const { currentLanguage, setLanguage } = useTranslation()
 
   return (
     <UikitMenu
@@ -28,7 +28,7 @@ const Menu = (props) => {
       langs={languageList}
       setLang={setLanguage}
       makiPriceUsd={makiPriceUsd.toNumber()}
-      links={config(t)}
+      links={config}
       // profile={{
       //   username: profile?.username,
       //   image: profile?.nft ? `/images/nfts/${profile.nft?.images.sm}` : undefined,

@@ -31,6 +31,14 @@ const tokens = {
     },
     decimals: 18,
   },
+  usdc: {
+    symbol: 'USDC',
+    address: {
+      256: '',
+      128: '0x9362bbef4b8313a8aa9f0c9808b80577aa26b73b',
+    },
+    decimals: 18,
+  },
   husd: {
     symbol: 'HUSD',
     address: {
@@ -66,6 +74,102 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://unilayer.app/',
   },
+  ada: {
+    symbol: 'ADA',
+    address: {
+      256: '',
+      128: '0x843af718ef25708765a8e0942f89edeae1d88df0',
+    },
+    decimals: 18,
+  },
+  aeth: {
+    symbol: 'AETH',
+    address: {
+      256: '',
+      128: '0x62c10412d69823a98db5c09cf6e82810e0df5ad7',
+    },
+    decimals: 18,
+  },
+  dot: {
+    symbol: 'DOT',
+    address: {
+      256: '',
+      128: '0xa2c49cee16a5e5bdefde931107dc1fae9f7773e3',
+    },
+    decimals: 18,
+  },
+  matic: {
+    symbol: 'MATIC',
+    address: {
+      256: '',
+      128: '0xdb11743fe8b129b49b11236e8a715004bdabe7e5',
+    },
+    decimals: 18,
+  },
+  link: {
+    symbol: 'LINK',
+    address: {
+      256: '',
+      128: '0x9e004545c59d359f6b7bfb06a26390b087717b42',
+    },
+    decimals: 18,
+  },
+  bch: {
+    symbol: 'BCH',
+    address: {
+      256: '',
+      128: '0xef3cebd77e0c52cb6f60875d9306397b5caca375',
+    },
+    decimals: 18,
+  },
+  fil: {
+    symbol: 'FIL',
+    address: {
+      256: '',
+      128: '0xae3a768f9ab104c69a7cd6041fe16ffa235d1810',
+    },
+    decimals: 18,
+  },
+  aave: {
+    symbol: 'AAVE',
+    address: {
+      256: '',
+      128: '0x202b4936fe1a82a4965220860ae46d7d3939bb25',
+    },
+    decimals: 18,
+  },
+  // ada: {
+  //   symbol: 'ADA',
+  //   address: {
+  //     256: '',
+  //     128: '',
+  //   },
+  //   decimals: 18,
+  // },
+  // ada: {
+  //   symbol: 'ADA',
+  //   address: {
+  //     256: '',
+  //     128: '',
+  //   },
+  //   decimals: 18,
+  // },
+  // ada: {
+  //   symbol: 'ADA',
+  //   address: {
+  //     256: '',
+  //     128: '',
+  //   },
+  //   decimals: 18,
+  // },
+  // ada: {
+  //   symbol: 'ADA',
+  //   address: {
+  //     256: '',
+  //     128: '',
+  //   },
+  //   decimals: 18,
+  // },
 }
 
 export default tokens

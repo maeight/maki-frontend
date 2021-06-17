@@ -43,9 +43,9 @@ const App: React.FC = () => {
       <ResetCSS />
       <GlobalStyle />
       <Menu>
-      <SuspenseWithChunkError fallback={<PageLoader />}>
+        <SuspenseWithChunkError fallback={<PageLoader />}>
           <Switch>
-            <Route path="/" >
+            <Route path="/" exact>
               <Home />
             </Route>
             <Route path="/farms">
@@ -84,7 +84,6 @@ const App: React.FC = () => {
             </Route> */}
             {/* 404 */}
             <Route component={NotFound} />
-
           </Switch>
         </SuspenseWithChunkError>
       </Menu>
