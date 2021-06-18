@@ -18,20 +18,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wht,
   },
   {
-    pid: 26,
-    lpSymbol: 'ADA-HT',
+    pid: 27,
+    lpSymbol: 'DAI-HT',
     lpAddresses: {
-      256: '',
-      128: '0x32e9dF1057049AD672b01B4f7fdB54d922c38713', // (June 11th, 2021)
+      256: '', // 
+      128: '0x927E800cF58B8b71710882248698C24268C73E10', // June 17th, 2021
     },
-    tokenSymbol: 'ADA',
+    tokenSymbol: 'DAI',
     tokenAddresses: {
       256: '', // 
-      128: '0x843af718ef25708765a8e0942f89edeae1d88df0' // (June 11th, 2021)
+      128: '0x3d760a45d0887dfd89a2f5385a236b29cb46ed2a', // June 17th, 2021
     },
     quoteTokenSymbol: QuoteToken.HT,
     quoteTokenAdresses: contracts.wht,
   },
+
   {
     pid: 21,
     lpSymbol: 'MAKI-AETH',
@@ -197,36 +198,6 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wht,
   },
   {
-    pid: 19,
-    lpSymbol: 'MATIC-HT',
-    lpAddresses: {
-      256: '',
-      128: '0xcDbE5901b56d87Dfa9C0eAC815Ce3ddbB3e63714', // (June 9th, 2021)
-    },
-    tokenSymbol: 'MATIC',
-    tokenAddresses: {
-      256: '', // 
-      128: '0xdb11743fe8b129b49b11236e8a715004bdabe7e5' // (June 9th, 2021)
-    },
-    quoteTokenSymbol: QuoteToken.HT,
-    quoteTokenAdresses: contracts.wht,
-  },
-  {
-    pid: 20,
-    lpSymbol: 'LINK-HT',
-    lpAddresses: {
-      256: '',
-      128: '0x8baaE305Bca59743F28761C2736D7160B0CDbd9a', // (June 10th, 2021)
-    },
-    tokenSymbol: 'LINK',
-    tokenAddresses: {
-      256: '', // 
-      128: '0x9e004545c59d359f6b7bfb06a26390b087717b42' // (June 10th, 2021)
-    },
-    quoteTokenSymbol: QuoteToken.HT,
-    quoteTokenAdresses: contracts.wht,
-  },
-  {
     pid: 6,
     lpSymbol: 'BTC-HUSD',
     lpAddresses: {
@@ -252,6 +223,21 @@ const farms: FarmConfig[] = [
     tokenAddresses: {
       256: '', // UPDATED
       128: '0xef3cebd77e0c52cb6f60875d9306397b5caca375', // June 15th, 2021
+    },
+    quoteTokenSymbol: QuoteToken.HT,
+    quoteTokenAdresses: contracts.wht,
+  },
+  {
+    pid: 26,
+    lpSymbol: 'ADA-HT',
+    lpAddresses: {
+      256: '',
+      128: '0x32e9dF1057049AD672b01B4f7fdB54d922c38713', // (June 11th, 2021)
+    },
+    tokenSymbol: 'ADA',
+    tokenAddresses: {
+      256: '', // 
+      128: '0x843af718ef25708765a8e0942f89edeae1d88df0' // (June 11th, 2021)
     },
     quoteTokenSymbol: QuoteToken.HT,
     quoteTokenAdresses: contracts.wht,
@@ -332,6 +318,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wht,
   },
   {
+    pid: 9,
+    lpSymbol: 'BTC-ETH',
+    lpAddresses: {
+      256: '',
+      128: '0x82C12Ea7d9eD69E9CF631589A8911DD546615808', // (3/6/21)
+    },
+    tokenSymbol: 'BTC',
+    tokenAddresses: {
+      256: '', // 
+      128: '0x66a79D23E58475D2738179Ca52cd0b41d73f0BEa' // (3/6/21)
+    },
+    quoteTokenSymbol: QuoteToken.ETH,
+    quoteTokenAdresses: contracts.eth,
+  },
+  {
     pid: 17,
     lpSymbol: 'AAVE-HT',
     lpAddresses: {
@@ -347,19 +348,34 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wht,
   },
   {
-    pid: 9,
-    lpSymbol: 'BTC-ETH',
+    pid: 19,
+    lpSymbol: 'MATIC-HT',
     lpAddresses: {
       256: '',
-      128: '0x82C12Ea7d9eD69E9CF631589A8911DD546615808', // (3/6/21)
+      128: '0xcDbE5901b56d87Dfa9C0eAC815Ce3ddbB3e63714', // (June 9th, 2021)
     },
-    tokenSymbol: 'BTC',
+    tokenSymbol: 'MATIC',
     tokenAddresses: {
       256: '', // 
-      128: '0x66a79D23E58475D2738179Ca52cd0b41d73f0BEa' // (3/6/21)
+      128: '0xdb11743fe8b129b49b11236e8a715004bdabe7e5' // (June 9th, 2021)
     },
-    quoteTokenSymbol: QuoteToken.ETH,
-    quoteTokenAdresses: contracts.eth,
+    quoteTokenSymbol: QuoteToken.HT,
+    quoteTokenAdresses: contracts.wht,
+  },
+  {
+    pid: 20,
+    lpSymbol: 'LINK-HT',
+    lpAddresses: {
+      256: '',
+      128: '0x8baaE305Bca59743F28761C2736D7160B0CDbd9a', // (June 10th, 2021)
+    },
+    tokenSymbol: 'LINK',
+    tokenAddresses: {
+      256: '', // 
+      128: '0x9e004545c59d359f6b7bfb06a26390b087717b42' // (June 10th, 2021)
+    },
+    quoteTokenSymbol: QuoteToken.HT,
+    quoteTokenAdresses: contracts.wht,
   },
   {
     pid: 8,
