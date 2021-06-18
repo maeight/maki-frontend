@@ -235,7 +235,6 @@ const Pools: React.FC = () => {
             // viewMode={viewMode}
             // setViewMode={setViewMode}
           />
-          <Flex position='relative' right='5rem'>
           <SearchSortContainer>
             <Flex flexDirection="column" width="50%">
               <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
@@ -274,7 +273,6 @@ const Pools: React.FC = () => {
               </ControlStretch>
             </Flex>
           </SearchSortContainer>
-          </Flex>
         </PoolControls>
         {showFinishedPools && (
           <Text fontSize="20px" color="failure" pb="32px">

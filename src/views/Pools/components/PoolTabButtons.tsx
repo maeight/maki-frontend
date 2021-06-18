@@ -57,7 +57,7 @@ const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools }) 
       alignItems="center"
       justifyContent={['space-around', 'space-around', 'flex-start']}
       mb={['24px', '24px', '24px', '0px']}
-      position='relative' left='5rem'
+
     >
       {/* {viewModeToggle} */}
       {liveOrFinishedSwitch}
