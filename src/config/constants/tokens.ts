@@ -138,14 +138,14 @@ const tokens = {
     },
     decimals: 18,
   },
-  // ada: {
-  //   symbol: 'ADA',
-  //   address: {
-  //     256: '',
-  //     128: '',
-  //   },
-  //   decimals: 18,
-  // },
+  dai: {
+    symbol: 'DAI',
+    address: {
+      256: '',
+      128: '0x3d760a45d0887dfd89a2f5385a236b29cb46ed2a',
+    },
+    decimals: 18,
+  },
   // ada: {
   //   symbol: 'ADA',
   //   address: {

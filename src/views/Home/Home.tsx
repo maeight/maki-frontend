@@ -24,7 +24,7 @@ const Hero = styled.div`
   text-align: center;
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    background-image: url('/images/maki-bg2.svg'), url('/images/maki-bg.svg');
+    background-image: url('/images/maki-bg1.svg'), url('/images/maki-bg2.svg');
     background-position: left center, right center;
     height: 165px;
     padding-top: 0;
