@@ -5,7 +5,7 @@ import { languageList } from 'config/localization/languages'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import useAuth from 'hooks/useAuth'
-import { usePriceMakiHusd } from 'state/hooks' // Disabled until implemented: useProfile
+import { useHusdPriceFromPid } from 'state/hooks' // Disabled until implemented: useProfile
 import config from './config'
 
 // eslint-disable-next-line
@@ -13,7 +13,7 @@ const Menu = (props) => {
   const { account } = useWeb3React()
   const { login, logout } = useAuth()
   const { isDark, toggleTheme } = useTheme()
-  const makiPriceUsd = usePriceMakiHusd()
+  const makiPriceUsd = useHusdPriceFromPid(3) // MAKI-HUSD farm
   // const { profile } = useProfile()
   const { currentLanguage, setLanguage } = useTranslation()
 

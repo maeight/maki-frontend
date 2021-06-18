@@ -39,7 +39,7 @@ const StyledCardHeader: React.FC<{
       return 'Automatic restaking'
     }
     if (isMakiPool) {
-      return 'Earn MAKI, stake MAKI'
+      return 'Stake MAKI, earn MAKI'
     }
     return `Stake ${stakingTokenSymbol}`
   }

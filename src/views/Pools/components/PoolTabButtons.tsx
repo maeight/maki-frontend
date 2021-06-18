@@ -10,14 +10,14 @@ import {
   useMatchBreakpoints,
 } from 'maki-uikit'
 import { useTranslation } from 'contexts/Localization'
-import ToggleView, { ViewMode } from './ToggleView/ToggleView'
+// import ToggleView, { ViewMode } from './ToggleView/ToggleView'
 
-const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools, viewMode, setViewMode }) => {
+const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools }) => { // disabled: viewMode, setViewMode
   const { url, isExact } = useRouteMatch()
   const { isXs, isSm } = useMatchBreakpoints()
   const { t } = useTranslation()
 
-  const viewModeToggle = <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
+  // const viewModeToggle = <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
 
   const liveOrFinishedSwitch = (
     <ButtonMenu activeIndex={isExact ? 0 : 1} scale="sm" variant="subtle">
@@ -41,9 +41,10 @@ const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools, vi
 
   if (isXs || isSm) {
     return (
-      <Flex flexDirection="column" alignItems="flex-start" mb="24px">
+      <Flex flexDirection="column" alignItems="flex-start" mb="24px"
+      paddingRight='50px'>
         <Flex width="100%" justifyContent="space-between">
-          {viewModeToggle}
+          {/* {viewModeToggle} */}
           {liveOrFinishedSwitch}
         </Flex>
         {stakedOnlySwitch}
@@ -56,8 +57,9 @@ const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools, vi
       alignItems="center"
       justifyContent={['space-around', 'space-around', 'flex-start']}
       mb={['24px', '24px', '24px', '0px']}
+      position='relative' left='5rem'
     >
-      {viewModeToggle}
+      {/* {viewModeToggle} */}
       {liveOrFinishedSwitch}
       {stakedOnlySwitch}
     </Flex>

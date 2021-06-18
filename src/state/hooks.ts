@@ -322,13 +322,13 @@ export const useMakiVault = () => {
 // }
 
 export const usePriceHtHusd = (): BigNumber => {
-  const htHusdFarm = useFarmFromPid(3)
+  const htHusdFarm = useFarmFromPid(4) // HUSD-HT LP
   return new BigNumber(htHusdFarm.quoteToken.husdPrice)
 }
 
 export const usePriceMakiHusd = (): BigNumber => {
-  const makiHtFarm = useFarmFromPid(1)
-  return new BigNumber(makiHtFarm.token.husdPrice)
+  const makiHusdFarm = useFarmFromPid(3) // MAKI-HUSD LP
+  return new BigNumber(makiHusdFarm.token.husdPrice)
 }
 
 // Block
