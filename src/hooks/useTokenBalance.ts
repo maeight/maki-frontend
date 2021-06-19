@@ -51,7 +51,7 @@ export const useBurnedBalance = (tokenAddress: string) => {
 
   useEffect(() => {
     const fetchBalance = async () => {
-      const res = await getTokenBalance(ethereum, tokenAddress, '0x0000000000000000000000000000000000000000')
+      const res = await getTokenBalance(ethereum, tokenAddress, '0x000000000000000000000000000000000000dEaD')
       setBalance(new BigNumber(res))
     }
 
