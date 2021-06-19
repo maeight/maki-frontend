@@ -17,12 +17,12 @@ import SearchInput from 'components/SearchInput'
 import Select, { OptionProps } from 'components/Select/Select'
 import { Pool } from 'state/types'
 import PoolCard from './components/PoolCard'
-// import MakiVaultCard from './components/MakiVaultCard'
+import MakiVaultCard from './components/MakiVaultCard'
 import PoolTabButtons from './components/PoolTabButtons'
-// import BountyCard from './components/BountyCard'
-// import HelpButton from './components/HelpButton'
-// import PoolsTable from './components/PoolsTable/PoolsTable'
-// import { ViewMode } from './components/ToggleView/ToggleView'
+import BountyCard from './components/BountyCard'
+import HelpButton from './components/HelpButton'
+import PoolsTable from './components/PoolsTable/PoolsTable'
+import { ViewMode } from './components/ToggleView/ToggleView'
 import { getAprData, getMakiVaultEarnings } from './helpers'
 
 const CardLayout = styled(FlexLayout)`
@@ -54,12 +54,12 @@ const Pools: React.FC = () => {
   const location = useLocation()
   const { t } = useTranslation()
   const { account } = useWeb3React()
-  const { pools: poolsWithoutAutoVault } = usePools(account) // disabled: userDataLoaded
+  const { pools: poolsWithoutAutoVault, userDataLoaded } = usePools(account)
   const [stakedOnly, setStakedOnly] = usePersistState(false, { localStorageKey: 'maki_pool_staked' })
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
   const [observerIsSet, setObserverIsSet] = useState(false)
   const loadMoreRef = useRef<HTMLDivElement>(null)
-  // const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'maki_farm_view' })
+  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'maki_farm_view' })
   const [searchQuery, setSearchQuery] = useState('')
   const [sortOption, setSortOption] = useState('hot')
   const {
@@ -194,8 +194,7 @@ const Pools: React.FC = () => {
     <CardLayout>
       {poolsToShow().map((pool) =>
         pool.isAutoVault ? (
-          // <MakiVaultCard key="auto-maki" pool={pool} showStakedOnly={stakedOnly} />
-          <></>
+          <MakiVaultCard key="auto-maki" pool={pool} showStakedOnly={stakedOnly} />
         ) : (
           <PoolCard key={pool.sousId} pool={pool} account={account} />
         ),
@@ -203,7 +202,7 @@ const Pools: React.FC = () => {
     </CardLayout>
   )
 
-  // const tableLayout = <PoolsTable pools={poolsToShow()} account={account} userDataLoaded={userDataLoaded} />
+  const tableLayout = <PoolsTable pools={poolsToShow()} account={account} userDataLoaded={userDataLoaded} />
 
   return (
     <>
@@ -221,8 +220,8 @@ const Pools: React.FC = () => {
             </Heading>
           </Flex>
           <Flex flex="1" height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>
-            {/* <HelpButton />
-            <BountyCard /> */}
+            <HelpButton />
+            <BountyCard />
           </Flex>
         </Flex>
       </PageHeader>
@@ -232,8 +231,8 @@ const Pools: React.FC = () => {
             stakedOnly={stakedOnly}
             setStakedOnly={setStakedOnly}
             hasStakeInFinishedPools={hasStakeInFinishedPools}
-            // viewMode={viewMode}
-            // setViewMode={setViewMode}
+            viewMode={viewMode}
+            setViewMode={setViewMode}
           />
           <SearchSortContainer>
             <Flex flexDirection="column" width="50%">
@@ -244,7 +243,7 @@ const Pools: React.FC = () => {
                 <Select
                   options={[
                     {
-                      label: t('Hot'),
+                      label: t('HOT'),
                       value: 'hot',
                     },
                     {
@@ -256,7 +255,7 @@ const Pools: React.FC = () => {
                       value: 'earned',
                     },
                     {
-                      label: t('Total staked'),
+                      label: t('Total Staked'),
                       value: 'totalStaked',
                     },
                   ]}
@@ -279,7 +278,7 @@ const Pools: React.FC = () => {
             {t('These pools are no longer distributing rewards. Please unstake.')}
           </Text>
         )}
-        {/* {viewMode === ViewMode.CARD ? cardLayout : tableLayout} */}
+        {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
         {cardLayout}
         <div ref={loadMoreRef} />
         {/* <Image

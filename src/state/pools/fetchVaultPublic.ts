@@ -10,8 +10,8 @@ export const fetchPublicVaultData = async () => {
     const [sharePrice, shares, estimatedMakiBountyReward, totalPendingMakiHarvest] = await makeBatchRequest([
       makiVaultContract.methods.getPricePerFullShare().call,
       makiVaultContract.methods.totalShares().call,
-      makiVaultContract.methods.calculateHarvestCakeRewards().call,
-      makiVaultContract.methods.calculateTotalPendingCakeRewards().call,
+      makiVaultContract.methods.calculateHarvestMakiRewards().call,
+      makiVaultContract.methods.calculateTotalPendingMakiRewards().call,
     ])
     const totalSharesAsBigNumber = new BigNumber(shares as string)
     const sharePriceAsBigNumber = new BigNumber(sharePrice as string)

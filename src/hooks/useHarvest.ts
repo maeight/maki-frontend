@@ -37,3 +37,4 @@ export const useSousHarvest = (sousId, isUsingHt = false) => {
 
   return { onReward: handleHarvest }
 }
+export default useHarvest

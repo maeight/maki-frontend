@@ -25,11 +25,11 @@ const IconButtonWrapper = styled.div`
   display: flex;
 `
 
-interface StackedActionProps extends FarmWithStakedValue {
+interface StakedActionProps extends FarmWithStakedValue {
   userDataReady: boolean
 }
 
-const Staked: React.FunctionComponent<StackedActionProps> = ({
+const Staked: React.FunctionComponent<StakedActionProps> = ({
   pid,
   lpSymbol,
   lpAddresses,

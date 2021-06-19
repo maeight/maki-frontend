@@ -54,7 +54,7 @@
 //   const [onPresentApprove] = useModal(<PurchaseWarningModal />)
 //   const { claimAmount, setLastUpdated } = useTotalClaim()
 //   const { onMultiClaim } = useMultiClaimLottery()
-//   const { balance: cakeBalance } = useTokenBalance(getCakeAddress())
+//   const { balance: makiBalance } = useTokenBalance(getMakiAddress())
 //   const { handleApprove, requestedApproval } = useApproval(onPresentApprove)
 
 //   const handleClaim = useCallback(async () => {
