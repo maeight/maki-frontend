@@ -79,7 +79,7 @@ const Home: React.FC = () => {
         <Heading as="h1" size="xl" mb="24px" color="secondary">
           MakiSwap
         </Heading>
-        <Text>The #1 AMM and yield farm on Huobi ECO Chain.</Text>
+        <Text>The #1 AMM and yield farm on Huobi ECO Chain (HECO).</Text>
       </Hero>
       <div>
         <Cards>
