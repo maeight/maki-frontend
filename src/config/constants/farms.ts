@@ -18,19 +18,19 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wht,
   },
   {
-    pid: 28,
-    lpSymbol: 'DOT-HT',
+    pid: 29,
+    lpSymbol: 'MAKI-MATIC',
     lpAddresses: {
       256: '', // 
-      128: '0x17448C40C3CABec4708CA6e6FbF212253195dE3b', // June 18th, 2021
+      128: '0xeeb94653baeac54561a45b47ec2b107a31923722', // June 19th, 2021
     },
-    tokenSymbol: 'DOT',
+    tokenSymbol: 'MATIC',
     tokenAddresses: {
       256: '', // 
-      128: '0xa2c49cee16a5e5bdefde931107dc1fae9f7773e3', // June 18th, 2021
+      128: '0x5fad6fbba4bba686ba9b8052cf0bd51699f38b93', // June 19th, 2021
     },
-    quoteTokenSymbol: QuoteToken.HT,
-    quoteTokenAdresses: contracts.wht,
+    quoteTokenSymbol: QuoteToken.MAKI,
+    quoteTokenAdresses: contracts.maki,
   },
   {
     pid: 21,
@@ -210,6 +210,21 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BTC,
     quoteTokenAdresses: contracts.btc,
+  },
+  {
+    pid: 28,
+    lpSymbol: 'DOT-HT',
+    lpAddresses: {
+      256: '', // 
+      128: '0x17448C40C3CABec4708CA6e6FbF212253195dE3b', // June 18th, 2021
+    },
+    tokenSymbol: 'DOT',
+    tokenAddresses: {
+      256: '', // 
+      128: '0xa2c49cee16a5e5bdefde931107dc1fae9f7773e3', // June 18th, 2021
+    },
+    quoteTokenSymbol: QuoteToken.HT,
+    quoteTokenAdresses: contracts.wht,
   },
   {
     pid: 27,
