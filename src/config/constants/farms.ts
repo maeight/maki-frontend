@@ -18,6 +18,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wht,
   },
   {
+    pid: 30,
+    lpSymbol: 'MATIC-ETH',
+    lpAddresses: {
+      256: '', // 
+      128: '0xa458bf4f266762ad087e7f9f60f94dd0661d76f4', // June 22nd, 2021
+    },
+    tokenSymbol: 'MATIC',
+    tokenAddresses: {
+      256: '', // 
+      128: '0x5fad6fbba4bba686ba9b8052cf0bd51699f38b93', // June 22nd, 2021
+    },
+    quoteTokenSymbol: QuoteToken.ETH,
+    quoteTokenAdresses: contracts.eth,
+  },
+  {
     pid: 29,
     lpSymbol: 'MAKI-MATIC',
     lpAddresses: {
