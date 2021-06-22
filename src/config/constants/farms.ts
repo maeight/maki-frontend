@@ -46,16 +46,6 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wht
   },
   {
-    pid: 3,
-    lpSymbol: 'MAKI-HUSD',
-    lpAddresses: {
-      256: '0xa0af5d360232e077decfd4650e8b95875fdd6aad',
-      128: '0xc189d2699c7e077cb050d9bc666effa40bb31771',
-    },
-    token: tokens.maki,
-    quoteToken: tokens.husd,
-  },
-  {
     pid: 2,
     lpSymbol: 'LAYER-HT',
     lpAddresses: {
