@@ -14409,10 +14409,10 @@ maki-sdk@^4.4.1:
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-maki-uikit@^2.4.2:
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/maki-uikit/-/maki-uikit-2.4.2.tgz#90dc287c94e7e3d1abcd605a98ba34e5bf2eae13"
-  integrity sha512-biurrlmjrnaEnYfOFrqRmS6JdeO0Itw3byeJHh8Zkg6JEeUzesnR1Pq9Yo02RTItU2BA/n5KEilIAWVPZuVNAg==
+maki-uikit@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/maki-uikit/-/maki-uikit-3.3.0.tgz#9f9121a0168ab1d77b5e0e5e88de80fdf7d907c7"
+  integrity sha512-SHb5ZWISSGAnUjbjuYQCAxWGQVJEQ6AgnJHUI5LjEXULX+Jty7jXuDa5kjsRW8SA0U0hfWdarP8IKAF7J+16Kg==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.162"
