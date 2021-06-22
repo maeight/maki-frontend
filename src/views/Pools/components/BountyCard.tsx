@@ -115,7 +115,7 @@ const BountyCard = () => {
             <Button
               disabled={!dollarBountyToDisplay || !makiBountyToDisplay || !callFee}
               onClick={onPresentBountyModal}
-              scale="sm"
+              size="sm"
             >
               {t('Claim')}
             </Button>
