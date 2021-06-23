@@ -53,7 +53,7 @@ const getFarmQuoteTokenPrice = (farm: Farm, quoteTokenFarm: Farm, htPriceHusd: B
     return BIG_ONE
   }
 
-  if (farm.quoteToken.symbol === 'WHT') {
+  if (farm.quoteToken.symbol === 'HT') {
     return htPriceHusd
   }
 
@@ -61,7 +61,7 @@ const getFarmQuoteTokenPrice = (farm: Farm, quoteTokenFarm: Farm, htPriceHusd: B
     return BIG_ZERO
   }
 
-  if (quoteTokenFarm.quoteToken.symbol === 'WHT') {
+  if (quoteTokenFarm.quoteToken.symbol === 'HT') {
     return quoteTokenFarm.tokenPriceVsQuote ? htPriceHusd.times(quoteTokenFarm.tokenPriceVsQuote) : BIG_ZERO
   }
 
