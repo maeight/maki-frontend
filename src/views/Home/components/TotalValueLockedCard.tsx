@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { Card, CardBody, Heading, Skeleton, Text } from 'maki-uikit'
 import { useTranslation } from 'contexts/Localization'
-import { useGetStats } from 'hooks/api'
-// import BigNumber from 'bignumber.js'
+import { useGetStats, useTVL } from 'hooks/api'
+import BigNumber from 'bignumber.js'
 // import { useFarmFromPid, usePriceMakiHusd } from 'state/hooks' // removed:  usePriceBtcHusd, usePriceEthHusd, usePriceHtHusd
 
 const StyledTotalValueLockedCard = styled(Card)`
@@ -15,6 +15,7 @@ const StyledTotalValueLockedCard = styled(Card)`
 const TotalValueLockedCard = () => {
   const { t } = useTranslation()
   const data = useGetStats()
+  const tvl = useTVL()
   // const tvl = data ? data.tvl.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null
   // const tvl = data ? data.total_value_locked_all.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null
 
@@ -44,10 +45,10 @@ const TotalValueLockedCard = () => {
   // const USDVAL = F8
 
 /* SUM VALUE LOCKED */
-  // const ttlVal = new BigNumber(((HTVAL.plus(MAKIVAL).plus(ETHVAL)).plus(BTCVAL).plus(USDVAL)).times(2)).toLocaleString().slice(0,11)
-  // const totalValueFormated = ttlVal
-  // ? `$${Number(ttlVal).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
-  // : '-'
+  const ttlVal = tvl.toLocaleString().slice(0,11)
+  const totalValueFormated = ttlVal
+  ? `${Number(ttlVal).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+  : '-'
 
   return (
     <StyledTotalValueLockedCard>
@@ -55,9 +56,9 @@ const TotalValueLockedCard = () => {
         <Heading scale="lg" mb="24px">
           {t('Total Value Locked (TVL)')}
         </Heading>
-        {data ? (
+        {tvl ? (
           <>
-            {/* <Heading scale="xl">{`$${totalValueFormated}`}</Heading> */}
+            <Heading scale="xl">{`$${totalValueFormated}`}</Heading>
             <Text color="textSubtle">{t('Across all LPs and SOY Pools')}</Text>
           </>
         ) : (
