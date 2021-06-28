@@ -26,7 +26,7 @@ const multicall = async (abi: any[], calls: Call[], options: MulticallOptions = 
 
     return res
   } catch (error) {
-    console.log(error)
+    // console.log(error)
     throw new Error(error)
   }
 }
@@ -47,10 +47,12 @@ export const multicallv2 = async (abi: any[], calls: Call[], options: MulticallO
     .call(undefined, options.blockNumber)
   const res = returnData.map((call, i) => {
     const [result, data] = call
-    return result ? itf.decodeFunctionResult(calls[i].name, data) : null 
+    return {
+      result,
+      data: itf.decodeFunctionResult(calls[i].name, data),
+    }
   })
 
   return res
 }
-
 export default multicall

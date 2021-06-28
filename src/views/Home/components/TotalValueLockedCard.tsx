@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { Card, CardBody, Heading, Skeleton, Text } from 'maki-uikit'
 import { useTranslation } from 'contexts/Localization'
-import { useGetStats, useTVL } from 'hooks/api'
-import BigNumber from 'bignumber.js'
+import { useTVL } from 'hooks/api' // disabled: useGetStats
+// import BigNumber from 'bignumber.js'
 // import { useFarmFromPid, usePriceMakiHusd } from 'state/hooks' // removed:  usePriceBtcHusd, usePriceEthHusd, usePriceHtHusd
 
 const StyledTotalValueLockedCard = styled(Card)`
@@ -14,7 +14,7 @@ const StyledTotalValueLockedCard = styled(Card)`
 
 const TotalValueLockedCard = () => {
   const { t } = useTranslation()
-  const data = useGetStats()
+  // const data = useGetStats()
   const tvl = useTVL()
   // const tvl = data ? data.tvl.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null
   // const tvl = data ? data.total_value_locked_all.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null

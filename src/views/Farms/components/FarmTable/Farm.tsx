@@ -1,47 +1,44 @@
-
 import React from 'react'
 import styled from 'styled-components'
 import { useFarmUser } from 'state/hooks'
-import { useTranslation } from 'contexts/Localization'
-import { Text } from 'maki-uikit'
+import { Text, Image } from 'maki-uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { Token } from 'config/constants/types'
-import TokenPairImage from 'components/TokenPairImage'
 
 export interface FarmProps {
   label: string
   pid: number
-  token: Token
-  quoteToken: Token
+  image: string
 }
+
+const IconImage = styled(Image)`
+  width: 24px;
+  height: 24px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 40px;
+    height: 40px;
+  }
+`
 
 const Container = styled.div`
   padding-left: 16px;
   display: flex;
   align-items: center;
+
   ${({ theme }) => theme.mediaQueries.sm} {
     padding-left: 32px;
   }
 `
 
-const TokenWrapper = styled.div`
-  padding-right: 8px;
-  width: 24px;
-  ${({ theme }) => theme.mediaQueries.sm} {
-    width: 40px;
-  }
-`
-
-const Farm: React.FunctionComponent<FarmProps> = ({ token, quoteToken, label, pid }) => {
+const Farm: React.FunctionComponent<FarmProps> = ({ image, label, pid }) => {
   const { stakedBalance } = useFarmUser(pid)
-  const { t } = useTranslation()
   const rawStakedBalance = getBalanceNumber(stakedBalance)
 
   const handleRenderFarming = (): JSX.Element => {
     if (rawStakedBalance) {
       return (
         <Text color="secondary" fontSize="12px" bold textTransform="uppercase">
-          {t('Farming')}
+          Farming
         </Text>
       )
     }
@@ -51,9 +48,7 @@ const Farm: React.FunctionComponent<FarmProps> = ({ token, quoteToken, label, pi
 
   return (
     <Container>
-      <TokenWrapper>
-        <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={40} height={40} />
-      </TokenWrapper>
+      <IconImage src={`/images/farms/${image}.png`} alt="icon" width={40} height={40} mr="8px" />
       <div>
         {handleRenderFarming()}
         <Text bold>{label}</Text>

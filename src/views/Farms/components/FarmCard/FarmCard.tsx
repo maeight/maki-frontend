@@ -30,8 +30,9 @@ const AccentGradient = keyframes`
   }
 `
 
+// disabled background until working properly
 const StyledCardAccent = styled.div`
-  background: ${({ theme }) => `linear-gradient(180deg, ${theme.colors.primaryBright}, ${theme.colors.secondary})`};
+  // background: ${({ theme }) => `linear-gradient(180deg, ${theme.colors.primaryBright}, ${theme.colors.secondary})`};
   background-size: 400% 400%;
   animation: ${AccentGradient} 2s linear infinite;
   border-radius: 32px;
@@ -80,12 +81,16 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, makiPrice, account }
 
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
+  // We assume the token name is coin pair + lp e.g. MAKI-HT LP, LINK-HT LP,
+  // OVEN-MAKI LP. The images should be maki-ht.png, link-ht.png, oven-maki.png
+  const farmImage = farm.lpSymbol.split(' ')[0].toLocaleLowerCase()
+
   const totalValueFormatted =
     farm.liquidity && farm.liquidity.gt(0)
       ? `$${farm.liquidity.toNumber().toLocaleString(undefined, { maximumFractionDigits: 0 })}`
       : ''
 
-  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('MAKI', '')
+  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('MAKISWAP', '')
   const earnLabel = farm.dual ? farm.dual.earnLabel : 'MAKI'
 
   const farmAPR = farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 })
@@ -105,8 +110,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, makiPrice, account }
         lpLabel={lpLabel}
         multiplier={farm.multiplier}
         isCommunityFarm={farm.isCommunity}
-        token={farm.token}
-        quoteToken={farm.quoteToken}
+        farmImage={farmImage}
+        tokenSymbol={farm.token.symbol}
       />
       {!removed && (
         <Flex justifyContent="space-between" alignItems="center">
@@ -137,7 +142,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, makiPrice, account }
         <DetailsSection
           removed={removed}
           hecoscanAddress={getHecoInfoAddressUrl(farm.lpAddresses[process.env.REACT_APP_CHAIN_ID])}
-          infoAddress={`https://info.makiswap.com/pool/${lpAddress}`}
+          infoAddress={`https://info.makiswap.com/pair/${lpAddress}`}
           totalValueFormatted={totalValueFormatted}
           lpLabel={lpLabel}
           addLiquidityUrl={addLiquidityUrl}

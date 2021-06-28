@@ -3,7 +3,7 @@
 Thanks for taking the time to contribute!
 You can start by reading our [Contribution guidelines](https://docs.makiswap.com/code/contributing) first.
 
-## SETUP
+## Setup
 
 Create a `.env.development.local` file at the root of the project. Add the following lines inside :
 
@@ -23,7 +23,7 @@ Install the dependencies.
 
 Don't forget to setup your IDE with `eslint` and `prettier`.
 
-## STRUCTURE
+## Project structure
 
 - **components** contains generic components used inside the application.
 - **views** contains building blocks for each page. The entry point of a view is used as the root component of each route.

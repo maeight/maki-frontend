@@ -1,7 +1,4 @@
-/**
- * @see https://github.com/makiswap-protocol/maki-frontend/blob/develop/src/config/constants/tokens.ts
- */
- const tokens = {
+const tokens = {
   wht: {
     symbol: 'HT',
     address: {
@@ -9,7 +6,6 @@
       128: '0x5545153ccfca01fbd7dd11c0b23ba694d9509a6f',
     },
     decimals: 18,
-    projectLink: "https://huobi.com/",
   },
   eth: {
     symbol: 'ETH',
@@ -18,8 +14,6 @@
     128: '0x64ff637fb478863b7468bc97d30a5bf3a428a1fd',
     },
     decimals: 18,
-    projectLink: "https://ethereum.org/",
-
   },
   btc: {
     symbol: 'BTC',
@@ -28,8 +22,6 @@
       128: '0x66a79d23e58475d2738179ca52cd0b41d73f0bea',
     },
     decimals: 18,
-    projectLink: "https://bitcoin.com/",
-
   },
   usdt: {
     symbol: 'USDT',
@@ -89,8 +81,6 @@
       128: '0x843af718ef25708765a8e0942f89edeae1d88df0',
     },
     decimals: 18,
-    projectLink: "https://cardano.org/",
-
   },
   aeth: {
     symbol: 'AETH',
@@ -99,8 +89,6 @@
       128: '0x62c10412d69823a98db5c09cf6e82810e0df5ad7',
     },
     decimals: 18,
-    projectLink: "https://multichain.xyz/",
-
   },
   dot: {
     symbol: 'DOT',
@@ -109,8 +97,6 @@
       128: '0xa2c49cee16a5e5bdefde931107dc1fae9f7773e3',
     },
     decimals: 18,
-    projectLink: "https://polkadot.network/",
-
   },
   matic: {
     symbol: 'MATIC',
@@ -119,8 +105,6 @@
       128: '0xdb11743fe8b129b49b11236e8a715004bdabe7e5',
     },
     decimals: 18,
-    projectLink: "https://poligon.technology/",
-
   },
   link: {
     symbol: 'LINK',
@@ -129,8 +113,6 @@
       128: '0x9e004545c59d359f6b7bfb06a26390b087717b42',
     },
     decimals: 18,
-    projectLink: "https://chain.link/",
-
   },
   bch: {
     symbol: 'BCH',
@@ -139,8 +121,6 @@
       128: '0xef3cebd77e0c52cb6f60875d9306397b5caca375',
     },
     decimals: 18,
-    projectLink: "https://bitcoincash.org/",
-
   },
   fil: {
     symbol: 'FIL',
@@ -149,8 +129,6 @@
       128: '0xae3a768f9ab104c69a7cd6041fe16ffa235d1810',
     },
     decimals: 18,
-    projectLink: "https://filecoin.io/",
-
   },
   aave: {
     symbol: 'AAVE',
@@ -159,8 +137,6 @@
       128: '0x202b4936fe1a82a4965220860ae46d7d3939bb25',
     },
     decimals: 18,
-    projectLink: "https://aave.com/",
-
   },
   dai: {
     symbol: 'DAI',
@@ -170,6 +146,30 @@
     },
     decimals: 18,
   },
+  // ada: {
+  //   symbol: 'ADA',
+  //   address: {
+  //     256: '',
+  //     128: '',
+  //   },
+  //   decimals: 18,
+  // },
+  // ada: {
+  //   symbol: 'ADA',
+  //   address: {
+  //     256: '',
+  //     128: '',
+  //   },
+  //   decimals: 18,
+  // },
+  // ada: {
+  //   symbol: 'ADA',
+  //   address: {
+  //     256: '',
+  //     128: '',
+  //   },
+  //   decimals: 18,
+  // },
 }
 
 export default tokens
