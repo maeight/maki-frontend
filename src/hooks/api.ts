@@ -1,10 +1,11 @@
+import BigNumber from 'bignumber.js'
 import { useEffect, useState } from 'react'
 
 /*
  * Due to Cors the api was forked and a proxy was created
  * @see https://github.com/makiswap/gatsby-pancake-api/commit/e811b67a43ccc41edd4a0fa1ee704b2f510aa0ba
  */
-export const baseUrl = 'https://q.hg.network/subgraphs/name/maki-mainnet/heco/graphql'
+export const baseUrl = 'https://q.hg.network/subgraphs/name/maki-exchanges/heco'
 
 /* eslint-disable camelcase */
 
@@ -46,4 +47,35 @@ export const useGetStats = () => {
   }, [setData])
 
   return data
+}
+
+export const useTVL = () => {
+  const [tvl, setTvl] = useState(new BigNumber(0))
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const query = `
+          {
+            uniswapFactories {
+              totalLiquidityUSD
+            }
+          }
+        `
+        const response = await fetch(baseUrl, {
+          method: 'POST',
+          body: JSON.stringify({ query }),
+          headers: { 'Content-Type': 'application/json' }
+        })
+          .then(res => res.json())
+          .then(json => json.data.uniswapFactories[0].totalLiquidityUSD)
+        setTvl(new BigNumber(response));
+      } catch (error) {
+        console.error('Error fetching TVL', error)
+      }
+    }
+    fetchData()
+  }, [setTvl]);
+
+  return tvl
 }

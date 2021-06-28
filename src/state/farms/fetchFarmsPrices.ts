@@ -53,7 +53,7 @@ const getFarmQuoteTokenPrice = (farm: Farm, quoteTokenFarm: Farm, htPriceHusd: B
     return BIG_ONE
   }
 
-  if (farm.quoteToken.symbol === 'WHT') {
+  if (farm.quoteToken.symbol === 'HT') {
     return htPriceHusd
   }
 
@@ -61,7 +61,7 @@ const getFarmQuoteTokenPrice = (farm: Farm, quoteTokenFarm: Farm, htPriceHusd: B
     return BIG_ZERO
   }
 
-  if (quoteTokenFarm.quoteToken.symbol === 'WHT') {
+  if (quoteTokenFarm.quoteToken.symbol === 'HT') {
     return quoteTokenFarm.tokenPriceVsQuote ? htPriceHusd.times(quoteTokenFarm.tokenPriceVsQuote) : BIG_ZERO
   }
 
@@ -73,7 +73,7 @@ const getFarmQuoteTokenPrice = (farm: Farm, quoteTokenFarm: Farm, htPriceHusd: B
 }
 
 const fetchFarmsPrices = async (farms) => {
-  const htHusdFarm = farms.find((farm: Farm) => farm.pid === 252)
+  const htHusdFarm = farms.find((farm: Farm) => farm.pid === 4)
   const htPriceHusd = htHusdFarm.tokenPriceVsQuote ? BIG_ONE.div(htHusdFarm.tokenPriceVsQuote) : BIG_ZERO
 
   const farmsWithPrices = farms.map((farm) => {
