@@ -4,7 +4,7 @@ const config: MenuEntry[] = [
     {
     label: 'Home',
     icon: 'HomeIcon',
-    href: '/home',
+    href: '/',
   },
   {
     label: 'Trade',
