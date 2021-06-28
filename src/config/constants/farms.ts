@@ -36,14 +36,14 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wht,
   },
   {
-    pid: 27,
-    lpSymbol: 'DAI-HT',
+    pid: 28,
+    lpSymbol: 'DOT-HT',
     lpAddresses: {
-      256: '', 
-      128: '0x927E800cF58B8b71710882248698C24268C73E10', // June 17th, 2021
+      256: '', // 
+      128: '0x17448C40C3CABec4708CA6e6FbF212253195dE3b', // June 18th, 2021
     },
-    token: tokens.dai,
-    quoteToken: tokens.wht
+    token: tokens.dot,
+    quoteToken: tokens.wht,
   },
   {
     pid: 2,
@@ -204,6 +204,16 @@ const farms: FarmConfig[] = [
       128: '0xcDbE5901b56d87Dfa9C0eAC815Ce3ddbB3e63714', // (June 9th, 2021)
     },
     token: tokens.matic,
+    quoteToken: tokens.wht
+  },
+  {
+    pid: 27,
+    lpSymbol: 'DAI-HT',
+    lpAddresses: {
+      256: '', 
+      128: '0x927E800cF58B8b71710882248698C24268C73E10', // June 17th, 2021
+    },
+    token: tokens.dai,
     quoteToken: tokens.wht
   },
   {

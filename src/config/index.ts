@@ -6,7 +6,7 @@ BigNumber.config({
   DECIMAL_PLACES: 80,
 })
 
-export const BLOCKS_PER_YEAR = new BigNumber(10512000)
+export const BLOCKS_PER_YEAR = new BigNumber(94670856)
 export const MAKI_PER_BLOCK = new BigNumber(16)
 export const MAKI_PER_YEAR = MAKI_PER_BLOCK.times(BLOCKS_PER_YEAR)
 export const HECO_BLOCK_TIME = 3

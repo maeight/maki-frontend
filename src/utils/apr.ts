@@ -24,13 +24,13 @@ export const getPoolApr = (
 /**
  * Get farm APR value in %
  * @param poolWeight allocationPoint / totalAllocationPoint
- * @param makiPriceUsd Maki price in USD
+ * @param makiPriceå Maki price in USD
  * @param poolLiquidityUsd Total pool liquidity in USD
  * @returns
  */
-export const getFarmApr = (poolWeight: BigNumber, makiPriceUsd: BigNumber, poolLiquidityUsd: BigNumber): number => {
+export const getFarmApr = (poolWeight: BigNumber, makiPrice: BigNumber, poolLiquidityUsd: BigNumber): number => {
   const yearlyMakiRewardAllocation = MAKI_PER_YEAR.times(poolWeight)
-  const apr = yearlyMakiRewardAllocation.times(makiPriceUsd).div(poolLiquidityUsd).times(100)
+  const apr = yearlyMakiRewardAllocation.times(makiPrice).div(poolLiquidityUsd).times(100)
   return apr.isNaN() || !apr.isFinite() ? null : apr.toNumber()
 }
 

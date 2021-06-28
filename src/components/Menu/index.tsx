@@ -27,7 +27,7 @@ const Menu = (props) => {
       currentLang={currentLanguage.code}
       langs={languageList}
       setLang={setLanguage}
-      makiPriceUsd={makiPriceUsd.toNumber()}
+      makiPriceHusd={makiPriceHusd.toNumber()}
       links={config}
       // profile={{
       //   username: profile?.username,

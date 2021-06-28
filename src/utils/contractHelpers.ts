@@ -25,7 +25,7 @@ import {
 //  ABIs
 // -----------------
 // Standards
-import hrc20Abi from 'config/abi/erc20.json'
+import hrc20Abi from 'config/abi/hrc20.json'
 import erc721Abi from 'config/abi/erc721.json'
 import lpTokenAbi from 'config/abi/uni_v2_lp.json'
 
