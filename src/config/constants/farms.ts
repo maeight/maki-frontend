@@ -18,19 +18,19 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wht,
   },
   {
-    pid: 30,
-    lpSymbol: 'MATIC-ETH',
+    pid: 31,
+    lpSymbol: 'MAKI-O3',
     lpAddresses: {
       256: '', // 
-      128: '0xa458bf4f266762ad087e7f9f60f94dd0661d76f4', // June 22nd, 2021
+      128: '0x329bae377d60df25E58a17b3d0B1D46Cf2F4fD8b', // June 30nd, 2021
     },
-    tokenSymbol: 'MATIC',
+    tokenSymbol: 'O3',
     tokenAddresses: {
       256: '', // 
-      128: '0x5fad6fbba4bba686ba9b8052cf0bd51699f38b93', // June 22nd, 2021
+      128: '0xee9801669c6138e84bd50deb500827b776777d28', // June 30nd, 2021
     },
-    quoteTokenSymbol: QuoteToken.ETH,
-    quoteTokenAdresses: contracts.eth,
+    quoteTokenSymbol: QuoteToken.MAKI,
+    quoteTokenAdresses: contracts.maki,
   },
   {
     pid: 29,
@@ -407,6 +407,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wht,
   },
   {
+    pid: 30,
+    lpSymbol: 'MATIC-ETH',
+    lpAddresses: {
+      256: '', // 
+      128: '0xa458bf4f266762ad087e7f9f60f94dd0661d76f4', // June 22nd, 2021
+    },
+    tokenSymbol: 'MATIC',
+    tokenAddresses: {
+      256: '', // 
+      128: '0x5fad6fbba4bba686ba9b8052cf0bd51699f38b93', // June 22nd, 2021
+    },
+    quoteTokenSymbol: QuoteToken.ETH,
+    quoteTokenAdresses: contracts.eth,
+  },
+  {
     pid: 20,
     lpSymbol: 'LINK-HT',
     lpAddresses: {
@@ -451,7 +466,6 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.USDT,
     quoteTokenAdresses: contracts.usdt,
   },
-
 ]
 
 export default farms
