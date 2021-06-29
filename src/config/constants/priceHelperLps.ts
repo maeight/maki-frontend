@@ -14,7 +14,8 @@ const priceHelperLps: FarmConfig[] = [
     lpSymbol: 'MAKI-HUSD',
     lpAddresses: {
       256: '0xa0af5d360232e077decfd4650e8b95875fdd6aad',
-      128: '0xc189d2699c7e077cb050d9bc666effa40bb31771',
+      // 128: '0xc189d2699c7e077cb050d9bc666effa40bb31771',
+      128: '0x88b076F1C2EDcf558711a21639C15D01706938e8', // UPDATED
     },
     token: tokens.maki,
     quoteToken: tokens.husd,

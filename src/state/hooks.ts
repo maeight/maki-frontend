@@ -327,7 +327,7 @@ export const usePriceHtHusd = (): BigNumber => {
 }
 
 export const usePriceMakiHusd = (): BigNumber => {
-  const makiHusdFarm = useFarmFromPid(4) // MAKI-HUSD LP
+  const makiHusdFarm = useFarmFromPid(3) // MAKI-HUSD LP
   return new BigNumber(makiHusdFarm.token.husdPrice)
 }
 
