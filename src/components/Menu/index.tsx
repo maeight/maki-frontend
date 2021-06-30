@@ -13,7 +13,7 @@ const Menu = (props) => {
   const { account } = useWeb3React()
   const { login, logout } = useAuth()
   const { isDark, toggleTheme } = useTheme()
-  const makiPriceUsd = useHusdPriceFromPid(4) // MAKI-HUSD farm
+  const makiPriceUsd = useHusdPriceFromPid(3) // MAKI-HUSD farm
   // const { profile } = useProfile()
   const { currentLanguage, setLanguage } = useTranslation()
 
