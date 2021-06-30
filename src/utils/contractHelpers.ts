@@ -4,6 +4,7 @@ import web3NoAccount from 'utils/web3'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
 import { DEFAULT_GAS_PRICE } from 'config'
+import Merkle from 'config/constants/merkle'
 
 // -----------------
 // Addresses
@@ -101,4 +102,7 @@ export const getClaimRefundContract = (web3?: Web3) => {
 }
 export const getPointCenterIfoContract = (web3?: Web3) => {
   return getContract(pointCenterIfo, getPointCenterIfoAddress(), web3)
+}
+export const getMerkleDistributorContract = (web3?: Web3) => {
+  return getContract(Merkle.contractABI, Merkle.contractAddress, web3)
 }

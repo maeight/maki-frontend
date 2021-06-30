@@ -7,6 +7,7 @@ import { useTranslation } from 'contexts/Localization'
 import useFarmsWithBalance from 'hooks/useFarmsWithBalance'
 import { useMasterchef } from 'hooks/useContract'
 import UnlockButton from 'components/UnlockButton'
+import ClaimButton from 'components/ClaimButton'
 import MakiHarvestBalance from './MakiHarvestBalance'
 import MakiWalletBalance from './MakiWalletBalance'
 
@@ -73,18 +74,21 @@ const FarmedStakingCard = () => {
         </Block>
         <Actions>
           {account ? (
-            <Button
-              id="harvest-all"
-              disabled={balancesWithValue.length <= 0 || pendingTx}
-              onClick={harvestAllFarms}
-              width="100%"
-            >
-              {pendingTx
-                ? t('Collecting MAKI')
-                : t('Harvest all (%count%)', {
-                    count: balancesWithValue.length,
-                  })}
-            </Button>
+            <>
+              <Button
+                id="harvest-all"
+                disabled={balancesWithValue.length <= 0 || pendingTx}
+                onClick={harvestAllFarms}
+                width="100%"
+              >
+                {pendingTx
+                  ? t('Collecting MAKI')
+                  : t('Harvest all (%count%)', {
+                      count: balancesWithValue.length,
+                    })}
+              </Button>
+              <ClaimButton width="100%" mt="10px" />
+            </>
           ) : (
             <UnlockButton width="100%" />
           )}
