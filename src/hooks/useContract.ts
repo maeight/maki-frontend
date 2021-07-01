@@ -28,6 +28,7 @@ import sousChefHt from 'config/abi/sousChefHt.json'
 import profile from 'config/abi/pancakeProfile.json'
 import pointCenterIfo from 'config/abi/pointCenterIfo.json'
 import bunnySpecial from 'config/abi/bunnySpecial.json'
+import { merkle } from 'config/constants/merkle'
 
 const useContract = (abi: AbiItem, address: string, contractOptions?: ContractOptions) => {
   const web3 = useWeb3()
@@ -103,6 +104,11 @@ export const usePointCenterIfoContract = () => {
 export const useBunnySpecialContract = () => {
   const abi = (bunnySpecial as unknown) as AbiItem
   return useContract(abi, getBunnySpecialAddress())
+}
+
+export const useMerkleDistributorContract = () => {
+  const abi = (merkle.contractABI as unknown) as AbiItem
+  return useContract(abi, merkle.contractAddress)
 }
 
 export default useContract
