@@ -4,7 +4,6 @@ import { useWeb3React } from '@web3-react/core'
 import { Modal, Text, LinkExternal, Flex, Box, Button, Input } from 'maki-uikit'
 import { useTranslation } from 'contexts/Localization'
 import { getMakiContract, getMerkleDistributorContract } from 'utils/contractHelpers'
-import multicall from 'utils/multicall'
 import Merkle from 'config/constants/merkle'
 
 const StyledInput = styled(Input)`
@@ -48,13 +47,9 @@ const ClaimModal: React.FC = () => {
   }, [setIsEligible, setError]);
 
   const getAirdropStats = useCallback(async () => {
-    // const result = await multicall(Merkle.contractABI, [{
-    //   address: Merkle.contractAddress,
-    //   name: 'isClaimed',
-    //   params: [Merkle.claims[recipientAddress].index]
-    // }])
     const claimObject: any = getClaimObjectFromAddress(recipientAddress)
     const isClaimed = await airdropContract.methods.isClaimed(claimObject.index).call()
+
     setIsAirdropClaimed(isClaimed)
     if (isClaimed) {
       setError('You have already claimed your airdrop')
