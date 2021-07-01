@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback, useState } from 'react'
 import styled from 'styled-components'
-import { useWeb3React } from '@web3-react/core'
+import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { Modal, Text, LinkExternal, Flex, Box, Button, Input } from 'maki-uikit'
 import { getMerkleDistributorContract } from 'utils/contractHelpers'
 import Merkle from 'config/constants/merkle'
@@ -23,7 +23,7 @@ const getClaimObjectFromAddress = (address: string) => {
 }
 
 const ClaimModal: React.FC = () => {
-  const { account } = useWeb3React()
+  const { account } = useWallet()
   const airdropContract = getMerkleDistributorContract()
   const [recipientAddress, setRecipientAddress] = useState('')
   const [isEligible, setIsEligible] = useState(false)
