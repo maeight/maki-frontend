@@ -1,9 +1,10 @@
 import React, { useEffect, useCallback, useState } from 'react'
 import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
+import useWeb3 from 'hooks/useWeb3'
 import { Modal, Text, LinkExternal, Flex, Box, Button, Input } from 'maki-uikit'
 import { useTranslation } from 'contexts/Localization'
-import { getMakiContract, getMerkleDistributorContract } from 'utils/contractHelpers'
+import { getMerkleDistributorContract } from 'utils/contractHelpers'
 import Merkle from 'config/constants/merkle'
 
 const StyledInput = styled(Input)`
@@ -26,8 +27,8 @@ const getClaimObjectFromAddress = (address: string) => {
 const ClaimModal: React.FC = () => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
-  const makiContract = getMakiContract()
-  const airdropContract = getMerkleDistributorContract()
+  const web3 = useWeb3()
+  const airdropContract = getMerkleDistributorContract(web3)
   const [recipientAddress, setRecipientAddress] = useState('')
   const [isEligible, setIsEligible] = useState(false)
   const [isAirdropClaimed, setIsAirdropClaimed] = useState(false)
@@ -59,18 +60,24 @@ const ClaimModal: React.FC = () => {
   }, [recipientAddress, setIsAirdropClaimed, setError, airdropContract])
 
   const claimAirdrop = useCallback(async () => {
-    await airdropContract.methods.claim(
-      Merkle.claims[recipientAddress].index,
-      account,
-      Merkle.claims[recipientAddress].amount,
-      Merkle.claims[recipientAddress].proof
-    )
-    setMessage('Airdrop was accepted.')
-  }, [account, recipientAddress, airdropContract])
+    const claimObject = getClaimObjectFromAddress(recipientAddress)
+
+    await airdropContract.methods
+      .claim(
+        claimObject.index,
+        recipientAddress,
+        claimObject.amount,
+        claimObject.proof
+      )
+      .send({ from: account })
+      .on('error', () => setError('Transaction was not successful'))
+      .on('transactionHash', () => setMessage('Your transaction has been recorded'))
+      .on('confirmation', () => setMessage('You have successfully claimed your airdrop'))
+  }, [account, recipientAddress, airdropContract, setError, setMessage])
 
   useEffect(() => {
     const setup = async () => {
-      if (!makiContract || !airdropContract) {
+      if (!airdropContract) {
         setError('Airdrop not available')
       }
       if (isEligible) {
@@ -78,7 +85,7 @@ const ClaimModal: React.FC = () => {
       }
     }
     setup()
-  }, [isEligible, getAirdropStats, setError, makiContract, airdropContract])
+  }, [isEligible, getAirdropStats, setError, airdropContract])
 
   return (
     <Modal title={t('Claim MAKI')}>
