@@ -9,7 +9,7 @@ import profileABI from 'config/abi/pancakeProfile.json'
 import pancakeRabbitsAbi from 'config/abi/pancakeRabbits.json'
 import bunnyFactoryAbi from 'config/abi/bunnyFactory.json'
 import bunnySpecialAbi from 'config/abi/bunnySpecial.json'
-import Merkle from 'config/constants/merkle'
+import { merkle } from 'config/constants/merkle'
 
 export const getProfileContract = () => {
   return getContract(profileABI, getPancakeProfileAddress())
@@ -28,7 +28,7 @@ export const getBunnySpecialContract = () => {
 }
 
 export const getMerkleDistributorContract = () => {
-  return getContract(Merkle.contractABI, Merkle.contractAddress)
+  return getContract(merkle.contractABI, merkle.contractAddress)
 }
 
 export default null

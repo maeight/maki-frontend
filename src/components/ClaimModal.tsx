@@ -1,9 +1,9 @@
 import React, { useEffect, useCallback, useState } from 'react'
 import styled from 'styled-components'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { Modal, Text, LinkExternal, Flex, Box, Button, Input } from 'maki-uikit'
+import { Modal, Text, Flex, Box, Button, Input } from 'maki-uikit'
 import { getMerkleDistributorContract } from 'utils/contractHelpers'
-import Merkle from 'config/constants/merkle'
+import { merkle } from 'config/constants/merkle'
 
 const StyledInput = styled(Input)`
   border-radius: 16px;
@@ -18,8 +18,8 @@ const InputWrapper = styled.div`
 `
 
 const getClaimObjectFromAddress = (address: string) => {
-  const keys = Object.keys(Merkle.claims)
-  return Merkle.claims[keys.find(key => key.toLowerCase() === address.toLowerCase())]
+  const keys = Object.keys(merkle.claims)
+  return merkle.claims[keys.find(key => key.toLowerCase() === address.toLowerCase())]
 }
 
 const ClaimModal: React.FC = () => {
@@ -27,6 +27,7 @@ const ClaimModal: React.FC = () => {
   const airdropContract = getMerkleDistributorContract()
   const [recipientAddress, setRecipientAddress] = useState('')
   const [isEligible, setIsEligible] = useState(false)
+  /* eslint-disable-next-line */
   const [isAirdropClaimed, setIsAirdropClaimed] = useState(false)
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
@@ -55,12 +56,11 @@ const ClaimModal: React.FC = () => {
   }, [recipientAddress, setIsAirdropClaimed, setError, airdropContract])
 
   const claimAirdrop = useCallback(() => {
-    airdropContract.methods
-      .claim(
-        Merkle.claims[recipientAddress].index,
+    airdropContract.methods.claim(
+        merkle.claims[recipientAddress].index,
         recipientAddress,
-        Merkle.claims[recipientAddress].amount,
-        Merkle.claims[recipientAddress].proof
+        merkle.claims[recipientAddress].amount,
+        merkle.claims[recipientAddress].proof
       )
       .send({ from: account })
       .on('error', () => setError('Transaction was not successful'))
@@ -81,7 +81,7 @@ const ClaimModal: React.FC = () => {
   }, [isEligible, getAirdropStats, setError, airdropContract])
 
   return (
-    <Modal title="Claim MAKI">
+    <Modal title="MAKI AIRDROP CLAIM">
       <Flex justifyContent="center">
         <Box maxWidth="320px">
           <Text fontSize="14px">
