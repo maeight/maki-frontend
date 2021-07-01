@@ -6,6 +6,7 @@ import useI18n from 'hooks/useI18n'
 import { useAllHarvest } from 'hooks/useHarvest'
 import useFarmsWithBalance from 'hooks/useFarmsWithBalance'
 import UnlockButton from 'components/UnlockButton'
+import ClaimButton from 'components/ClaimButton'
 import MakiHarvestBalance from './MakiHarvestBalance'
 import MakiWalletBalance from './MakiWalletBalance'
 
@@ -70,16 +71,19 @@ const FarmedStakingCard = () => {
         </Block>
         <Actions>
           {account ? (
-            <Button
-              id="harvest-all"
-              disabled={balancesWithValue.length <= 0 || pendingTx}
-              onClick={harvestAllFarms}
-              fullWidth
-            >
-              {pendingTx
-                ? TranslateString(548, 'Collecting MAKI')
-                : TranslateString(532, `Harvest all (${balancesWithValue.length})`)}
-            </Button>
+            <>
+              <Button
+                id="harvest-all"
+                disabled={balancesWithValue.length <= 0 || pendingTx}
+                onClick={harvestAllFarms}
+                fullWidth
+              >
+                {pendingTx
+                  ? TranslateString(548, 'Collecting MAKI')
+                  : TranslateString(532, `Harvest all (${balancesWithValue.length})`)}
+              </Button>
+              <ClaimButton mt="10px" fullWidth />
+            </>
           ) : (
             <UnlockButton fullWidth />
           )}
