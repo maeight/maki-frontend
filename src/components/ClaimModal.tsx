@@ -81,7 +81,7 @@ const ClaimModal: React.FC = () => {
   }, [isEligible, getAirdropStats, setError, makiContract, airdropContract])
 
   return (
-    <Modal title={t('Claim MAKI')} onDismiss={() => console.log}>
+    <Modal title={t('Claim MAKI')}>
       <Flex justifyContent="center">
         <Box maxWidth="320px">
           <Text fontSize="14px">
