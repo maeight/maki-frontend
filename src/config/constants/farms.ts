@@ -33,21 +33,6 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.maki,
   },
   {
-    pid: 31,
-    lpSymbol: 'MAKI-O3',
-    lpAddresses: {
-      256: '', // 
-      128: '0x329bae377d60df25E58a17b3d0B1D46Cf2F4fD8b', // June 30nd, 2021
-    },
-    tokenSymbol: 'O3',
-    tokenAddresses: {
-      256: '', // 
-      128: '0xee9801669c6138e84bd50deb500827b776777d28', // June 30nd, 2021
-    },
-    quoteTokenSymbol: QuoteToken.MAKI,
-    quoteTokenAdresses: contracts.maki,
-  },
-  {
     pid: 29,
     lpSymbol: 'MAKI-MATIC',
     lpAddresses: {
@@ -163,6 +148,21 @@ const farms: FarmConfig[] = [
     tokenAddresses: {
       256: '', // 
       128: '0xa71EdC38d189767582C38A3145b5873052c3e47a' // (June 8th, 2021)
+    },
+    quoteTokenSymbol: QuoteToken.MAKI,
+    quoteTokenAdresses: contracts.maki,
+  },
+  {
+    pid: 31,
+    lpSymbol: 'MAKI-O3',
+    lpAddresses: {
+      256: '', // 
+      128: '0x329bae377d60df25E58a17b3d0B1D46Cf2F4fD8b', // June 30nd, 2021
+    },
+    tokenSymbol: 'O3',
+    tokenAddresses: {
+      256: '', // 
+      128: '0xee9801669c6138e84bd50deb500827b776777d28', // June 30nd, 2021
     },
     quoteTokenSymbol: QuoteToken.MAKI,
     quoteTokenAdresses: contracts.maki,
