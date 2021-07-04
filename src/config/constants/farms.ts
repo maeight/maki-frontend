@@ -18,6 +18,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wht,
   },
   {
+    pid: 33,
+    lpSymbol: 'MAKI-DAI',
+    lpAddresses: {
+      256: '', // 
+      128: '0xC97C03c42FD2f55b6FA2eA6e858C7E2bc00305c7', // July 5nd, 2021
+    },
+    tokenSymbol: 'DAI',
+    tokenAddresses: {
+      256: '', // 
+      128: '0x3d760a45d0887dfd89a2f5385a236b29cb46ed2a', // July 5nd, 2021
+    },
+    quoteTokenSymbol: QuoteToken.MAKI,
+    quoteTokenAdresses: contracts.maki,
+  },
+  {
     pid: 32,
     lpSymbol: 'MAKI-LTC',
     lpAddresses: {
