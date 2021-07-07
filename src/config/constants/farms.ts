@@ -18,6 +18,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wht,
   },
   {
+    pid: 35,
+    lpSymbol: 'BTC-USDT',
+    lpAddresses: {
+      256: '',
+      128: '0xE2AA9f6423D38B9Eaf743c34e69Ca53A284bAa6a',
+    },
+    tokenSymbol: 'USDT',
+    tokenAddresses: {
+      256: '', // 
+      128: '0xa71EdC38d189767582C38A3145b5873052c3e47a'
+    },
+    quoteTokenSymbol: QuoteToken.BTC,
+    quoteTokenAdresses: contracts.btc,
+  },
+  {
     pid: 34,
     lpSymbol: 'MAKI-LAYER',
     lpAddresses: {
