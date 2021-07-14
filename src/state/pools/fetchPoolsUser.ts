@@ -1,25 +1,22 @@
-import { AbiItem } from 'web3-utils'
 import poolsConfig from 'config/constants/pools'
-import masterChefABI from 'config/abi/masterchef.json'
 import sousChefABI from 'config/abi/sousChef.json'
 import hrc20ABI from 'config/abi/hrc20.json'
-import { QuoteToken } from 'config/constants/types'
 import multicall from 'utils/multicall'
-import { getAddress, getMasterChefAddress } from 'utils/addressHelpers'
-import { getWeb3 } from 'utils/web3'
+import { getMasterchefContract } from 'utils/contractHelpers'
+import { getAddress } from 'utils/addressHelpers'
+import web3NoAccount from 'utils/web3'
 import BigNumber from 'bignumber.js'
 
-// Pool 0, Cake / Cake is a different kind of contract (master chef)
+// Pool 0, Maki / Maki is a different kind of contract (master chef)
 // HT pools use the native HT token (wrapping ? unwrapping is done at the contract level)
-const nonHtPools = poolsConfig.filter((p) => p.stakingTokenName !== QuoteToken.HT)
-const htPools = poolsConfig.filter((p) => p.stakingTokenName === QuoteToken.HT)
+const nonHtPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'HT')
+const htPools = poolsConfig.filter((p) => p.stakingToken.symbol === 'HT')
 const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 0)
-const web3 = getWeb3()
-const masterChefContract = new web3.eth.Contract((masterChefABI as unknown) as AbiItem, getMasterChefAddress())
+const masterChefContract = getMasterchefContract()
 
 export const fetchPoolsAllowance = async (account) => {
   const calls = nonHtPools.map((p) => ({
-    address: p.stakingTokenAddress,
+    address: getAddress(p.stakingToken.address),
     name: 'allowance',
     params: [account, getAddress(p.contractAddress)],
   }))
@@ -34,7 +31,7 @@ export const fetchPoolsAllowance = async (account) => {
 export const fetchUserBalances = async (account) => {
   // Non HT pools
   const calls = nonHtPools.map((p) => ({
-    address: p.stakingTokenAddress,
+    address: getAddress(p.stakingToken.address),
     name: 'balanceOf',
     params: [account],
   }))
@@ -45,7 +42,7 @@ export const fetchUserBalances = async (account) => {
   )
 
   // HT pools
-  const htBalance = await web3.eth.getBalance(account)
+  const htBalance = await web3NoAccount.eth.getBalance(account)
   const htBalances = htPools.reduce(
     (acc, pool) => ({ ...acc, [pool.sousId]: new BigNumber(htBalance).toJSON() }),
     {},

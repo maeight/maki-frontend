@@ -1,26 +1,43 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useRouteMatch, Link } from 'react-router-dom'
-import { ButtonMenu, ButtonMenuItem, Text, Toggle } from 'maki-uikit'
-import useI18n from 'hooks/useI18n'
+import { useLocation, Link, useRouteMatch } from 'react-router-dom'
+import { ButtonMenu, ButtonMenuItem, NotificationDot } from 'maki-uikit'
 
-const FarmTabButtons = ({ stackedOnly, setStackedOnly }) => {
-  const { url, isExact } = useRouteMatch()
-  const TranslateString = useI18n()
+interface FarmTabButtonsProps {
+  hasStakeInFinishedFarms: boolean
+}
+
+const FarmTabButtons: React.FC<FarmTabButtonsProps> = ({ hasStakeInFinishedFarms }) => {
+  const { url } = useRouteMatch()
+  const location = useLocation()
+
+  let activeIndex
+  switch (location.pathname) {
+    case '/farms':
+      activeIndex = 0
+      break
+    case '/farms/history':
+      activeIndex = 1
+      break
+    case '/farms/archived':
+      activeIndex = 2
+      break
+    default:
+      activeIndex = 0
+      break
+  }
 
   return (
     <Wrapper>
-      <ToggleWrapper>
-        <Toggle checked={stackedOnly} onChange={() => setStackedOnly(!stackedOnly)} />
-        <Text> {TranslateString(1116, 'Staked')}</Text>
-      </ToggleWrapper>
-      <ButtonMenu activeIndex={isExact ? 0 : 1} size="sm" variant="subtle">
+      <ButtonMenu activeIndex={activeIndex} scale="sm" variant="subtle">
         <ButtonMenuItem as={Link} to={`${url}`}>
-          {TranslateString(698, 'Active')}
+          Live
         </ButtonMenuItem>
-        <ButtonMenuItem as={Link} to={`${url}/history`}>
-          {TranslateString(700, 'Inactive')}
-        </ButtonMenuItem>
+        <NotificationDot show={hasStakeInFinishedFarms}>
+          <ButtonMenuItem as={Link} to={`${url}/history`}>
+            Finished
+          </ButtonMenuItem>
+        </NotificationDot>
       </ButtonMenu>
     </Wrapper>
   )
@@ -32,16 +49,13 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 32px;
-`
 
-const ToggleWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 32px;
+  a {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
 
-  ${Text} {
-    margin-left: 8px;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-left: 16px;
   }
 `

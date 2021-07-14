@@ -26,12 +26,8 @@ const MakiStats = () => {
 
     
   const makiSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
-  const makiSupplyFormatted = makiSupply
+  const makiSupplyFormated = makiSupply
   ? `${Number(makiSupply).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
-  : '-'
-
-  const burnedBalanceFormatted = burnedBalance
-  ? `${Number(burnedBalance.div(10**18)).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
   : '-'
 
   return (
@@ -43,13 +39,13 @@ const MakiStats = () => {
         <CardImage src="/images/stats-img.png" alt="maki logo" width={64} height={64} />
         <Block>
           <Text color="primaryDark" style={{ lineHeight: '24px' }}>
-            {makiSupplyFormatted}
+            {makiSupplyFormated}
           </Text>
           <Text style={{ lineHeight: '36px' }}> TOTAL SUPPLY </Text>
         </Block>
         <Block>
           <Text color="primaryDark" style={{ lineHeight: '24px' }}>
-            {burnedBalanceFormatted}
+            {getBalanceNumber(burnedBalance)}
           </Text>
           <Text style={{ lineHeight: '36px' }}> MAKI BURNED </Text>
         </Block>

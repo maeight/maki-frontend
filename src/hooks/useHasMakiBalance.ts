@@ -6,7 +6,7 @@ import useTokenBalance from './useTokenBalance'
  * A hook to check if a wallet's MAKI balance is at least the amount passed in
  */
 const useHasMakiBalance = (minimumBalance: BigNumber) => {
-  const makiBalance = useTokenBalance(getMakiAddress())
+  const { balance: makiBalance } = useTokenBalance(getMakiAddress())
   return makiBalance.gte(minimumBalance)
 }
 

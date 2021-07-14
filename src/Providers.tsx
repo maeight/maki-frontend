@@ -1,37 +1,32 @@
 import React from 'react'
 import { ModalProvider } from 'maki-uikit'
-import bsc, { UseWalletProvider } from '@binance-chain/bsc-use-wallet'
+import { Web3ReactProvider } from '@web3-react/core'
+import { HelmetProvider } from 'react-helmet-async'
 import { Provider } from 'react-redux'
-import getRpcUrl from 'utils/getRpcUrl'
-import { LanguageContextProvider } from 'contexts/Localisation/languageContext'
+import { getLibrary } from 'utils/web3React'
 import { ThemeContextProvider } from 'contexts/ThemeContext'
-import { BlockContextProvider } from 'contexts/BlockContext'
+import { LanguageProvider } from 'contexts/Localization'
 import { RefreshContextProvider } from 'contexts/RefreshContext'
+import { ToastsProvider } from 'contexts/ToastsContext'
 import store from 'state'
 
 const Providers: React.FC = ({ children }) => {
-  const rpcUrl = getRpcUrl()
-
   return (
-    <Provider store={store}>
-      <ThemeContextProvider>
-        <LanguageContextProvider>
-          <UseWalletProvider
-            chainId={parseInt(process.env.REACT_APP_CHAIN_ID)}
-            connectors={{
-              walletconnect: { rpcUrl },
-              bsc,
-            }}
-          >
-            <BlockContextProvider>
-              <RefreshContextProvider>
-                <ModalProvider>{children}</ModalProvider>
-              </RefreshContextProvider>
-            </BlockContextProvider>
-          </UseWalletProvider>
-        </LanguageContextProvider>
-      </ThemeContextProvider>
-    </Provider>
+    <Web3ReactProvider getLibrary={getLibrary}>
+      <Provider store={store}>
+        <ToastsProvider>
+          <HelmetProvider>
+            <ThemeContextProvider>
+              <LanguageProvider>
+                <RefreshContextProvider>
+                  <ModalProvider>{children}</ModalProvider>
+                </RefreshContextProvider>
+              </LanguageProvider>
+            </ThemeContextProvider>
+          </HelmetProvider>
+        </ToastsProvider>
+      </Provider>
+    </Web3ReactProvider>
   )
 }
 

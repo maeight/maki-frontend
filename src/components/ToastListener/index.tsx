@@ -1,12 +1,9 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { ToastContainer, Toast } from 'maki-uikit'
-import { useToast } from 'state/hooks'
-import { State } from 'state/types'
-
+import { ToastContainer } from 'maki-uikit'
+import useToast from 'hooks/useToast'
+// eslint-disable-next-line
 const ToastListener = () => {
-  const toasts: Toast[] = useSelector((state: State) => state.toasts.data)
-  const { remove } = useToast()
+  const { toasts, remove } = useToast()
 
   const handleRemove = (id: string) => remove(id)
 

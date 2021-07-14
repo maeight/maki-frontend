@@ -1,12 +1,11 @@
-import React, { useEffect, useCallback, useMemo, useState } from 'react'
+import React, { useEffect, useCallback, useState } from 'react'
 import styled from 'styled-components'
-import Web3 from 'web3'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { provider } from 'web3-core'
-import { AbiItem } from 'web3-utils'
-import { Modal, Text, Flex, Box, Button, Input } from 'maki-uikit'
-import { useMerkleDistributorContract } from 'hooks/useContract'
-import { merkle } from 'config/constants/merkle'
+import { useWeb3React } from '@web3-react/core'
+import useWeb3 from 'hooks/useWeb3'
+import { Modal, Text, LinkExternal, Flex, Box, Button, Input } from 'maki-uikit'
+import { useTranslation } from 'contexts/Localization'
+import { getMerkleDistributorContract } from 'utils/contractHelpers'
+import Merkle from 'config/constants/merkle'
 
 const StyledInput = styled(Input)`
   border-radius: 16px;
@@ -24,18 +23,17 @@ interface ClaimModalProps {
 }
 
 const getClaimObjectFromAddress = (address: string) => {
-  const keys = Object.keys(merkle.claims)
-  return merkle.claims[keys.find(key => key.toLowerCase() === address.toLowerCase())]
+  const keys = Object.keys(Merkle.claims)
+  return Merkle.claims[keys.find(key => key.toLowerCase() === address.toLowerCase())]
 }
 
 const ClaimModal: React.FC<ClaimModalProps> = ({ onDismiss }) => {
-  const { account, ethereum }: { account: string; ethereum: provider; } = useWallet()
-  const web3 = new Web3(ethereum)
-  // const airdropContract = useMemo(() => new web3.eth.Contract((merkle.contractABI as unknown) as AbiItem, merkle.contractAddress), [web3.eth])
-  const airdropContract = useMerkleDistributorContract()
+  const { t } = useTranslation()
+  const { account } = useWeb3React()
+  const web3 = useWeb3()
+  const airdropContract = getMerkleDistributorContract(web3)
   const [recipientAddress, setRecipientAddress] = useState('')
   const [isEligible, setIsEligible] = useState(false)
-  /* eslint-disable-next-line */
   const [isAirdropClaimed, setIsAirdropClaimed] = useState(false)
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
@@ -55,26 +53,29 @@ const ClaimModal: React.FC<ClaimModalProps> = ({ onDismiss }) => {
   const getAirdropStats = useCallback(async () => {
     const claimObject: any = getClaimObjectFromAddress(recipientAddress)
     const isClaimed = await airdropContract.methods.isClaimed(claimObject.index).call()
+
     setIsAirdropClaimed(isClaimed)
-    if (isClaimed && !message) {
+    if (isClaimed) {
       setError('You have already claimed your airdrop')
     } else {
       setError('')
     }
-  }, [recipientAddress, message, setIsAirdropClaimed, setError, airdropContract])
+  }, [recipientAddress, setIsAirdropClaimed, setError, airdropContract])
 
-  const claimAirdrop = useCallback(() => {
-    const claimObject: any = getClaimObjectFromAddress(recipientAddress)
-    airdropContract.methods.claim(
-      claimObject.index,
-      recipientAddress,
-      claimObject.amount,
-      claimObject.proof
-    )
-    .send({ from: account })
-    .on('error', () => setError('Transaction was not successful'))
-    .on('transactionHash', () => setMessage('Your transaction has been recorded'))
-    .on('confirmation', () => setMessage('You have successfully claimed your airdrop'))
+  const claimAirdrop = useCallback(async () => {
+    const claimObject = getClaimObjectFromAddress(recipientAddress)
+
+    await airdropContract.methods
+      .claim(
+        claimObject.index,
+        recipientAddress,
+        claimObject.amount,
+        claimObject.proof
+      )
+      .send({ from: account })
+      .on('error', () => setError('Transaction was not successful'))
+      .on('transactionHash', () => setMessage('Your transaction has been recorded'))
+      .on('confirmation', () => setMessage('You have successfully claimed your airdrop'))
   }, [account, recipientAddress, airdropContract, setError, setMessage])
 
   useEffect(() => {
@@ -90,11 +91,11 @@ const ClaimModal: React.FC<ClaimModalProps> = ({ onDismiss }) => {
   }, [isEligible, getAirdropStats, setError, airdropContract])
 
   return (
-    <Modal title="MAKI AIRDROP CLAIM" onDismiss={onDismiss}>
+    <Modal title={t('MAKI AIRDROP CLAIM')} onDismiss={onDismiss}>
       <Flex justifyContent="center">
         <Box maxWidth="320px">
           <Text fontSize="14px">
-            Enter an address to trigger a MAKI claim. If the address has any claimable MAKI it will be sent to them on submission.
+            {t('Enter an address to trigger a MAKI claim. If the address has any claimable MAKI it will be sent to them on submission.')}
           </Text>
           <InputWrapper>
             <StyledInput
@@ -106,7 +107,7 @@ const ClaimModal: React.FC<ClaimModalProps> = ({ onDismiss }) => {
           </InputWrapper>
           <Text color="red">{error}</Text>
           <Text color="green">{message}</Text>
-          <Button fullWidth mt="16px" disabled={!isEligible} onClick={claimAirdrop}>Claim MAKI</Button>
+          <Button width="100%" mt="16px" disabled={!isEligible} onClick={claimAirdrop}>Claim MAKI</Button>
         </Box>
       </Flex>
     </Modal>
