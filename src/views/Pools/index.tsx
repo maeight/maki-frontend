@@ -8,7 +8,7 @@ import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
 import usePersistState from 'hooks/usePersistState'
-import { usePools, useFetchPublicPoolsData, usePollFarmsData, useMakiVault } from 'state/hooks' // disable: useFetchMakiVault
+import { usePools, useFetchMakiVault, useFetchPublicPoolsData, usePollFarmsData, useMakiVault } from 'state/hooks'
 import { latinise } from 'utils/latinise'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
@@ -102,7 +102,7 @@ const Pools: React.FC = () => {
   const hasStakeInFinishedPools = stakedOnlyFinishedPools.length > 0
 
   usePollFarmsData()
-  // useFetchMakiVault()
+  useFetchMakiVault()
   useFetchPublicPoolsData()
 
   useEffect(() => {
@@ -271,7 +271,6 @@ const Pools: React.FC = () => {
           </Text>
         )}
         {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
-        {cardLayout}
         <div ref={loadMoreRef} />
         {/* <Image
           mx="auto"

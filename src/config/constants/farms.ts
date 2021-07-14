@@ -5,7 +5,7 @@ const farms: FarmConfig[] = [
     /**
    * These 3 farms (PID 0, 1, 4) should always be at the top of the file.
    */
-    {
+  {
     pid: 0,
     lpSymbol: 'MAKI',
     lpAddresses: {
@@ -26,6 +26,147 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wht,
   },
   {
+    pid: 35,
+    lpSymbol: 'BTC-USDT',
+    lpAddresses: {
+      256: '',
+      128: '0xE2AA9f6423D38B9Eaf743c34e69Ca53A284bAa6a',
+    },
+    token: tokens.usdt,
+    quoteToken: tokens.btc,
+  },
+  {
+    pid: 34,
+    lpSymbol: 'MAKI-LAYER',
+    lpAddresses: {
+      256: '',
+      128: '0x5a4a29EcFde14D0aBe20B5357bC1Cbd0B57cf212', // July 5nd, 2021
+    },
+    token: tokens.layer,
+    quoteToken: tokens.maki,
+  },
+  {
+    pid: 33,
+    lpSymbol: 'MAKI-DAI',
+    lpAddresses: {
+      256: '',
+      128: '0xC97C03c42FD2f55b6FA2eA6e858C7E2bc00305c7', // July 5nd, 2021
+    },
+    token: tokens.dai,
+    quoteToken: tokens.maki,
+  },
+  {
+    pid: 32,
+    lpSymbol: 'MAKI-LTC',
+    lpAddresses: {
+      256: '',
+      128: '0x486D5f255CBE45F92f6A4fcefe9c98e9c7c8d821', // July 4nd, 2021
+    },
+    token: tokens.ltc,
+    quoteToken: tokens.maki,
+  },
+  {
+    pid: 29,
+    lpSymbol: 'MAKI-MATIC',
+    lpAddresses: {
+      256: '',
+      128: '0xeeb94653baeac54561a45b47ec2b107a31923722', // June 19th, 2021
+    },
+    token: tokens.matic,
+    quoteToken: tokens.maki,
+  },
+  {
+    pid: 21,
+    lpSymbol: 'MAKI-AETH',
+    lpAddresses: {
+      256: '',
+      128: '0x3af1b17956f87c00d534438e90bdbf7ce5ed2be1', // (June 11th, 2021)
+    },
+    token: tokens.aeth,
+    quoteToken: tokens.maki,
+  },
+  {
+    pid: 15,
+    lpSymbol: 'MAKI-ETH',
+    lpAddresses: {
+      256: '',
+      128: '0xEA5447Db71205FFb834fbEB33177D98C0AdD13ef', // (June 7th, 2021)
+    },
+    token: tokens.eth,
+    quoteToken: tokens.maki,
+  },
+  {
+    pid: 18,
+    lpSymbol: 'MAKI-BTC',
+    lpAddresses: {
+      256: '',
+      128: '0xF3F3CBeF5C90C78214929B61Fe7e5C00C1B37227', // (June 9th, 2021)
+    },
+    token: tokens.btc,
+    quoteToken: tokens.maki,
+  },
+  {
+    pid: 24,
+    lpSymbol: 'MAKI-DOT',
+    lpAddresses: {
+      256: '', // 
+      128: '0x4Ce51c76bBd6aD0aBdF13119e925c41512342c17', // June 14th, 2021
+    },
+    token: tokens.dot,
+    quoteToken: tokens.maki
+  },
+  {
+    pid: 3,
+    lpSymbol: 'MAKI-HUSD',
+    lpAddresses: {
+      256: '0xa0af5d360232e077decfd4650e8b95875fdd6aad',
+      128: '0x88b076F1C2EDcf558711a21639C15D01706938e8', // UPDATED
+      // 128: '0xc189d2699c7e077cb050d9bc666effa40bb31771', // UPDATED
+    },
+    token: tokens.husd,
+    quoteToken: tokens.maki,
+  },
+  {
+    pid: 14,
+    lpSymbol: 'MAKI-USDC',
+    lpAddresses: {
+      256: '',
+      128: '0xFE963b6E4091fFF01DD10e1150A53Eb608848E75', // (June 7th, 2021)
+    },
+    token: tokens.usdc,
+    quoteToken: tokens.maki
+  },
+  {
+    pid: 16,
+    lpSymbol: 'MAKI-USDT',
+    lpAddresses: {
+      256: '',
+      128: '0x3eaf762adacb7fe967796a9c9d4c52d55761b42e', // (June 8th, 2021)
+    },
+    token: tokens.usdt,
+    quoteToken: tokens.maki,
+  },
+  {
+    pid: 31,
+    lpSymbol: 'MAKI-O3',
+    lpAddresses: {
+      256: '', // 
+      128: '0x329bae377d60df25E58a17b3d0B1D46Cf2F4fD8b', // June 30nd, 2021
+    },
+    token: tokens.o3,
+    quoteToken: tokens.maki,
+  },
+  {
+    pid: 22,
+    lpSymbol: 'DOT-ETH',
+    lpAddresses: {
+      256: '', // UPDATE
+      128: '0x3B8552476Af84fF8F7885d1E8918c1E85D9D10f4', // June 12th, 2021
+    },
+    token: tokens.dot,
+    quoteToken: tokens.eth
+  },
+  {
     pid: 4,
     lpSymbol: 'HUSD-HT',
     lpAddresses: {
@@ -33,6 +174,46 @@ const farms: FarmConfig[] = [
       128: '0x12cb243CFa46f1cb98B0EAe80a1e2f757eDE2b3A',
     },
     token: tokens.husd,
+    quoteToken: tokens.wht,
+  },
+  {
+    pid: 5,
+    lpSymbol: 'ETH-HUSD',
+    lpAddresses: {
+      256: '',
+      128: '0xBdb405E580774F1AbA1273f22aF06c9B81433e87',
+    },
+    token: tokens.husd,
+    quoteToken: tokens.eth,
+  },
+  {
+    pid: 2,
+    lpSymbol: 'LAYER-HT',
+    lpAddresses: {
+      256: '0xa0af5d360232e077decfd4650e8b95875fdd6aad',
+      128: '0xc189d2699c7e077cb050d9bc666effa40bb31771',
+    },
+    token: tokens.layer,
+    quoteToken: tokens.wht,
+  },
+  {
+    pid: 6,
+    lpSymbol: 'BTC-HUSD',
+    lpAddresses: {
+      256: '',
+      128: '0x901a89e02cd610c04d0feb45791dbf64b8c20503',
+    },
+    token: tokens.husd,
+    quoteToken: tokens.btc,
+  },
+  {
+    pid: 28,
+    lpSymbol: 'DOT-HT',
+    lpAddresses: {
+      256: '',
+      128: '0x17448C40C3CABec4708CA6e6FbF212253195dE3b', // June 18th, 2021
+    },
+    token: tokens.dot,
     quoteToken: tokens.wht,
   },
   {
@@ -46,45 +227,24 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wht
   },
   {
-    pid: 3,
-    lpSymbol: 'MAKI-HUSD',
+    pid: 25,
+    lpSymbol: 'BCH-HT',
     lpAddresses: {
-      256: '0xa0af5d360232e077decfd4650e8b95875fdd6aad',
-      128: '0x88b076F1C2EDcf558711a21639C15D01706938e8', // UPDATED
-      // 128: '0xc189d2699c7e077cb050d9bc666effa40bb31771', // UPDATED
+      256: '', // UPDATE
+      128: '0xA9d73cf74A1Bf493Cc64eDc45Cdbbbbfa276d580', // June 15th, 2021
     },
-    token: tokens.maki,
-    quoteToken: tokens.husd,
+    token: tokens.bch,
+    quoteToken: tokens.wht
   },
   {
-    pid: 2,
-    lpSymbol: 'LAYER-HT',
+    pid: 26,
+    lpSymbol: 'ADA-HT',
     lpAddresses: {
-      256: '0xa0af5d360232e077decfd4650e8b95875fdd6aad',
-      128: '0xc189d2699c7e077cb050d9bc666effa40bb31771',
+      256: '',
+      128: '0x32e9dF1057049AD672b01B4f7fdB54d922c38713', // (June 11th, 2021)
     },
-    token: tokens.layer,
+    token: tokens.ada,
     quoteToken: tokens.wht,
-  },
-  {
-    pid: 5,
-    lpSymbol: 'ETH-HUSD',
-    lpAddresses: {
-      256: '',
-      128: '0xBdb405E580774F1AbA1273f22aF06c9B81433e87',
-    },
-    token: tokens.eth,
-    quoteToken: tokens.husd,
-  },
-  {
-    pid: 6,
-    lpSymbol: 'BTC-HUSD',
-    lpAddresses: {
-      256: '',
-      128: '0x901a89e02cd610c04d0feb45791dbf64b8c20503',
-    },
-    token: tokens.btc,
-    quoteToken: tokens.husd,
   },
   {
     pid: 7,
@@ -97,26 +257,6 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wht,
   },
   {
-    pid: 8,
-    lpSymbol: 'USDT-HUSD',
-    lpAddresses: {
-      256: '',
-      128: '0x79DD12783DD8A1b33e6e530e77389B196962bBfa', // (2/6/21)
-    },
-    token: tokens.usdt,
-    quoteToken: tokens.husd,
-  },
-  {
-    pid: 9,
-    lpSymbol: 'BTC-ETH',
-    lpAddresses: {
-      256: '',
-      128: '0x82C12Ea7d9eD69E9CF631589A8911DD546615808', // (3/6/21)
-    },
-    token: tokens.btc,
-    quoteToken: tokens.eth,
-  },
-  {
     pid: 10,
     lpSymbol: 'ETH-HT',
     lpAddresses: {
@@ -125,117 +265,6 @@ const farms: FarmConfig[] = [
     },
     token: tokens.eth,
     quoteToken: tokens.wht,
-  },
-
-  // Migrated pools from DEV branch
-  {
-    pid: 26,
-    lpSymbol: 'ADA-HT',
-    lpAddresses: {
-      256: '',
-      128: '0x32e9dF1057049AD672b01B4f7fdB54d922c38713', // (June 11th, 2021)
-    },
-    token: tokens.ada,
-    quoteToken: tokens.wht,
-  },
-  {
-    pid: 21,
-    lpSymbol: 'MAKI-AETH',
-    lpAddresses: {
-      256: '',
-      128: '0x3af1b17956f87c00d534438e90bdbf7ce5ed2be1', // (June 11th, 2021)
-    },
-    token: tokens.maki,
-    quoteToken: tokens.aeth
-  },
-  {
-    pid: 15,
-    lpSymbol: 'MAKI-ETH',
-    lpAddresses: {
-      256: '',
-      128: '0xEA5447Db71205FFb834fbEB33177D98C0AdD13ef', // (June 7th, 2021)
-    },
-    token: tokens.maki,
-    quoteToken: tokens.eth
-  },
-  {
-    pid: 18,
-    lpSymbol: 'MAKI-BTC',
-    lpAddresses: {
-      256: '',
-      128: '0xF3F3CBeF5C90C78214929B61Fe7e5C00C1B37227', // (June 9th, 2021)
-    },
-    token: tokens.maki,
-    quoteToken: tokens.btc,
-  },
-  {
-    pid: 24,
-    lpSymbol: 'MAKI-DOT',
-    lpAddresses: {
-      256: '', // 
-      128: '0x4Ce51c76bBd6aD0aBdF13119e925c41512342c17', // June 14th, 2021
-    },
-    token: tokens.maki,
-    quoteToken: tokens.dot
-  },
-  {
-    pid: 14,
-    lpSymbol: 'MAKI-USDC',
-    lpAddresses: {
-      256: '',
-      128: '0xFE963b6E4091fFF01DD10e1150A53Eb608848E75', // (June 7th, 2021)
-    },
-    token: tokens.maki,
-    quoteToken: tokens.usdc
-  },
-  {
-    pid: 16,
-    lpSymbol: 'MAKI-USDT',
-    lpAddresses: {
-      256: '',
-      128: '0x3eaf762adacb7fe967796a9c9d4c52d55761b42e', // (June 8th, 2021)
-    },
-    token: tokens.maki,
-    quoteToken: tokens.usdt
-  },
-  { pid: 22,
-    lpSymbol: 'DOT-ETH',
-    lpAddresses: {
-      256: '', // UPDATE
-      128: '0x3B8552476Af84fF8F7885d1E8918c1E85D9D10f4', // June 12th, 2021
-    },
-    token: tokens.dot,
-    quoteToken: tokens.eth
-  },
-  {
-    pid: 19,
-    lpSymbol: 'MATIC-HT',
-    lpAddresses: {
-      256: '',
-      128: '0xcDbE5901b56d87Dfa9C0eAC815Ce3ddbB3e63714', // (June 9th, 2021)
-    },
-    token: tokens.matic,
-    quoteToken: tokens.wht
-  },
-  {
-    pid: 20,
-    lpSymbol: 'LINK-HT',
-    lpAddresses: {
-      256: '',
-      128: '0x8baaE305Bca59743F28761C2736D7160B0CDbd9a', // (June 10th, 2021)
-    },
-    token: tokens.link,
-    quoteToken: tokens.wht
-  },
-  {
-    pid: 25,
-    lpSymbol: 'BCH-HT',
-    lpAddresses: {
-      256: '', // UPDATE
-      128: '0xA9d73cf74A1Bf493Cc64eDc45Cdbbbbfa276d580', // June 15th, 2021
-    },
-    token: tokens.bch,
-    quoteToken: tokens.wht
   },
   {
     pid: 11,
@@ -268,6 +297,16 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wht
   },
   {
+    pid: 9,
+    lpSymbol: 'BTC-ETH',
+    lpAddresses: {
+      256: '',
+      128: '0x82C12Ea7d9eD69E9CF631589A8911DD546615808', // (3/6/21)
+    },
+    token: tokens.btc,
+    quoteToken: tokens.eth,
+  },
+  {
     pid: 17,
     lpSymbol: 'AAVE-HT',
     lpAddresses: {
@@ -276,6 +315,46 @@ const farms: FarmConfig[] = [
     },
     token: tokens.aave,
     quoteToken: tokens.wht
+  },
+  {
+    pid: 19,
+    lpSymbol: 'MATIC-HT',
+    lpAddresses: {
+      256: '',
+      128: '0xcDbE5901b56d87Dfa9C0eAC815Ce3ddbB3e63714', // (June 9th, 2021)
+    },
+    token: tokens.matic,
+    quoteToken: tokens.wht
+  },
+  {
+    pid: 30,
+    lpSymbol: 'MATIC-ETH',
+    lpAddresses: {
+      256: '',
+      128: '0xa458bf4f266762ad087e7f9f60f94dd0661d76f4', // June 22nd, 2021
+    },
+    token: tokens.matic,
+    quoteToken: tokens.eth,
+  },
+  {
+    pid: 20,
+    lpSymbol: 'LINK-HT',
+    lpAddresses: {
+      256: '',
+      128: '0x8baaE305Bca59743F28761C2736D7160B0CDbd9a', // (June 10th, 2021)
+    },
+    token: tokens.link,
+    quoteToken: tokens.wht
+  },
+  {
+    pid: 8,
+    lpSymbol: 'USDT-HUSD',
+    lpAddresses: {
+      256: '',
+      128: '0x79DD12783DD8A1b33e6e530e77389B196962bBfa', // (2/6/21)
+    },
+    token: tokens.usdt,
+    quoteToken: tokens.husd,
   },
   {
     pid: 13,

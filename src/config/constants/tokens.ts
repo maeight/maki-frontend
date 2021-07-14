@@ -146,6 +146,22 @@ const tokens = {
     },
     decimals: 18,
   },
+  ltc: {
+    symbol: 'LTC',
+    address: {
+      256: '',
+      128: '0xecb56cf772b5c9a6907fb7d32387da2fcbfb63b4',
+    },
+    decimals: 18,
+  },
+  o3: {
+    symbol: 'O3',
+    address: {
+      256: '', // 
+      128: '0xee9801669c6138e84bd50deb500827b776777d28', // June 30nd, 2021
+    },
+    decimals: 18,
+  }
   // ada: {
   //   symbol: 'ADA',
   //   address: {
