@@ -18,13 +18,16 @@ const InputWrapper = styled.div`
     display: block;
   }
 `
+interface ClaimModalProps {
+  onDismiss?: () => void
+}
 
 const getClaimObjectFromAddress = (address: string) => {
   const keys = Object.keys(Merkle.claims)
   return Merkle.claims[keys.find(key => key.toLowerCase() === address.toLowerCase())]
 }
 
-const ClaimModal: React.FC = () => {
+const ClaimModal: React.FC<ClaimModalProps> = ({ onDismiss }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const web3 = useWeb3()
@@ -88,7 +91,7 @@ const ClaimModal: React.FC = () => {
   }, [isEligible, getAirdropStats, setError, airdropContract])
 
   return (
-    <Modal title={t('Claim MAKI')}>
+    <Modal title={t('MAKI AIRDROP CLAIM')} onDismiss={onDismiss}>
       <Flex justifyContent="center">
         <Box maxWidth="320px">
           <Text fontSize="14px">
