@@ -32,8 +32,8 @@ const farms: FarmConfig[] = [
       256: '',
       128: '0xE2AA9f6423D38B9Eaf743c34e69Ca53A284bAa6a',
     },
-    token: tokens.usdt,
-    quoteToken: tokens.btc,
+    token: tokens.btc,
+    quoteToken: tokens.usdt,
   },
   {
     pid: 34,
@@ -164,7 +164,7 @@ const farms: FarmConfig[] = [
       128: '0x3B8552476Af84fF8F7885d1E8918c1E85D9D10f4', // June 12th, 2021
     },
     token: tokens.dot,
-    quoteToken: tokens.eth
+    quoteToken: tokens.eth,
   },
   {
     pid: 4,
@@ -183,8 +183,8 @@ const farms: FarmConfig[] = [
       256: '',
       128: '0xBdb405E580774F1AbA1273f22aF06c9B81433e87',
     },
-    token: tokens.husd,
-    quoteToken: tokens.eth,
+    token: tokens.eth,
+    quoteToken: tokens.husd,
   },
   {
     pid: 2,
@@ -203,8 +203,8 @@ const farms: FarmConfig[] = [
       256: '',
       128: '0x901a89e02cd610c04d0feb45791dbf64b8c20503',
     },
-    token: tokens.husd,
-    quoteToken: tokens.btc,
+    token: tokens.btc,
+    quoteToken: tokens.husd,
   },
   {
     pid: 28,
