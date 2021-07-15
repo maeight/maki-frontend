@@ -1,15 +1,12 @@
-import { getPancakeProfileAddress, getPancakeRabbitsAddress } from 'utils/addressHelpers'
-import pancakeProfileAbi from 'config/abi/pancakeProfile.json'
-import pancakeRabbitsAbi from 'config/abi/pancakeRabbits.json'
+import Cookies from 'js-cookie'
+import { getProfileContract } from 'utils/contractHelpers'
 import { Nft } from 'config/constants/types'
-import { getContract } from 'utils/web3'
+import { getNftByTokenId } from 'utils/collectibles'
 import { Profile } from 'state/types'
 import { getTeam } from 'state/teams/helpers'
-import nfts from 'config/constants/nfts'
 import { transformProfileResponse } from './helpers'
 
-const profileContract = getContract(pancakeProfileAbi, getPancakeProfileAddress())
-const rabbitContract = getContract(pancakeRabbitsAbi, getPancakeRabbitsAddress())
+const profileContract = getProfileContract()
 const profileApi = process.env.REACT_APP_API_PROFILE
 
 export interface GetProfileResponse {
@@ -50,16 +47,16 @@ const getProfile = async (address: string): Promise<GetProfileResponse> => {
     // so only fetch the nft data if active
     let nft: Nft
     if (isActive) {
-      const bunnyId = await rabbitContract.methods.getBunnyId(tokenId).call()
-      nft = nfts.find((nftItem) => nftItem.bunnyId === Number(bunnyId))
+      nft = await getNftByTokenId(nftAddress, tokenId)
 
-      // Save the preview image to local storage for the exchange
-      localStorage.setItem(
+      // Save the preview image in a cookie so it can be used on the exchange
+      Cookies.set(
         `profile_${address}`,
-        JSON.stringify({
+        {
           username,
-          avatar: `https://pancakeswap.finance/images/nfts/${nft.images.sm}`,
-        }),
+          avatar: `https://makiswap.com/images/nfts/${nft?.images.sm}`,
+        },
+        { domain: 'makiswap.com', secure: true, expires: 30 },
       )
     }
 

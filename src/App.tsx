@@ -1,24 +1,26 @@
-import React, { useEffect, Suspense, lazy } from 'react'
-import { Router, Redirect, Route, Switch } from 'react-router-dom'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import React, { lazy } from 'react'
+import { Redirect, Router, Route, Switch } from 'react-router-dom'
 import { ResetCSS } from 'maki-uikit'
 import BigNumber from 'bignumber.js'
-import { useFetchProfile, useFetchPublicData } from 'state/hooks'
+import useEagerConnect from 'hooks/useEagerConnect'
+import { usePollCoreFarmData, usePollBlockNumber } from 'state/hooks' // removed: useFetchProfile
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
+import SuspenseWithChunkError from './components/SuspenseWithChunkError'
 import ToastListener from './components/ToastListener'
 import PageLoader from './components/PageLoader'
+// import EasterEgg from './components/EasterEgg'
 import Pools from './views/Pools'
-import GlobalCheckBullHiccupClaimStatus from './views/Collectibles/components/GlobalCheckBullHiccupClaimStatus'
 import history from './routerHistory'
+// import NotFound from 'views/NotFound'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page'
 const Home = lazy(() => import('./views/Home'))
 const Farms = lazy(() => import('./views/Farms'))
+const NotFound = lazy(() => import('./views/NotFound'))
 // const Lottery = lazy(() => import('./views/Lottery'))
 // const Ifos = lazy(() => import('./views/Ifos'))
-const NotFound = lazy(() => import('./views/NotFound'))
 // const Collectibles = lazy(() => import('./views/Collectibles'))
 // const Teams = lazy(() => import('./views/Teams'))
 // const Team = lazy(() => import('./views/Teams/Team'))
@@ -31,29 +33,17 @@ BigNumber.config({
 })
 
 const App: React.FC = () => {
-  const { account, connect } = useWallet()
-
-  // Monkey patch warn() because of web3 flood
-  // To be removed when web3 1.3.5 is released
-  useEffect(() => {
-    console.warn = () => null
-  }, [])
-
-  useEffect(() => {
-    if (!account && window.localStorage.getItem('accountStatus')) {
-      connect('injected')
-    }
-  }, [account, connect])
-
-  useFetchPublicData()
-  useFetchProfile()
+  usePollBlockNumber()
+  useEagerConnect()
+  // useFetchProfile()
+  usePollCoreFarmData()
 
   return (
     <Router history={history}>
       <ResetCSS />
       <GlobalStyle />
       <Menu>
-        <Suspense fallback={<PageLoader />}>
+        <SuspenseWithChunkError fallback={<PageLoader />}>
           <Switch>
             <Route path="/" exact>
               <Home />
@@ -95,10 +85,9 @@ const App: React.FC = () => {
             {/* 404 */}
             <Route component={NotFound} />
           </Switch>
-        </Suspense>
+        </SuspenseWithChunkError>
       </Menu>
       <ToastListener />
-      <GlobalCheckBullHiccupClaimStatus />
     </Router>
   )
 }

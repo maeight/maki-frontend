@@ -1,40 +1,41 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Menu as UikitMenu } from 'maki-uikit'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { allLanguages } from 'config/localisation/languageCodes'
-import { LanguageContext } from 'contexts/Localisation/languageContext'
+import { useWeb3React } from '@web3-react/core'
+import { languageList } from 'config/localization/languages'
+import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
-import { usePriceMakiHusd, useProfile } from 'state/hooks'
-// import { HECO_MAINNET } from 'config/constants/metamask_network'
+import useAuth from 'hooks/useAuth'
+import { useHusdPriceFromPid } from 'state/hooks' // Disabled until implemented: useProfile
 import config from './config'
 
+// eslint-disable-next-line
 const Menu = (props) => {
-  const { account, ethereum, connect, reset } = useWallet()
-  const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
+  const { account } = useWeb3React()
+  const { login, logout } = useAuth()
   const { isDark, toggleTheme } = useTheme()
-  const makiPriceUsd = usePriceMakiHusd()
-  const { profile } = useProfile()
+  const makiPriceUsd = useHusdPriceFromPid(3) // MAKI-HUSD farm
+  // const { profile } = useProfile()
+  const { currentLanguage, setLanguage } = useTranslation()
 
   return (
     <UikitMenu
       account={account}
-      provider={ethereum}
-      login={connect}
-      logout={reset}
+      login={login}
+      logout={logout}
       isDark={isDark}
       toggleTheme={toggleTheme}
-      currentLang={selectedLanguage && selectedLanguage.code}
-      langs={allLanguages}
-      setLang={setSelectedLanguage}
+      currentLang={currentLanguage.code}
+      langs={languageList}
+      setLang={setLanguage}
       makiPriceUsd={makiPriceUsd.toNumber()}
       links={config}
-      profile={{
-        username: profile?.username,
-        image: profile?.nft ? `/images/nfts/${profile.nft?.images.sm}` : undefined,
-        profileLink: '/profile',
-        noProfileLink: '/profile',
-        showPip: !profile?.username,
-      }}
+      // profile={{
+      //   username: profile?.username,
+      //   image: profile?.nft ? `/images/nfts/${profile.nft?.images.sm}` : undefined,
+      //   profileLink: '/profile',
+      //   noProfileLink: '/profile',
+      //   showPip: !profile?.username,
+      // }}
       {...props}
     />
   )

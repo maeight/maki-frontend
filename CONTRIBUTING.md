@@ -1,25 +1,25 @@
 # Contributing to the Maki ecosystem
 
-Thanks for taking the time to contribute !
+Thanks for taking the time to contribute!
 You can start by reading our [Contribution guidelines](https://docs.makiswap.com/code/contributing) first.
 
 ## Setup
 
 Create a `.env.development.local` file at the root of the project. Add the following lines inside :
 
-```
-REACT_APP_CROWDIN_APIKEY = ""
-REACT_APP_CROWDIN_PROJECTID = ""
-```
+    ```
+    REACT_APP_CROWDIN_APIKEY = ""
+    REACT_APP_CROWDIN_PROJECTID = ""
+    ```
 
 You'll need this in order to get the i18n system to work. Contact a dev if you need these values.
 
-Install the dependencies
+Install the dependencies.
 
-```shell
-yarn
-yarn start
-```
+    ```shell
+    yarn
+    yarn start
+    ```
 
 Don't forget to setup your IDE with `eslint` and `prettier`.
 
@@ -37,32 +37,14 @@ Don't forget to setup your IDE with `eslint` and `prettier`.
 
 Run tests with `yarn test`.
 
-## Localisation
+## Localization
 
 _In order for the Crowdin API queries to work - you will need `REACT_APP_CROWDIN_APIKEY` & `REACT_APP_CROWDIN_PROJECTID` env variables set in your root `.env.development.local` file_
-
-### Adding translations
-
-A hook expose the function you need to translate content.
-
-```
-import useI18n from 'hooks/useI18n'
-
-...
-const TranslateString = useI18n()
-...
-
-TranslateString(id, 'fallback', data)
-```
-
-- **id** is the crowdin id of the string you want to translate.
-- **fallback** is a string fallback used if the id cannot be found.
-- **data** dynamic variables
 
 #### Dynamic variables Example
 
 If a Crowdin translation like this `You have %num% left in your wallet` - would look something like:
 
-```
-TranslateString(675, `You have ${makiBalance} left in your wallet`, { num: makiBalance })
-```
+    ```
+    TranslateString(675, `You have ${makiBalance} left in your wallet`, { num: makiBalance })
+    ```

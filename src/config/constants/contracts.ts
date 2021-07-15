@@ -1,11 +1,10 @@
 export default {
+
+  // Native 
+
   maki: {
     256: '0x6858a26bBBc8e185274969f6baf99674929Cf766',
     128: '0x5FaD6fBBA4BbA686bA9B8052Cf0bd51699f38B93', // UPDATED - ABI UPDATED (29/5/21)
-  },
-  syrup: {
-    256: '0xEd2Fb478f7fCef33E1E1d980a0135789B295a7F5',
-    128: '0xfb4C85B31b888e4F84aC131667865E029D6486F7', // UPDATED - SOYBAR UPDATED (29/5/21)
   },
   soy: {
     256: '0xEd2Fb478f7fCef33E1E1d980a0135789B295a7F5',
@@ -19,25 +18,47 @@ export default {
     256: '0xB2ce55661A3a4c98D1e01EBd5531046da7029CaD',
     128: '0xDC421d23AafC788997cd4664E1516B93c2783e78', // UPDATED - ABI NEEDS UPDATE ? (29/5/21) 
   },
+  multiCall: {
+    256: '', // FIX ** REQUIRED FOR TESTING
+    128: '0xdcFb312e99810f5Aa24c9d35018Bef6Eb205A7b1', // UPDATED - ABI UPDATED (June 15th, 2021)
+  },
+
+  // Awaiting implementation
+
+  makiVault: {
+    256: '', // FIX ** REQUIRED FOR TESTING
+    128: '0x62067798bDD368AF15d0d2254041A7519f13523e',  // June 15th, 2021
+  },
+  makiProfile: {
+    256: '', // FIX ** REQUIRED FOR TESTING
+    128: '0x4B683C7E13B6d5D7fd1FeA9530F451954c1A7c8A', // FIX ** AWAITING UPDATE
+  },
+  bunnyFactory: {
+    256: '', // FIX ** REQUIRED FOR TESTING
+    128: '', // FIX ** AWAITING UPDATE
+  },
+  bunnySpecial: {
+    256: '', // FIX ** REQUIRED FOR TESTING
+    128: '', // FIX ** AWAITING UPDATE
+  },
+  claimRefund: {
+    256: '', // FIX ** REQUIRED FOR TESTING
+    128: '', // FIX ** AWAITING UPDATE
+  },
+  pointCenterIfo: {
+    256: '', // FIX ** REQUIRED FOR TESTING
+    128: '', // FIX ** AWAITING UPDATE
+  },
+
+  // Tokens
+
   wht: {
     256: '0x5b2da6f42ca09c77d577a12bead0446148830687',
     128: '0x5545153ccfca01fbd7dd11c0b23ba694d9509a6f', // UPDATED - ABI UPDATE (29/5/21)
   },
-  multiCall: {
-    256: '0xC678588909d18879E7ce9a5c11e89264900ec13D',
-    128: '0xC678588909d18879E7ce9a5c11e89264900ec13D', // UPDATED - ABI UPDATED (29/5/21)
-  },
   husd: {
     256: '',
     128: '0x0298c2b32eae4da002a15f36fdf7615bea3da047', // VERIFIED - (29/5/21)
-  },
-  usdc: {
-    256: '',
-    128: '0x9362bbef4b8313a8aa9f0c9808b80577aa26b73b', // VERIFIED - (June 6th 2021)
-  },
-  usdt: {
-    256: '',
-    128: '0xa71edc38d189767582c38a3145b5873052c3e47a', // VERIFIED - (June 6th 2021)
   },
   eth: {
     256: '',
@@ -47,40 +68,31 @@ export default {
     256: '',
     128: '0x66a79d23e58475d2738179ca52cd0b41d73f0bea',
   },
-  BaseAudioContext: {
-    256: '',
-    128: '0x66a79d23e58475d2738179ca52cd0b41d73f0bea',
-  },
+
+  // Pancake
+
+  // BaseAudioContext: {
+  //   256: '',
+  //   128: '0x66a79d23e58475d2738179ca52cd0b41d73f0bea',
+  // },
   lottery: {
-    256: '0x99c2EcD51d52c036B00130d882Bc65f20Fdecf9f',
-    128: '0x3C3f2049cc17C136a604bE23cF7E42745edf3b91',
+    256: '0x99c2EcD51d52c036B00130d882Bc65f20Fdecf9f', // BAD ADDRESS
+    128: '0x3C3f2049cc17C136a604bE23cF7E42745edf3b91', // BAD ADDRESS
   },
-  lotteryNFT: {
-    256: '0x8175c10383511b3a1C68f9dB222dc14A19CC950e',
-    128: '0x5e74094Cd416f55179DBd0E45b1a8ED030e396A1',
-  },
-  pancakeProfile: {
-    256: '0x4B683C7E13B6d5D7fd1FeA9530F451954c1A7c8A',
-    128: '0xDf4dBf6536201370F95e06A0F8a7a70fE40E388a',
-  },
-  pancakeRabbits: {
-    256: '0x60935F36e4631F73f0f407e68642144e07aC7f5E',
-    128: '0xDf7952B35f24aCF7fC0487D01c8d5690a60DBa07',
-  },
-  bunnyFactory: {
-    256: '0x707CBF373175fdB601D34eeBF2Cf665d08f01148',
-    128: '0xfa249Caa1D16f75fa159F7DFBAc0cC5EaB48CeFf',
-  },
-  claimRefund: {
-    256: '',
-    128: '0xE7e53A7e9E3Cf6b840f167eF69519175c497e149',
-  },
-  pointCenterIfo: {
-    256: '0xd2Ac1B1728Bb1C11ae02AB6e75B76Ae41A2997e3',
-    128: '0x3C6919b132462C1FEc572c6300E83191f4F0012a',
-  },
-  bunnySpecial: {
-    256: '0x7b7b1583De1DeB32Ce6605F6deEbF24A0671c17C',
-    128: '0xFee8A195570a18461146F401d6033f5ab3380849',
-  }
+  // lotteryNFT: {
+  //   256: '0x8175c10383511b3a1C68f9dB222dc14A19CC950e',
+  //   128: '0x5e74094Cd416f55179DBd0E45b1a8ED030e396A1',
+  // },
+  // pancakeProfile: {
+  //   256: '0x4B683C7E13B6d5D7fd1FeA9530F451954c1A7c8A',
+  //   128: '0xDf4dBf6536201370F95e06A0F8a7a70fE40E388a',
+  // },
+  // pancakeRabbits: {
+  //   256: '0x60935F36e4631F73f0f407e68642144e07aC7f5E',
+  //   128: '0xDf7952B35f24aCF7fC0487D01c8d5690a60DBa07',
+  // },
+  // pointCenterIfo: {
+  //   256: '0xd2Ac1B1728Bb1C11ae02AB6e75B76Ae41A2997e3',
+  //   128: '0x3C6919b132462C1FEc572c6300E83191f4F0012a',
+  // },
 }

@@ -1,10 +1,10 @@
 import { createGlobalStyle } from 'styled-components'
 // eslint-disable-next-line import/no-unresolved
-import { PancakeTheme } from 'maki-uikit/dist/theme'
+import { MakiTheme } from 'maki-uikit/dist/theme'
 
 declare module 'styled-components' {
   /* eslint-disable @typescript-eslint/no-empty-interface */
-  export interface DefaultTheme extends PancakeTheme {}
+  export interface DefaultTheme extends MakiTheme {}
 }
 
 const GlobalStyle = createGlobalStyle`
