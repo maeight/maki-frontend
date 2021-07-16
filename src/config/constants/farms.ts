@@ -123,8 +123,8 @@ const farms: FarmConfig[] = [
       128: '0x88b076F1C2EDcf558711a21639C15D01706938e8', // UPDATED
       // 128: '0xc189d2699c7e077cb050d9bc666effa40bb31771', // UPDATED
     },
-    token: tokens.husd,
-    quoteToken: tokens.maki,
+    token: tokens.maki,
+    quoteToken: tokens.husd,
   },
   {
     pid: 14,
