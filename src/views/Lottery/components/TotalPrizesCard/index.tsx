@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { Heading, Card, CardBody, CardFooter, Text, PancakeRoundIcon, Flex, Skeleton } from 'maki-uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTranslation } from 'contexts/Localization'
+import { useWeb3React } from '@web3-react/core'
 import { useTotalRewards } from 'hooks/useTickets'
 import PastLotteryDataContext from 'contexts/PastLotteryDataContext'
 import ExpandableSectionButton from 'components/ExpandableSectionButton/ExpandableSectionButton'
@@ -50,7 +50,7 @@ const ExpandingWrapper = styled.div<{ showFooter: boolean }>`
 
 const TotalPrizesCard = () => {
   const { t } = useTranslation();
-  const { account } = useWallet()
+  const { account } = useWeb3React()
   const [showFooter, setShowFooter] = useState(false)
   const lotteryPrizeAmount = +getBalanceNumber(useTotalRewards()).toFixed(0)
   const lotteryPrizeWithCommaSeparators = lotteryPrizeAmount.toLocaleString()

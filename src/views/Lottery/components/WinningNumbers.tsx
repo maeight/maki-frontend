@@ -5,9 +5,10 @@ import { Image, Card, CardBody } from 'maki-uikit'
 import { useWinningNumbers, useMatchingRewardLength } from 'hooks/useTickets'
 import { useTranslation } from 'contexts/Localization'
 import useGetLotteryHasDrawn from 'hooks/useGetLotteryHasDrawn'
+import { useWeb3React } from '@web3-react/core'
 
 const WinningNumbers: React.FC = () => {
-  const { account } = useWallet()
+  const { account } = useWeb3React()
   const winNumbers = useWinningNumbers()
   const lotteryHasDrawn = useGetLotteryHasDrawn()
   const MatchedNumber4 = useMatchingRewardLength(4)

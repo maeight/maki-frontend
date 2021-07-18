@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { ButtonMenu, ButtonMenuItem } from 'maki-uikit'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import PastLotteryDataContext from 'contexts/PastLotteryDataContext'
 import { getLotteryIssueIndex } from 'utils/lotteryUtils'
 import { useTranslation } from 'contexts/Localization'
+import { useWeb3React } from '@web3-react/core'
 import { useLottery } from 'hooks/useContract'
 import Page from 'components/layout/Page'
 import Hero from './components/Hero'
@@ -22,7 +22,7 @@ const Wrapper = styled.div`
 
 const Lottery: React.FC = () => {
   const lotteryContract = useLottery()
-  const { account } = useWallet()
+  const { account } = useWeb3React()
   const { t } = useTranslation();
   const [activeIndex, setActiveIndex] = useState(0)
   const [historyData, setHistoryData] = useState([])
