@@ -165,7 +165,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                   <td key={key}>
                     <CellInner>
                       <CellLayout label={tableSchema[columnIndex].label}>
-                        {isPromotedFarm && <StyledRowAccent />}
+                        {isPromotedFarm && details.quoteToken.symbol === 'HT' && <StyledRowAccent />}
                         {React.createElement(cells[key], { ...props[key], userDataReady })}
                       </CellLayout>
                     </CellInner>
