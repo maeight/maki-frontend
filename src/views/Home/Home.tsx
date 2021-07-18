@@ -4,7 +4,7 @@ import { Heading, Text, BaseLayout } from 'maki-uikit'
 import { useTranslation } from 'contexts/Localization'
 import Page from 'components/layout/Page'
 import FarmStakingCard from 'views/Home/components/FarmStakingCard'
-// import LotteryCard from 'views/Home/components/LotteryCard'
+import LotteryCard from 'views/Home/components/LotteryCard'
 import MakiStats from 'views/Home/components/MakiStats'
 import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
 import EarnAPRCard from 'views/Home/components/EarnAPRCard'
@@ -98,7 +98,7 @@ const Home: React.FC = () => {
         <Cards>
           <FarmStakingCard />
           <MakiStats />
-          {/* <LotteryCard /> */}
+          <LotteryCard />
         </Cards>
         <CTACards>
           <EarnAPRCard />
