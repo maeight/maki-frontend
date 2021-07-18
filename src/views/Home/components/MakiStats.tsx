@@ -45,7 +45,7 @@ const MakiStats = () => {
         </Block>
         <Block>
           <Text color="primaryDark" style={{ lineHeight: '24px' }}>
-            {getBalanceNumber(burnedBalance)}
+            {getBalanceNumber(burnedBalance).toLocaleString()}
           </Text>
           <Text style={{ lineHeight: '36px' }}> MAKI BURNED </Text>
         </Block>
