@@ -10,6 +10,7 @@ const Container = styled.div`
   display: flex;
   width: 100%;
   justify-content: flex-end;
+  align-items: center;
   padding-right: 8px;
   color: ${({ theme }) => theme.colors.primary};
 

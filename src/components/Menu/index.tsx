@@ -15,7 +15,7 @@ const Menu = (props) => {
   const { isDark, toggleTheme } = useTheme()
   const makiPriceUsd = useHusdPriceFromPid(3) // MAKI-HUSD farm
   // const { profile } = useProfile()
-  const { currentLanguage, setLanguage } = useTranslation()
+  const { currentLanguage, setLanguage, t } = useTranslation()
 
   return (
     <UikitMenu
@@ -28,7 +28,7 @@ const Menu = (props) => {
       langs={languageList}
       setLang={setLanguage}
       makiPriceUsd={makiPriceUsd.toNumber()}
-      links={config}
+      links={config(t)}
       // profile={{
       //   username: profile?.username,
       //   image: profile?.nft ? `/images/nfts/${profile.nft?.images.sm}` : undefined,
