@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { useCountUp } from 'react-countup'
-import { Text } from 'maki-uikit'
+import { Text } from 'maki-uikit-v2'
 
 export interface CardValueProps {
   value: number

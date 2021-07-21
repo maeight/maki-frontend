@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button, Flex, Input, InputProps } from 'maki-uikit'
+import { Button, Flex, Input, InputProps } from 'maki-uikit-v2'
 import { useTranslation } from 'contexts/Localization'
 
 interface TokenInputProps extends InputProps {

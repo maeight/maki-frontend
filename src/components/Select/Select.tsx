@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import styled, { css } from 'styled-components'
-import { ArrowDropDownIcon, Text } from 'maki-uikit'
+import { ArrowDropDownIcon, Text } from 'maki-uikit-v2'
 
 const DropDownHeader = styled.div`
   width: 100%;

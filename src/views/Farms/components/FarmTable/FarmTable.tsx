@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
-import { useTable, Button, ChevronUpIcon, ColumnType } from 'maki-uikit'
+import { useTable, Button, ChevronUpIcon, ColumnType } from 'maki-uikit-v2'
 import Row, { RowProps } from './Row'
 
 export interface ITableProps {

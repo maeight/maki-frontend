@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box } from 'maki-uikit'
+import { Box } from 'maki-uikit-v2'
 import Container from '../layout/Container'
 
 const Outer = styled(Box)<{ background?: string }>`
