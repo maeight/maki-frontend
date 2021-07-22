@@ -75,14 +75,18 @@ export default {
   //   256: '',
   //   128: '0x66a79d23e58475d2738179ca52cd0b41d73f0bea',
   // },
-  lottery: {
-    256: '0x99c2EcD51d52c036B00130d882Bc65f20Fdecf9f', // BAD ADDRESS
-    128: '0x3C3f2049cc17C136a604bE23cF7E42745edf3b91', // BAD ADDRESS
+  mockcake: {
+    256: '',
+    128: '0x8B7FCDC445fb8C6e585bBbC1512D2834809D8B35',
   },
-  // lotteryNFT: {
-  //   256: '0x8175c10383511b3a1C68f9dB222dc14A19CC950e',
-  //   128: '0x5e74094Cd416f55179DBd0E45b1a8ED030e396A1',
-  // },
+  lottery: {
+    256: '',
+    128: '0x5744D062FAa7693fFc43796bE2bf3952Ce075891',
+  },
+  lotteryNFT: {
+    256: '',
+    128: '0x130F735119224aa3Fc08aC789342599030b96c4f',
+  },
   // pancakeProfile: {
   //   256: '0x4B683C7E13B6d5D7fd1FeA9530F451954c1A7c8A',
   //   128: '0xDf4dBf6536201370F95e06A0F8a7a70fE40E388a',
