@@ -1,43 +1,44 @@
 import { MenuEntry } from 'maki-uikit'
+import { ContextApi } from 'contexts/Localization/types'
 
-const config: MenuEntry[] = [
+const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     {
-    label: 'Home',
+    label: t('Home'),
     icon: 'HomeIcon',
     href: '/',
   },
   {
-    label: 'Trade',
+    label: t('Trade'),
     icon: 'TradeIcon',
     href: 'https://exchange.makiswap.com',
       items: [
         {
-          label: 'Exchange',
+          label: t('Exchange'),
           href: 'https://exchange.makiswap.com',
         },
         {
-          label: 'Liquidity',
+          label: t('Liquidity'),
           href: 'https://exchange.makiswap.com/#/pool',
         },
       ],
   },
   {
-    label: 'Farms',
+    label: t('Farms'),
     icon: 'FarmIcon',
     href: '/farms',
   },
   {
-    label: 'Pools',
+    label: t('Pools'),
     icon: 'PoolIcon',
     href: '/pools',
   },
   {
-    label: 'Lottery',
+    label: t('Lottery'),
     icon: 'PoolIcon',
     href: '/lottery',
   },  
   {
-    label: 'Contracts',
+    label: t('Contracts'),
     icon: 'ContractsIcon',
     items: [
       {
@@ -63,15 +64,15 @@ const config: MenuEntry[] = [
     ],
   },
   {
-    label: 'Audits',
+    label: t('Audits'),
     icon: 'GroupsIcon',
     items: [
       {
-        label: 'Chainsulting',
+        label: t('Chainsulting'),
         href: 'https://github.com/chainsulting/Smart-Contract-Security-Audits/blob/master/MakiSwap/02_Smart%20Contract%20Audit_MakiSwap.pdf', 
       },
       {
-        label: 'Certik',
+        label: t('Certik'),
         href: 'https://www.certik.org/projects/makiswap', 
       },
     ],
@@ -82,41 +83,41 @@ const config: MenuEntry[] = [
   //   href: '/ifo'
   // },
   {
-     label: 'Info',
+     label: t('Info'),
      icon: 'InfoIcon',
      items: [
        {
-         label: 'Overview',
+         label: t('Overview'),
          href: 'https://info.makiswap.com',
        },
        {
-         label: 'Tokens',
+         label: t('Tokens'),
          href: 'https://info.makiswap.com/tokens',
        },
        {
-         label: 'Pairs',
+         label: t('Pairs'),
          href: 'https://info.makiswap.com/pairs',
        },
        {
-         label: 'Accounts',
+         label: t('Accounts'),
          href: 'https://info.makiswap.com/accounts',
        },
      ],
    },
    {
-    label: 'More',
+    label: t('More'),
     icon: 'MoreIcon',
     items: [
       {
-        label: 'Docs',
+        label: t('Docs'),
         href: 'https://docs.makiswap.com/', 
       },
       {
-        label: 'Github',
+        label: t('Github'),
         href: 'https://github.com/MakiSwap-Protocol', 
       },
       {
-        label: 'Contact',
+        label: t('Contact'),
         href: 'https://docs.makiswap.com/jiro-ono/contact-us/business-and-partnerships', 
       },
     ]

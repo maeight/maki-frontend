@@ -49,10 +49,25 @@ const CellInner = styled.div`
   }
 `
 
-const StyledTr = styled.tr`
+const CellLargerInner = styled.div`
+  padding: 24px 0px;
+  display: flex;
+  width: 250%;
+  align-items: center;
+  padding-right: 8px;
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    padding-right: 32px;
+  }
+`
+
+const StyledTr = styled.div`
   cursor: pointer;
   border-bottom: 2px solid ${({ theme }) => theme.colors.cardBorder};
   position: relative;
+  display: flex;
+  alignItems: center;
+  justifyContent: space-between;
 `
 
 const EarnedMobileCell = styled.td`
@@ -102,9 +117,9 @@ const StyledRowAccent = styled.div`
   filter: blur(6px);
   position: absolute;
   top: -2px;
-  right: -2px;
-  bottom: -2px;
   left: -2px;
+  bottom: -2px;
+  right: -2px;
   z-index: -1;
 `
 
@@ -142,34 +157,35 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
             switch (key) {
               case 'details':
                 return (
-                  <td key={key}>
-                    <CellInner>
-                      <CellLayout>
-                        <Details actionPanelToggled={actionPanelExpanded} />
-                      </CellLayout>
-                    </CellInner>
-                  </td>
+                  <CellInner key={key}>
+                    <CellLayout>
+                      <Details actionPanelToggled={actionPanelExpanded} />
+                    </CellLayout>
+                  </CellInner>
                 )
               case 'apr':
                 return (
-                  <td key={key}>
-                    <CellInner>
-                      <CellLayout label='APR'>
-                        <Apr {...props.apr} hideButton={isMobile} />
-                      </CellLayout>
-                    </CellInner>
-                  </td>
+                  <CellInner key={key}>
+                    <CellLayout label='APR'>
+                      <Apr {...props.apr} hideButton={isMobile} />
+                    </CellLayout>
+                  </CellInner>
                 )
               default:
                 return (
-                  <td key={key}>
-                    <CellInner>
-                      <CellLayout label={tableSchema[columnIndex].label}>
-                        {isPromotedFarm && <StyledRowAccent />}
-                        {React.createElement(cells[key], { ...props[key], userDataReady })}
-                      </CellLayout>
-                    </CellInner>
-                  </td>
+                  key === 'earned' ? 
+                  <CellInner key={key}>
+                    <CellLayout label={tableSchema[columnIndex].label}>
+                      {React.createElement(cells[key], { ...props[key], userDataReady })}
+                    </CellLayout>
+                  </CellInner>
+                  :
+                  <CellLargerInner key={key}>
+                    <CellLayout label={tableSchema[columnIndex].label}>
+                      {isPromotedFarm && details.quoteToken.symbol === 'HT' && <StyledRowAccent />}
+                      {React.createElement(cells[key], { ...props[key], userDataReady })}
+                    </CellLayout>
+                  </CellLargerInner>
                 )
             }
           })}
