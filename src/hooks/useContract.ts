@@ -11,6 +11,7 @@ import {
   getMakiVaultAddress,
   getProfileAddress,
   getLotteryAddress,
+  getLotteryNFTAddress
 } from 'utils/addressHelpers'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
@@ -98,7 +99,7 @@ export const useLottery = () => {
 
 export const useLotteryTicket = () => {
   const abi = (lotteryTicket as unknown) as AbiItem
-  return useContract(abi, getLotteryAddress()) // UPDATE get()
+  return useContract(abi, getLotteryNFTAddress()) // UPDATE get()
 }
 
 
