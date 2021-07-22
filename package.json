@@ -52,7 +52,7 @@
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.20",
     "maki-sdk": "^4.4.1",
-    "maki-uikit": "^2.4.3",
+    "maki-uikit-v2": "^2.4.4",
     "node-fetch": "^2.6.1",
     "react": "^17.0.1",
     "react-chartjs-2": "^2.11.1",

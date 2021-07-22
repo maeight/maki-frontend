@@ -3828,9 +3828,9 @@
     "@types/node" "*"
 
 "@types/lodash@^4.14.162":
-  version "4.14.170"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.170.tgz#0d67711d4bf7f4ca5147e9091b847479b87925d6"
-  integrity sha512-bpcvu/MKHHeYX+qeEN8GE7DIravODWdACVA1ctevD8CN24RhPZIKMn9ntfAsrvLfSX3cR5RrBKAbYm9bGs0A+Q==
+  version "4.14.171"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.171.tgz#f01b3a5fe3499e34b622c362a46a609fdb23573b"
+  integrity sha512-7eQ2xYLLI/LsicL2nejW9Wyko3lcpN6O/z0ZLHrEQsg280zIdCv1t/0m6UtBjUHokCGBQ3gYTbHzDkZ1xOBwwg==
 
 "@types/long@^4.0.0", "@types/long@^4.0.1":
   version "4.0.1"
@@ -4009,9 +4009,9 @@
     csstype "^3.0.2"
 
 "@types/styled-system@^5.1.10":
-  version "5.1.11"
-  resolved "https://registry.yarnpkg.com/@types/styled-system/-/styled-system-5.1.11.tgz#158849f3b14cdf8bf27a10f0cf87a2c3a89eb680"
-  integrity sha512-R+JxEZYa5T0HD2urViR/mdklVaGhwbNOtDoWWGQ1+z1CGs/gF1UAKCaS//YwsUwterEKpyaKxgaXyFNKF04GCA==
+  version "5.1.12"
+  resolved "https://registry.yarnpkg.com/@types/styled-system/-/styled-system-5.1.12.tgz#4f3ca8da3dffe3c5a6cc3b2a97f51b41464c104a"
+  integrity sha512-7x4BYKKfK9QewfsFC2x5r9BK/OrfX+JF/1P21jKPMHruawDw9gvG7bTZgTVk6YkzDO2JUlsk4i8hdiAepAhD0g==
   dependencies:
     csstype "^3.0.2"
 
@@ -14387,10 +14387,10 @@ maki-sdk@^4.4.1:
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-maki-uikit@^2.4.3:
-  version "2.4.3"
-  resolved "https://registry.yarnpkg.com/maki-uikit/-/maki-uikit-2.4.3.tgz#7b1e82c0996af27b6df9dfaa66ee7f50873f1428"
-  integrity sha512-PVn1I/ifu5iCt5wq9op8IkZwj/AKVrAEMqxJOpvgT2DdkGzJx/H5znnOgpi4+81FkIabPU6MqsZGvNc23MIQPw==
+maki-uikit-v2@^2.4.4:
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/maki-uikit-v2/-/maki-uikit-v2-2.4.4.tgz#f38c63fe8442f494e623c1e149581ea0c6fd2b1e"
+  integrity sha512-EJJXp927iWDB0tu7byCoAmjHD8ANc4JpCGJ9D7Kn/rQGk2fFmY8oUuiAbLYUIjYG4tuNWfknt/3ujcq8mKKSgA==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.162"

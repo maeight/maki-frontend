@@ -10,7 +10,7 @@ import {
   ButtonMenuItem,
   HelpIcon,
   useTooltip,
-} from 'maki-uikit'
+} from 'maki-uikit-v2'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import { useSousHarvest } from 'hooks/useHarvest'

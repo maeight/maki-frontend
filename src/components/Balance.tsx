@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import CountUp from 'react-countup'
-import { Text, TextProps } from 'maki-uikit'
+import { Text, TextProps } from 'maki-uikit-v2'
 
 interface BalanceProps extends TextProps {
   value: number

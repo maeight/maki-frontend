@@ -1,4 +1,4 @@
-import { Flex, Text } from 'maki-uikit'
+import { Flex, Text } from 'maki-uikit-v2'
 import styled from 'styled-components'
 
 const BaseCell = styled.div`
