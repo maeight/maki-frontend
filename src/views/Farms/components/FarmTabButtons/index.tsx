@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useLocation, Link, useRouteMatch } from 'react-router-dom'
-import { ButtonMenu, ButtonMenuItem, NotificationDot } from 'maki-uikit'
+import { ButtonMenu, ButtonMenuItem, NotificationDot } from 'maki-uikit-v2'
 
 interface FarmTabButtonsProps {
   hasStakeInFinishedFarms: boolean

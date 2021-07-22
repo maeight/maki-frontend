@@ -1,5 +1,5 @@
 import React from 'react'
-// import { Text } from 'maki-uikit'
+// import { Text } from 'maki-uikit-v2'
 // import { getBalanceNumber } from 'utils/formatBalance'
 // import { useTotalRewards } from 'hooks/useTickets'
 // import { usePriceMakiHusd } from 'state/hooks'

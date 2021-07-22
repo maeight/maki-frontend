@@ -9,7 +9,7 @@ import {
   UserRejectedRequestError as UserRejectedRequestErrorWalletConnect,
   WalletConnectConnector,
 } from '@web3-react/walletconnect-connector'
-import { ConnectorNames, connectorLocalStorageKey } from 'maki-uikit'
+import { ConnectorNames, connectorLocalStorageKey } from 'maki-uikit-v2'
 import { connectorsByName } from 'utils/web3React'
 import { setupNetwork } from 'utils/wallet'
 import useToast from 'hooks/useToast'
@@ -25,7 +25,8 @@ const useAuth = () => {
 
   const login = useCallback(
     (connectorID: ConnectorNames) => {
-      const connector = connectorsByName[connectorID]
+      const connector = connectorsByName.injected
+      console.log('@@@', connectorID, connector);
       if (connector) {
         activate(connector, async (error: Error) => {
           if (error instanceof UnsupportedChainIdError) {
@@ -36,7 +37,7 @@ const useAuth = () => {
           } else {
             window.localStorage.removeItem(connectorLocalStorageKey)
             if (error instanceof NoEthereumProviderError || error instanceof NoBscProviderError) {
-              toastError(('Provider Error'), ('No provider was found'))
+              toastError(t('Provider Error'), t('No provider was found'))
             } else if (
               error instanceof UserRejectedRequestErrorInjected ||
               error instanceof UserRejectedRequestErrorWalletConnect
