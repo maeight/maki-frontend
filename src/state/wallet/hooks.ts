@@ -1,10 +1,10 @@
 import { Currency, CurrencyAmount, HUOBI, JSBI, Token, TokenAmount } from 'maki-sdk'
 import { useMemo } from 'react'
 import HRC20_INTERFACE from 'config/abi/hrc20'
-import { useAllTokens } from '../../hooks/Tokens'
-import { useActiveWeb3React } from '../../hooks'
-import { useMulticallContract } from '../../hooks/useContract'
-import { isAddress } from '../../utils'
+import { useAllTokens } from 'hooks/Tokens'
+import { useActiveWeb3React } from 'hooks'
+import { useMulticallContract } from 'hooks/useContract'
+import { isAddress } from 'utils'
 import { useSingleContractMultipleData, useMultipleContractSingleData } from '../multicall/hooks'
 
 /**

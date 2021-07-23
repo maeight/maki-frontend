@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useActiveWeb3React } from '../../hooks'
+import { useActiveWeb3React } from 'hooks'
 import { addPopup, PopupContent, removePopup, toggleWalletModal, toggleSettingsMenu } from './actions'
 import { AppState } from '../index'
 

@@ -2,11 +2,12 @@ import { ChainId, Pair, Token } from 'maki-sdk'
 import lodash from 'lodash'
 import { useCallback, useMemo } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
-import { BASES_TO_TRACK_LIQUIDITY_FOR, PINNED_PAIRS } from '../../config/constants'
 
-import { useActiveWeb3React } from '../../hooks'
+import { useActiveWeb3React } from 'hooks'
 // eslint-disable-next-line import/no-cycle
-import { useAllTokens } from '../../hooks/Tokens'
+import { useAllTokens } from 'hooks/Tokens'
+import { setThemeCache } from 'utils/theme'
+import { BASES_TO_TRACK_LIQUIDITY_FOR, PINNED_PAIRS } from '../../config/constants'
 import { AppDispatch, AppState } from '../index'
 import {
   addSerializedPair,
@@ -21,7 +22,6 @@ import {
   muteAudio,
   unmuteAudio,
 } from './actions'
-import { setThemeCache } from '../../utils/theme'
 
 function serializeToken(token: Token): SerializedToken {
   return {
