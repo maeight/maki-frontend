@@ -1,9 +1,8 @@
 import Web3 from 'web3'
-import { AbiItem } from 'web3-utils'
-import web3NoAccount from 'utils/web3'
+import { ethers } from 'ethers'
+import { simpleRpcProvider } from 'utils/providers'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
-import { DEFAULT_GAS_PRICE } from 'config'
 import Merkle from 'config/constants/merkle'
 
 // -----------------
@@ -51,58 +50,63 @@ import { getSettings, getGasPriceInWei } from './settings'
 // -----------------
 //  Functions
 // -----------------
-export const getContract = (abi: any, address: string, web3?: Web3, account?: string) => {
-  const _web3 = web3 ?? web3NoAccount
-  const gasPrice = account ? getSettings(account).gasPrice : DEFAULT_GAS_PRICE
+// export const getContract = (abi: any, address: string, web3?: Web3, account?: string) => {
+//   const _web3 = web3 ?? web3NoAccount
+//   const gasPrice = account ? getSettings(account).gasPrice : DEFAULT_GAS_PRICE
 
-  return new _web3.eth.Contract(abi as unknown as AbiItem, address, {
-    gasPrice: getGasPriceInWei(gasPrice).toString(),
-  })
+//   return new _web3.eth.Contract(abi as unknown as AbiItem, address, {
+//     gasPrice: getGasPriceInWei(gasPrice).toString(),
+//   })
+// }
+const getContract = (abi: any, address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
+  const signerOrProvider = signer ?? simpleRpcProvider
+  return new ethers.Contract(address, abi, signerOrProvider)
 }
-export const getHrc20Contract = (address: string, web3?: Web3) => {
-  return getContract(hrc20Abi, address, web3)
+
+export const getHrc20Contract = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(hrc20Abi, address, signer)
 }
-export const getErc721Contract = (address: string, web3?: Web3) => {
-  return getContract(erc721Abi, address, web3)
+export const getErc721Contract = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(erc721Abi, address, signer)
 }
-export const getLpContract = (address: string, web3?: Web3) => {
-  return getContract(lpTokenAbi, address, web3)
+export const getLpContract = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(lpTokenAbi, address, signer)
 }
-export const getMakiContract = (web3?: Web3) => {
-  return getContract(makiAbi, getMakiAddress(), web3)
+export const getMakiContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(makiAbi, getMakiAddress(), signer)
 }
-export const getMakiVaultContract = (web3?: Web3) => {
-  return getContract(makiVaultAbi, getMakiVaultAddress(), web3)
+export const getMakiVaultContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(makiVaultAbi, getMakiVaultAddress(), signer)
 }
-export const getMasterchefContract = (web3?: Web3) => {
-  return getContract(masterChef, getMasterChefAddress(), web3)
+export const getMasterchefContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(masterChef, getMasterChefAddress(), signer)
 }
-export const getSousChefContract = (id: number, web3?: Web3) => {
+export const getSousChefContract = (id: number, signer?: ethers.Signer | ethers.providers.Provider) => {
   const config = poolsConfig.find((pool) => pool.sousId === id)
   const abi = config.poolCategory === PoolCategory.HECO ? sousChefHt : sousChef
-  return getContract(abi, getAddress(config.contractAddress), web3)
+  return getContract(abi, getAddress(config.contractAddress), signer)
 }
 
-export const getMulticallContract = (web3?: Web3) => {
-  return getContract(multiCall, getMulticallAddress(), web3)
+export const getMulticallContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(multiCall, getMulticallAddress(), signer)
 }
 
 // Not implemented yet - here to avoid errors
-export const getProfileContract = (web3?: Web3) => {
-  return getContract(profileAbi, getProfileAddress(), web3)
+export const getProfileContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(profileAbi, getProfileAddress(), signer)
 }
-export const getBunnyFactoryContract = (web3?: Web3) => {
-  return getContract(bunnyFactoryAbi, getBunnyFactoryAddress(), web3)
+export const getBunnyFactoryContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(bunnyFactoryAbi, getBunnyFactoryAddress(), signer)
 }
-export const getBunnySpecialContract = (web3?: Web3) => {
-  return getContract(bunnySpecialAbi, getBunnySpecialAddress(), web3)
+export const getBunnySpecialContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(bunnySpecialAbi, getBunnySpecialAddress(), signer)
 }
-export const getClaimRefundContract = (web3?: Web3) => {
-  return getContract(claimRefundAbi, getClaimRefundAddress(), web3)
+export const getClaimRefundContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(claimRefundAbi, getClaimRefundAddress(), signer)
 }
-export const getPointCenterIfoContract = (web3?: Web3) => {
-  return getContract(pointCenterIfo, getPointCenterIfoAddress(), web3)
+export const getPointCenterIfoContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(pointCenterIfo, getPointCenterIfoAddress(), signer)
 }
-export const getMerkleDistributorContract = (web3?: Web3) => {
-  return getContract(Merkle.contractABI, Merkle.contractAddress, web3)
+export const getMerkleDistributorContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(Merkle.contractABI, Merkle.contractAddress, signer)
 }

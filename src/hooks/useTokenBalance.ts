@@ -31,7 +31,7 @@ const useTokenBalance = (tokenAddress: string) => {
     const fetchBalance = async () => {
       const contract = getHrc20Contract(tokenAddress)
       try {
-        const res = await contract.methods.balanceOf(account).call()
+        const res = await contract.balanceOf(account)
         setBalanceState({ balance: new BigNumber(res), fetchStatus: SUCCESS })
       } catch (e) {
         console.error(e)
@@ -57,8 +57,9 @@ export const useTotalSupply = () => {
   useEffect(() => {
     async function fetchTotalSupply() {
       const makiContract = getMakiContract()
-      const supply = await makiContract.methods.totalSupply().call()
-      setTotalSupply(new BigNumber(supply))
+      const supply = await makiContract.totalSupply()
+
+      setTotalSupply(new BigNumber(supply.toString()))
     }
 
     fetchTotalSupply()
@@ -74,8 +75,8 @@ export const useBurnedBalance = (tokenAddress: string) => {
   useEffect(() => {
     const fetchBalance = async () => {
       const contract = getHrc20Contract(tokenAddress)
-      const res = await contract.methods.balanceOf('0x000000000000000000000000000000000000dEaD').call()
-      setBalance(new BigNumber(res))
+      const res = await contract.balanceOf('0x000000000000000000000000000000000000dEaD')
+      setBalance(new BigNumber(res.toString()))
     }
 
     fetchBalance()

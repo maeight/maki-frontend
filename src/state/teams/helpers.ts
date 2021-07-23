@@ -2,8 +2,9 @@ import merge from 'lodash/merge'
 import teamsList from 'config/constants/teams'
 import { getProfileContract } from 'utils/contractHelpers'
 import { Team } from 'config/constants/types'
-import makeBatchRequest from 'utils/makeBatchRequest'
 import { TeamsById, TeamResponse } from 'state/types'
+import { multicallv2 } from 'utils/multicall'
+import profileAbi from 'config/abi/pancakeProfile.json'
 
 const profileContract = getProfileContract()
 
@@ -14,7 +15,7 @@ export const getTeam = async (teamId: number): Promise<Team> => {
       2: numberUsers,
       3: numberPoints,
       4: isJoinable,
-    } = await profileContract.methods.getTeamProfile(teamId).call()
+    } = await profileContract.getTeamProfile(teamId)
     const staticTeamInfo = teamsList.find((staticTeam) => staticTeam.id === teamId)
 
     return merge({}, staticTeamInfo, {
@@ -39,14 +40,16 @@ export const getTeams = async (): Promise<TeamsById> => {
         [team.id]: team,
       }
     }, {})
-    const nbTeams = await profileContract.methods.numberTeams().call()
+    const nbTeams = await profileContract.numberTeams()
     const calls = []
-
     for (let i = 1; i <= nbTeams; i++) {
-      calls.push(profileContract.methods.getTeamProfile(i).call)
+      calls.push({
+        address: profileContract.address,
+        name: 'getTeamProfile',
+        params: [i],
+      })
     }
-
-    const teamData = (await makeBatchRequest(calls)) as TeamResponse[]
+    const teamData = await multicallv2(profileAbi, calls)
     const onChainTeamData = teamData.reduce((accum, team, index) => {
       const { 0: teamName, 2: numberUsers, 3: numberPoints, 4: isJoinable } = team
 

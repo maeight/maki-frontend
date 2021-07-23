@@ -67,7 +67,7 @@ export const fetchUserStakeBalances = async (account) => {
   )
 
   // Maki / Maki pool
-  const { amount: masterPoolAmount } = await masterChefContract.methods.userInfo('0', account).call()
+  const { amount: masterPoolAmount } = await masterChefContract.userInfo('0', account)
 
   return { ...stakedBalances, 0: new BigNumber(masterPoolAmount).toJSON() }
 }
@@ -88,7 +88,7 @@ export const fetchUserPendingRewards = async (account) => {
   )
 
   // Maki / Maki pool
-  const pendingReward = await masterChefContract.methods.pendingMaki('0', account).call()
+  const pendingReward = await masterChefContract.pendingMaki('0', account)
 
   return { ...pendingRewards, 0: new BigNumber(pendingReward).toJSON() }
 }

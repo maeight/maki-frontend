@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js'
 import { DEFAULT_GAS_LIMIT, DEFAULT_TOKEN_DECIMAL } from 'config'
-import { ethers } from 'ethers'
+import { ethers, Contract } from 'ethers'
 import { Pair, TokenAmount, Token } from 'maki-sdk'
 import { getLpContract, getMasterchefContract } from 'utils/contractHelpers'
 import farms from 'config/constants/farms'
@@ -13,122 +13,98 @@ import { web3WithArchivedNodeProvider } from './web3'
 import { getBalanceAmount } from './formatBalance'
 import { BIG_TEN, BIG_ZERO } from './bigNumber'
 
-export const approve = async (lpContract, masterChefContract, account) => {
-  return lpContract.methods
-    .approve(masterChefContract.options.address, ethers.constants.MaxUint256)
-    .send({ from: account })
+export const approve = async (lpContract: Contract, masterChefContract: Contract, account) => {
+  const tx = await lpContract.approve(masterChefContract.address, ethers.constants.MaxUint256, { from: account })
+  const receipt = await tx.wait()
+  return receipt
 }
 
 export const stake = async (masterChefContract, pid, amount, account) => {
   if (pid === 0) {
-    return masterChefContract.methods
-      .enterStaking(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString())
-      .send({ from: account, gas: DEFAULT_GAS_LIMIT })
-      .on('transactionHash', (tx) => {
-        return tx.transactionHash
-      })
+    const tx = await masterChefContract
+      .enterStaking(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(), { from: account, gasLimit: DEFAULT_GAS_LIMIT })
+    const receipt = await tx.wait()
+    return receipt.status
   }
 
-  return masterChefContract.methods
-    .deposit(pid, new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString())
-    .send({ from: account, gas: DEFAULT_GAS_LIMIT })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
+  const tx = await masterChefContract
+    .deposit(pid, new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(), { from: account, gasLimit: DEFAULT_GAS_LIMIT })
+  const receipt = await tx.wait()
+  return receipt.status
 }
 
 export const sousStake = async (sousChefContract, amount, decimals = 18, account) => {
-  return sousChefContract.methods
-    .deposit(new BigNumber(amount).times(BIG_TEN.pow(decimals)).toString())
-    .send({ from: account, gas: DEFAULT_GAS_LIMIT })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
+  const tx = await sousChefContract
+    .deposit(new BigNumber(amount).times(BIG_TEN.pow(decimals)).toString(), { from: account, gasLimit: DEFAULT_GAS_LIMIT })
+  const receipt = await tx.wait()
+  return receipt.status
 }
 
 export const sousStakeHt = async (sousChefContract, amount, account) => {
-  return sousChefContract.methods
-    .deposit()
-    .send({
+  const tx = await sousChefContract
+    .deposit({
       from: account,
-      gas: DEFAULT_GAS_LIMIT,
+      gasLimit: DEFAULT_GAS_LIMIT,
       value: new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(),
     })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
+  const receipt = await tx.wait()
+  return receipt.status
 }
 
 export const unstake = async (masterChefContract, pid, amount, account) => {
   if (pid === 0) {
-    return masterChefContract.methods
-      .leaveStaking(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString())
-      .send({ from: account, gas: DEFAULT_GAS_LIMIT })
-      .on('transactionHash', (tx) => {
-        return tx.transactionHash
-      })
+    const tx = await masterChefContract
+      .leaveStaking(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(), { from: account, gasLimit: DEFAULT_GAS_LIMIT })
+    const receipt = await tx.wait()
+    return receipt.status
   }
 
-  return masterChefContract.methods
-    .withdraw(pid, new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString())
-    .send({ from: account, gas: DEFAULT_GAS_LIMIT })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
+  const tx = await masterChefContract
+    .withdraw(pid, new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(), { from: account, gasLimit: DEFAULT_GAS_LIMIT })
+  const receipt = await tx.wait()
+  return receipt.status
 }
 
 export const sousUnstake = async (sousChefContract, amount, decimals, account) => {
-  return sousChefContract.methods
-    .withdraw(new BigNumber(amount).times(BIG_TEN.pow(decimals)).toString())
-    .send({ from: account, gas: DEFAULT_GAS_LIMIT })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
+  const tx = await sousChefContract
+    .withdraw(new BigNumber(amount).times(BIG_TEN.pow(decimals)).toString(), { from: account, gasLimit: DEFAULT_GAS_LIMIT })
+  const receipt = await tx.wait()
+  return receipt.status
 }
 
 export const sousEmergencyUnstake = async (sousChefContract, account) => {
-  return sousChefContract.methods
-    .emergencyWithdraw()
-    .send({ from: account })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
+  const tx = await sousChefContract
+    .emergencyWithdraw({ from: account })
+  const receipt = await tx.wait()
+  return receipt.status
 }
 
 export const harvest = async (masterChefContract, pid, account) => {
   if (pid === 0) {
-    return masterChefContract.methods
-      .leaveStaking('0')
-      .send({ from: account, gas: DEFAULT_GAS_LIMIT })
-      .on('transactionHash', (tx) => {
-        return tx.transactionHash
-      })
+    const tx = await masterChefContract
+      .leaveStaking('0', { from: account, gasLimit: DEFAULT_GAS_LIMIT })
+    const receipt = await tx.wait()
+    return receipt.status
   }
 
-  return masterChefContract.methods
-    .deposit(pid, '0')
-    .send({ from: account, gas: DEFAULT_GAS_LIMIT })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
+  const tx = await masterChefContract
+    .deposit(pid, '0', { from: account, gasLimit: DEFAULT_GAS_LIMIT})
+  const receipt = await tx.wait()
+  return receipt.status
 }
 
 export const soushHarvest = async (sousChefContract, account) => {
-  return sousChefContract.methods
-    .deposit('0')
-    .send({ from: account, gas: DEFAULT_GAS_LIMIT })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
+  const tx = await sousChefContract
+    .deposit('0', { from: account, gasLimit: DEFAULT_GAS_LIMIT })
+  const receipt = await tx.wait()
+  return receipt.status
 }
 
 export const soushHarvestHt = async (sousChefContract, account) => {
-  return sousChefContract.methods
-    .deposit()
-    .send({ from: account, gas: DEFAULT_GAS_LIMIT, value: BIG_ZERO })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
+  const tx = await sousChefContract
+    .deposit({ from: account, gasLimit: DEFAULT_GAS_LIMIT, value: BIG_ZERO })
+  const receipt = await tx.wait()
+  return receipt.status
 }
 
 const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
@@ -144,11 +120,11 @@ const MAKI_HT_TOKEN = new Token(chainId, getAddress(makiHtFarm.lpAddresses), 18)
  */
 export const getUserStakeInMakiHtLp = async (account: string, block?: number) => {
   try {
-    const masterContract = getMasterchefContract(web3WithArchivedNodeProvider)
-    const makiHtContract = getLpContract(getAddress(makiHtFarm.lpAddresses), web3WithArchivedNodeProvider)
-    const totalSupplyLP = await makiHtContract.methods.totalSupply().call(undefined, block)
-    const reservesLP = await makiHtContract.methods.getReserves().call(undefined, block)
-    const makiHtBalance = await masterContract.methods.userInfo(makiHtPid, account).call(undefined, block)
+    const masterContract = getMasterchefContract()
+    const makiHtContract = getLpContract(getAddress(makiHtFarm.lpAddresses))
+    const totalSupplyLP = await makiHtContract.totalSupply()
+    const reservesLP = await makiHtContract.getReserves()
+    const makiHtBalance = await masterContract.userInfo(makiHtPid, account)
 
     const pair: Pair = new Pair(
       new TokenAmount(MAKI_TOKEN, reservesLP._reserve0.toString()),
@@ -173,8 +149,8 @@ export const getUserStakeInMakiHtLp = async (account: string, block?: number) =>
  */
 export const getUserStakeInMakiPool = async (account: string, block?: number) => {
   try {
-    const masterContract = getMasterchefContract(web3WithArchivedNodeProvider)
-    const response = await masterContract.methods.userInfo(0, account).call(undefined, block)
+    const masterContract = getMasterchefContract()
+    const response = await masterContract.userInfo(0, account)
 
     return getBalanceAmount(new BigNumber(response.amount))
   } catch (error) {
