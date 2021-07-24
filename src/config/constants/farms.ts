@@ -526,6 +526,21 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.USDT,
     quoteTokenAdresses: contracts.usdt,
   },
+  {
+    pid: 36,
+    lpSymbol: 'DOGE-USDT',
+    lpAddresses: {
+      256: '',
+      128: '0xeD2aeC5C971F7260B4bF001593BF91C2feb370Cb', // (June 6th, 2021)
+    },
+    tokenSymbol: 'DOGE',
+    tokenAddresses: {
+      256: '', // 
+      128: '0x40280e26a572745b1152a54d1d44f365daa51618' // (June 6th, 2021)
+    },
+    quoteTokenSymbol: QuoteToken.USDT,
+    quoteTokenAdresses: contracts.usdt,
+  },
 ]
 
 export default farms
