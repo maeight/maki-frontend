@@ -22,7 +22,7 @@ export const approve = async (lpContract: Contract, masterChefContract: Contract
 export const stake = async (masterChefContract, pid, amount, account) => {
   if (pid === 0) {
     const tx = await masterChefContract
-      .enterStaking(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(), { from: account, gasLimit: DEFAULT_GAS_LIMIT })
+      .enterStaking(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(), { from: account, gasLimit: 500000 })
     const receipt = await tx.wait()
     return receipt.status
   }

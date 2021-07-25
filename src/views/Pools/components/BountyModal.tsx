@@ -50,9 +50,7 @@ const BountyModal: React.FC<BountyModalProps> = ({
   })
 
   const handleConfirmClick = async () => {
-    makiVaultContract.methods
-      .harvest()
-      .send({ from: account, gas: DEFAULT_GAS_LIMIT })
+    makiVaultContract.harvest({ from: account, gas: DEFAULT_GAS_LIMIT })
       .on('sending', () => {
         setPendingTx(true)
       })
