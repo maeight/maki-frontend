@@ -14,8 +14,8 @@ const StyledTotalValueLockedCard = styled(Card)`
 `
 
 const TotalValueLockedCard = () => {
-  const data = useGetStats()
-  const tvl = data ? data.total_value_locked_all.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null
+  // const data = useGetStats()
+  // const tvl = data ? data.total_value_locked_all.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null
 
 /* ACQUIRE PRICES */
   const makiPrice = new BigNumber(usePriceMakiHusd())
@@ -68,18 +68,9 @@ const TotalValueLockedCard = () => {
         <Heading size="lg" mb="24px">
           Total Value Locked (TVL)
         </Heading>
-        {data ? (
-          <>
-            <Heading size="xl">{tvl}</Heading>
-            <Text color="textSubtle">Across all LPs and Maki Pools</Text>
-          </>
-        ) : (
-          <>
-          {/* <Skeleton height={45} /> */}
-          <Heading size="xl">{totalValueFormated}</Heading>
-          <Text color="textSubtle">Across all LPs and Maki Pools</Text>
-          </>
-        )}
+        {/* <Skeleton height={45} /> */}
+        <Heading size="xl">{totalValueFormated}</Heading>
+        <Text color="textSubtle">Across all LPs and Maki Pools</Text>
       </CardBody>
     </StyledTotalValueLockedCard>
   )
