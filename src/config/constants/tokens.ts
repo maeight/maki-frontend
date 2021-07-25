@@ -161,6 +161,14 @@ const tokens = {
       128: '0xee9801669c6138e84bd50deb500827b776777d28', // June 30nd, 2021
     },
     decimals: 18,
+  },
+  doge: {
+    symbol: 'DOGE',
+    address: {
+      256: '', // 
+      128: '0x40280e26a572745b1152a54d1d44f365daa51618',
+    },
+    decimals: 8,
   }
   // ada: {
   //   symbol: 'ADA',

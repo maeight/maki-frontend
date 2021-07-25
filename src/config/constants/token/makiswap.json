@@ -161,6 +161,14 @@
       "symbol": "WHT",
       "decimals": 18,
       "logoURI": "https://raw.githubusercontent.com/makiswap-protocol/heco-token-list/master/src/tokens/0x5545153ccfca01fbd7dd11c0b23ba694d9509a6f/logo.png"
+    },
+    {
+      "address": "0x40280e26a572745b1152a54d1d44f365daa51618",
+      "chainId": 128,
+      "name": "DogeCoin",
+      "symbol": "DOGE",
+      "decimals": 8,
+      "logoURI": "https://dogecoin.com/assets/img/dogecoin-300.png"
     }
   ]
 }
