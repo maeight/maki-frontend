@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Contract } from 'web3-eth-contract'
+// import { Contract } from 'web3-eth-contract'
+import { Contract } from '@ethersproject/contracts'
 import { getLotteryAddress } from 'utils/addressHelpers'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { useMaki } from './useContract'
@@ -16,7 +17,7 @@ export const useLotteryAllowance = () => {
 
   useEffect(() => {
     const fetchAllowance = async () => {
-      const res = await makiContract.methods.allowance(account, getLotteryAddress()).call()
+      const res = await makiContract.allowance(account, getLotteryAddress())
       setAllowance(new BigNumber(res))
     }
 
@@ -36,7 +37,7 @@ export const useIfoAllowance = (tokenContract: Contract, spenderAddress: string,
   useEffect(() => {
     const fetch = async () => {
       try {
-        const res = await tokenContract.methods.allowance(account, spenderAddress).call()
+        const res = await tokenContract.allowance(account, spenderAddress)
         setAllowance(new BigNumber(res))
       } catch (e) {
         console.error(e)

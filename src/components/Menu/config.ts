@@ -14,7 +14,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
       items: [
         {
           label: t('Exchange'),
-          href: 'https://exchange.makiswap.com',
+          href: 'https://exchange.makiswap.com/#/swap',
         },
         {
           label: t('Liquidity'),

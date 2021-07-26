@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
-import { Contract } from 'web3-eth-contract'
+// import { Contract } from 'web3-eth-contract'
+import { Contract } from '@ethersproject/contracts'
 import { ethers } from 'ethers'
 import BigNumber from 'bignumber.js'
 import { useAppDispatch } from 'state'
@@ -17,12 +18,15 @@ export const useApprove = (lpContract: Contract) => {
 
   const handleApprove = useCallback(async () => {
     try {
-      const tx = await approve(lpContract, masterChefContract, account)
-      return tx
+      // const tx = await approve(lpContract, masterChefContract, account)
+      // return tx.transactionHash
+      const tx = await lpContract.approve(masterChefContract.address, ethers.constants.MaxUint256)
+      const receipt = await tx.wait()
+      return receipt.status
     } catch (e) {
       return false
     }
-  }, [account, lpContract, masterChefContract])
+  }, [lpContract, masterChefContract])
 
   return { onApprove: handleApprove }
 }
@@ -69,23 +73,22 @@ export const useVaultApprove = (setLastUpdated: () => void) => {
   const makiVaultContract = useMakiVaultContract()
   const makiContract = useMaki()
 
-  const handleApprove = () => {
-    makiContract.methods
-      .approve(makiVaultContract.options.address, ethers.constants.MaxUint256)
-      .send({ from: account })
-      .on('sending', () => {
-        setRequestedApproval(true)
-      })
-      .on('receipt', () => {
+  const handleApprove = async () => {
+    try {
+      setRequestedApproval(true)
+      const tx = await makiContract.approve(makiVaultContract.address, ethers.constants.MaxUint256, { from: account })
+      const receipt = await tx.wait()
+      if (receipt.status) {
         toastSuccess('Contract Enabled', 'You can now stake in the MAKI vault!')
         setLastUpdated()
         setRequestedApproval(false)
-      })
-      .on('error', (error) => {
-        console.error(error)
+      } else {
         toastError('Error', 'Please try again. Confirm the transaction and make sure you are paying enough gas!')
         setRequestedApproval(false)
-      })
+      }
+    } catch (e) {
+      toastError('Error', 'Please try again. Confirm the transaction and make sure you are paying enough gas!')
+    }
   }
 
   return { handleApprove, requestedApproval }
@@ -100,7 +103,7 @@ export const useCheckVaultApprovalStatus = () => {
   useEffect(() => {
     const checkApprovalStatus = async () => {
       try {
-        const response = await makiContract.methods.allowance(account, makiVaultContract.options.address).call()
+        const response = await makiContract.allowance(account, makiVaultContract.address)
         const currentAllowance = new BigNumber(response)
         setIsVaultApproved(currentAllowance.gt(0))
       } catch (error) {
@@ -123,7 +126,7 @@ export const useLotteryApprove = () => {
   const handleApprove = useCallback(async () => {
     try {
       const tx = await approve(makiContract, lotteryContract, account)
-      return tx
+      return tx.transactionHash
     } catch (e) {
       return false
     }

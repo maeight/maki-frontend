@@ -21,7 +21,6 @@ const TotalStakedCell: React.FC<TotalStakedCellProps> = ({ pool }) => {
   const { t } = useTranslation()
   const { sousId, stakingToken, totalStaked, isAutoVault } = pool
   const { totalMakiInVault } = useMakiVault()
-
   const isManualMakiPool = sousId === 0
 
   const totalStakedBalance = useMemo(() => {
