@@ -4,6 +4,7 @@ import { Heading, Card, CardBody, Text } from 'maki-uikit-v2'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
 import { getMakiAddress } from 'utils/addressHelpers'
+import BigNumber from 'bignumber.js'
 
 const StyledFarmStakingCard = styled(Card)`
   background-image: url('/images/stats-bg.png');
@@ -24,7 +25,6 @@ const MakiStats = () => {
   const totalSupply = useTotalSupply()
   const burnedBalance = useBurnedBalance(getMakiAddress())
 
-    
   const makiSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
   const makiSupplyFormated = makiSupply
   ? `${Number(makiSupply).toLocaleString(undefined, { maximumFractionDigits: 2 })}`

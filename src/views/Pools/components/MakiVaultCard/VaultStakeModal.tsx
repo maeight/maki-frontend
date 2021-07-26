@@ -81,9 +81,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
     const isWithdrawingAll = sharesRemaining.lte(triggerWithdrawAllThreshold)
 
     if (isWithdrawingAll) {
-      makiVaultContract.methods
-        .withdrawAll()
-        .send({ from: account })
+      makiVaultContract.withdrawAll()
         .on('sending', () => {
           setPendingTx(true)
         })
@@ -100,11 +98,9 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
           setPendingTx(false)
         })
     } else {
-      makiVaultContract.methods
-        .withdraw(shareStakeToWithdraw.sharesAsBigNumber.toString())
+      makiVaultContract.withdraw(shareStakeToWithdraw.sharesAsBigNumber.toString())
         // .toString() being called to fix a BigNumber error in prod
         // as suggested here https://github.com/ChainSafe/web3.js/issues/2077
-        .send({ from: account })
         .on('sending', () => {
           setPendingTx(true)
         })
@@ -124,11 +120,9 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
   }
 
   const handleDeposit = async (convertedStakeAmount: BigNumber) => {
-    makiVaultContract.methods
-      .deposit(convertedStakeAmount.toString())
+    makiVaultContract.deposit(convertedStakeAmount.toString())
       // .toString() being called to fix a BigNumber error in prod
       // as suggested here https://github.com/ChainSafe/web3.js/issues/2077
-      .send({ from: account })
       .on('sending', () => {
         setPendingTx(true)
       })
