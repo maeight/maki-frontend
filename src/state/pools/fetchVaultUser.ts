@@ -5,7 +5,7 @@ const makiVaultContract = getMakiVaultContract()
 
 const fetchVaultUser = async (account: string) => {
   try {
-    const userContractResponse = await makiVaultContract.methods.userInfo(account).call()
+    const userContractResponse = await makiVaultContract.userInfo(account)
     return {
       isLoading: false,
       userShares: new BigNumber(userContractResponse.shares).toJSON(),

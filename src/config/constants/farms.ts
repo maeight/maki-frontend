@@ -366,6 +366,16 @@ const farms: FarmConfig[] = [
     token: tokens.usdc,
     quoteToken: tokens.usdt
   },
+  {
+    pid: 36,
+    lpSymbol: 'DOGE-USDT',
+    lpAddresses: {
+      256: '',
+      128: '0xeD2aeC5C971F7260B4bF001593BF91C2feb370Cb',
+    },
+    token: tokens.doge,
+    quoteToken: tokens.usdt
+  },
 ]
 
 export default farms
