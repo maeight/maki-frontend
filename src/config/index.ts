@@ -18,7 +18,7 @@ export const BASE_URL = 'https://app.makiswap.com/'
 export const BASE_EXCHANGE_URL = 'https://exchange.makiswap.com'
 export const BASE_ADD_LIQUIDITY_URL = `${BASE_EXCHANGE_URL}/#/add`
 export const BASE_LIQUIDITY_POOL_URL = `${BASE_EXCHANGE_URL}/#/pool`
-export const BASE_HECO_INFO_URL = 'https://hecoinfo.com/'
+export const BASE_HECO_INFO_URL = 'https://hecoinfo.com'
 
 export const LOTTERY_MAX_NUMBER_OF_TICKETS = 50
 export const LOTTERY_TICKET_PRICE = 1
