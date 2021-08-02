@@ -5,8 +5,8 @@ import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { BigNumber } from '@ethersproject/bignumber'
 import { abi as IMakiswapRouterABI } from 'maki-swap-periphery/build/IMakiswapRouter02.json'
 import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, HUOBI } from 'maki-sdk'
+import { TokenAddressMap } from 'state/lists/hooks'
 import { ROUTER_ADDRESS } from '../config/constants'
-import { TokenAddressMap } from '../state/lists/hooks'
 
 // returns the checksummed address if the address is valid, otherwise returns false
 export function isAddress(value: any): string | false {

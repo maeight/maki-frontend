@@ -5,6 +5,7 @@ import { Button, ChevronDownIcon, AddIcon, CardBody, Text } from 'maki-uikit-v2'
 import CardNav from 'components/CardNav'
 import { LightCard } from 'components/Card'
 import { AutoColumn, ColumnCenter } from 'components/Column'
+import ExchangePage from 'components/Layout/ExchangePage'
 import CurrencyLogo from 'components/CurrencyLogo'
 import { FindPoolTabs } from 'components/NavigationTabs'
 import { MinimalPositionCard } from 'components/PositionCard'
@@ -75,16 +76,8 @@ export default function PoolFinder() {
     </LightCard>
   )
 
-  const PageWrap = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 64px);
-  `
-
   return (
-    <PageWrap>
+    <ExchangePage>
       <CardNav activeIndex={1} />
       <AppBody>
         <FindPoolTabs />
@@ -175,7 +168,6 @@ export default function PoolFinder() {
           </AutoColumn>
 
           <CurrencySearchModal
-            isOpen={showSearch}
             onCurrencySelect={handleCurrencySelect}
             onDismiss={handleSearchDismiss}
             showCommonBases
@@ -183,6 +175,6 @@ export default function PoolFinder() {
           />
         </CardBody>
       </AppBody>
-    </PageWrap>
+    </ExchangePage>
   )
 }

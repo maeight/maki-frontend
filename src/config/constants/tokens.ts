@@ -169,6 +169,14 @@ const tokens = {
       128: '0x40280e26a572745b1152a54d1d44f365daa51618',
     },
     decimals: 8,
+  },
+  shib: {
+    symbol: 'SHIB',
+    address: {
+      256: '', // 
+      128: '0xdd86dd2dc0aca2a8f41a680fc1f88ec1b7fc9b09',
+    },
+    decimals: 18,
   }
   // ada: {
   //   symbol: 'ADA',
