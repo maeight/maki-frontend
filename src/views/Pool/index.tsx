@@ -10,7 +10,7 @@ import { useTokenBalancesWithLoadingIndicator } from 'state/wallet/hooks'
 import { TYPE } from 'components/Shared'
 import { GreyCard } from 'components/Card'
 
-// import { RowBetween } from 'components/Row'
+import ExchangePage from 'components/Layout/ExchangePage'
 import { AutoColumn } from 'components/Column'
 
 import { useActiveWeb3React } from 'hooks'
@@ -55,16 +55,8 @@ export default function Pool() {
 
   const allV2PairsWithLiquidity = v2Pairs.map(([, pair]) => pair).filter((v2Pair): v2Pair is Pair => Boolean(v2Pair))
 
-  const PageWrap = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 64px);
-  `
-
   return (
-    <PageWrap>
+    <ExchangePage>
       <CardNav activeIndex={1} />
       <AppBody>
         <PageHeader title="Liquidity" description="Add liquidity to receive LP tokens" />
@@ -134,6 +126,6 @@ export default function Pool() {
           </CardBody>
         </AutoColumn>
       </AppBody>
-    </PageWrap>
+    </ExchangePage>
   )
 }

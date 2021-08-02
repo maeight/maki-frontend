@@ -376,6 +376,16 @@ const farms: FarmConfig[] = [
     token: tokens.doge,
     quoteToken: tokens.usdt
   },
+  {
+    pid: 37,
+    lpSymbol: 'SHIB-MAKI',
+    lpAddresses: {
+      256: '',
+      128: '0x4db7c033137c2843481a686cc0cb415ad09fa764',
+    },
+    token: tokens.shib,
+    quoteToken: tokens.maki
+  },
 ]
 
 export default farms

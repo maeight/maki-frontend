@@ -1,12 +1,13 @@
 import React from 'react'
-import { Text } from 'maki-uikit-v2'
 import { ChainId, Currency, currencyEquals, HUOBI, Token } from 'maki-sdk'
+import { Text } from 'maki-uikit-v2'
 import styled from 'styled-components'
+import { useTranslation } from 'contexts/Localization'
 
-import { SUGGESTED_BASES } from 'config/constants'
-import { AutoColumn } from '../Column'
+import { SUGGESTED_BASES } from '../../config/constants'
+import { AutoColumn } from '../Layout/Column'
 import QuestionHelper from '../QuestionHelper'
-import { AutoRow } from '../Row'
+import { AutoRow } from '../Layout/Row'
 import CurrencyLogo from '../CurrencyLogo'
 
 const BaseWrapper = styled.div<{ disable?: boolean }>`
@@ -18,7 +19,7 @@ const BaseWrapper = styled.div<{ disable?: boolean }>`
   align-items: center;
   :hover {
     cursor: ${({ disable }) => !disable && 'pointer'};
-    background-color: ${({ theme, disable }) => !disable && theme.colors.invertedContrast};
+    background-color: ${({ theme, disable }) => !disable && theme.colors.background};
   }
 
   background-color: ${({ theme, disable }) => disable && theme.colors.tertiary};
@@ -28,19 +29,20 @@ const BaseWrapper = styled.div<{ disable?: boolean }>`
 export default function CommonBases({
   chainId,
   onSelect,
-  selectedCurrency
+  selectedCurrency,
 }: {
   chainId?: ChainId
   selectedCurrency?: Currency | null
   onSelect: (currency: Currency) => void
 }) {
+  const { t } = useTranslation()
   return (
     <AutoColumn gap="md">
       <AutoRow>
-        <Text fontSize="14px">Common bases</Text>
-        <QuestionHelper text="These tokens are commonly paired with other tokens." />
+        <Text fontSize="14px">{t('Common bases')}</Text>
+        <QuestionHelper text={t('These tokens are commonly paired with other tokens.')} />
       </AutoRow>
-      <AutoRow gap="4px">
+      <AutoRow gap="auto">
         <BaseWrapper
           onClick={() => {
             if (!selectedCurrency || !currencyEquals(selectedCurrency, HUOBI)) {
@@ -50,7 +52,7 @@ export default function CommonBases({
           disable={selectedCurrency === HUOBI}
         >
           <CurrencyLogo currency={HUOBI} style={{ marginRight: 8 }} />
-          <Text>HT</Text>
+          <Text>BNB</Text>
         </BaseWrapper>
         {(chainId ? SUGGESTED_BASES[chainId] : []).map((token: Token) => {
           const selected = selectedCurrency instanceof Token && selectedCurrency.address === token.address
