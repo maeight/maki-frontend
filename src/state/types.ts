@@ -1,7 +1,8 @@
 import { ThunkAction } from 'redux-thunk'
 import { AnyAction } from '@reduxjs/toolkit'
 import BigNumber from 'bignumber.js'
-import { CampaignType, FarmConfig, Nft, PoolConfig, Team } from 'config/constants/types'
+import { ethers } from 'ethers'
+import { CampaignType, FarmConfig, Nft, PoolConfig, Team, LotteryStatus, LotteryTicket } from 'config/constants/types'
 
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, State, unknown, AnyAction>
 
@@ -267,4 +268,69 @@ export interface State {
   // profile: ProfileState // Disabled until implemented
   // teams: TeamsState
   // collectibles: CollectiblesState
+}
+
+interface LotteryRoundGenerics {
+  isLoading?: boolean
+  lotteryId: string
+  status: LotteryStatus
+  startTime: string
+  endTime: string
+  treasuryFee: string
+  firstTicketId: string
+  lastTicketId: string
+  finalNumber: number
+}
+
+export interface UserRound {
+  claimed: boolean
+  lotteryId: string
+  status: LotteryStatus
+  endTime: string
+  totalTickets: string
+  tickets?: LotteryTicket[]
+}
+
+export interface LotteryState {
+  currentLotteryId: string
+  maxNumberTicketsPerBuyOrClaim: string
+  isTransitioning: boolean
+  currentRound: LotteryResponse & { userTickets?: LotteryRoundUserTickets }
+  lotteriesData?: LotteryRoundGraphEntity[]
+  userLotteryData?: LotteryUserGraphEntity
+}
+
+export interface LotteryRoundGraphEntity {
+  id: string
+  totalUsers: string
+  totalTickets: string
+  winningTickets: string
+  status: LotteryStatus
+  finalNumber: string
+  startTime: string
+  endTime: string
+  ticketPrice: SerializedBigNumber
+}
+
+export interface LotteryUserGraphEntity {
+  account: string
+  totalCake: string
+  totalTickets: string
+  rounds: UserRound[]
+}
+
+export interface LotteryRoundUserTickets {
+  isLoading?: boolean
+  tickets?: LotteryTicket[]
+}
+
+export type UserTicketsResponse = [ethers.BigNumber[], number[], boolean[]]
+
+export interface LotteryResponse extends LotteryRoundGenerics {
+  priceTicketInCake: SerializedBigNumber
+  discountDivisor: SerializedBigNumber
+  amountCollectedInCake: SerializedBigNumber
+  cakePerBracket: SerializedBigNumber[]
+  countWinnersPerBracket: SerializedBigNumber[]
+  rewardsBreakdown: SerializedBigNumber[]
 }

@@ -1,10 +1,12 @@
 import { TranslatableText } from 'state/types'
-
+import BigNumber from 'bignumber.js'
 // ---------------------
 //  IFO
 // ---------------------
 
 export type IfoStatus = 'coming_soon' | 'live' | 'finished'
+
+export type SerializedBigNumber = string
 
 export interface Ifo {
   id: string
@@ -63,6 +65,22 @@ export enum LotteryStatus {
   OPEN = 'open',
   CLOSE = 'close',
   CLAIMABLE = 'claimable',
+}
+
+export interface LotteryTicket {
+  id: string
+  number: string
+  status: boolean
+  rewardBracket?: number
+  roundId?: string
+  cakeReward?: SerializedBigNumber
+}
+
+export interface LotteryTicketClaimData {
+  ticketsWithUnclaimedRewards: LotteryTicket[]
+  allWinningTickets: LotteryTicket[]
+  cakeTotal: BigNumber
+  roundId: string
 }
 
 // ---------------------
