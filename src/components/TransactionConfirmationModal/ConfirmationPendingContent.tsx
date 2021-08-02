@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Text } from 'maki-uikit-v2'
-import { Spinner } from '../Shared'
-import { AutoColumn } from '../Column'
+import { Spinner } from 'components/Shared'
+import { AutoColumn } from 'components/Column'
 import { Wrapper, Section, ConfirmedIcon, ContentHeader } from './helpers'
 
 type ConfirmationPendingContentProps = { onDismiss: () => void; pendingText: string }

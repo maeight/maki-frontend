@@ -8,7 +8,7 @@ import { useActiveWeb3React } from 'hooks'
 import useFetchListCallback from 'hooks/useFetchListCallback'
 import useInterval from 'hooks/useInterval'
 import useIsWindowVisible from 'hooks/useIsWindowVisible'
-import { AppDispatch } from '../index'
+import { AppDispatch } from 'state'
 import { acceptListUpdate } from './actions'
 import { useActiveListUrls } from './hooks'
 

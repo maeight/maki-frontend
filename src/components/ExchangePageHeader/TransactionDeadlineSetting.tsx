@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Input, Text } from 'maki-uikit-v2'
 import { useUserDeadline } from 'state/user/hooks'
-import QuestionHelper from '../QuestionHelper'
+import QuestionHelper from 'components/QuestionHelper'
 
 const StyledTransactionDeadlineSetting = styled.div`
   margin-bottom: 16px;

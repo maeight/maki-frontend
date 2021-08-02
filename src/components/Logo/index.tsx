@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { HelpCircle } from 'react-feather'
 import styled from 'styled-components'
-import useHttpLocations from '../../hooks/useHttpLocations'
+import useHttpLocations from 'hooks/useHttpLocations'
 
 const BAD_SRCS: { [tokenAddress: string]: true } = {}
 

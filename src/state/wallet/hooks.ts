@@ -5,7 +5,7 @@ import { useAllTokens } from 'hooks/Tokens'
 import { useActiveWeb3React } from 'hooks'
 import { useMulticallContract } from 'hooks/useContract'
 import { isAddress } from 'utils'
-import { useSingleContractMultipleData, useMultipleContractSingleData } from '../multicall/hooks'
+import { useSingleContractMultipleData, useMultipleContractSingleData } from 'state/multicall/hooks'
 
 /**
  * Returns a map of the given addresses to their eventually consistent HRC balances.

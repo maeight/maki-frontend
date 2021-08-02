@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useActivePopups } from 'state/application/hooks'
-import { AutoColumn } from '../Column'
+import { AutoColumn } from 'components/Column'
 import PopupItem from './PopupItem'
 
 const MobilePopupWrapper = styled.div<{ height: string | number }>`

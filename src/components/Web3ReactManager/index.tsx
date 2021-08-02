@@ -3,10 +3,10 @@ import { useWeb3React } from '@web3-react/core'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 
-import { network } from '../../connectors'
+import { network } from 'connectors'
 import { useEagerConnect, useInactiveListener } from 'hooks'
 import { NetworkContextName } from 'config/constants'
-import Loader from '../Loader'
+import Loader from 'components/Loader'
 
 const MessageWrapper = styled.div`
   display: flex;

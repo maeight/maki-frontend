@@ -15,10 +15,11 @@ import { BIG_ZERO } from 'utils/bigNumber'
 import { getAddress } from 'utils/addressHelpers'
 import { useHRC20 } from 'hooks/useContract'
 import { convertSharesToMaki } from 'views/Pools/helpers'
+import NotEnoughTokensModal from 'views/Pools/components/PoolCard/Modals/NotEnoughTokensModal'
+import StakeModal from 'views/Pools/components/PoolCard/Modals/StakeModal'
+import VaultStakeModal from 'views/Pools/components/MakiVaultCard/VaultStakeModal'
+
 import { ActionContainer, ActionTitles, ActionContent } from './styles'
-import NotEnoughTokensModal from '../../PoolCard/Modals/NotEnoughTokensModal'
-import StakeModal from '../../PoolCard/Modals/StakeModal'
-import VaultStakeModal from '../../MakiVaultCard/VaultStakeModal'
 
 const IconButtonWrapper = styled.div`
   display: flex;

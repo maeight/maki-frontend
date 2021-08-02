@@ -5,10 +5,10 @@ import { useDispatch } from 'react-redux'
 import { AppDispatch } from 'state'
 import { useRemovePopup } from 'state/application/hooks'
 import { acceptListUpdate } from 'state/lists/actions'
-import { TYPE } from '../Shared'
+import { TYPE } from 'components/Shared'
 import listVersionLabel from 'utils/listVersionLabel'
-import { AutoColumn } from '../Column'
-import { AutoRow } from '../Row'
+import { AutoColumn } from 'components/Column'
+import { AutoRow } from 'components/Row'
 
 const { body: Body } = TYPE
 

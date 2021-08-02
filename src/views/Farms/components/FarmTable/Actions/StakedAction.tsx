@@ -18,8 +18,8 @@ import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
 import useWeb3 from 'hooks/useWeb3'
 
-import DepositModal from '../../DepositModal'
-import WithdrawModal from '../../WithdrawModal'
+import DepositModal from 'views/Farms/components/DepositModal'
+import WithdrawModal from 'views/Farms/components/WithdrawModal'
 import { ActionContainer, ActionTitles, ActionContent, Earned, Title, Subtle } from './styles'
 
 const IconButtonWrapper = styled.div`

@@ -9,7 +9,7 @@ import CurrencyLogo from 'components/CurrencyLogo'
 import { getEtherscanLink, isAddress } from 'utils'
 import { useActiveWeb3React } from 'hooks'
 import { useTranslation } from 'contexts/Localization'
-import Column, { AutoColumn } from '../Layout/Column'
+import Column, { AutoColumn } from 'components/Layout/Column'
 import ImportRow from './ImportRow'
 import { CurrencyModalView } from './types'
 
