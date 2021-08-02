@@ -264,6 +264,7 @@ export interface State {
   block: BlockState
   farms: FarmsState
   pools: PoolsState
+  lottery: LotteryState
   // predictions: PredictionsState
   // profile: ProfileState // Disabled until implemented
   // teams: TeamsState
@@ -289,6 +290,28 @@ export interface UserRound {
   endTime: string
   totalTickets: string
   tickets?: LotteryTicket[]
+}
+
+interface LotteryRoundGenerics {
+  isLoading?: boolean
+  lotteryId: string
+  status: LotteryStatus
+  startTime: string
+  endTime: string
+  treasuryFee: string
+  firstTicketId: string
+  lastTicketId: string
+  finalNumber: number
+}
+
+export interface LotteryRound extends LotteryRoundGenerics {
+  userTickets?: LotteryRoundUserTickets
+  priceTicketInCake: BigNumber
+  discountDivisor: BigNumber
+  amountCollectedInCake: BigNumber
+  cakePerBracket: string[]
+  countWinnersPerBracket: string[]
+  rewardsBreakdown: string[]
 }
 
 export interface LotteryState {

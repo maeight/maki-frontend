@@ -1,9 +1,9 @@
 import { TICKET_LIMIT_PER_REQUEST } from 'config/constants/lottery'
 import { LotteryTicket } from 'config/constants/types'
 import { UserTicketsResponse } from 'state/types'
-import { getLotteryContract } from 'utils/contractHelpers'
+import { useLottery } from 'hooks/useContract'
 
-const lotteryContract = getLotteryContract()
+const lotteryContract = useLottery()
 
 export const processRawTicketsResponse = (ticketsResponse: UserTicketsResponse): LotteryTicket[] => {
   const [ticketIds, ticketNumbers, ticketStatuses] = ticketsResponse

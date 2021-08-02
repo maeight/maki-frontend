@@ -10,6 +10,7 @@ import application from './application/reducer'
 import { updateVersion } from './global/actions'
 import user from './user/reducer'
 import transactions from './transactions/reducer'
+import lottery from './lottery'
 import swap from './swap/reducer'
 import mint from './mint/reducer'
 import lists from './lists/reducer'
@@ -34,6 +35,7 @@ const store = configureStore({
     burn,
     multicall,
     lists,
+    lottery
   },
   middleware: [...getDefaultMiddleware({ thunk: true }), save({ states: PERSISTED_KEYS })],
   preloadedState: load({ states: PERSISTED_KEYS }),
