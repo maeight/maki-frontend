@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Heading, Text } from 'maki-uikit-v2'
 import { useTranslation } from 'contexts/Localization'
-import Container from 'components/layout/Container'
+import Container from 'components/Layout/Container'
 import LotteryProgress from './LotteryProgress'
 
 const Title = styled(Heading).attrs({ as: 'h1', size: 'xl' })`
