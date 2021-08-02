@@ -2,10 +2,10 @@ import React, { useContext } from 'react'
 import { AlertCircle, CheckCircle } from 'react-feather'
 import styled, { ThemeContext } from 'styled-components'
 import { useActiveWeb3React } from 'hooks'
-import { TYPE, ExternalLink } from '../Shared'
+import { TYPE, ExternalLink } from 'components/Shared'
 import { getEtherscanLink } from 'utils'
-import { AutoColumn } from '../Column'
-import { AutoRow } from '../Row'
+import { AutoColumn } from 'components/Column'
+import { AutoRow } from 'components/Row'
 
 const { body: Body } = TYPE
 

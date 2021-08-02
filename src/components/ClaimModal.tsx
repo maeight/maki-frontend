@@ -4,7 +4,7 @@ import { useWeb3React } from '@web3-react/core'
 import useWeb3 from 'hooks/useWeb3'
 import { Modal, Text, LinkExternal, Flex, Box, Button, Input } from 'maki-uikit-v2'
 import { useTranslation } from 'contexts/Localization'
-import { getMerkleDistributorContract } from 'utils/contractHelpers'
+import { useMerkleDistributorContract } from 'hooks/useContract'
 import Merkle from 'config/constants/merkle'
 
 const StyledInput = styled(Input)`
@@ -31,7 +31,7 @@ const ClaimModal: React.FC<ClaimModalProps> = ({ onDismiss }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const web3 = useWeb3()
-  const airdropContract = getMerkleDistributorContract()
+  const airdropContract = useMerkleDistributorContract()
   const [recipientAddress, setRecipientAddress] = useState('')
   const [isEligible, setIsEligible] = useState(false)
   const [isAirdropClaimed, setIsAirdropClaimed] = useState(false)

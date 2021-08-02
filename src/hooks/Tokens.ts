@@ -7,13 +7,13 @@ import {
   useUnsupportedTokenList,
   useCombinedActiveList,
   useCombinedInactiveList,
-} from '../state/lists/hooks'
-import { NEVER_RELOAD, useSingleCallResult } from '../state/multicall/hooks'
+} from 'state/lists/hooks'
+import { NEVER_RELOAD, useSingleCallResult } from 'state/multicall/hooks'
 // eslint-disable-next-line import/no-cycle
-import { useUserAddedTokens } from '../state/user/hooks'
-import { isAddress } from '../utils'
+import { useUserAddedTokens } from 'state/user/hooks'
+import { isAddress } from 'utils'
 
-import { useActiveWeb3React } from './index'
+import { useActiveWeb3React } from '.'
 import { useBytes32TokenContract, useTokenContract } from './useContract'
 
 // reduce token map into standard address <-> Token mapping, optionally include user added tokens

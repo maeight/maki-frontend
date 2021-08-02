@@ -16,7 +16,7 @@ import { AutoColumn } from 'components/Column'
 import { useActiveWeb3React } from 'hooks'
 import { usePairs } from 'data/Reserves'
 import { toV2LiquidityToken, useTrackedTokenPairs } from 'state/user/hooks'
-import { Dots } from 'components/swap/styleds'
+import { Dots } from 'components/Swap/styleds'
 import PageHeader from 'components/ExchangePageHeader'
 import AppBody from 'components/AppBody'
 

@@ -4,11 +4,11 @@ import { Text } from 'maki-uikit-v2'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 
-import { SUGGESTED_BASES } from '../../config/constants'
-import { AutoColumn } from '../Layout/Column'
-import QuestionHelper from '../QuestionHelper'
-import { AutoRow } from '../Layout/Row'
-import CurrencyLogo from '../CurrencyLogo'
+import { SUGGESTED_BASES } from 'config/constants'
+import { AutoColumn } from 'components/Layout/Column'
+import QuestionHelper from 'components/QuestionHelper'
+import { AutoRow } from 'components/Layout/Row'
+import CurrencyLogo from 'components/CurrencyLogo'
 
 const BaseWrapper = styled.div<{ disable?: boolean }>`
   border: 1px solid ${({ theme, disable }) => (disable ? 'transparent' : theme.colors.tertiary)};

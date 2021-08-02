@@ -3,7 +3,7 @@ import React from 'react'
 import { AlertTriangle } from 'react-feather'
 import { Text } from 'maki-uikit-v2'
 import styled, { css } from 'styled-components'
-import { AutoColumn } from '../Column'
+import { AutoColumn } from 'components/Column'
 
 export const Wrapper = styled.div`
   position: relative;

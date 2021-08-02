@@ -4,7 +4,7 @@ import { ThemeContext } from 'styled-components'
 import { Button, LinkExternal } from 'maki-uikit-v2'
 import { ArrowUpCircle } from 'react-feather'
 import { getEtherscanLink } from 'utils'
-import { AutoColumn } from '../Column'
+import { AutoColumn } from 'components/Column'
 import { Wrapper, Section, ConfirmedIcon, ContentHeader } from './helpers'
 
 type TransactionSubmittedContentProps = {

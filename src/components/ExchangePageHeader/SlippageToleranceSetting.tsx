@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Button, Flex, Input, Text } from 'maki-uikit-v2'
 import { useUserSlippageTolerance } from 'state/user/hooks'
-import QuestionHelper from '../QuestionHelper'
-import TranslatedText from '../TranslatedText'
+import QuestionHelper from 'components/QuestionHelper'
+import TranslatedText from 'components/TranslatedText'
 
 const MAX_SLIPPAGE = 5000
 const RISKY_SLIPPAGE_LOW = 50

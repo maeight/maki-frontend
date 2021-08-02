@@ -1,10 +1,10 @@
 // import { Currency, CurrencyAmount, Fraction, Percent } from 'maki-sdk'
 // import React from 'react'
 // import { Button } from 'maki-uikit-v2'
-// import { RowBetween, RowFixed } from '../../components/Row'
-// import CurrencyLogo from '../../components/CurrencyLogo'
+// import { RowBetween, RowFixed } from 'state/components/Row'
+// import CurrencyLogo from 'state/components/CurrencyLogo'
 // import { Field } from 'state/mint/actions'
-// import { TYPE } from '../../components/Shared'
+// import { TYPE } from 'state/components/Shared'
 
 // const { body: Body } = TYPE
 
@@ -74,8 +74,8 @@ import React from 'react'
 import { Button, Text } from 'maki-uikit-v2'
 import { TranslateString } from 'utils/translateTextHelpers'
 import { Field } from 'state/mint/actions'
-import { RowBetween, RowFixed } from '../../components/Row'
-import CurrencyLogo from '../../components/CurrencyLogo'
+import { RowBetween, RowFixed } from 'components/Row'
+import CurrencyLogo from 'components/CurrencyLogo'
 
 export function ConfirmAddModalBottom({
   noLiquidity,

@@ -2,10 +2,10 @@ import { TokenAmount, Pair, Currency } from 'maki-sdk'
 import { useMemo } from 'react'
 import { abi as IMakiswapPairABI } from 'makiswap-core/build/IMakiswapPair.json'
 import { Interface } from '@ethersproject/abi'
-import { useActiveWeb3React } from '../hooks'
+import { useActiveWeb3React } from 'hooks'
 
-import { useMultipleContractSingleData } from '../state/multicall/hooks'
-import { wrappedCurrency } from '../utils/wrappedCurrency'
+import { useMultipleContractSingleData } from 'state/multicall/hooks'
+import { wrappedCurrency } from 'utils/wrappedCurrency'
 
 const PAIR_INTERFACE = new Interface(IMakiswapPairABI)
 

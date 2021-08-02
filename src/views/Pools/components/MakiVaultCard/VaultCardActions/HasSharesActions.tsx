@@ -5,9 +5,9 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { Pool } from 'state/types'
 import { useMakiVault, usePriceMakiHusd } from 'state/hooks'
 import Balance from 'components/Balance'
-import NotEnoughTokensModal from '../../PoolCard/Modals/NotEnoughTokensModal'
-import { convertSharesToMaki } from '../../../helpers'
-import VaultStakeModal from '../VaultStakeModal'
+import NotEnoughTokensModal from 'views/Pools/components/PoolCard/Modals/NotEnoughTokensModal'
+import { convertSharesToMaki } from 'views/Pools/helpers'
+import VaultStakeModal from 'views/Pools/components/MakiVaultCard/VaultStakeModal'
 
 interface HasStakeActionProps {
   pool: Pool
