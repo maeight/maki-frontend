@@ -1,6 +1,6 @@
 import { Token, TokenAmount } from 'maki-sdk'
 import { useMemo } from 'react'
-import { useAllTokenBalances } from 'state/wallet/hooks'
+import { useAllTokenBalances } from '../../state/wallet/hooks'
 
 // compare two token amounts with highest one coming first
 function balanceComparator(balanceA?: TokenAmount, balanceB?: TokenAmount) {
@@ -38,7 +38,7 @@ function getTokenComparator(balances: {
   }
 }
 
-export function useTokenComparator(inverted: boolean): (tokenA: Token, tokenB: Token) => number {
+function useTokenComparator(inverted: boolean): (tokenA: Token, tokenB: Token) => number {
   const balances = useAllTokenBalances()
   const comparator = useMemo(() => getTokenComparator(balances ?? {}), [balances])
   return useMemo(() => {

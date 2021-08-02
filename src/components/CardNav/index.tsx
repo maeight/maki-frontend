@@ -14,7 +14,7 @@ const Load = keyframes`{
 
 const StyledNav = styled.div`
   margin-bottom: 40px;
-  animation: ${Load} 300ms ease-in forwards;
+  // animation: ${Load} 300ms ease-in forwards;
 `
 
 const Nav = ({ activeIndex = 0 }: { activeIndex?: number }) => (

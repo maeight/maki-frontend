@@ -169,6 +169,22 @@
       "symbol": "DOGE",
       "decimals": 8,
       "logoURI": "https://dogecoin.com/assets/img/dogecoin-300.png"
+    },
+    {
+      "address": "0x25d2e80cb6b86881fd7e07dd263fb79f4abe033c",
+      "chainId": 128,
+      "name": "Mdex",
+      "symbol": "MDX",
+      "decimals": 18,
+      "logoURI": "https://mdex.co/token-icons/bsc/0x9c65ab58d8d978db963e63f2bfb7121627e3a739.png"
+    },
+    {
+      "address": "0xdd86dd2dc0aca2a8f41a680fc1f88ec1b7fc9b09",
+      "chainId": 128,
+      "name": "Shiba Inu",
+      "symbol": "SHIB",
+      "decimals": 18,
+      "logoURI": "https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Shiba_Inu_coin_logo.png/150px-Shiba_Inu_coin_logo.png"
     }
   ]
 }
