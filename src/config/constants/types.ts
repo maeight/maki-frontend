@@ -58,6 +58,13 @@ export interface Token {
   husdPrice?: string
 }
 
+export enum LotteryStatus {
+  PENDING = 'pending',
+  OPEN = 'open',
+  CLOSE = 'close',
+  CLAIMABLE = 'claimable',
+}
+
 // ---------------------
 //  Farm
 // ---------------------
