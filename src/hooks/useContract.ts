@@ -1,7 +1,25 @@
-import { useEffect, useState } from 'react' // useMemo
+import { useMemo } from 'react'
 import { AbiItem } from 'web3-utils'
-import { ContractOptions } from 'web3-eth-contract'
-import useWeb3 from 'hooks/useWeb3'
+import { Contract } from '@ethersproject/contracts'
+import { ChainId, WHT } from 'maki-sdk'
+import { abi as IMakiswapPairABI } from 'makiswap-core/build/IMakiswapPair.json'
+
+// ABIs
+import HRC20_ABI from 'config/abi/hrc20.json'
+import masterChef from 'config/abi/masterchef.json'
+import sousChef from 'config/abi/sousChef.json'
+import sousChefHt from 'config/abi/sousChefHt.json'
+import makiVault from 'config/abi/makiVault.json'
+import profile from 'config/abi/pancakeProfile.json'
+import lottery from 'config/abi/lottery.json'
+import lotteryTicket from 'config/abi/lotteryNft.json'
+import ENS_ABI from 'config/abi/ens-registrar.json'
+import ENS_PUBLIC_RESOLVER_ABI from 'config/abi/ens-public-resolver.json'
+import {HRC20_BYTES32_ABI } from 'config/abi/hrc20'
+import { MIGRATOR_ABI, MIGRATOR_ADDRESS } from 'config/abi/migrator'
+import WHT_ABI from 'config/abi/wht.json'
+import { MULTICALL_ABI, MULTICALL_NETWORKS } from 'config/constants/multicall'
+import { getContract } from 'utils'
 
 // Addresses
 import {
@@ -15,38 +33,29 @@ import {
 } from 'utils/addressHelpers'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
+import { useActiveWeb3React } from '.'
 
-// ABIs
-import hrc20 from 'config/abi/hrc20.json'
-import masterChef from 'config/abi/masterchef.json'
-import sousChef from 'config/abi/sousChef.json'
-import sousChefHt from 'config/abi/sousChefHt.json'
-import makiVault from 'config/abi/makiVault.json'
-import profile from 'config/abi/pancakeProfile.json'
+// returns null on errors
+function useContract(address: string | undefined, ABI: any, withSignerIfPossible = true): Contract | null {
+  const { library, account } = useActiveWeb3React()
 
-// import ifo from 'config/abi/ifo.json'
-// import pointCenterIfo from 'config/abi/pointCenterIfo.json'
-// import bunnySpecial from 'config/abi/bunnySpecial.json'
-import lottery from 'config/abi/lottery.json'
-import lotteryTicket from 'config/abi/lotteryNft.json'
-
-const useContract = (abi: AbiItem, address: string, contractOptions?: ContractOptions) => {
-  const web3 = useWeb3()
-  const [contract, setContract] = useState(new web3.eth.Contract(abi, address, contractOptions))
-
-  useEffect(() => {
-    setContract(new web3.eth.Contract(abi, address, contractOptions))
-  }, [abi, address, contractOptions, web3])
-
-  return contract
+  return useMemo(() => {
+    if (!address || !ABI || !library) return null
+    try {
+      return getContract(address, ABI, library, withSignerIfPossible && account ? account : undefined)
+    } catch (error) {
+      console.error('Failed to get contract', error)
+      return null
+    }
+  }, [address, ABI, library, withSignerIfPossible, account])
 }
 
 /**
  * Helper hooks to get specific contracts (by ABI)
  */
 export const useHRC20 = (address: string) => {
-  const hrc20Abi = (hrc20 as unknown) as AbiItem
-  return useContract(hrc20Abi, address)
+  const hrc20Abi = (HRC20_ABI as unknown) as AbiItem
+  return useContract(address, hrc20Abi)
 }
 
 export const useMaki = () => {
@@ -55,20 +64,20 @@ export const useMaki = () => {
 
 export const useMasterchef = () => {
   const abi = (masterChef as unknown) as AbiItem
-  return useContract(abi, getMasterChefAddress())
+  return useContract(getMasterChefAddress(), abi)
 }
 
 export const useSousChef = (id) => {
   const config = poolsConfig.find((pool) => pool.sousId === id)
   const rawAbi = config.poolCategory === PoolCategory.HECO ? sousChefHt : sousChef
   const abi = (rawAbi as unknown) as AbiItem
-  return useContract(abi, getAddress(config.contractAddress))
+  return useContract(getAddress(config.contractAddress), abi)
 }
 
 // FIX ** NEED TO ADD
 export const useMakiVaultContract = () => {
   const abi = (makiVault as unknown) as AbiItem
-  return useContract(abi, getMakiVaultAddress())
+  return useContract(getMakiVaultAddress(), abi)
 }
 
 // Pancake
@@ -89,28 +98,60 @@ export const useMakiVaultContract = () => {
 
 export const useProfile = () => {
   const abi = (profile as unknown) as AbiItem
-  return useContract(abi, getProfileAddress())
+  return useContract(getProfileAddress(), abi)
 }
 
 export const useLottery = () => {
   const abi = (lottery as unknown) as AbiItem
-  return useContract(abi, getLotteryAddress())
+  return useContract(getLotteryAddress(), abi)
 }
 
 export const useLotteryTicket = () => {
   const abi = (lotteryTicket as unknown) as AbiItem
-  return useContract(abi, getLotteryNFTAddress()) // UPDATE get()
+  return useContract(getLotteryNFTAddress(), abi) // UPDATE get()
 }
 
+export function useV2MigratorContract(): Contract | null {
+  return useContract(MIGRATOR_ADDRESS, MIGRATOR_ABI, true)
+}
 
-// export const usePointCenterIfoContract = () => {
-//   const abi = (hrc20 as unknown) as AbiItem
-//   return useContract(abi, getMakiAddress())
-// }
+export function useTokenContract(tokenAddress?: string, withSignerIfPossible?: boolean): Contract | null {
+  return useContract(tokenAddress, HRC20_ABI, withSignerIfPossible)
+}
 
-// export const useBunnySpecialContract = () => {
-//   const abi = (hrc20 as unknown) as AbiItem
-//   return useContract(abi, getMakiAddress())
-// }
+export function useWHTContract(withSignerIfPossible?: boolean): Contract | null {
+  const { chainId } = useActiveWeb3React()
+  return useContract(chainId ? WHT[chainId].address : undefined, WHT_ABI, withSignerIfPossible)
+}
+
+export function useENSRegistrarContract(withSignerIfPossible?: boolean): Contract | null {
+  const { chainId } = useActiveWeb3React()
+  let address: string | undefined
+  if (chainId) {
+    switch (chainId) {
+      case ChainId.MAINNET:
+      case ChainId.TESTNET:
+        break
+    }
+  }
+  return useContract(address, ENS_ABI, withSignerIfPossible)
+}
+
+export function useENSResolverContract(address: string | undefined, withSignerIfPossible?: boolean): Contract | null {
+  return useContract(address, ENS_PUBLIC_RESOLVER_ABI, withSignerIfPossible)
+}
+
+export function useBytes32TokenContract(tokenAddress?: string, withSignerIfPossible?: boolean): Contract | null {
+  return useContract(tokenAddress, HRC20_BYTES32_ABI, withSignerIfPossible)
+}
+
+export function usePairContract(pairAddress?: string, withSignerIfPossible?: boolean): Contract | null {
+  return useContract(pairAddress, IMakiswapPairABI, withSignerIfPossible)
+}
+
+export function useMulticallContract(): Contract | null {
+  const { chainId } = useActiveWeb3React()
+  return useContract(chainId && MULTICALL_NETWORKS[chainId], MULTICALL_ABI, false)
+}
 
 export default useContract

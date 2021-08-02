@@ -2,7 +2,7 @@ import React, { useEffect, useCallback, useState } from 'react'
 import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
 import useWeb3 from 'hooks/useWeb3'
-import { Modal, Text, LinkExternal, Flex, Box, Button, Input } from 'maki-uikit'
+import { Modal, Text, LinkExternal, Flex, Box, Button, Input } from 'maki-uikit-v2'
 import { useTranslation } from 'contexts/Localization'
 import { getMerkleDistributorContract } from 'utils/contractHelpers'
 import Merkle from 'config/constants/merkle'
@@ -31,7 +31,7 @@ const ClaimModal: React.FC<ClaimModalProps> = ({ onDismiss }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const web3 = useWeb3()
-  const airdropContract = getMerkleDistributorContract(web3)
+  const airdropContract = getMerkleDistributorContract()
   const [recipientAddress, setRecipientAddress] = useState('')
   const [isEligible, setIsEligible] = useState(false)
   const [isAirdropClaimed, setIsAirdropClaimed] = useState(false)
@@ -52,7 +52,7 @@ const ClaimModal: React.FC<ClaimModalProps> = ({ onDismiss }) => {
 
   const getAirdropStats = useCallback(async () => {
     const claimObject: any = getClaimObjectFromAddress(recipientAddress)
-    const isClaimed = await airdropContract.methods.isClaimed(claimObject.index).call()
+    const isClaimed = await airdropContract.isClaimed(claimObject.index)
 
     setIsAirdropClaimed(isClaimed)
     if (isClaimed) {
@@ -65,17 +65,21 @@ const ClaimModal: React.FC<ClaimModalProps> = ({ onDismiss }) => {
   const claimAirdrop = useCallback(async () => {
     const claimObject = getClaimObjectFromAddress(recipientAddress)
 
-    await airdropContract.methods
+    const tx = await airdropContract
       .claim(
         claimObject.index,
         recipientAddress,
         claimObject.amount,
-        claimObject.proof
+        claimObject.proof,
+        { from: account }
       )
-      .send({ from: account })
-      .on('error', () => setError('Transaction was not successful'))
-      .on('transactionHash', () => setMessage('Your transaction has been recorded'))
-      .on('confirmation', () => setMessage('You have successfully claimed your airdrop'))
+    setMessage('Your transaction has been recorded')
+    const receipt = await tx.wait()
+    if (receipt.status) {
+      setMessage('You have successfully claimed your airdrop')
+    } else {
+      setError('Transaction was not successful')
+    }
   }, [account, recipientAddress, airdropContract, setError, setMessage])
 
   useEffect(() => {

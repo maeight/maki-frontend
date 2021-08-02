@@ -3,7 +3,7 @@ import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { DEFAULT_GAS_LIMIT } from 'config'
 import styled from 'styled-components'
-import { Modal, Text, Flex, Button, HelpIcon, AutoRenewIcon, useTooltip } from 'maki-uikit'
+import { Modal, Text, Flex, Button, HelpIcon, AutoRenewIcon, useTooltip } from 'maki-uikit-v2'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useMakiVaultContract } from 'hooks/useContract'
 import useTheme from 'hooks/useTheme'
@@ -50,9 +50,7 @@ const BountyModal: React.FC<BountyModalProps> = ({
   })
 
   const handleConfirmClick = async () => {
-    makiVaultContract.methods
-      .harvest()
-      .send({ from: account, gas: DEFAULT_GAS_LIMIT })
+    makiVaultContract.harvest({ from: account, gas: DEFAULT_GAS_LIMIT })
       .on('sending', () => {
         setPendingTx(true)
       })

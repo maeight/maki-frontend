@@ -21,12 +21,7 @@ import {
   fetchMakiVaultFees,
   setBlock,
 } from './actions'
-import { State, Farm, Pool, FarmsState } from './types' // Removed: TeamsState, AchievementState, ProfileState
-// import { fetchProfile } from './profile'
-// import { fetchTeam, fetchTeams } from './teams'
-// import { fetchAchievements } from './achievements'
-// import { fetchWalletNfts } from './collectibles'
-// import { getCanClaim } from './predictions/helpers'
+import { State, Farm, Pool, FarmsState } from './types'
 import { transformPool } from './pools/helpers'
 import { fetchPoolsStakingLimitsAsync } from './pools'
 import { fetchFarmUserDataAsync, nonArchivedFarms } from './farms'

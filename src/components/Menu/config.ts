@@ -1,4 +1,4 @@
-import { MenuEntry } from 'maki-uikit'
+import { MenuEntry } from 'maki-uikit-v2'
 import { ContextApi } from 'contexts/Localization/types'
 
 const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
@@ -14,7 +14,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
       items: [
         {
           label: t('Exchange'),
-          href: 'https://exchange.makiswap.com',
+          href: 'https://exchange.makiswap.com/#/swap',
         },
         {
           label: t('Liquidity'),

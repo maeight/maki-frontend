@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Flex, Skeleton, Text } from 'maki-uikit'
+import { Flex, Skeleton, Text } from 'maki-uikit-v2'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import BigNumber from 'bignumber.js'
@@ -21,7 +21,6 @@ const TotalStakedCell: React.FC<TotalStakedCellProps> = ({ pool }) => {
   const { t } = useTranslation()
   const { sousId, stakingToken, totalStaked, isAutoVault } = pool
   const { totalMakiInVault } = useMakiVault()
-
   const isManualMakiPool = sousId === 0
 
   const totalStakedBalance = useMemo(() => {

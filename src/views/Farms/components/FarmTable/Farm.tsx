@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useFarmUser } from 'state/hooks'
-import { Text, Image } from 'maki-uikit'
+import { Text, Image } from 'maki-uikit-v2'
 import { getBalanceNumber } from 'utils/formatBalance'
 
 export interface FarmProps {

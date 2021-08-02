@@ -1,6 +1,6 @@
 import React, { lazy } from 'react'
 import { Redirect, Router, Route, Switch } from 'react-router-dom'
-import { ResetCSS } from 'maki-uikit'
+import { ResetCSS } from 'maki-uikit-v2'
 import BigNumber from 'bignumber.js'
 import useEagerConnect from 'hooks/useEagerConnect'
 import { usePollCoreFarmData, usePollBlockNumber } from 'state/hooks' // removed: useFetchProfile
@@ -9,15 +9,22 @@ import Menu from './components/Menu'
 import SuspenseWithChunkError from './components/SuspenseWithChunkError'
 import ToastListener from './components/ToastListener'
 import PageLoader from './components/PageLoader'
+import history from './routerHistory'
 // import EasterEgg from './components/EasterEgg'
 import Pools from './views/Pools'
-import history from './routerHistory'
-// import NotFound from 'views/NotFound'
+import Swap from './views/Swap'
+import { RedirectDuplicateTokenIds, RedirectOldAddLiquidityPathStructure } from './views/AddLiquidity/redirects'
+import { RedirectOldRemoveLiquidityPathStructure } from './views/RemoveLiquidity/redirects'
+import { RedirectPathToSwapOnly } from './views/Swap/redirects'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page'
 const Home = lazy(() => import('./views/Home'))
 const Farms = lazy(() => import('./views/Farms'))
+const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
+const Liquidity = lazy(() => import('./views/Pool'))
+const PoolFinder = lazy(() => import('./views/PoolFinder'))
+const RemoveLiquidity = lazy(() => import('./views/RemoveLiquidity'))
 const NotFound = lazy(() => import('./views/NotFound'))
 const Lottery = lazy(() => import('./views/Lottery'))
 // const Ifos = lazy(() => import('./views/Ifos'))
@@ -83,6 +90,20 @@ const App: React.FC = () => {
               <Redirect to="/collectibles" />
             </Route> */}
             {/* 404 */}
+
+            {/* Exchange routes */}
+            <Route exact strict path="/swap" component={Swap} />
+            <Route exact strict path="/find" component={PoolFinder} />
+            <Route exact strict path="/pool" component={Liquidity} />
+            <Route exact path="/add" component={AddLiquidity} />
+            <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
+
+            {/* Redirection: These old routes are still used in the code base */}
+            <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
+            <Route exact path="/add/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
+            <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
+
+            <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
             <Route component={NotFound} />
           </Switch>
         </SuspenseWithChunkError>

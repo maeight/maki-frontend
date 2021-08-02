@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { HelpIcon, Text, Skeleton, useTooltip } from 'maki-uikit'
+import { HelpIcon, Text, Skeleton, useTooltip } from 'maki-uikit-v2'
 import BigNumber from 'bignumber.js'
 
 const ReferenceElement = styled.div`

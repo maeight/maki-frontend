@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ListViewIcon, CardViewIcon, IconButton } from 'maki-uikit'
+import { ListViewIcon, CardViewIcon, IconButton } from 'maki-uikit-v2'
 
 export enum ViewMode {
   'TABLE' = 'TABLE',
