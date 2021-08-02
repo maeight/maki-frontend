@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { BaseLayout } from 'maki-uikit'
+import { BaseLayout } from 'maki-uikit-v2'
 import { useWeb3React } from '@web3-react/core'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalClaim } from 'hooks/useTickets'

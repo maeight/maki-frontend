@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
-import { Heading, Card, CardBody, CardFooter, Text, PancakeRoundIcon, Flex, Skeleton } from 'maki-uikit'
+import { Heading, Card, CardBody, CardFooter, Text, PancakeRoundIcon, Flex, Skeleton } from 'maki-uikit-v2'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'

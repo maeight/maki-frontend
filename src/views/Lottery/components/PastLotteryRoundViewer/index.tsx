@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Card, CardBody } from 'maki-uikit'
+import { Card, CardBody } from 'maki-uikit-v2'
 import getLotteryRoundData from 'utils/getLotteryRoundData'
 import { useTranslation } from 'contexts/Localization'
 import PastLotterySearcher from './PastLotterySearcher'

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Card, CardBody, Ticket } from 'maki-uikit'
+import { Heading, Card, CardBody, Ticket } from 'maki-uikit-v2'
 import { useTranslation } from 'contexts/Localization'
 import UnlockButton from 'components/UnlockButton'
 

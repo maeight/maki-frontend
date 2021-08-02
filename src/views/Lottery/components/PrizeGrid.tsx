@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
-import { Heading, Text } from 'maki-uikit'
+import { Heading, Text } from 'maki-uikit-v2'
 
 export interface PrizeGridProps {
   lotteryPrizeAmount?: number

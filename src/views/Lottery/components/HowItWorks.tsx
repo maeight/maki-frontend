@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text, Heading, Link, Image } from 'maki-uikit'
+import { Text, Heading, Link, Image } from 'maki-uikit-v2'
 import { useTranslation } from 'contexts/Localization'
 
 const LayoutWrapper = styled.div`

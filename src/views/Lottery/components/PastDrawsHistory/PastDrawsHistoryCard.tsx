@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading, Card, CardBody } from 'maki-uikit'
+import { Heading, Card, CardBody } from 'maki-uikit-v2'
 import { useTranslation } from 'contexts/Localization'
 import HistoryChart from './HistoryChart'
 import Legend from './Legend'

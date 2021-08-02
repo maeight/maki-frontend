@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Text, Input, Button } from 'maki-uikit'
+import { Text, Input, Button } from 'maki-uikit-v2'
 import { useTranslation } from 'contexts/Localization'
 
 interface PastLotterySearcherProps {

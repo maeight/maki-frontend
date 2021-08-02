@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Text } from 'maki-uikit'
+import { Heading, Text } from 'maki-uikit-v2'
 import { useTranslation } from 'contexts/Localization'
 import Container from 'components/layout/Container'
 import LotteryProgress from './LotteryProgress'

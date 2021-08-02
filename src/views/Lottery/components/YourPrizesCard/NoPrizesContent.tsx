@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text, Button, useModal } from 'maki-uikit'
+import { Text, Button, useModal } from 'maki-uikit-v2'
 import { useTranslation } from 'contexts/Localization'
 import useTickets from 'hooks/useTickets'
 import MyTicketsModal from '../TicketCard/UserTicketsModal'

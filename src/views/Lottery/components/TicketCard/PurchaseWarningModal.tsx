@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Modal } from 'maki-uikit'
+import { Button, Modal } from 'maki-uikit-v2'
 import ModalActions from 'components/ModalActions'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { ButtonMenu, ButtonMenuItem } from 'maki-uikit'
+import { ButtonMenu, ButtonMenuItem } from 'maki-uikit-v2'
 import PastLotteryDataContext from 'contexts/PastLotteryDataContext'
 import { getLotteryIssueIndex } from 'utils/lotteryUtils'
 import { useTranslation } from 'contexts/Localization'

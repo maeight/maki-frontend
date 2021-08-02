@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { Image, Card, CardBody } from 'maki-uikit'
+import { Image, Card, CardBody } from 'maki-uikit-v2'
 import { useWinningNumbers, useMatchingRewardLength } from 'hooks/useTickets'
 import { useTranslation } from 'contexts/Localization'
 import useGetLotteryHasDrawn from 'hooks/useGetLotteryHasDrawn'

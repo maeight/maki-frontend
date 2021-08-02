@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text } from 'maki-uikit'
+import { Text } from 'maki-uikit-v2'
 
 interface PastRoundCardErrorProps {
   error: {

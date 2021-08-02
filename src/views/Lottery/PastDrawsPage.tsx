@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { BaseLayout } from 'maki-uikit'
+import { BaseLayout } from 'maki-uikit-v2'
 import PastLotteryRoundViewer from './components/PastLotteryRoundViewer'
 import PastDrawsHistoryCard from './components/PastDrawsHistory/PastDrawsHistoryCard'
 

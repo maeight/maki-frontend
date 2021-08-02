@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { Button, Modal } from 'maki-uikit'
+import { Button, Modal } from 'maki-uikit-v2'
 import styled from 'styled-components'
 import { useWinningNumbers } from 'hooks/useTickets'
 import { useTranslation } from 'contexts/Localization'
