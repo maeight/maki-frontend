@@ -5,7 +5,7 @@ import PastLotteryDataContext from 'contexts/PastLotteryDataContext'
 import { getLotteryIssueIndex } from 'utils/lotteryUtils'
 import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
-import { useLottery } from 'hooks/useContract'
+import { useLotteryContract } from 'hooks/useContract'
 import Page from 'components/Layout/Page'
 import Hero from './components/Hero'
 import Divider from './components/Divider'
@@ -21,7 +21,7 @@ const Wrapper = styled.div`
 `
 
 const Lottery: React.FC = () => {
-  const lotteryContract = useLottery()
+  const lotteryContract = useLotteryContract()
   const { account } = useWeb3React()
   const { t } = useTranslation();
   const [activeIndex, setActiveIndex] = useState(0)

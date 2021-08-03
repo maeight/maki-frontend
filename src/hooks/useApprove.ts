@@ -7,7 +7,7 @@ import BigNumber from 'bignumber.js'
 import { useAppDispatch } from 'state'
 import { updateUserAllowance } from 'state/actions'
 import { approve } from 'utils/callHelpers'
-import { useMasterchef, useMaki, useSousChef, useLottery, useMakiVaultContract } from './useContract'
+import { useMasterchef, useMaki, useSousChef, useLotteryContract, useMakiVaultContract } from './useContract'
 import useToast from './useToast'
 import useLastUpdated from './useLastUpdated'
 
@@ -121,7 +121,7 @@ export const useCheckVaultApprovalStatus = () => {
 export const useLotteryApprove = () => {
   const { account } = useWeb3React()
   const makiContract = useMaki()
-  const lotteryContract = useLottery()
+  const lotteryContract = useLotteryContract()
 
   const handleApprove = useCallback(async () => {
     try {

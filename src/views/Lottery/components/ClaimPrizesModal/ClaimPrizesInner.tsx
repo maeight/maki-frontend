@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
-import { Flex, Button, Text, AutoRenewIcon, PresentWonIcon } from '@pancakeswap/uikit'
+import { Flex, Button, Text, AutoRenewIcon } from 'maki-uikit-v2'
 import { useTranslation } from 'contexts/Localization'
 import { LotteryTicket, LotteryTicketClaimData } from 'config/constants/types'
 import { getBalanceAmount } from 'utils/formatBalance'
@@ -11,7 +11,7 @@ import { fetchUserLotteries } from 'state/lottery'
 import { useAppDispatch } from 'state'
 import Balance from 'components/Balance'
 import useToast from 'hooks/useToast'
-import { useLotteryV2Contract } from 'hooks/useContract'
+import { useLotteryContract } from 'hooks/useContract'
 
 interface ClaimInnerProps {
   roundsToClaim: LotteryTicketClaimData[]
@@ -31,7 +31,7 @@ const ClaimInnerContainer: React.FC<ClaimInnerProps> = ({ onSuccess, roundsToCla
       roundsToClaim[activeClaimIndex].ticketsWithUnclaimedRewards.length / maxNumberTicketsPerBuyOrClaim.toNumber(),
     ),
   )
-  const lotteryContract = useLotteryV2Contract()
+  const lotteryContract = useLotteryContract()
   const activeClaimData = roundsToClaim[activeClaimIndex]
 
   const cakePriceBusd = usePriceCakeBusd()
@@ -177,7 +177,7 @@ const ClaimInnerContainer: React.FC<ClaimInnerProps> = ({ onSuccess, roundsToCla
             color="secondary"
             unit=" CAKE!"
           />
-          <PresentWonIcon ml={['0', null, '12px']} width="64px" />
+          {/* <PresentWonIcon ml={['0', null, '12px']} width="64px" /> */}
         </Flex>
         <Balance
           mt={['12px', null, '0']}

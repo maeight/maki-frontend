@@ -101,7 +101,7 @@ export const useProfile = () => {
   return useContract(getProfileAddress(), abi)
 }
 
-export const useLottery = () => {
+export const useLotteryContract = () => {
   const abi = (lottery as unknown) as AbiItem
   return useContract(getLotteryAddress(), abi)
 }

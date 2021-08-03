@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useLottery } from 'hooks/useContract'
+import { useLotteryContract } from 'hooks/useContract'
 import { getLotteryStatus } from 'utils/lotteryUtils'
 
 /**
@@ -9,7 +9,7 @@ import { getLotteryStatus } from 'utils/lotteryUtils'
  */
 const useGetLotteryHasDrawn = () => {
   const [lotteryHasDrawn, setLotteryHasDrawn] = useState(true)
-  const lotteryContract = useLottery()
+  const lotteryContract = useLotteryContract()
 
   useEffect(() => {
     if (lotteryContract) {

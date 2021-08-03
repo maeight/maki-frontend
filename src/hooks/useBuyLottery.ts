@@ -1,11 +1,11 @@
 import { useCallback, useState, useEffect } from 'react'
 import { useWeb3React } from '@web3-react/core'
-import { useLottery, useLotteryTicket } from 'hooks/useContract'
+import { useLotteryContract, useLotteryTicket } from 'hooks/useContract'
 import { multiClaim, getMax, multiBuy } from '../utils/lotteryUtils'
 
 export const useMultiClaimLottery = () => {
   const { account } = useWeb3React()
-  const lotteryContract = useLottery()
+  const lotteryContract = useLotteryContract()
   const lotteryTicketContract = useLotteryTicket()
 
   const handleClaim = useCallback(async () => {
@@ -22,7 +22,7 @@ export const useMultiClaimLottery = () => {
 
 export const useMultiBuyLottery = () => {
   const { account } = useWeb3React()
-  const lotteryContract = useLottery()
+  const lotteryContract = useLotteryContract()
 
   const handleBuy = useCallback(
     async (amount: string, numbers: Array<any>) => {
@@ -41,7 +41,7 @@ export const useMultiBuyLottery = () => {
 
 export const useMaxNumber = () => {
   const [max, setMax] = useState(5)
-  const lotteryContract = useLottery()
+  const lotteryContract = useLotteryContract()
 
   const fetchMax = useCallback(async () => {
     const maxNumber = await getMax(lotteryContract)

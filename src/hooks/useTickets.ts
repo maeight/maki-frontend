@@ -1,7 +1,7 @@
 import { useCallback, useState, useEffect } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
-import { useLottery, useLotteryTicket } from 'hooks/useContract'
+import { useLotteryContract, useLotteryTicket } from 'hooks/useContract'
 import { BIG_ZERO } from 'utils/bigNumber'
 import useRefresh from './useRefresh'
 import {
@@ -17,7 +17,7 @@ const useTickets = (lotteryNumber = null) => {
   const [tickets, setTickets] = useState([])
   const { account } = useWeb3React()
   const ticketsContract = useLotteryTicket()
-  const lotteryContract = useLottery()
+  const lotteryContract = useLotteryContract()
   const { fastRefresh } = useRefresh()
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const useTickets = (lotteryNumber = null) => {
 
 export const useTotalRewards = () => {
   const [rewards, setRewards] = useState(BIG_ZERO)
-  const lotteryContract = useLottery()
+  const lotteryContract = useLotteryContract()
   const { fastRefresh } = useRefresh()
 
   useEffect(() => {
@@ -58,7 +58,7 @@ export const useTotalClaim = () => {
   const [claimLoading, setClaimLoading] = useState(false)
   const { account } = useWeb3React()
   const ticketsContract = useLotteryTicket()
-  const lotteryContract = useLottery()
+  const lotteryContract = useLotteryContract()
   const { lastUpdated, setLastUpdated } = useLastUpdated()
 
   const fetchBalance = useCallback(async () => {
@@ -79,7 +79,7 @@ export const useTotalClaim = () => {
 
 export const useWinningNumbers = () => {
   const [winningNumbers, setWinningNumbers] = useState([0, 0, 0, 0])
-  const lotteryContract = useLottery()
+  const lotteryContract = useLotteryContract()
   const { fastRefresh } = useRefresh()
 
   useEffect(() => {
@@ -98,7 +98,7 @@ export const useWinningNumbers = () => {
 
 export const useMatchingRewardLength = (numbers) => {
   const [matchingNumbers, setMatchingNumbers] = useState(0)
-  const lotteryContract = useLottery()
+  const lotteryContract = useLotteryContract()
   const { fastRefresh } = useRefresh()
 
   useEffect(() => {
