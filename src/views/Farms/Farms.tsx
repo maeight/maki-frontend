@@ -1,9 +1,9 @@
 import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
+import styled from 'styled-components'
 import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { Flex, Image, Heading, RowType, Toggle, Text, useMatchBreakpoints } from 'maki-uikit-v2'
-import styled from 'styled-components'
 import FlexLayout from 'components/Layout/Flex'
 import Page from 'components/Layout/Page'
 import { useFarms, usePollFarmsData, usePriceMakiHusd } from 'state/hooks'
@@ -92,11 +92,10 @@ const ViewControls = styled.div`
   }
 `
 // eslint-disable-next-line
-const StyledImage = styled(Image)`
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 58px;
+const StyledHeading = styled(Heading)`
+  color: #5F6471;
 `
+
 const NUMBER_OF_FARMS_VISIBLE = 42
 
 const Farms: React.FC = () => {
@@ -348,9 +347,9 @@ const Farms: React.FC = () => {
             <Heading as="h1" scale="xxl" color="secondary" mb={ isXl ? '24px' : '10px'}>
               {t('Farms')}
             </Heading>
-            <Heading scale="md" color="text">
+            <StyledHeading scale="md" color="text">
               {t('Stake Liquidity Pool (LP) for MAKI Rewards.')}
-            </Heading>
+            </StyledHeading>
           </div>
           <div>
             <img src="/images/farms-banner.png" alt="Farms Page Banner" style={{ height: isXl ? 'auto' : '80px' }} />

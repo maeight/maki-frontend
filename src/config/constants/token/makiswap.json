@@ -19,12 +19,28 @@
   ],
   "tokens": [
     {
+      "address": "0xecb56cf772b5c9a6907fb7d32387da2fcbfb63b4",
+      "chainId": 128,
+      "name": "ltc",
+      "symbol": "LTC",
+      "decimals": 18,
+      "logoURI": "https://assets.coingecko.com/coins/images/11115/small/2_%281%29.png?1588644579"
+    },
+    {
       "address": "0x202b4936fe1a82a4965220860ae46d7d3939bb25",
       "chainId": 128,
       "name": "Aave",
       "symbol": "AAVE",
       "decimals": 18,
       "logoURI": "https://raw.githubusercontent.com/makiswap-protocol/heco-token-list/master/src/tokens/0x202b4936fe1a82a4965220860ae46d7d3939bb25/logo.png"
+    },
+    {
+      "address": "0xee9801669c6138e84bd50deb500827b776777d28",
+      "chainId": 128,
+      "name": "o3",
+      "symbol": "O3",
+      "decimals": 18,
+      "logoURI": "https://avatars.githubusercontent.com/u/33795560?s=200&v=4"
     },
     {
       "address": "0x843af718ef25708765a8e0942f89edeae1d88df0",
@@ -185,6 +201,14 @@
       "symbol": "SHIB",
       "decimals": 18,
       "logoURI": "https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Shiba_Inu_coin_logo.png/150px-Shiba_Inu_coin_logo.png"
+    },
+    {
+      "address": "0xE1C110E1B1b4A1deD0cAf3E42BfBdbB7b5d7cE1C",
+      "chainId": 128,
+      "name": "Elk Finance",
+      "symbol": "ELK",
+      "decimals": 18,
+      "logoURI": "https://github.com/elkfinance/brand-assets/raw/main/Logo/elk-logo-compact.png"
     }
   ]
 }
