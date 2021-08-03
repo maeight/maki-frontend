@@ -2,7 +2,7 @@ import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Image, Heading, RowType, Toggle, Text } from 'maki-uikit-v2'
+import { Flex, Image, Heading, RowType, Toggle, Text, useMatchBreakpoints } from 'maki-uikit-v2'
 import styled from 'styled-components'
 import FlexLayout from 'components/Layout/Flex'
 import Page from 'components/Layout/Page'
@@ -113,6 +113,9 @@ const Farms: React.FC = () => {
   const isArchived = pathname.includes('archived')
   const isInactive = pathname.includes('history')
   const isActive = !isInactive && !isArchived
+
+  const { isXl } = useMatchBreakpoints()
+  const isMobile = !isXl
 
   usePollFarmsData(isArchived)
 
@@ -340,13 +343,20 @@ const Farms: React.FC = () => {
 
   return (
     <>
-      <PageHeader>
-        <Heading as="h1" scale="xxl" color="secondary" mb="24px">
-          {t('Farms')}
-        </Heading>
-        <Heading scale="lg" color="text">
-          {t('Stake Liquidity Pool (LP) for MAKI Rewards.')}
-        </Heading>
+      <PageHeader background="url(/images/banner-bg.png) no-repeat">
+        <Flex justifyContent="space-between" flexDirection={ isMobile ? 'column' : 'row'}>
+          <div>
+            <Heading as="h1" scale="xxl" color="secondary" mb={ isMobile ? '10px' : '24px'}>
+              {t('Farms')}
+            </Heading>
+            <Heading scale="md" color="text">
+              {t('Stake Liquidity Pool (LP) for MAKI Rewards.')}
+            </Heading>
+          </div>
+          <div>
+            <img src="/images/farms-banner.png" alt="Farms Page Banner" style={{ height: isMobile ? '80px' : 'auto' }} />
+          </div>
+        </Flex>
       </PageHeader>
       <Page>
         <ControlContainer>
