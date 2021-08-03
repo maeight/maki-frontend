@@ -10,6 +10,10 @@ const Outer = styled(Box)<{ background?: string }>`
 const Inner = styled(Container)`
   padding-top: 32px;
   padding-bottom: 32px;
+  @media (max-width: 600px) {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
 `
 
 const PageHeader: React.FC<{ background?: string }> = ({ background, children, ...props }) => (
