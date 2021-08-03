@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text, Flex, ChevronRightIcon, Box, SmallDotIcon, PrizeIcon } from 'maki-uikit-v2'
+import { Text, Flex, ChevronRightIcon, Box, PrizeIcon } from 'maki-uikit-v2'
 import { dateOptions, timeOptions } from '../../helpers'
 
 interface FinishedRoundRowProps {
@@ -18,11 +18,11 @@ const Grid = styled(Box)`
   cursor: pointer;
 `
 
-const StyledSmallDotIcon = styled(SmallDotIcon)`
-  path {
-    fill: ${({ theme }) => theme.colors.textDisabled};
-  }
-`
+// const StyledSmallDotIcon = styled(SmallDotIcon)`
+//   path {
+//     fill: ${({ theme }) => theme.colors.textDisabled};
+//   }
+// `
 
 const FinishedRoundRow: React.FC<FinishedRoundRowProps> = ({
   roundId,
@@ -56,7 +56,7 @@ const FinishedRoundRow: React.FC<FinishedRoundRowProps> = ({
       </Flex>
       <Flex mx="6px" alignItems="center" justifyContent="space-between">
         <Text>{numberTickets}</Text>
-        {hasWon ? <PrizeIcon color="warning" /> : <StyledSmallDotIcon />}
+        {hasWon ? <PrizeIcon color="warning" /> : <div />}
       </Flex>
       <Flex alignItems="center" justifyContent="center">
         <ChevronRightIcon color="primary" />

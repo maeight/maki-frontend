@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { IconButton, ArrowForwardIcon, ArrowBackIcon, ArrowLastIcon, Flex, Heading, Input } from 'maki-uikit-v2'
+import { IconButton, ArrowForwardIcon, ArrowBackIcon, Flex, Heading, Input } from 'maki-uikit-v2'
 import { useTranslation } from 'contexts/Localization'
 
 const StyledInput = styled(Input)`
@@ -76,14 +76,14 @@ const RoundSwitcher: React.FC<RoundSwitcherProps> = ({
         >
           <ArrowForwardIcon />
         </StyledIconButton>
-        <StyledIconButton
+        {/* <StyledIconButton
           disabled={selectedRoundIdAsInt >= mostRecentRound}
           onClick={() => handleArrowButonPress(mostRecentRound)}
           variant="text"
           scale="sm"
         >
           <ArrowLastIcon />
-        </StyledIconButton>
+        </StyledIconButton> */}
       </Flex>
     </Flex>
   )

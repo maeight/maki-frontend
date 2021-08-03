@@ -1,5 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { useSelector } from 'react-redux'
+import BigNumber from 'bignumber.js'
 import farmsConfig from 'config/constants/farms'
 import isArchivedPid from 'utils/farmHelpers'
 import priceHelperLpsConfig from 'config/constants/priceHelperLps'
@@ -11,7 +13,7 @@ import {
   fetchFarmUserTokenBalances,
   fetchFarmUserStakedBalances,
 } from './fetchFarmUser'
-import { FarmsState, Farm } from '../types'
+import { FarmsState, Farm, State } from '../types'
 
 const noAccountFarmConfig = farmsConfig.map((farm) => ({
   ...farm,
@@ -76,6 +78,16 @@ export const fetchFarmUserDataAsync = createAsyncThunk<FarmUserDataResponse[], {
     })
   },
 )
+
+export const useFarmFromPid = (pid): Farm => {
+  const farm = useSelector((state: State) => state.farms.data.find((f) => f.pid === pid))
+  return farm
+}
+
+export const usePriceCakeBusd = (): BigNumber => {
+  const cakeBnbFarm = useFarmFromPid(251)
+  return new BigNumber(cakeBnbFarm.token.husdPrice)
+}
 
 export const farmsSlice = createSlice({
   name: 'Farms',

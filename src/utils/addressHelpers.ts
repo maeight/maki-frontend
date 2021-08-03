@@ -44,7 +44,7 @@ export const getPointCenterIfoAddress = () => {
 
 
 // Pancakeswap
-export const getMockCakeAddress = () => {
+export const getCakeAddress = () => {
   return getAddress(addresses.mockcake)
 }
 export const getLotteryAddress = () => {

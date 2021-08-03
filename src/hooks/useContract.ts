@@ -10,6 +10,7 @@ import masterChef from 'config/abi/masterchef.json'
 import sousChef from 'config/abi/sousChef.json'
 import sousChefHt from 'config/abi/sousChefHt.json'
 import makiVault from 'config/abi/makiVault.json'
+import mockCake from 'config/abi/mockCake.json'
 import profile from 'config/abi/pancakeProfile.json'
 import lottery from 'config/abi/lottery.json'
 import lotteryTicket from 'config/abi/lotteryNft.json'
@@ -28,6 +29,7 @@ import {
   getMakiAddress,
   getMakiVaultAddress,
   getProfileAddress,
+  getCakeAddress,
   getLotteryAddress,
   getLotteryNFTAddress
 } from 'utils/addressHelpers'
@@ -99,6 +101,11 @@ export const useMakiVaultContract = () => {
 export const useProfile = () => {
   const abi = (profile as unknown) as AbiItem
   return useContract(getProfileAddress(), abi)
+}
+
+export const useCake = () => {
+  const abi = (mockCake as unknown) as AbiItem
+  return useContract(getCakeAddress(), abi)
 }
 
 export const useLotteryContract = () => {

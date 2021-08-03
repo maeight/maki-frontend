@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components'
 import { Box, Flex, Heading, Skeleton } from 'maki-uikit-v2'
 import { LotteryStatus } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceCakeBusd } from 'state/farms'
 import { useLottery } from 'state/lottery/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import Balance from 'components/Balance'
@@ -75,7 +75,7 @@ const TicketContainer = styled(Flex)`
 `
 
 const PrizeTotalBalance = styled(Balance)`
-  background: ${({ theme }) => theme.colors.gradients.gold};
+  background: ${({ theme }) => theme.colors.gradients.bubblegum};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `

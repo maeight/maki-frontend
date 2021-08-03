@@ -6,12 +6,11 @@ import {
   Button,
   Skeleton,
   Ticket,
-  PresentWonIcon,
   TooltipText,
   InfoIcon,
   useTooltip,
   useModal,
-} from '@pancakeswap/uikit'
+} from 'maki-uikit-v2'
 import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
 import { LotteryTicket, LotteryTicketClaimData } from 'config/constants/types'
@@ -31,7 +30,7 @@ const TopBox = styled(Flex)`
   flex-direction: column;
   margin: -24px;
   padding: 24px;
-  background-color: ${({ theme }) => theme.colors.dropdown};
+  background-color: ${({ theme }) => theme.colors.background};
   border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
 `
 
@@ -193,7 +192,7 @@ const PreviousRoundTicketsInner: React.FC<{ roundId: string }> = ({ roundId }) =
         </Flex>
         <Flex mb="24px" justifyContent="space-between">
           <Flex>
-            <PresentWonIcon width="24px" height="24px" mr="8px" />
+            {/* <PresentWonIcon width="24px" height="24px" mr="8px" /> */}
             <Text bold color="text">
               {t('Winning tickets')}:
             </Text>
