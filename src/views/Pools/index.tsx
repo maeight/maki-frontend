@@ -72,7 +72,6 @@ const Pools: React.FC = () => {
   const performanceFeeAsDecimal = performanceFee && performanceFee / 100
 
   const { isXl } = useMatchBreakpoints()
-  const isMobile = !isXl
 
   const pools = useMemo(() => {
     const makiPool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
@@ -202,9 +201,9 @@ const Pools: React.FC = () => {
   return (
     <>
       <PageHeader background="url(/images/banner-bg.png) no-repeat">
-        <Flex justifyContent="space-between" flexDirection={ isMobile ? 'column' : 'row'}>
+        <Flex justifyContent="space-between" flexDirection={ isXl ? 'row' : 'column'}>
           <div>
-            <Heading as="h1" scale="xxl" color="secondary" mb={ isMobile ? '5px' : '24px'}>
+            <Heading as="h1" scale="xxl" color="secondary" mb={ isXl ? '24px' : '5px'}>
               {t('Soy Pools')}
             </Heading>
             <Heading scale="md" color="text">
@@ -215,7 +214,7 @@ const Pools: React.FC = () => {
             </Heading>
           </div>
           <div>
-            <img src="/images/pools-banner.png" alt="Farms Page Banner" style={{ height: isMobile ? '80px' : 'auto' }} />
+            <img src="/images/pools-banner.png" alt="Farms Page Banner" style={{ height: isXl ? 'auto' : '80px' }} />
           </div>
         </Flex>
       </PageHeader>

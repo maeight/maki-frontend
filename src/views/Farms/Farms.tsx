@@ -115,7 +115,6 @@ const Farms: React.FC = () => {
   const isActive = !isInactive && !isArchived
 
   const { isXl } = useMatchBreakpoints()
-  const isMobile = !isXl
 
   usePollFarmsData(isArchived)
 
@@ -344,9 +343,9 @@ const Farms: React.FC = () => {
   return (
     <>
       <PageHeader background="url(/images/banner-bg.png) no-repeat">
-        <Flex justifyContent="space-between" flexDirection={ isMobile ? 'column' : 'row'}>
+        <Flex justifyContent="space-between" flexDirection={ isXl ? 'row' : 'column'}>
           <div>
-            <Heading as="h1" scale="xxl" color="secondary" mb={ isMobile ? '10px' : '24px'}>
+            <Heading as="h1" scale="xxl" color="secondary" mb={ isXl ? '24px' : '10px'}>
               {t('Farms')}
             </Heading>
             <Heading scale="md" color="text">
@@ -354,7 +353,7 @@ const Farms: React.FC = () => {
             </Heading>
           </div>
           <div>
-            <img src="/images/farms-banner.png" alt="Farms Page Banner" style={{ height: isMobile ? '80px' : 'auto' }} />
+            <img src="/images/farms-banner.png" alt="Farms Page Banner" style={{ height: isXl ? 'auto' : '80px' }} />
           </div>
         </Flex>
       </PageHeader>
