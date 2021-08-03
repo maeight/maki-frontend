@@ -5,12 +5,12 @@ import lotteryAbi from 'config/abi/lottery.json'
 import { getLotteryAddress } from 'utils/addressHelpers'
 import { multicallv2 } from 'utils/multicall'
 import { LotteryRound, LotteryRoundUserTickets, LotteryResponse } from 'state/types'
-import { useLotteryContract } from 'hooks/useContract'
+import { getLotteryContract } from 'utils/contractHelpers'
 import { useMemo } from 'react'
 import { ethersToSerializedBigNumber } from 'utils/bigNumber'
 import { NUM_ROUNDS_TO_FETCH_FROM_NODES } from 'config/constants/lottery'
 
-const lotteryContract = useLotteryContract()
+const lotteryContract = getLotteryContract()
 // Variable used to determine how many past rounds should be populated by node data rather than subgraph
 
 const processViewLotterySuccessResponse = (response, lotteryId: string): LotteryResponse => {

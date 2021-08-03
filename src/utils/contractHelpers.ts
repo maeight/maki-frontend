@@ -18,7 +18,8 @@ import {
   getBunnyFactoryAddress,
   getBunnySpecialAddress,
   getClaimRefundAddress,
-  getPointCenterIfoAddress
+  getPointCenterIfoAddress,
+  getLotteryAddress
 } from 'utils/addressHelpers'
 
 // -----------------
@@ -90,6 +91,11 @@ export const getSousChefContract = (id: number, signer?: ethers.Signer | ethers.
 export const getMulticallContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(multiCall, getMulticallAddress(), signer)
 }
+
+export const getLotteryContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(profileAbi, getLotteryAddress(), signer)
+}
+
 
 // Not implemented yet - here to avoid errors
 export const getProfileContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
