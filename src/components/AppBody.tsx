@@ -17,7 +17,7 @@ export const BodyWrapper = styled(Card)`
   width: 100%;
   z-index: 5;
 
-  animation: ${Load} 300ms ease-in forwards;
+  // animation: ${Load} 300ms ease-in forwards;
 `
 
 /**

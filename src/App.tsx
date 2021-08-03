@@ -15,7 +15,7 @@ import Pools from './views/Pools'
 import Swap from './views/Swap'
 import { RedirectDuplicateTokenIds, RedirectOldAddLiquidityPathStructure } from './views/AddLiquidity/redirects'
 import { RedirectOldRemoveLiquidityPathStructure } from './views/RemoveLiquidity/redirects'
-import { RedirectPathToSwapOnly } from './views/Swap/redirects'
+import { RedirectPathToSwapOnly, RedirectToSwap } from './views/Swap/redirects'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page'
@@ -89,10 +89,10 @@ const App: React.FC = () => {
             {/* <Route path="/nft">
               <Redirect to="/collectibles" />
             </Route> */}
-            {/* 404 */}
 
             {/* Exchange routes */}
             <Route exact strict path="/swap" component={Swap} />
+            <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
             <Route exact strict path="/find" component={PoolFinder} />
             <Route exact strict path="/pool" component={Liquidity} />
             <Route exact path="/add" component={AddLiquidity} />
@@ -102,8 +102,9 @@ const App: React.FC = () => {
             <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
             <Route exact path="/add/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
             <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
-
             <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
+
+            {/* 404 */}
             <Route component={NotFound} />
           </Switch>
         </SuspenseWithChunkError>

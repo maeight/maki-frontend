@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { HelpCircle } from 'react-feather'
+import styled from 'styled-components'
+import useHttpLocations from 'hooks/useHttpLocations'
 
 const BAD_SRCS: { [tokenAddress: string]: true } = {}
 
@@ -34,3 +36,25 @@ export default function Logo({ srcs, alt, ...rest }: LogoProps) {
 
   return <HelpCircle {...rest} />
 }
+
+const StyledListLogo = styled(Logo)<{ size: string }>`
+  width: ${({ size }) => size};
+  height: ${({ size }) => size};
+`
+
+export function ListLogo({
+  logoURI,
+  style,
+  size = '24px',
+  alt,
+}: {
+  logoURI: string
+  size?: string
+  style?: React.CSSProperties
+  alt?: string
+}) {
+  const srcs: string[] = useHttpLocations(logoURI)
+
+  return <StyledListLogo alt={alt} size={size} srcs={srcs} style={style} />
+}
+

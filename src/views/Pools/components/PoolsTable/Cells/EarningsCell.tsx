@@ -10,8 +10,9 @@ import Balance from 'components/Balance'
 import { useMakiVault } from 'state/hooks'
 import { useTranslation } from 'contexts/Localization'
 import { getMakiVaultEarnings } from 'views/Pools/helpers'
+import CollectModal from 'views/Pools/components/PoolCard/Modals/CollectModal'
+
 import BaseCell, { CellContent } from './BaseCell'
-import CollectModal from '../../PoolCard/Modals/CollectModal'
 
 interface EarningsCellProps {
   pool: Pool

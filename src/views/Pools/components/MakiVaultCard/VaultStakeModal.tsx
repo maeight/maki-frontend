@@ -15,7 +15,7 @@ import { getFullDisplayBalance, formatNumber, getDecimalAmount } from 'utils/for
 import useToast from 'hooks/useToast'
 import { fetchMakiVaultUserData } from 'state/pools'
 import { Pool } from 'state/types'
-import { convertMakiToShares } from '../../helpers'
+import { convertMakiToShares } from 'views/Pools/helpers'
 import FeeSummary from './FeeSummary'
 
 interface VaultStakeModalProps {

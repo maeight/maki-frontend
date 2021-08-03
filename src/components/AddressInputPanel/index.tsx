@@ -3,9 +3,9 @@ import styled, { ThemeContext } from 'styled-components'
 import useENS from 'hooks/useENS'
 import { useActiveWeb3React } from 'hooks'
 import { getEtherscanLink } from 'utils'
-import { ExternalLink, TYPE } from '../Shared'
-import { AutoColumn } from '../Column'
-import { RowBetween } from '../Row'
+import { ExternalLink, TYPE } from 'components/Shared'
+import { AutoColumn } from 'components/Column'
+import { RowBetween } from 'components/Row'
 
 const { black: Black } = TYPE
 

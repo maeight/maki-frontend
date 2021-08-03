@@ -7,11 +7,11 @@ import { AlertTriangle } from 'react-feather'
 import { useActiveWeb3React } from 'hooks'
 import { useAllTokens } from 'hooks/Tokens'
 import { getEtherscanLink, shortenAddress } from 'utils'
-import { ExternalLink, TYPE } from '../Shared'
-import CurrencyLogo from '../CurrencyLogo'
-import Modal from '../Modal'
-import { AutoRow, RowBetween } from '../Row'
-import { AutoColumn } from '../Column'
+import { ExternalLink, TYPE } from 'components/Shared'
+import CurrencyLogo from 'components/CurrencyLogo'
+import Modal from 'components/Modal'
+import { AutoRow, RowBetween } from 'components/Row'
+import { AutoColumn } from 'components/Column'
 
 const { main: Main, blue: Blue } = TYPE
 

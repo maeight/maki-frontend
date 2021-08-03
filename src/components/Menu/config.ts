@@ -14,11 +14,11 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
       items: [
         {
           label: t('Exchange'),
-          href: 'https://exchange.makiswap.com/#/swap',
+          href: '/swap',
         },
         {
           label: t('Liquidity'),
-          href: 'https://exchange.makiswap.com/#/pool',
+          href: '/pool',
         },
       ],
   },

@@ -2,10 +2,10 @@ import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Image, Heading, RowType, Toggle, Text } from 'maki-uikit-v2'
+import { Flex, Image, Heading, RowType, Toggle, Text, useMatchBreakpoints } from 'maki-uikit-v2'
 import styled from 'styled-components'
-import FlexLayout from 'components/layout/Flex'
-import Page from 'components/layout/Page'
+import FlexLayout from 'components/Layout/Flex'
+import Page from 'components/Layout/Page'
 import { useFarms, usePollFarmsData, usePriceMakiHusd } from 'state/hooks'
 import usePersistState from 'hooks/usePersistState'
 import { Farm } from 'state/types'
@@ -113,6 +113,8 @@ const Farms: React.FC = () => {
   const isArchived = pathname.includes('archived')
   const isInactive = pathname.includes('history')
   const isActive = !isInactive && !isArchived
+
+  const { isXl } = useMatchBreakpoints()
 
   usePollFarmsData(isArchived)
 
@@ -340,13 +342,20 @@ const Farms: React.FC = () => {
 
   return (
     <>
-      <PageHeader>
-        <Heading as="h1" scale="xxl" color="secondary" mb="24px">
-          {t('Farms')}
-        </Heading>
-        <Heading scale="lg" color="text">
-          {t('Stake Liquidity Pool (LP) for MAKI Rewards.')}
-        </Heading>
+      <PageHeader background="url(/images/banner-bg.png) no-repeat">
+        <Flex justifyContent="space-between" flexDirection={ isXl ? 'row' : 'column'}>
+          <div>
+            <Heading as="h1" scale="xxl" color="secondary" mb={ isXl ? '24px' : '10px'}>
+              {t('Farms')}
+            </Heading>
+            <Heading scale="md" color="text">
+              {t('Stake Liquidity Pool (LP) for MAKI Rewards.')}
+            </Heading>
+          </div>
+          <div>
+            <img src="/images/farms-banner.png" alt="Farms Page Banner" style={{ height: isXl ? 'auto' : '80px' }} />
+          </div>
+        </Flex>
       </PageHeader>
       <Page>
         <ControlContainer>
@@ -395,7 +404,7 @@ const Farms: React.FC = () => {
         </ControlContainer>
         {renderContent()}
         <div ref={loadMoreRef} />
-        {/* <StyledImage src="/images/3dpan.png" alt="Pancake illustration" width={120} height={103} /> */}
+        {/* <StyledImage src="/images/3dpan.png" alt="Maki illustration" width={120} height={103} /> */}
       </Page>
     </>
   )

@@ -6,7 +6,7 @@ import { useWeb3React } from '@web3-react/core'
 import { Web3ReactContextInterface } from '@web3-react/core/dist/types'
 import { isMobile } from 'react-device-detect'
 import { simpleRpcProvider } from 'utils/providers'
-import { injected } from '../connectors'
+import { injected } from 'connectors'
 
 export const useActiveWeb3React = (): Web3ReactContextInterface<Web3Provider> => {
   const { library, chainId, ...web3React } = useWeb3React()

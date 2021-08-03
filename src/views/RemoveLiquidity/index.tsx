@@ -33,13 +33,13 @@ import { currencyId } from 'utils/currencyId'
 import useDebouncedChangeHandler from 'utils/useDebouncedChangeHandler'
 import { wrappedCurrency } from 'utils/wrappedCurrency'
 import { useApproveCallback, ApprovalState } from 'hooks/useApproveCallback'
-import { Dots } from 'components/swap/styleds'
+import { Dots } from 'components/Swap/styleds'
 import { useBurnActionHandlers, useDerivedBurnInfo, useBurnState } from 'state/burn/hooks'
 import AppBody from 'components/AppBody'
-
+import ExchangePage from 'components/Layout/ExchangePage'
 import { Field } from 'state/burn/actions'
 import { useUserDeadline, useUserSlippageTolerance } from 'state/user/hooks'
-import { ClickableText, Wrapper } from '../Pool/styleds'
+import { ClickableText, Wrapper } from 'views/Pool/styleds'
 
 const { italic: Italic } = TYPE
 
@@ -445,7 +445,7 @@ export default function RemoveLiquidity({
   )
 
   return (
-    <>
+    <ExchangePage>
       <AppBody>
         <AddRemoveTabs adding={false} />
         <Wrapper>
@@ -667,6 +667,6 @@ export default function RemoveLiquidity({
           <MinimalPositionCard showUnwrapped={oneCurrencyIsWHT} pair={pair} />
         </AutoColumn>
       ) : null}
-    </>
+    </ExchangePage>
   )
 }

@@ -2,10 +2,10 @@ import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
 import { Button, Text } from 'maki-uikit-v2'
 import { AlertTriangle } from 'react-feather'
-import { TYPE } from '../Shared'
-import Modal from '../Modal'
-import { AutoRow, RowBetween } from '../Row'
-import { AutoColumn } from '../Column'
+import { TYPE } from 'components/Shared'
+import Modal from 'components/Modal'
+import { AutoRow, RowBetween } from 'components/Row'
+import { AutoColumn } from 'components/Column'
 
 const { main: Main, body: Body } = TYPE
 

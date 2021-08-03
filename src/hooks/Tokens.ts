@@ -1,36 +1,58 @@
 import { parseBytes32String } from '@ethersproject/strings'
 import { Currency, HUOBI, Token, currencyEquals } from 'maki-sdk'
 import { useMemo } from 'react'
-import { useSelectedTokenList } from '../state/lists/hooks'
-import { NEVER_RELOAD, useSingleCallResult } from '../state/multicall/hooks'
+import {
+  TokenAddressMap,
+  useDefaultTokenList,
+  useUnsupportedTokenList,
+  useCombinedActiveList,
+  useCombinedInactiveList,
+} from 'state/lists/hooks'
+import { NEVER_RELOAD, useSingleCallResult } from 'state/multicall/hooks'
 // eslint-disable-next-line import/no-cycle
-import { useUserAddedTokens } from '../state/user/hooks'
-import { isAddress } from '../utils'
+import { useUserAddedTokens } from 'state/user/hooks'
+import { isAddress } from 'utils'
 
-import { useActiveWeb3React } from './index'
+import { useActiveWeb3React } from '.'
 import { useBytes32TokenContract, useTokenContract } from './useContract'
 
-export function useAllTokens(): { [address: string]: Token } {
+// reduce token map into standard address <-> Token mapping, optionally include user added tokens
+function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean): { [address: string]: Token } {
   const { chainId } = useActiveWeb3React()
   const userAddedTokens = useUserAddedTokens()
-  const allTokens = useSelectedTokenList()
 
   return useMemo(() => {
     if (!chainId) return {}
-    return (
-      userAddedTokens
-        // reduce into all ALL_TOKENS filtered by the current chain
-        .reduce<{ [address: string]: Token }>(
-          (tokenMap, token) => {
-            tokenMap[token.address] = token
-            return tokenMap
-          },
-          // must make a copy because reduce modifies the map, and we do not
-          // want to make a copy in every iteration
-          { ...allTokens[chainId] }
-        )
-    )
-  }, [chainId, userAddedTokens, allTokens])
+
+    // reduce to just tokens
+    const mapWithoutUrls = Object.keys(tokenMap[chainId]).reduce<{ [address: string]: Token }>((newMap, address) => {
+      newMap[address] = tokenMap[chainId][address].token
+      return newMap
+    }, {})
+
+    if (includeUserAdded) {
+      return (
+        userAddedTokens
+          // reduce into all ALL_TOKENS filtered by the current chain
+          .reduce<{ [address: string]: Token }>(
+            (tokenMap_, token) => {
+              tokenMap_[token.address] = token
+              return tokenMap_
+            },
+            // must make a copy because reduce modifies the map, and we do not
+            // want to make a copy in every iteration
+            { ...mapWithoutUrls },
+          )
+      )
+    }
+
+    return mapWithoutUrls
+  }, [chainId, userAddedTokens, tokenMap, includeUserAdded])
+}
+
+export function useAllTokens(): { [address: string]: Token } {
+  const allTokens = useCombinedActiveList()
+  return useTokensFromMap(allTokens, true)
 }
 
 // Check if currency is included in custom list from user storage
