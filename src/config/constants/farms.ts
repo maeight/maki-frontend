@@ -385,17 +385,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.shib,
     quoteToken: tokens.maki
-  },
-  {
-    pid: 38,
-    lpSymbol: 'HT-ELK',
-    lpAddresses: {
-      256: '',
-      128: '0xb9ecb97555dbed9aa3cf7b0108082c2c24621a16',
-    },
-    token: tokens.elk,
-    quoteToken: tokens.wht
-  },
+  }
 ]
 
 export default farms
