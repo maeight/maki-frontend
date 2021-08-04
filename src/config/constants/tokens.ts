@@ -177,6 +177,14 @@ const tokens = {
       128: '0xdd86dd2dc0aca2a8f41a680fc1f88ec1b7fc9b09',
     },
     decimals: 18,
+  },
+  elk: {
+    symbol: 'ELK',
+    address: {
+      256: '', // 
+      128: '0xE1C110E1B1b4A1deD0cAf3E42BfBdbB7b5d7cE1C',
+    },
+    decimals: 18,
   }
   // ada: {
   //   symbol: 'ADA',
