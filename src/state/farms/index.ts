@@ -79,16 +79,6 @@ export const fetchFarmUserDataAsync = createAsyncThunk<FarmUserDataResponse[], {
   },
 )
 
-export const useFarmFromPid = (pid): Farm => {
-  const farm = useSelector((state: State) => state.farms.data.find((f) => f.pid === pid))
-  return farm
-}
-
-export const usePriceCakeBusd = (): BigNumber => {
-  const cakeBnbFarm = useFarmFromPid(251)
-  return new BigNumber(cakeBnbFarm.token.husdPrice)
-}
-
 export const farmsSlice = createSlice({
   name: 'Farms',
   initialState,

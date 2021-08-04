@@ -2,7 +2,7 @@ import React from 'react'
 import BigNumber from 'bignumber.js'
 import { Flex, Skeleton, Text } from 'maki-uikit-v2'
 import { useTranslation } from 'contexts/Localization'
-import { usePriceCakeBusd } from 'state/farms'
+import { useHusdPriceFromPid } from 'state/hooks'
 import Balance from 'components/Balance'
 import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 
@@ -24,7 +24,7 @@ const RewardBracketDetail: React.FC<RewardBracketDetailProps> = ({
   isLoading,
 }) => {
   const { t } = useTranslation()
-  const cakePriceBusd = usePriceCakeBusd()
+  const cakePriceBusd = useHusdPriceFromPid(3)
 
   const getRewardText = () => {
     const numberMatch = rewardBracket + 1
