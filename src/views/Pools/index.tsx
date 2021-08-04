@@ -47,6 +47,10 @@ const ControlStretch = styled(Flex)`
     flex: 1;
   }
 `
+// eslint-disable-next-line
+const StyledHeading = styled(Heading)`
+  color: #5F6471;
+`
 
 const NUMBER_OF_POOLS_VISIBLE = 18
 
@@ -206,12 +210,12 @@ const Pools: React.FC = () => {
             <Heading as="h1" scale="xxl" color="secondary" mb={ isXl ? '24px' : '5px'}>
               {t('Soy Pools')}
             </Heading>
-            <Heading scale="md" color="text">
+            <StyledHeading scale="md" color="text">
               {t('Just stake some tokens to earn.')}
-            </Heading>
-            <Heading scale="md" color="text" mb="10px">
+            </StyledHeading>
+            <StyledHeading scale="md" color="text" mb="10px">
               {t('High APR, low risk.')}
-            </Heading>
+            </StyledHeading>
           </div>
           <div>
             <img src="/images/pools-banner.png" alt="Farms Page Banner" style={{ height: isXl ? 'auto' : '80px' }} />
