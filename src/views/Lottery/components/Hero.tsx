@@ -233,14 +233,14 @@ const Hero = () => {
           ) : (
             <PrizeTotalBalance fontSize="64px" bold prefix="$" value={prizeTotal} mb="8px" decimals={0} />
           )}
-          <Heading mb="32px" scale="lg" color="#ffffff">
+          <Heading mb="32px" scale="lg" color="secondary">
             {t('in prizes!')}
           </Heading>
         </>
       )
     }
     return (
-      <Heading mb="24px" scale="xl" color="#ffffff">
+      <Heading mb="24px" scale="xl" color="secondary">
         {t('Tickets on sale soon')}
       </Heading>
     )
@@ -256,8 +256,8 @@ const Hero = () => {
         <img src="/images/lottery/ticket-l.png" width="123px" height="83px" alt="" />
         <img src="/images/lottery/ticket-r.png" width="121px" height="72px" alt="" />
       </StarsDecorations>
-      <Heading mb="8px" scale="md" color="#ffffff">
-        {t('The PancakeSwap Lottery')}
+      <Heading mb="8px" scale="md" color="secondary">
+        {t('The Makiswap Lottery')}
       </Heading>
       {getHeroHeading()}
       <TicketContainer
