@@ -35,7 +35,7 @@ import Loader from 'components/Loader'
 import PageHeader from 'components/ExchangePageHeader'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import AppBody from 'components/AppBody'
-import defaultTokenJson from '../../config/constants/token/makiswap.json'
+import defaultTokenJson from 'config/constants/token/makiswap.json'
 
 const Swap = () => {
   const loadedUrlParams = useDefaultsFromURLSearch()
