@@ -209,6 +209,14 @@
       "symbol": "ELK",
       "decimals": 18,
       "logoURI": "https://github.com/elkfinance/brand-assets/raw/main/Logo/elk-logo-compact.png"
+    },
+    {
+      "address": "0x4a31d1ad7430586752a1888fe947e3e7d52affb8",
+      "chainId": 128,
+      "name": "Alchemy Pay",
+      "symbol": "ACH",
+      "decimals": 8,
+      "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/6958.png"
     }
   ]
 }

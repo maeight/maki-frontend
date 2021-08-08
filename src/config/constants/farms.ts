@@ -385,7 +385,17 @@ const farms: FarmConfig[] = [
     },
     token: tokens.shib,
     quoteToken: tokens.maki
-  }
+  },
+  // {
+  //   pid: 38,
+  //   lpSymbol: 'MAKI-ACH',
+  //   lpAddresses: {
+  //     256: '',
+  //     128: '0x5E9CdC40D1acF45fEf65313142e40C72059bcB98',
+  //   },
+  //   token: tokens.ach,
+  //   quoteToken: tokens.maki
+  // }
 ]
 
 export default farms
