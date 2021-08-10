@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components'
 import { Box, Flex, Heading, Skeleton } from 'maki-uikit-v2'
 import { LotteryStatus } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'
-import { useHusdPriceFromPid } from 'state/hooks'
+import { usePriceMakiHusd } from 'state/hooks'
 import { useLottery } from 'state/lottery/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import Balance from 'components/Balance'
@@ -219,7 +219,7 @@ const Hero = () => {
     isTransitioning,
   } = useLottery()
 
-  const cakePriceBusd = useHusdPriceFromPid(3)
+  const cakePriceBusd = usePriceMakiHusd()
   const prizeInBusd = amountCollectedInCake.times(cakePriceBusd)
   const prizeTotal = getBalanceNumber(prizeInBusd)
   const ticketBuyIsDisabled = status !== LotteryStatus.OPEN || isTransitioning
@@ -233,14 +233,14 @@ const Hero = () => {
           ) : (
             <PrizeTotalBalance fontSize="64px" bold prefix="$" value={prizeTotal} mb="8px" decimals={0} />
           )}
-          <Heading mb="32px" scale="lg" color="secondary">
+          <Heading mb="32px" scale="lg" color="#ffffff">
             {t('in prizes!')}
           </Heading>
         </>
       )
     }
     return (
-      <Heading mb="24px" scale="xl" color="secondary">
+      <Heading mb="24px" scale="xl" color="#ffffff">
         {t('Tickets on sale soon')}
       </Heading>
     )
@@ -256,8 +256,8 @@ const Hero = () => {
         <img src="/images/lottery/ticket-l.png" width="123px" height="83px" alt="" />
         <img src="/images/lottery/ticket-r.png" width="121px" height="72px" alt="" />
       </StarsDecorations>
-      <Heading mb="8px" scale="md" color="secondary">
-        {t('The Makiswap Lottery')}
+      <Heading mb="8px" scale="md" color="#ffffff">
+        {t('The PancakeSwap Lottery')}
       </Heading>
       {getHeroHeading()}
       <TicketContainer

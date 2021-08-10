@@ -20,7 +20,7 @@ import { getFullDisplayBalance } from 'utils/formatBalance'
 import { getCakeAddress } from 'utils/addressHelpers'
 import { BIG_ZERO, ethersToBigNumber } from 'utils/bigNumber'
 import { useAppDispatch } from 'state'
-import { useHusdPriceFromPid } from 'state/hooks'
+import { usePriceMakiHusd } from 'state/hooks'
 import { useLottery } from 'state/lottery/hooks'
 import { fetchUserTicketsAndLotteries } from 'state/lottery'
 import useTheme from 'hooks/useTheme'
@@ -29,7 +29,7 @@ import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
 import { useCake, useLotteryContract } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
 import ConnectWalletButton from 'components/ConnectWalletButton'
-import ApproveConfirmButtons, { ButtonArrangement } from './ApproveConfirmButtons'
+import ApproveConfirmButtons, { ButtonArrangement } from '../ApproveConfirmButtons'
 import NumTicketsToBuyButton from './NumTicketsToBuyButton'
 import EditNumbersModal from './EditNumbersModal'
 import { useTicketsReducer } from './useTicketsReducer'
@@ -84,7 +84,7 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
   const stringifiedUserCake = userCake.toJSON()
   const memoisedUserCake = useMemo(() => new BigNumber(stringifiedUserCake), [stringifiedUserCake])
 
-  const cakePriceBusd = useHusdPriceFromPid(3)
+  const cakePriceBusd = usePriceMakiHusd()
   const dispatch = useAppDispatch()
   const hasFetchedBalance = fetchStatus === FetchStatus.SUCCESS
   const userCakeDisplayBalance = getFullDisplayBalance(userCake, 18, 3)

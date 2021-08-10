@@ -4,7 +4,7 @@ import BigNumber from 'bignumber.js'
 import { Flex, Skeleton, Heading, Box, Text } from 'maki-uikit-v2'
 import { useTranslation } from 'contexts/Localization'
 import { LotteryRound } from 'state/types'
-import { useHusdPriceFromPid } from 'state/hooks'
+import { usePriceMakiHusd } from 'state/hooks'
 import { useGetLotteryGraphDataById } from 'state/lottery/hooks'
 import { formatNumber, getBalanceNumber } from 'utils/formatBalance'
 import Balance from 'components/Balance'
@@ -26,7 +26,7 @@ const PreviousRoundCardFooter: React.FC<{ lotteryData: LotteryRound; lotteryId: 
 }) => {
   const { t } = useTranslation()
   const lotteryGraphData = useGetLotteryGraphDataById(lotteryId)
-  const cakePriceBusd = useHusdPriceFromPid(3)
+  const cakePriceBusd = usePriceMakiHusd()
 
   let prizeInBusd = new BigNumber(NaN)
   if (lotteryData) {

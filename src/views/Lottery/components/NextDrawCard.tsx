@@ -17,7 +17,7 @@ import {
 import { useWeb3React } from '@web3-react/core'
 import { LotteryStatus } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'
-import { useHusdPriceFromPid } from 'state/hooks'
+import { usePriceMakiHusd } from 'state/hooks'
 import { useLottery } from 'state/lottery/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import Balance from 'components/Balance'
@@ -63,7 +63,7 @@ const NextDrawCard = () => {
   const [isExpanded, setIsExpanded] = useState(false)
   const ticketBuyIsDisabled = status !== LotteryStatus.OPEN || isTransitioning
 
-  const cakePriceBusd = useHusdPriceFromPid(3)
+  const cakePriceBusd = usePriceMakiHusd()
   const prizeInBusd = amountCollectedInCake.times(cakePriceBusd)
   const endTimeMs = parseInt(endTime, 10) * 1000
   const endDate = new Date(endTimeMs)
@@ -137,7 +137,7 @@ const NextDrawCard = () => {
           </Text>
         </Flex>
       </CardHeader>
-      <CardBody>
+      <CardBody style={{ background: 'white' }}>
         <Grid>
           <Flex justifyContent={['center', null, null, 'flex-start']}>
             <Heading>{t('Prize Pot')}</Heading>

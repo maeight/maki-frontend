@@ -25,6 +25,7 @@ import WinningNumbers from '../WinningNumbers'
 import { processLotteryResponse } from '../../helpers'
 import TicketNumber from '../TicketNumber'
 import ClaimPrizesModal from '../ClaimPrizesModal'
+import { PresentWonIcon } from '../Svg'
 
 const TopBox = styled(Flex)`
   flex-direction: column;
@@ -192,7 +193,7 @@ const PreviousRoundTicketsInner: React.FC<{ roundId: string }> = ({ roundId }) =
         </Flex>
         <Flex mb="24px" justifyContent="space-between">
           <Flex>
-            {/* <PresentWonIcon width="24px" height="24px" mr="8px" /> */}
+            <PresentWonIcon width="24px" height="24px" mr="8px" />
             <Text bold color="text">
               {t('Winning tickets')}:
             </Text>

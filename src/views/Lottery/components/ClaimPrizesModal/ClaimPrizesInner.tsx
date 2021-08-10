@@ -5,13 +5,14 @@ import { useTranslation } from 'contexts/Localization'
 import { LotteryTicket, LotteryTicketClaimData } from 'config/constants/types'
 import { getBalanceAmount } from 'utils/formatBalance'
 import { callWithEstimateGas } from 'utils/calls'
-import { useHusdPriceFromPid } from 'state/hooks'
+import { usePriceMakiHusd } from 'state/hooks'
 import { useLottery } from 'state/lottery/hooks'
 import { fetchUserLotteries } from 'state/lottery'
 import { useAppDispatch } from 'state'
 import Balance from 'components/Balance'
 import useToast from 'hooks/useToast'
 import { useLotteryContract } from 'hooks/useContract'
+import { PresentWonIcon } from '../Svg'
 
 interface ClaimInnerProps {
   roundsToClaim: LotteryTicketClaimData[]
@@ -34,7 +35,7 @@ const ClaimInnerContainer: React.FC<ClaimInnerProps> = ({ onSuccess, roundsToCla
   const lotteryContract = useLotteryContract()
   const activeClaimData = roundsToClaim[activeClaimIndex]
 
-  const cakePriceBusd = useHusdPriceFromPid(3)
+  const cakePriceBusd = usePriceMakiHusd()
   const cakeReward = activeClaimData.cakeTotal
   const dollarReward = cakeReward.times(cakePriceBusd)
   const rewardAsBalance = getBalanceAmount(cakeReward).toNumber()
@@ -177,7 +178,7 @@ const ClaimInnerContainer: React.FC<ClaimInnerProps> = ({ onSuccess, roundsToCla
             color="secondary"
             unit=" CAKE!"
           />
-          {/* <PresentWonIcon ml={['0', null, '12px']} width="64px" /> */}
+          <PresentWonIcon ml={['0', null, '12px']} width="64px" />
         </Flex>
         <Balance
           mt={['12px', null, '0']}

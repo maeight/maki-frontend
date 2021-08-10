@@ -3,6 +3,7 @@ import { Button, useModal, ButtonProps } from 'maki-uikit-v2'
 import { useTranslation } from 'contexts/Localization'
 import { useLottery } from 'state/lottery/hooks'
 import { LotteryStatus } from 'config/constants/types'
+import { WaitIcon } from './Svg'
 import BuyTicketsModal from './BuyTicketsModal/BuyTicketsModal'
 
 interface BuyTicketsButtonProps extends ButtonProps {
@@ -22,8 +23,7 @@ const BuyTicketsButton: React.FC<BuyTicketsButtonProps> = ({ disabled, ...props 
     }
     return (
       <>
-        {/* <WaitIcon mr="4px" color="textDisabled" /> */}
-        {t('On sale soon!')}
+        <WaitIcon mr="4px" color="textDisabled" /> {t('On sale soon!')}
       </>
     )
   }
