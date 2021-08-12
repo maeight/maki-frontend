@@ -35,15 +35,18 @@ import Loader from 'components/Loader'
 import PageHeader from 'components/ExchangePageHeader'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import AppBody from 'components/AppBody'
+import defaultTokenJson from 'config/constants/token/makiswap.json'
 
 const Swap = () => {
   const loadedUrlParams = useDefaultsFromURLSearch()
+  const makiData = defaultTokenJson.tokens.filter(val => val.symbol === 'MAKI')[0]
 
   // token warning stuff
   const [loadedInputCurrency, loadedOutputCurrency] = [
     useCurrency(loadedUrlParams?.inputCurrencyId),
     useCurrency(loadedUrlParams?.outputCurrencyId),
   ]
+
   const [dismissTokenWarning, setDismissTokenWarning] = useState<boolean>(false)
   const [isSyrup, setIsSyrup] = useState<boolean>(false)
   const [syrupTransactionType, setSyrupTransactionType] = useState<string>('')
@@ -256,6 +259,11 @@ const Swap = () => {
     },
     [onCurrencySelection, checkForSyrup]
   )
+
+  useEffect(() => {
+    const makiToken = new Token(makiData.chainId, makiData.address, makiData.decimals, makiData.symbol, makiData.name)
+    onCurrencySelection(Field.OUTPUT, makiToken)
+  }, [makiData, onCurrencySelection])
 
   return (
     <ExchangePage>

@@ -3,9 +3,9 @@ import { Currency, Percent, Price } from 'maki-sdk'
 import { Text } from 'maki-uikit-v2'
 import { ONE_BIPS } from 'config/constants'
 import { Field } from 'state/mint/actions'
-import { AutoColumn } from '../../components/Column'
-import { AutoRow } from '../../components/Row'
-import { TYPE } from '../../components/Shared'
+import { AutoColumn } from 'components/Column'
+import { AutoRow } from 'components/Row'
+import { TYPE } from 'components/Shared'
 
 const { black: Black } = TYPE
 

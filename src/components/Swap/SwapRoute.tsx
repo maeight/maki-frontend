@@ -3,8 +3,8 @@ import React, { Fragment, memo, useContext } from 'react'
 import { ChevronRight } from 'react-feather'
 import { Flex } from 'maki-uikit-v2'
 import { ThemeContext } from 'styled-components'
-import { TYPE } from '../Shared'
-import CurrencyLogo from '../CurrencyLogo'
+import { TYPE } from 'components/Shared'
+import CurrencyLogo from 'components/CurrencyLogo'
 
 const { black: Black } = TYPE
 

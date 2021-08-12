@@ -3,7 +3,6 @@ import { ethers } from 'ethers'
 import { simpleRpcProvider } from 'utils/providers'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
-import Merkle from 'config/constants/merkle'
 
 // -----------------
 // Addresses
@@ -112,7 +111,4 @@ export const getClaimRefundContract = (signer?: ethers.Signer | ethers.providers
 }
 export const getPointCenterIfoContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(pointCenterIfo, getPointCenterIfoAddress(), signer)
-}
-export const getMerkleDistributorContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
-  return getContract(Merkle.contractABI, Merkle.contractAddress, signer)
 }

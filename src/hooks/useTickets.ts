@@ -10,7 +10,7 @@ import {
   getMatchingRewardLength,
   getWinningNumbers,
   getTickets,
-} from '../utils/lotteryUtils'
+} from 'utils/lotteryUtils'
 import useLastUpdated from './useLastUpdated'
 
 const useTickets = (lotteryNumber = null) => {

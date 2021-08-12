@@ -3,6 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { useSelector } from 'react-redux'
 import BigNumber from 'bignumber.js'
 import farmsConfig from 'config/constants/farms'
+import { FarmsState, Farm } from 'state/types'
 import isArchivedPid from 'utils/farmHelpers'
 import priceHelperLpsConfig from 'config/constants/priceHelperLps'
 import fetchFarms from './fetchFarms'
@@ -13,7 +14,6 @@ import {
   fetchFarmUserTokenBalances,
   fetchFarmUserStakedBalances,
 } from './fetchFarmUser'
-import { FarmsState, Farm, State } from '../types'
 
 const noAccountFarmConfig = farmsConfig.map((farm) => ({
   ...farm,

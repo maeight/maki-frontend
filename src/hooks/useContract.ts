@@ -3,6 +3,7 @@ import { AbiItem } from 'web3-utils'
 import { Contract } from '@ethersproject/contracts'
 import { ChainId, WHT } from 'maki-sdk'
 import { abi as IMakiswapPairABI } from 'makiswap-core/build/IMakiswapPair.json'
+import Merkle from 'config/constants/merkle'
 
 // ABIs
 import HRC20_ABI from 'config/abi/hrc20.json'
@@ -159,6 +160,10 @@ export function usePairContract(pairAddress?: string, withSignerIfPossible?: boo
 export function useMulticallContract(): Contract | null {
   const { chainId } = useActiveWeb3React()
   return useContract(chainId && MULTICALL_NETWORKS[chainId], MULTICALL_ABI, false)
+}
+
+export const useMerkleDistributorContract = () => {
+  return useContract(Merkle.contractAddress, Merkle.contractABI)
 }
 
 export default useContract

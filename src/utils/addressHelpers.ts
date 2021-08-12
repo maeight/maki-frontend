@@ -43,7 +43,6 @@ export const getPointCenterIfoAddress = () => {
 }
 
 
-// Pancakeswap
 export const getCakeAddress = () => {
   return getAddress(addresses.mockcake)
 }

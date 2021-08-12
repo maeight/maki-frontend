@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, Flex, Text } from 'maki-uikit-v2'
+import { Heading, Flex, Text, useMatchBreakpoints } from 'maki-uikit-v2'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
@@ -47,6 +47,10 @@ const ControlStretch = styled(Flex)`
     flex: 1;
   }
 `
+// eslint-disable-next-line
+const StyledHeading = styled(Heading)`
+  color: #5F6471;
+`
 
 const NUMBER_OF_POOLS_VISIBLE = 18
 
@@ -70,6 +74,8 @@ const Pools: React.FC = () => {
   } = useMakiVault()
   const accountHasVaultShares = userShares && userShares.gt(0)
   const performanceFeeAsDecimal = performanceFee && performanceFee / 100
+
+  const { isXl } = useMatchBreakpoints()
 
   const pools = useMemo(() => {
     const makiPool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
@@ -198,23 +204,22 @@ const Pools: React.FC = () => {
 
   return (
     <>
-      <PageHeader>
-        <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
-          <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
-            <Heading as="h1" scale="xxl" color="secondary" mb="24px">
+      <PageHeader background="url(/images/banner-bg.png) no-repeat">
+        <Flex justifyContent="space-between" flexDirection={ isXl ? 'row' : 'column'}>
+          <div>
+            <Heading as="h1" scale="xxl" color="secondary" mb={ isXl ? '24px' : '5px'}>
               {t('Soy Pools')}
             </Heading>
-            <Heading scale="md" color="text">
+            <StyledHeading scale="md" color="text">
               {t('Just stake some tokens to earn.')}
-            </Heading>
-            <Heading scale="md" color="text">
+            </StyledHeading>
+            <StyledHeading scale="md" color="text" mb="10px">
               {t('High APR, low risk.')}
-            </Heading>
-          </Flex>
-          {/* <Flex flex="1" height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>
-            <HelpButton />
-            <BountyCard />
-          </Flex> */}
+            </StyledHeading>
+          </div>
+          <div>
+            <img src="/images/pools-banner.png" alt="Farms Page Banner" style={{ height: isXl ? 'auto' : '80px' }} />
+          </div>
         </Flex>
       </PageHeader>
       <Page>
@@ -276,7 +281,7 @@ const Pools: React.FC = () => {
           mx="auto"
           mt="12px"
           src="/images/3d-syrup-bunnies.png"
-          alt="Pancake illustration"
+          alt="Maki illustration"
           width={192}
           height={184.5}
         /> */}

@@ -3,8 +3,8 @@ import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import useHttpLocations from 'hooks/useHttpLocations'
 import { WrappedTokenInfo } from 'state/lists/hooks'
-import Logo from '../Logo'
-import CoinLogo from '../pancake/CoinLogo'
+import Logo from 'components/Logo'
+import CoinLogo from 'components/Maki/CoinLogo'
 
 const getTokenLogoURL = (address: string) =>
 `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/hecochain/assets/${address}/logo.png`

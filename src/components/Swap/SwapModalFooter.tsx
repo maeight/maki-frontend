@@ -10,9 +10,9 @@ import {
   formatExecutionPrice,
   warningSeverity
 } from 'utils/prices'
-import { AutoColumn } from '../Column'
-import QuestionHelper from '../QuestionHelper'
-import { AutoRow, RowBetween, RowFixed } from '../Row'
+import { AutoColumn } from 'components/Column'
+import QuestionHelper from 'components/QuestionHelper'
+import { AutoRow, RowBetween, RowFixed } from 'components/Row'
 import FormattedPriceImpact from './FormattedPriceImpact'
 import { StyledBalanceMaxMini, SwapCallbackError } from './styleds'
 

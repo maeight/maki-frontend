@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from 'react'
-import styled from 'styled-components'
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
 import { Currency, currencyEquals, HUOBI, TokenAmount, WHT } from 'maki-sdk'
@@ -32,8 +31,9 @@ import { currencyId } from 'utils/currencyId'
 import Pane from 'components/Pane'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import AppBody from 'components/AppBody'
+import ExchangePage from 'components/Layout/ExchangePage'
 import { ROUTER_ADDRESS } from 'config/constants'
-import { Dots, Wrapper } from '../Pool/styleds'
+import { Dots, Wrapper } from 'views/Pool/styleds'
 import { ConfirmAddModalBottom } from './ConfirmAddModalBottom'
 import { PoolPriceBar } from './PoolPriceBar'
 
@@ -289,16 +289,8 @@ export default function AddLiquidity({
     setTxHash('')
   }, [onFieldAInput, txHash])
 
-  const PageWrap = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 64px);
-  `
-
   return (
-    <PageWrap>
+    <ExchangePage>
       <CardNav activeIndex={1} />
       <AppBody>
         <AddRemoveTabs adding />
@@ -446,6 +438,6 @@ export default function AddLiquidity({
           <MinimalPositionCard showUnwrapped={oneCurrencyIsWHT} pair={pair} />
         </AutoColumn>
       ) : null}
-    </PageWrap>
+    </ExchangePage>
   )
 }

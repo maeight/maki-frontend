@@ -177,6 +177,22 @@ const tokens = {
       128: '0xdd86dd2dc0aca2a8f41a680fc1f88ec1b7fc9b09',
     },
     decimals: 18,
+  },
+  elk: {
+    symbol: 'ELK',
+    address: {
+      256: '', // 
+      128: '0xE1C110E1B1b4A1deD0cAf3E42BfBdbB7b5d7cE1C',
+    },
+    decimals: 18,
+  },
+  ach: {
+    symbol: 'ACH',
+    address: {
+      256: '', // 
+      128: '0x4a31d1ad7430586752a1888fe947e3e7d52affb8',
+    },
+    decimals: 8,
   }
   // ada: {
   //   symbol: 'ADA',
