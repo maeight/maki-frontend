@@ -21,6 +21,7 @@ export default {
   multiCall: {
     256: '', // FIX ** REQUIRED FOR TESTING
     128: '0xdcFb312e99810f5Aa24c9d35018Bef6Eb205A7b1', // UPDATED - ABI UPDATED (June 15th, 2021)
+    80001: '0xC594E112F9DD65a96Be36B0De34a4d482e4aAd1F',
   },
 
   // Awaiting implementation
