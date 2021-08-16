@@ -217,6 +217,14 @@
       "symbol": "ACH",
       "decimals": 8,
       "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/6958.png"
+    },
+    {
+      "address": "0xb3cc7ddeb092fbc30b435a516671a2c49821103f",
+      "chainId": 128,
+      "name": "SafeMoon",
+      "symbol": "SAFEMOON",
+      "decimals": 18,
+      "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/8757.png"
     }
   ]
 }
