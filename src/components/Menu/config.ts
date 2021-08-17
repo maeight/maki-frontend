@@ -77,11 +77,11 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
       },
     ],
   },
-  // {
-  //   label: 'IFO',
-  //   icon: 'IfoIcon',
-  //   href: '/ifo'
-  // },
+  {
+    label: 'IFO',
+    icon: 'IfoIcon',
+    href: '/ifo'
+  },
   {
      label: t('Info'),
      icon: 'InfoIcon',
