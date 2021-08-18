@@ -8,7 +8,7 @@ import { ListLogo } from 'components/Logo'
 import { useActiveWeb3React } from 'hooks'
 import { useCombinedInactiveList } from 'state/lists/hooks'
 import styled from 'styled-components'
-import { useIsUserAddedToken } from 'hooks/Tokens'
+import { useIsUserAddedToken, useIsTokenActive } from 'hooks/Tokens'
 import { useTranslation } from 'contexts/Localization'
 
 const TokenSection = styled.div<{ dim?: boolean }>`
@@ -62,8 +62,7 @@ export default function ImportRow({
 
   // check if already active on list or local storage tokens
   const isAdded = useIsUserAddedToken(token)
-  // const isActive = useIsTokenActive(token)
-  const isActive = true
+  const isActive = useIsTokenActive(token)
 
   return (
     <TokenSection style={style}>

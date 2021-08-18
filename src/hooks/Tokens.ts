@@ -50,9 +50,48 @@ function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean):
   }, [chainId, userAddedTokens, tokenMap, includeUserAdded])
 }
 
+export function useDefaultTokens(): { [address: string]: Token } {
+  const defaultList = useDefaultTokenList()
+  return useTokensFromMap(defaultList, false)
+}
+
 export function useAllTokens(): { [address: string]: Token } {
   const allTokens = useCombinedActiveList()
   return useTokensFromMap(allTokens, true)
+}
+
+export function useAllInactiveTokens(): { [address: string]: Token } {
+  // get inactive tokens
+  const inactiveTokensMap = useCombinedInactiveList()
+  const inactiveTokens = useTokensFromMap(inactiveTokensMap, false)
+
+  // filter out any token that are on active list
+  const activeTokensAddresses = Object.keys(useAllTokens())
+  const filteredInactive = activeTokensAddresses
+    ? Object.keys(inactiveTokens).reduce<{ [address: string]: Token }>((newMap, address) => {
+        if (!activeTokensAddresses.includes(address)) {
+          newMap[address] = inactiveTokens[address]
+        }
+        return newMap
+      }, {})
+    : inactiveTokens
+
+  return filteredInactive
+}
+
+export function useUnsupportedTokens(): { [address: string]: Token } {
+  const unsupportedTokensMap = useUnsupportedTokenList()
+  return useTokensFromMap(unsupportedTokensMap, false)
+}
+
+export function useIsTokenActive(token: Token | undefined | null): boolean {
+  const activeTokens = useAllTokens()
+
+  if (!activeTokens || !token) {
+    return false
+  }
+
+  return !!activeTokens[token.address]
 }
 
 // Check if currency is included in custom list from user storage
