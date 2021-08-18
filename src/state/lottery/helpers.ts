@@ -109,6 +109,7 @@ export const fetchCurrentLotteryIdAndMaxBuy = async () => {
       address: getLotteryAddress(),
       name: method,
     }))
+    console.log('bb', calls);
     const [[currentLotteryId], [maxNumberTicketsPerBuyOrClaim]] = (await multicallv2(
       lotteryAbi,
       calls,

@@ -9,6 +9,7 @@ import { NetworkConnector } from './NetworkConnector'
 import { BscConnector } from './bsc/bscConnector'
 
 const NETWORK_URL = process.env.REACT_APP_NETWORK_URL
+const MATIC_NETWORK_URL = 'https://rpc-mainnet.matic.network'
 const FORTMATIC_KEY = process.env.REACT_APP_FORTMATIC_KEY
 const PORTIS_ID = process.env.REACT_APP_PORTIS_ID
 
@@ -29,14 +30,14 @@ export function getNetworkLibrary(): Web3Provider {
 }
 
 export const injected = new InjectedConnector({
-  supportedChainIds: [128, 256],
+  supportedChainIds: [128, 256, 137, 80001],
 })
 
-export const bsc = new BscConnector({ supportedChainIds: [128, 256] })
+export const bsc = new BscConnector({ supportedChainIds: [128, 256, 137, 80001] })
 
 // mainnet only
 export const walletconnect = new WalletConnectConnector({
-  rpc: { 128: NETWORK_URL },
+  rpc: { 128: NETWORK_URL, 137: MATIC_NETWORK_URL },
   bridge: 'https://bridge.walletconnect.org',
   qrcode: true,
   pollingInterval: 15000,

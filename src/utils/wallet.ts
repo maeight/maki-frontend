@@ -36,22 +36,58 @@ export const setupNetwork = async () => {
     }
   } else if (ethereum) {
     try {
-      await ethereum.request({
-        method: 'wallet_addEthereumChain',
-        params: [
-          {
-            chainId: `0x${chainId.toString(16)}`,
-            chainName: 'Huobi Smart Chain Mainnet',
-            nativeCurrency: {
-              name: 'Huobi Token',
-              symbol: 'HT',
-              decimals: 18,
+      if (ethereum.chainId !== '0x89' && ethereum.chainId !== '0x13881') {
+        await ethereum.request({
+          method: 'wallet_addEthereumChain',
+          params: [
+            {
+              chainId: `0x${chainId.toString(16)}`,
+              chainName: 'Huobi Smart Chain Mainnet',
+              nativeCurrency: {
+                name: 'Huobi Token',
+                symbol: 'HT',
+                decimals: 18,
+              },
+              rpcUrls: nodes,
+              blockExplorerUrls: [`${BASE_HECO_INFO_URL}/`],
             },
-            rpcUrls: nodes,
-            blockExplorerUrls: [`${BASE_HECO_INFO_URL}/`],
-          },
-        ],
-      })
+          ],
+        })  
+      } else if (ethereum.chainId === '0x89') {
+        await ethereum.request({
+          method: 'wallet_addEthereumChain',
+          params: [{
+            chainId: "0x89",
+            chainName: "Matic Network",
+            rpcUrls: ["https://rpc-mainnet.maticvigil.com"],
+            blockExplorerUrls :[
+              "https://polygonscan.com/"
+            ],
+            nativeCurrency: {
+              "name": "Matic Token",
+              "symbol": "MATIC",
+              "decimals": 18
+            }
+          }]
+        })
+      } else {
+        await ethereum.request({
+          method: 'wallet_addEthereumChain',
+          params: [{
+            chainId: "0x13881",
+            chainName: "Mumbai Testnet",
+            rpcUrls: ["https://rpc-mumbai.maticvigil.com"],
+            blockExplorerUrls :[
+              "https://mumbai.polygonscan.com/"
+            ],
+            nativeCurrency: {
+              "name": "Matic Token",
+              "symbol": "MATIC",
+              "decimals": 18
+            }
+          }]
+        })
+      }
       return true
     } catch (error) {
       console.error(error)
