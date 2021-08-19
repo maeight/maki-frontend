@@ -22,6 +22,10 @@ export const getMulticallAddress = () => {
   return getAddress(addresses.multiCall)
 }
 
+export const getMulticallAddressMumbai = () => {
+  return addresses.multiCall['80001']
+}
+
 // Awaiting Implementation
 export const getMakiVaultAddress = () => {
   return getAddress(addresses.makiVault)

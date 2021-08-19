@@ -3,7 +3,7 @@ import { ethers } from 'ethers'
 import { LotteryStatus, LotteryTicket } from 'config/constants/types'
 import lotteryAbi from 'config/abi/lottery.json'
 import { getLotteryAddress } from 'utils/addressHelpers'
-import { multicallv2 } from 'utils/multicall'
+import { multicallv2, multicallv2Mumbai } from 'utils/multicall'
 import { LotteryRound, LotteryRoundUserTickets, LotteryResponse } from 'state/types'
 import { getLotteryContract } from 'utils/contractHelpers'
 import { useMemo } from 'react'
@@ -109,8 +109,7 @@ export const fetchCurrentLotteryIdAndMaxBuy = async () => {
       address: getLotteryAddress(),
       name: method,
     }))
-    console.log('bb', calls);
-    const [[currentLotteryId], [maxNumberTicketsPerBuyOrClaim]] = (await multicallv2(
+    const [[currentLotteryId], [maxNumberTicketsPerBuyOrClaim]] = (await multicallv2Mumbai(
       lotteryAbi,
       calls,
     )) as ethers.BigNumber[][]

@@ -13,6 +13,7 @@ import {
   getMasterChefAddress,
   getMakiVaultAddress,
   getMulticallAddress,
+  getMulticallAddressMumbai,
   getProfileAddress,
   getBunnyFactoryAddress,
   getBunnySpecialAddress,
@@ -89,6 +90,10 @@ export const getSousChefContract = (id: number, signer?: ethers.Signer | ethers.
 
 export const getMulticallContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(multiCall, getMulticallAddress(), signer)
+}
+
+export const getMulticallContractMumbai = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(multiCall, getMulticallAddressMumbai(), signer)
 }
 
 export const getLotteryContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
