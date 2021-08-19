@@ -79,10 +79,8 @@ const processViewLotteryErrorResponse = (lotteryId: string): LotteryResponse => 
 export const fetchLottery = async (lotteryId: string): Promise<LotteryResponse> => {
   try {
     const lotteryData = await lotteryContract.viewLottery(lotteryId)
-    console.log('ddd', lotteryData)
     return processViewLotterySuccessResponse(lotteryData, lotteryId)
   } catch (error) {
-    console.log('ccc', error)
     return processViewLotteryErrorResponse(lotteryId)
   }
 }
@@ -115,14 +113,12 @@ export const fetchCurrentLotteryIdAndMaxBuy = async () => {
       lotteryAbi,
       calls,
     )) as ethers.BigNumber[][]
-    console.log('bb', maxNumberTicketsPerBuyOrClaim);
 
     return {
       currentLotteryId: currentLotteryId ? currentLotteryId.toString() : null,
       maxNumberTicketsPerBuyOrClaim: maxNumberTicketsPerBuyOrClaim ? maxNumberTicketsPerBuyOrClaim.toString() : null,
     }
   } catch (error) {
-    console.log('bbb', error);
     return {
       currentLotteryId: null,
       maxNumberTicketsPerBuyOrClaim: null,

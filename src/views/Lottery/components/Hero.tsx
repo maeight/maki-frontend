@@ -3,7 +3,6 @@ import styled, { keyframes } from 'styled-components'
 import { Box, Flex, Heading, Skeleton } from 'maki-uikit-v2'
 import { LotteryStatus } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'
-import BigNumber from 'bignumber.js'
 import { usePriceMakiHusd } from 'state/hooks'
 import { useLottery } from 'state/lottery/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -221,7 +220,7 @@ const Hero = () => {
   } = useLottery()
 
   const cakePriceBusd = usePriceMakiHusd()
-  const prizeInBusd = amountCollectedInCake.times(new BigNumber(1))
+  const prizeInBusd = amountCollectedInCake.times(cakePriceBusd)
   const prizeTotal = getBalanceNumber(prizeInBusd)
   const ticketBuyIsDisabled = status !== LotteryStatus.OPEN || isTransitioning
 

@@ -7,4 +7,8 @@ const getNodeUrl = () => {
   return sample(nodes)
 }
 
+export const getNodeUrlMumbai = () => {
+  return sample(['https://rpc-mumbai.matic.today'])
+}
+
 export default getNodeUrl

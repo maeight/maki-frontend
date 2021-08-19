@@ -1,6 +1,6 @@
 import Web3 from 'web3'
 import { ethers } from 'ethers'
-import { simpleRpcProvider } from 'utils/providers'
+import { simpleRpcProvider, simpleRpcProviderMumbai } from 'utils/providers'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
 
@@ -65,6 +65,11 @@ const getContract = (abi: any, address: string, signer?: ethers.Signer | ethers.
   return new ethers.Contract(address, abi, signerOrProvider)
 }
 
+const getContractMumbai = (abi: any, address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
+  const signerOrProvider = signer ?? simpleRpcProviderMumbai
+  return new ethers.Contract(address, abi, signerOrProvider)
+}
+
 export const getHrc20Contract = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(hrc20Abi, address, signer)
 }
@@ -94,11 +99,11 @@ export const getMulticallContract = (signer?: ethers.Signer | ethers.providers.P
 }
 
 export const getMulticallContractMumbai = (signer?: ethers.Signer | ethers.providers.Provider) => {
-  return getContract(multiCall, getMulticallAddressMumbai(), signer)
+  return getContractMumbai(multiCall, getMulticallAddressMumbai(), signer)
 }
 
 export const getLotteryContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
-  return getContract(lotteryAbi, getLotteryAddress(), signer)
+  return getContractMumbai(lotteryAbi, getLotteryAddress(), signer)
 }
 
 

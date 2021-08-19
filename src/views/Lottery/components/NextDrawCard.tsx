@@ -14,7 +14,6 @@ import {
   CardFooter,
   ExpandableLabel,
 } from 'maki-uikit-v2'
-import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { LotteryStatus } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'
@@ -65,7 +64,7 @@ const NextDrawCard = () => {
   const ticketBuyIsDisabled = status !== LotteryStatus.OPEN || isTransitioning
 
   const cakePriceBusd = usePriceMakiHusd()
-  const prizeInBusd = amountCollectedInCake.times(new BigNumber(1))
+  const prizeInBusd = amountCollectedInCake.times(cakePriceBusd)
   const endTimeMs = parseInt(endTime, 10) * 1000
   const endDate = new Date(endTimeMs)
   const isLotteryOpen = status === LotteryStatus.OPEN
