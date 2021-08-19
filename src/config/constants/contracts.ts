@@ -83,7 +83,7 @@ export default {
   lottery: {
     256: '',
     80001: '0xeF89c3bC64A06EdDa62FaF297E06c966Ca95505b',
-    128: '0xeF89c3bC64A06EdDa62FaF297E06c966Ca95505b',
+    128: '',
   },
   lotteryNFT: {
     256: '',

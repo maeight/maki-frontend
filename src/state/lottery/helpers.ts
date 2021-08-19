@@ -3,7 +3,7 @@ import { ethers } from 'ethers'
 import { LotteryStatus, LotteryTicket } from 'config/constants/types'
 import lotteryAbi from 'config/abi/lottery.json'
 import { getLotteryAddress } from 'utils/addressHelpers'
-import { multicallv2, multicallv2Mumbai } from 'utils/multicall'
+import { multicallv2Mumbai } from 'utils/multicall'
 import { LotteryRound, LotteryRoundUserTickets, LotteryResponse } from 'state/types'
 import { getLotteryContract } from 'utils/contractHelpers'
 import { useMemo } from 'react'
@@ -79,8 +79,10 @@ const processViewLotteryErrorResponse = (lotteryId: string): LotteryResponse => 
 export const fetchLottery = async (lotteryId: string): Promise<LotteryResponse> => {
   try {
     const lotteryData = await lotteryContract.viewLottery(lotteryId)
+    console.log('ddd', lotteryData)
     return processViewLotterySuccessResponse(lotteryData, lotteryId)
   } catch (error) {
+    console.log('ccc', error)
     return processViewLotteryErrorResponse(lotteryId)
   }
 }
@@ -92,7 +94,7 @@ export const fetchMultipleLotteries = async (lotteryIds: string[]): Promise<Lott
     params: [id],
   }))
   try {
-    const multicallRes = await multicallv2(lotteryAbi, calls, { requireSuccess: false })
+    const multicallRes = await multicallv2Mumbai(lotteryAbi, calls, { requireSuccess: false })
     const processedResponses = multicallRes.map((res, index) =>
       processViewLotterySuccessResponse(res[0], lotteryIds[index]),
     )
@@ -113,12 +115,14 @@ export const fetchCurrentLotteryIdAndMaxBuy = async () => {
       lotteryAbi,
       calls,
     )) as ethers.BigNumber[][]
+    console.log('bb', maxNumberTicketsPerBuyOrClaim);
 
     return {
       currentLotteryId: currentLotteryId ? currentLotteryId.toString() : null,
       maxNumberTicketsPerBuyOrClaim: maxNumberTicketsPerBuyOrClaim ? maxNumberTicketsPerBuyOrClaim.toString() : null,
     }
   } catch (error) {
+    console.log('bbb', error);
     return {
       currentLotteryId: null,
       maxNumberTicketsPerBuyOrClaim: null,
@@ -130,7 +134,7 @@ export const getRoundIdsArray = (currentLotteryId: string): string[] => {
   const currentIdAsInt = parseInt(currentLotteryId, 10)
   const roundIds = []
   for (let i = 0; i < NUM_ROUNDS_TO_FETCH_FROM_NODES; i++) {
-    roundIds.push(currentIdAsInt - i)
+    roundIds.push(Math.max(currentIdAsInt - i, 0))
   }
   return roundIds.map((roundId) => roundId.toString())
 }
