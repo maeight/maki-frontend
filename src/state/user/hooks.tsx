@@ -1,8 +1,7 @@
+import { ChainId, Pair, Token } from 'maki-sdk'
+import lodash from 'lodash'
 import { useCallback, useMemo } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
-import lodash from 'lodash'
-import axios from 'axios'
-import { ChainId, Pair, Token } from 'maki-sdk'
 
 import { useActiveWeb3React } from 'hooks'
 // eslint-disable-next-line import/no-cycle
@@ -13,7 +12,6 @@ import { AppDispatch, AppState } from 'state'
 import {
   addSerializedPair,
   addSerializedToken,
-  addTokenLogo,
   removeSerializedToken,
   SerializedPair,
   SerializedToken,
@@ -143,25 +141,8 @@ export function useUserDeadline(): [number, (slippage: number) => void] {
 export function useAddUserToken(): (token: Token) => void {
   const dispatch = useDispatch<AppDispatch>()
   return useCallback(
-    async (token: Token) => {
+    (token: Token) => {
       dispatch(addSerializedToken({ serializedToken: serializeToken(token) }))
-      /**
-       * Add Token logo using CoinGecko API v3
-       */
-      const { data: coins }: { data: { id: string }[] } = await axios.get('https://api.coingecko.com/api/v3/coins/list')
-      const tokenMeta = lodash.find(coins, ['symbol', token.symbol.toLowerCase()])
-      if (tokenMeta) {
-        const { data: tokenInfo } = await axios.get(`https://api.coingecko.com/api/v3/coins/${tokenMeta.id}?tickers=false&market_data=false&community_data=false&developer_data=false`)
-        const logoUrl = tokenInfo.image.thumb
-        if (logoUrl) {
-          dispatch(addTokenLogo({
-            tokenLogo: {
-              symbol: token.symbol,
-              url: logoUrl,
-            }
-          }))
-        }
-      }
     },
     [dispatch]
   )
