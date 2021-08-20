@@ -4,7 +4,6 @@ import { updateVersion } from 'state/global/actions'
 import {
   addSerializedPair,
   addSerializedToken,
-  addTokenLogo,
   removeSerializedPair,
   removeSerializedToken,
   SerializedPair,
@@ -41,10 +40,6 @@ export interface UserState {
     }
   }
 
-  tokenLogos: {
-    [symbol: string]: string
-  }
-
   pairs: {
     [chainId: number]: {
       // keyed by token0Address:token1Address
@@ -68,7 +63,6 @@ export const initialState: UserState = {
   userSlippageTolerance: INITIAL_ALLOWED_SLIPPAGE,
   userDeadline: DEFAULT_DEADLINE_FROM_NOW,
   tokens: {},
-  tokenLogos: {},
   pairs: {},
   timestamp: currentTimestamp(),
   audioPlay: true
@@ -115,10 +109,6 @@ export default createReducer(initialState, builder =>
       state.tokens[serializedToken.chainId] = state.tokens[serializedToken.chainId] || {}
       state.tokens[serializedToken.chainId][serializedToken.address] = serializedToken
       state.timestamp = currentTimestamp()
-    })
-    .addCase(addTokenLogo, (state, { payload: { tokenLogo } }) => {
-      if (!state.tokenLogos) state.tokenLogos = {}
-      state.tokenLogos[tokenLogo.symbol] = tokenLogo.url  
     })
     .addCase(removeSerializedToken, (state, { payload: { address, chainId } }) => {
       state.tokens[chainId] = state.tokens[chainId] || {}
