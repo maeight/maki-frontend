@@ -56,7 +56,7 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
               <Flex justifyContent="space-between" width="100%">
                 <Text mr="4px">{address}</Text>
                 <Link href={getEtherscanLink(chainId, token.address, 'address')} external>
-                  ({t('View on Heco Scan')})
+                  ({t('View on BscScan')})
                 </Link>
               </Flex>
             )}

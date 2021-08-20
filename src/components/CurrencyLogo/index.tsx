@@ -3,7 +3,6 @@ import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import useHttpLocations from 'hooks/useHttpLocations'
 import { WrappedTokenInfo } from 'state/lists/hooks'
-import { useUserTokenLogo } from 'state/user/hooks'
 import Logo from 'components/Logo'
 import CoinLogo from 'components/Maki/CoinLogo'
 
@@ -32,7 +31,6 @@ export default function CurrencyLogo({
   style?: React.CSSProperties
 }) {
   const uriLocations = useHttpLocations(currency instanceof WrappedTokenInfo ? currency.logoURI : undefined)
-  const userTokenLogo = useUserTokenLogo(currency.symbol)
 
   const srcs: string[] = useMemo(() => {
     if (currency === HUOBI) return []
@@ -42,14 +40,10 @@ export default function CurrencyLogo({
         return [...uriLocations, `/images/coins/${currency?.symbol ?? 'token'}.png`, getTokenLogoURL(currency.address)]
       }
 
-      return [
-        ...(userTokenLogo ? [userTokenLogo] : []),
-        `/images/coins/${currency?.symbol ?? 'token'}.png`,
-        getTokenLogoURL(currency.address)
-      ]
+      return [`/images/coins/${currency?.symbol ?? 'token'}.png`, getTokenLogoURL(currency.address)]
     }
     return []
-  }, [currency, uriLocations, userTokenLogo])
+  }, [currency, uriLocations])
 
   if (currency === HUOBI) {
     return <StyledBnbLogo src="/images/coins/ht.svg" size={size} style={style} />
