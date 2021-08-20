@@ -282,6 +282,6 @@ export function useTrackedTokenPairs(): [Token, Token][] {
 }
 
 export function useUserTokenLogo(symbol: string) {
-  const tokenLogos = useSelector<AppState, AppState['user']['tokenLogos']>(state => state.user.tokenLogos)
+  const tokenLogos = useSelector<AppState, AppState['user']['tokenLogos']>(state => state.user.tokenLogos) || {}
   return tokenLogos[symbol]
 }
