@@ -395,6 +395,16 @@ const farms: FarmConfig[] = [
     },
     token: tokens.ach,
     quoteToken: tokens.maki
+  },
+  {
+    pid: 39,
+    lpSymbol: 'MAKI-TUSD',
+    lpAddresses: {
+      256: '',
+      128: '0xBeBb035cD2AE625c3c670f71B96ec6B556D1a2Cf',
+    },
+    token: tokens.tusd,
+    quoteToken: tokens.maki
   }
 ]
 
