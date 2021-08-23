@@ -225,6 +225,22 @@
       "symbol": "SAFEMOON",
       "decimals": 18,
       "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/8757.png"
+    },
+    {
+      "address": "0x52ee54dd7a68e9cf131b0a57fd6015c74d7140e2",
+      "chainId": 128,
+      "name": "Pilot",
+      "symbol": "PTD",
+      "decimals": 18,
+      "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/9039.png"
+    },
+    {
+      "address": "0x5eE41aB6edd38cDfB9f6B4e6Cf7F75c87E170d98",
+      "chainId": 128,
+      "name": "True USD",
+      "symbol": "TUSD",
+      "decimals": 18,
+      "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/2563.png"
     }
   ]
 }

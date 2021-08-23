@@ -193,6 +193,14 @@ const tokens = {
       128: '0x4a31d1ad7430586752a1888fe947e3e7d52affb8',
     },
     decimals: 8,
+  },
+  tusd: {
+    symbol: 'TUSD',
+    address: {
+      256: '', // 
+      128: '0x5eE41aB6edd38cDfB9f6B4e6Cf7F75c87E170d98',
+    },
+    decimals: 18,
   }
   // ada: {
   //   symbol: 'ADA',
