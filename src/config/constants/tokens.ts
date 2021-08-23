@@ -201,6 +201,14 @@ const tokens = {
       128: '0x5eE41aB6edd38cDfB9f6B4e6Cf7F75c87E170d98',
     },
     decimals: 18,
+  },
+  ptd: {
+    symbol: 'PTD',
+    address: {
+      256: '',
+      128: '0x52Ee54dd7a68e9cf131b0a57fd6015C74d7140E2'
+    },
+    decimal: 18
   }
   // ada: {
   //   symbol: 'ADA',

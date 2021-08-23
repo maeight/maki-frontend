@@ -405,6 +405,16 @@ const farms: FarmConfig[] = [
     },
     token: tokens.tusd,
     quoteToken: tokens.maki
+  },
+  {
+    pid: 40,
+    lpSymbol: 'MAKI-PILOT',
+    lpAddresses: {
+      256: '',
+      128: '0x06AD6a9F784b5d66de44cfD01F99daC7347c3D23'
+    },
+    token: tokens.ptd,
+    quoteToken: tokens.maki
   }
 ]
 
