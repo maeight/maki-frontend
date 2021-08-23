@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { getHrc20Contract, getMakiContract } from 'utils/contractHelpers'
-import { BIG_ZERO } from 'utils/bigNumber'
+import { getHrc20Contract, getMakiContract, getMockCakeContract } from 'utils/contractHelpers'
+import { BIG_ZERO, BIG_TEN } from 'utils/bigNumber'
 import useWeb3 from './useWeb3'
 import useRefresh from './useRefresh'
 import useLastUpdated from './useLastUpdated'
@@ -48,6 +48,38 @@ const useTokenBalance = (tokenAddress: string) => {
   }, [account, tokenAddress, fastRefresh, SUCCESS, FAILED])
 
   return balanceState
+}
+
+export const useCakeBalanceMumbai = () => {
+  const { NOT_FETCHED, SUCCESS, FAILED } = FetchStatus
+  const [cakeBalanceState, setCakeBalanceState] = useState<any>({
+    balance: BIG_ZERO,
+    fetchStatus: NOT_FETCHED,
+  })
+  const { account } = useWeb3React()
+  const { fastRefresh } = useRefresh()
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      const contract = getMockCakeContract();
+      try {
+        const res = await contract.balanceOf(account)
+        setCakeBalanceState({ balance: new BigNumber(res.toString()), fetchStatus: SUCCESS })
+      } catch (e) {
+        console.error(e)
+        setCakeBalanceState((prev) => ({
+          ...prev,
+          fetchStatus: FAILED,
+        }))
+      }
+    }
+
+    if (account) {
+      fetchBalance()
+    }
+  }, [account, fastRefresh, SUCCESS, FAILED])
+
+  return cakeBalanceState
 }
 
 export const useTotalSupply = () => {

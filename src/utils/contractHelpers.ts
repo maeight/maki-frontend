@@ -19,7 +19,8 @@ import {
   getBunnySpecialAddress,
   getClaimRefundAddress,
   getPointCenterIfoAddress,
-  getLotteryAddress
+  getLotteryAddress,
+  getMockCakeAddress
 } from 'utils/addressHelpers'
 
 // -----------------
@@ -39,6 +40,7 @@ import makiVaultAbi from 'config/abi/makiVault.json' // NEEDS TO BE UPDATED W/ M
 import multiCall from 'config/abi/Multicall.json' // NEEDS TO BE UPDATED W/ MULTICALL V2
 
 // Not implemented yet
+import mockCakeAbi from 'config/abi/mockCake.json'
 import lotteryAbi from 'config/abi/lottery.json'
 import profileAbi from 'config/abi/pancakeProfile.json'
 import bunnyFactoryAbi from 'config/abi/bunnyFactory.json'
@@ -69,7 +71,6 @@ const getContractMumbai = (abi: any, address: string, signer?: ethers.Signer | e
   const signerOrProvider = signer ?? simpleRpcProviderMumbai
   return new ethers.Contract(address, abi, signerOrProvider)
 }
-
 export const getHrc20Contract = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(hrc20Abi, address, signer)
 }
@@ -106,6 +107,9 @@ export const getLotteryContract = (signer?: ethers.Signer | ethers.providers.Pro
   return getContractMumbai(lotteryAbi, getLotteryAddress(), signer)
 }
 
+export const getMockCakeContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContractMumbai(mockCakeAbi, getMockCakeAddress(), signer)
+}
 
 // Not implemented yet - here to avoid errors
 export const getProfileContract = (signer?: ethers.Signer | ethers.providers.Provider) => {

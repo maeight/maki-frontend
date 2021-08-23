@@ -53,6 +53,9 @@ export const getCakeAddress = () => {
 export const getLotteryAddress = () => {
   return addresses.lottery['80001']
 }
+export const getMockCakeAddress = () => {
+  return addresses.mockcake['80001']
+}
 export const getLotteryNFTAddress = () => {
   return getAddress(addresses.lotteryNFT)
 }

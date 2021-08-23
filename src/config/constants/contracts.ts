@@ -78,11 +78,12 @@ export default {
   // },
   mockcake: {
     256: '',
-    128: '0x8B7FCDC445fb8C6e585bBbC1512D2834809D8B35',
+    128: '0x5721889472161ee4D8468aE6fed23F0931D1F0C3',
+    80001: '0x5721889472161ee4D8468aE6fed23F0931D1F0C3',
   },
   lottery: {
     256: '',
-    80001: '0xeF89c3bC64A06EdDa62FaF297E06c966Ca95505b',
+    80001: '0xFEF167bDb553c54eA2a535d1B6536F74a4193f23',
     128: '',
   },
   lotteryNFT: {
