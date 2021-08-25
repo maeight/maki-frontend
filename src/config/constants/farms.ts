@@ -26,6 +26,16 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wht,
   },
   {
+    pid: 40,
+    lpSymbol: 'MAKI-PTD',
+    lpAddresses: {
+      256: '',
+      128: '0x06AD6a9F784b5d66de44cfD01F99daC7347c3D23'
+    },
+    token: tokens.ptd,
+    quoteToken: tokens.maki
+  },
+  {
     pid: 35,
     lpSymbol: 'BTC-USDT',
     lpAddresses: {
@@ -404,16 +414,6 @@ const farms: FarmConfig[] = [
       128: '0xBeBb035cD2AE625c3c670f71B96ec6B556D1a2Cf',
     },
     token: tokens.tusd,
-    quoteToken: tokens.maki
-  },
-  {
-    pid: 40,
-    lpSymbol: 'MAKI-PTD',
-    lpAddresses: {
-      256: '',
-      128: '0x06AD6a9F784b5d66de44cfD01F99daC7347c3D23'
-    },
-    token: tokens.ptd,
     quoteToken: tokens.maki
   }
 ]
