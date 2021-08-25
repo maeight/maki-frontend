@@ -408,7 +408,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 40,
-    lpSymbol: 'MAKI-PILOT',
+    lpSymbol: 'MAKI-PTD',
     lpAddresses: {
       256: '',
       128: '0x06AD6a9F784b5d66de44cfD01F99daC7347c3D23'
