@@ -53,6 +53,11 @@ const NextDrawWrapper = styled.div`
   padding: 24px;
 `
 
+const NextDrawBottom = styled.div`
+  margin: 28px 0 -20px;
+  border-top: 1px solid #357CE1;
+`
+
 const NextDrawCard = () => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
@@ -191,21 +196,21 @@ const NextDrawCard = () => {
             <BuyTicketsButton disabled={ticketBuyIsDisabled} maxWidth="280px" />
           </Flex>
         </Grid>
+        <NextDrawBottom>
+          {isExpanded && (
+            <NextDrawWrapper>
+              <RewardBrackets lotteryData={currentRound} />
+            </NextDrawWrapper>
+          )}
+          {(status === LotteryStatus.OPEN || status === LotteryStatus.CLOSE) && (
+            <Flex p="8px 24px" alignItems="center" justifyContent="center">
+              <ExpandableLabel expanded={isExpanded} onClick={() => setIsExpanded(!isExpanded)}>
+                {isExpanded ? t('Hide') : t('Details')}
+              </ExpandableLabel>
+            </Flex>
+          )}
+        </NextDrawBottom>
       </CardBody>
-      <CardFooter p="0">
-        {isExpanded && (
-          <NextDrawWrapper>
-            <RewardBrackets lotteryData={currentRound} />
-          </NextDrawWrapper>
-        )}
-        {(status === LotteryStatus.OPEN || status === LotteryStatus.CLOSE) && (
-          <Flex p="8px 24px" alignItems="center" justifyContent="center">
-            <ExpandableLabel expanded={isExpanded} onClick={() => setIsExpanded(!isExpanded)}>
-              {isExpanded ? t('Hide') : t('Details')}
-            </ExpandableLabel>
-          </Flex>
-        )}
-      </CardFooter>
     </StyledCard>
   )
 }

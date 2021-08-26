@@ -28,6 +28,13 @@ const LotteryPage = styled.div`
   min-height: calc(100vh - 64px);
 `
 
+const LotteryHero = styled.div`
+  background-image: url(/images/lottery/lotteryBG1.svg);
+  padding: 48px 0 160px;
+  background-size: cover;
+  background-position: top center;
+`
+
 const Lottery = () => {
   useFetchLottery()
   useStatusTransitions()
@@ -42,15 +49,12 @@ const Lottery = () => {
 
   return (
     <LotteryPage>
-      <PageSection background={TITLE_BG} index={1} hasCurvedDivider={false}>
+      <LotteryHero>
         <Hero />
-      </PageSection>
+      </LotteryHero>
       <PageSection
-        containerProps={{ style: { marginTop: '-30px' } }}
+        hasCurvedDivider={false} 
         background={GET_TICKETS_BG}
-        concaveDivider
-        clipFill={{ light: '#7645D9' }}
-        dividerPosition="top"
         index={2}
       >
         <Flex alignItems="center" justifyContent="center" flexDirection="column" pt="24px">
