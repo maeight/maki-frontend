@@ -104,6 +104,7 @@ const ButtonImages = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 2;
   & img:last-child {
     margin-top: -10px;
   }
