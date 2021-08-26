@@ -28,9 +28,9 @@ const LotteryPage = styled.div`
 
 const LotteryHero = styled.div`
   background-image: url(/images/lottery/lotteryBG1.svg);
-  padding: 48px 0 160px;
+  padding: 48px 0 180px;
   background-size: cover;
-  background-position: top center;
+  background-position: bottom center;
 `
 
 const CheckPrizesWrapper = styled(PageSection)`

@@ -338,7 +338,7 @@ const HowToPlay: React.FC = () => {
       <Divider />
       <Flex justifyContent="center" alignItems="center" flexDirection={['column', 'column', 'row']}>
         <Flex maxWidth="240px" mr="8px" mb="16px">
-          <img src="/images/lottery/tombola.png" alt="tombola bunny" />
+          <img src="/images/lottery/lotteryImage4.svg" alt="tombola bunny" />
         </Flex>
         <Flex maxWidth="300px" flexDirection="column">
           <Heading mb="16px" scale="md">
@@ -347,7 +347,7 @@ const HowToPlay: React.FC = () => {
           <Text>
             {t('Check our in-depth guide on')}{' '}
             <InlineLink href="https://docs.pancakeswap.finance/products/lottery/lottery-guide">
-              {t('how to play the PancakeSwap lottery!')}
+              {t('how to play the MakiSwap lottery!')}
             </InlineLink>
           </Text>
         </Flex>

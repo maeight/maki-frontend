@@ -7,56 +7,7 @@ import { usePriceMakiHusd } from 'state/hooks'
 import { useLottery } from 'state/lottery/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import Balance from 'components/Balance'
-import { TicketPurchaseCard } from '../svgs'
 import BuyTicketsButton from './BuyTicketsButton'
-
-const floatingStarsLeft = keyframes`
-  from {
-    transform: translate(0,  0px);
-  }
-  50% {
-    transform: translate(10px, 10px);
-  }
-  to {
-    transform: translate(0, -0px);
-  }  
-`
-
-const floatingStarsRight = keyframes`
-  from {
-    transform: translate(0,  0px);
-  }
-  50% {
-    transform: translate(-10px, 10px);
-  }
-  to {
-    transform: translate(0, -0px);
-  }  
-`
-
-const floatingTicketLeft = keyframes`
-  from {
-    transform: translate(0,  0px);
-  }
-  50% {
-    transform: translate(-10px, 15px);
-  }
-  to {
-    transform: translate(0, -0px);
-  }  
-`
-
-const floatingTickeRight = keyframes`
-  from {
-    transform: translate(0,  0px);
-  }
-  50% {
-    transform: translate(10px, 15px);
-  }
-  to {
-    transform: translate(0, -0px);
-  }  
-`
 
 const mainTicketAnimation = keyframes`
   from {
