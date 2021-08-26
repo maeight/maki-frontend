@@ -81,12 +81,12 @@ const PrizeTotalBalance = styled(Balance)`
 `
 
 const StyledBuyTicketButton = styled(BuyTicketsButton)<{ disabled: boolean }>`
-  background: ${({ theme, disabled }) =>
-    disabled ? theme.colors.disabled : 'linear-gradient(180deg, #7645d9 0%, #452a7a 100%)'};
-  width: 200px;
-  ${({ theme }) => theme.mediaQueries.xs} {
-    width: 240px;
-  }
+  background: #FC7A2E;
+  width: 192px;
+  height: 50px;
+  box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  font-size: 18px;
 `
 
 const ButtonWrapper = styled.div`
@@ -97,11 +97,16 @@ const ButtonWrapper = styled.div`
   transform: translate(-50%, -50%) rotate(-4deg);
 `
 
-const TicketSvgWrapper = styled.div`
+const ButtonImages = styled.div`
   position: absolute;
-  top: 0;
-  left: 0;
-  transform: rotate(-4deg);
+  top: -24px;
+  left: -24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  & img:last-child {
+    margin-top: -10px;
+  }
 `
 
 const Hero = () => {
@@ -152,11 +157,12 @@ const Hero = () => {
         justifyContent="center"
       >
         <ButtonWrapper>
+          <ButtonImages>
+            <img src='/images/lottery/lotteryCake1.svg' alt='Lottery Cake' />
+            <img src='/images/lottery/lotteryCake2.svg' alt='Lottery Cake' />
+          </ButtonImages>
           <StyledBuyTicketButton disabled={ticketBuyIsDisabled} />
         </ButtonWrapper>
-        <TicketSvgWrapper>
-          <TicketPurchaseCard width="100%" />
-        </TicketSvgWrapper>
       </TicketContainer>
     </Flex>
   )

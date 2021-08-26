@@ -7,11 +7,9 @@ import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import { useFetchLottery, useLottery } from 'state/lottery/hooks'
 import {
-  TITLE_BG,
   GET_TICKETS_BG,
   FINISHED_ROUNDS_BG,
   FINISHED_ROUNDS_BG_DARK,
-  CHECK_PRIZES_BG,
 } from './pageSectionStyles'
 import useGetNextLotteryEvent from './hooks/useGetNextLotteryEvent'
 import useStatusTransitions from './hooks/useStatusTransitions'
@@ -33,6 +31,18 @@ const LotteryHero = styled.div`
   padding: 48px 0 160px;
   background-size: cover;
   background-position: top center;
+`
+
+const CheckPrizesWrapper = styled(PageSection)`
+  padding: 16px 0;
+  background: #0D2850;
+`
+
+const FinishedBg = styled.img`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
 `
 
 const Lottery = () => {
@@ -77,11 +87,10 @@ const Lottery = () => {
           <NextDrawCard />
         </Flex>
       </PageSection>
-      <PageSection background={CHECK_PRIZES_BG} hasCurvedDivider={false} index={2}>
+      <CheckPrizesWrapper hasCurvedDivider={false} index={2}>
         <CheckPrizesSection />
-      </PageSection>
+      </CheckPrizesWrapper>
       <PageSection
-        innerProps={{ style: { margin: '0', width: '100%' } }}
         background={isDark ? FINISHED_ROUNDS_BG_DARK : FINISHED_ROUNDS_BG}
         hasCurvedDivider={false}
         index={2}
@@ -98,13 +107,9 @@ const Lottery = () => {
           </Box>
           {historyTabMenuIndex === 0 ? <AllHistoryCard /> : <YourHistoryCard />}
         </Flex>
+        <FinishedBg src='/images/lottery/lotteryBG2.png' alt='Finished Rounds' />
       </PageSection>
-      <PageSection
-        dividerPosition="top"
-        dividerFill={{ light: theme.colors.background }}
-        clipFill={{ light: '#9A9FD0', dark: '#66578D' }}
-        index={2}
-      >
+      <PageSection index={2}>
         <HowToPlay />
       </PageSection>
     </LotteryPage>

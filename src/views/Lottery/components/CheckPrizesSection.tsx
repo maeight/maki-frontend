@@ -9,18 +9,31 @@ import ConnectWalletButton from 'components/ConnectWalletButton'
 import ClaimPrizesModal from './ClaimPrizesModal'
 import useGetUnclaimedRewards, { FetchStatus } from '../hooks/useGetUnclaimedRewards'
 
-const TicketImage = styled.img`
-  height: 60px;
-  ${({ theme }) => theme.mediaQueries.sm} {
-    height: 100px;
+const WinnerImageLeft = styled.div`
+  position: absolute;
+  left: 20%;
+  width: 150px;
+  height: 150px;
+  & img {
+    position: absolute;
+  }
+  & img:first-child {
+    width: 70px;
+    bottom: 0;
+    left: 0;
+  }
+  & img:last-child {
+    width: 80px;
+    right: 0;
+    top: 0;
   }
 `
 
-const TornTicketImage = styled.img`
-  height: 54px;
-  ${({ theme }) => theme.mediaQueries.sm} {
-    height: 84px;
-  }
+const WinnerImageRight = styled.div`
+  width: 309px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 `
 
 const CheckPrizesSection = () => {
@@ -65,7 +78,10 @@ const CheckPrizesSection = () => {
     if (!account) {
       return (
         <Flex alignItems="center" justifyContent="center">
-          <TicketImage src="/images/lottery/ticket-l.png" alt="lottery ticket" />
+          <WinnerImageLeft>
+            <img src="/images/lottery/lotteryImage2.png" alt="lottery ticket" />
+            <img src="/images/lottery/lotteryImage3.png" alt="lottery ticket" />
+          </WinnerImageLeft>
           <Flex mx={['4px', null, '16px']} flexDirection="column" alignItems="center">
             <Heading textAlign="center" color="#F4EEFF">
               {t('Connect your wallet')}
@@ -75,14 +91,19 @@ const CheckPrizesSection = () => {
             </Heading>
             <ConnectWalletButton width="190px" />
           </Flex>
-          <TicketImage src="/images/lottery/ticket-r.png" alt="lottery ticket" />
+          <WinnerImageRight>
+            <img src="/images/lottery/lotteryImage1.png" alt="lottery ticket" />
+          </WinnerImageRight>
         </Flex>
       )
     }
     if (hasCheckedForRewards && !hasRewardsToClaim) {
       return (
         <Flex alignItems="center" justifyContent="center">
-          <TornTicketImage src="/images/lottery/torn-ticket-l.png" alt="torn lottery ticket" />
+          <WinnerImageLeft>
+            <img src="/images/lottery/lotteryImage2.png" alt="lottery ticket" />
+            <img src="/images/lottery/lotteryImage3.png" alt="lottery ticket" />
+          </WinnerImageLeft>
           <Flex mx={['4px', null, '16px']} flexDirection="column">
             <Heading textAlign="center" color="#F4EEFF">
               {t('No prizes to collect')}...
@@ -91,14 +112,19 @@ const CheckPrizesSection = () => {
               {t('Better luck next time!')}
             </Heading>
           </Flex>
-          <TornTicketImage src="/images/lottery/torn-ticket-r.png" alt="torn lottery ticket" />
+          <WinnerImageRight>
+            <img src="/images/lottery/lotteryImage1.png" alt="lottery ticket" />
+          </WinnerImageRight>
         </Flex>
       )
     }
     if (hasCheckedForRewards && hasRewardsToClaim) {
       return (
         <Flex alignItems="center" justifyContent="center">
-          <TicketImage src="/images/lottery/ticket-l.png" alt="lottery ticket" />
+          <WinnerImageLeft>
+            <img src="/images/lottery/lotteryImage2.png" alt="lottery ticket" />
+            <img src="/images/lottery/lotteryImage3.png" alt="lottery ticket" />
+          </WinnerImageLeft>
           <Flex mx={['4px', null, '16px']} flexDirection="column">
             <Heading textAlign="center" color="#F4EEFF">
               {t('Congratulations!')}
@@ -107,7 +133,9 @@ const CheckPrizesSection = () => {
               {t('Why not play again')}
             </Heading>
           </Flex>
-          <TicketImage src="/images/lottery/ticket-r.png" alt="lottery ticket" />
+          <WinnerImageRight>
+            <img src="/images/lottery/lotteryImage1.png" alt="lottery ticket" />
+          </WinnerImageRight>
         </Flex>
       )
     }
@@ -122,7 +150,10 @@ const CheckPrizesSection = () => {
     }
     return (
       <Flex alignItems="center" justifyContent="center">
-        <TicketImage src="/images/lottery/ticket-l.png" alt="lottery ticket" />
+        <WinnerImageLeft>
+          <img src="/images/lottery/lotteryImage2.png" alt="lottery ticket" />
+          <img src="/images/lottery/lotteryImage3.png" alt="lottery ticket" />
+        </WinnerImageLeft>
         <Flex mx={['4px', null, '16px']} flexDirection="column">
           <Heading textAlign="center" color="#F4EEFF" mb="24px">
             {t('Are you a winner?')}
@@ -136,7 +167,9 @@ const CheckPrizesSection = () => {
             {checkNowText()}
           </Button>
         </Flex>
-        <TicketImage src="/images/lottery/ticket-r.png" alt="lottery ticket" />
+        <WinnerImageRight>
+          <img src="/images/lottery/lotteryImage1.png" alt="lottery ticket" />
+        </WinnerImageRight>
       </Flex>
     )
   }
