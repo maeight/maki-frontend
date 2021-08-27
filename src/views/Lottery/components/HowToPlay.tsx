@@ -6,7 +6,7 @@ import useTheme from 'hooks/useTheme'
 import { BallWithNumber, MatchExampleA, MatchExampleB, PoolAllocationChart } from '../svgs'
 
 const Divider = styled.div`
-  background-color: ${({ theme }) => theme.colors.cardBorder};
+  background-color: #0950B5;
   height: 1px;
   margin: 40px 0;
   width: 100%;
@@ -43,16 +43,19 @@ const StyledStepCard = styled(Box)`
   display: flex;
   align-self: baseline;
   position: relative;
-  background: ${({ theme }) => theme.colors.cardBorder};
-  padding: 1px 1px 3px 1px;
   border-radius: ${({ theme }) => theme.radii.card};
 `
 
 const StepCardInner = styled(Box)`
   width: 100%;
   padding: 24px;
-  background: ${({ theme }) => theme.card.background};
+  background: #D4D9EA;
   border-radius: ${({ theme }) => theme.radii.card};
+`
+
+const LotteryStepCardInner = styled(StepCardInner)`
+  background: white;
+  border: 2px solid #0950B5;
 `
 
 type Step = { title: string; subtitle: string; label: string }
@@ -60,7 +63,7 @@ type Step = { title: string; subtitle: string; label: string }
 const StepCard: React.FC<{ step: Step }> = ({ step }) => {
   return (
     <StyledStepCard width="100%">
-      <StepCardInner height={['200px', '180px', null, '200px']}>
+      <LotteryStepCardInner height={['200px', '180px', null, '200px']}>
         <Text mb="16px" fontSize="12px" bold textAlign="right" textTransform="uppercase">
           {step.label}
         </Text>
@@ -68,7 +71,7 @@ const StepCard: React.FC<{ step: Step }> = ({ step }) => {
           {step.title}
         </Heading>
         <Text color="textSubtle">{step.subtitle}</Text>
-      </StepCardInner>
+      </LotteryStepCardInner>
     </StyledStepCard>
   )
 }
