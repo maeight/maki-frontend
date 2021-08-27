@@ -324,7 +324,7 @@ const HowToPlay: React.FC = () => {
                 {t(
                   '10,000 SOY from the treasury is added to a lottery round every other day. This SOY is of course also included in rollovers! Read more in our guide to ',
                 )}
-                <InlineLink href="https://docs.makiswap.com/jiro-ono/tokenomics/makinomics">
+                <InlineLink href="https://docs.makiswap.com/jiro-ono/tokenomics/makinomics" target='_blank' rel='noreferrer'>
                   {t('SOY Tokenomics')}
                 </InlineLink>
               </Text>
@@ -346,7 +346,7 @@ const HowToPlay: React.FC = () => {
           </Heading>
           <Text>
             {t('Check our in-depth guide on')}{' '}
-            <InlineLink href="https://docs.pancakeswap.finance/products/lottery/lottery-guide">
+            <InlineLink href="#">
               {t('how to play the MakiSwap lottery!')}
             </InlineLink>
           </Text>
