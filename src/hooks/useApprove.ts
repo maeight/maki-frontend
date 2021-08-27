@@ -56,7 +56,7 @@ export const useSousApprove = (lpContract: Contract, sousId, earningTokenSymbol)
         toastError(('Error'), ('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
         setRequestedApproval(false)
       }
-    } catch (e) {
+    } catch (e:any) {
       console.error(e)
       toastError(('Error'), e?.message)
     }
