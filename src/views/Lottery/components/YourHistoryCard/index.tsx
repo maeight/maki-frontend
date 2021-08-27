@@ -28,6 +28,10 @@ import PreviousRoundCardFooter from '../PreviousRoundCard/Footer'
 
 const StyledCard = styled(Card)`
   width: 100%;
+  background: white;
+  z-index: 2;
+  border: 1px solid #0950B5;
+  box-shadow: none;
 
   ${({ theme }) => theme.mediaQueries.md} {
     width: 756px;
