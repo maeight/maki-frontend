@@ -415,6 +415,16 @@ const farms: FarmConfig[] = [
     },
     token: tokens.tusd,
     quoteToken: tokens.maki
+  },
+  {
+    pid: 41,
+    lpSymbol: 'HT-PTD',
+    lpAddresses: {
+      256: '',
+      128: '0x3a51e981490f77bdf28f993bc88ba58bce780c16',
+    },
+    token: tokens.ptd,
+    quoteToken: tokens.wht
   }
 ]
 
