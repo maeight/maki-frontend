@@ -25,6 +25,9 @@ const StyledCardBody = styled(CardBody)`
   display: flex;
   align-items: center;
   justify-content: center;
+  & button {
+    color: ${({ theme }) => theme.isDark ? 'white' : '#357CE1'}
+  }
 `
 const Grid = styled.div`
   display: grid;

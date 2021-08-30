@@ -95,7 +95,7 @@ const Lottery = () => {
         hasCurvedDivider={false}
         index={2}
       >
-        <Flex width="100%" flexDirection="column" alignItems="center" justifyContent="center">
+        <Flex width="100%" flexDirection="column" alignItems="center" justifyContent="center" mt="-24px">
           <Heading mb="24px" scale="xl">
             {t('Finished Rounds')}
           </Heading>
@@ -109,7 +109,7 @@ const Lottery = () => {
         </Flex>
         <FinishedBg src='/images/lottery/lotteryBG2.png' alt='Finished Rounds' />
       </PageSection>
-      <PageSection background='white' index={2}>
+      <PageSection background={isDark ? '#141826' : 'white'} index={2}>
         <HowToPlay />
       </PageSection>
     </LotteryPage>

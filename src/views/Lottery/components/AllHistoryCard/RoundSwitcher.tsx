@@ -8,6 +8,9 @@ const StyledInput = styled(Input)`
   width: 60px;
   height: 100%;
   padding: 4px 16px;
+  border: 1px solid ${({ theme }) => theme.isDark ? 'white' : '#0950B5'};
+  background: ${({ theme }) => theme.isDark ? '#0950B5' : '#E9F2FF'};
+  color: ${({ theme }) => theme.isDark ? 'white' : '#5F6471'};
 `
 
 const StyledIconButton = styled(IconButton)`

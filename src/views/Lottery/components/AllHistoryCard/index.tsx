@@ -12,7 +12,7 @@ import PreviousRoundCardFooter from '../PreviousRoundCard/Footer'
 
 const StyledCard = styled(Card)`
   width: 100%;
-  background: white;
+  background: ${({ theme}) => theme.isDark ? '#0F3468' : 'white'};
   z-index: 2;
   border: 1px solid #0950B5;
   box-shadow: none;
@@ -25,7 +25,7 @@ const StyledCard = styled(Card)`
 const StyledCardHeader = styled(CardHeader)`
   z-index: 2;
   background: none;
-  border-bottom: 1px ${({ theme }) => theme.colors.cardBorder} solid;
+  border-bottom: 1px solid #357CE1;
 `
 
 const AllHistoryCard = () => {

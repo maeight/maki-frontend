@@ -3,6 +3,7 @@ import BigNumber from 'bignumber.js'
 import { Flex, Text } from 'maki-uikit-v2'
 import styled from 'styled-components'
 import { BIG_ZERO } from 'utils/bigNumber'
+import useTheme from 'hooks/useTheme'
 import { useTranslation } from 'contexts/Localization'
 import { LotteryRound } from 'state/types'
 import RewardBracketDetail from './RewardBracketDetail'
@@ -37,6 +38,7 @@ interface RewardsState {
 
 const RewardBrackets: React.FC<RewardMatchesProps> = ({ lotteryData, isHistoricRound }) => {
   const { t } = useTranslation()
+  const { isDark } = useTheme()
   const [state, setState] = useState<RewardsState>({
     isLoading: true,
     cakeToBurn: BIG_ZERO,

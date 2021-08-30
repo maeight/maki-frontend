@@ -49,12 +49,12 @@ const StyledStepCard = styled(Box)`
 const StepCardInner = styled(Box)`
   width: 100%;
   padding: 24px;
-  background: #D4D9EA;
+  background: ${({ theme }) => theme.isDark ? '#373A51' : '#D4D9EA'};
   border-radius: ${({ theme }) => theme.radii.card};
 `
 
 const LotteryStepCardInner = styled(StepCardInner)`
-  background: white;
+  background: ${({ theme }) => theme.isDark ? '#030611' : 'white'};
   border: 2px solid #0950B5;
 `
 
@@ -64,7 +64,7 @@ const StepCard: React.FC<{ step: Step }> = ({ step }) => {
   return (
     <StyledStepCard width="100%">
       <LotteryStepCardInner height={['200px', '180px', null, '200px']}>
-        <Text mb="16px" fontSize="12px" bold textAlign="right" textTransform="uppercase">
+        <Text mb="16px" fontSize="12px" bold textAlign="right" color="#5F6471" textTransform="uppercase">
           {step.label}
         </Text>
         <Heading mb="16px" scale="lg" color="secondary">
@@ -239,12 +239,12 @@ const HowToPlay: React.FC = () => {
         <Heading mb="24px" scale="xl" color="secondary">
           {t('How to Play')}
         </Heading>
-        <Text textAlign="center">
+        <Text textAlign="center" color="#5F6471">
           {t(
             'If the digits on your tickets match the winning numbers in the correct order, you win a portion of the prize pool.',
           )}
         </Text>
-        <Text>{t('Simple!')}</Text>
+        <Text color="#5F6471">{t('Simple!')}</Text>
       </Flex>
       <StepContainer>
         {steps.map((step) => (

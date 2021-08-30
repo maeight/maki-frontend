@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import { Box, Flex, Heading, Skeleton } from 'maki-uikit-v2'
+import { Box, Text, Flex, Heading, Skeleton, Button, LinkExternal } from 'maki-uikit-v2'
 import { LotteryStatus } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'
 import { usePriceMakiHusd } from 'state/hooks'
@@ -61,6 +61,12 @@ const ButtonImages = styled.div`
   }
 `
 
+const BridgeButton = styled(Button)`
+  background: #FC7A2E;
+  box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.1);
+  width: 192px;
+`
+
 const Hero = () => {
   const { t } = useTranslation()
   const {
@@ -80,11 +86,15 @@ const Hero = () => {
           {prizeInBusd.isNaN() ? (
             <Skeleton my="7px" height={60} width={190} />
           ) : (
-            <PrizeTotalBalance fontSize="64px" bold prefix="$" value={prizeTotal} mb="8px" decimals={0} />
+            <PrizeTotalBalance fontSize="48px" bold prefix="$" value={prizeTotal} decimals={0} />
           )}
-          <Heading mb="32px" scale="lg" color="#ffffff">
+          <Heading mb="16px" scale="lg" color="#ffffff">
             {t('in prizes!')}
           </Heading>
+          <Text color='white' fontSize="20px" maxWidth='680px' mx='32px' mb='12px' textAlign='center'>
+            {t('In order to participate in the MakiSwap lottery you need to bridge your SOY tokens from HECO Chain to Polygon Network (MATIC) to begin playing.')}
+          </Text>
+          <a href='https://anyswap.exchange/bridge' target='_blank' rel='noreferrer'><BridgeButton>Bridge</BridgeButton></a>
         </>
       )
     }
@@ -97,7 +107,7 @@ const Hero = () => {
 
   return (
     <Flex flexDirection="column" alignItems="center" justifyContent="center">
-      <Heading mb="8px" scale="md" color="#ffffff">
+      <Heading scale="md" color="#ffffff">
         {t('The MakiSwap Lottery')}
       </Heading>
       {getHeroHeading()}

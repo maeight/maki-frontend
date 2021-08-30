@@ -11,9 +11,12 @@ import Balance from 'components/Balance'
 import RewardBrackets from '../RewardBrackets'
 
 const NextDrawWrapper = styled(Flex)`
-  background: ${({ theme }) => theme.colors.background};
   padding: 24px;
   flex-direction: column;
+
+  & div, & h2 {
+    color: ${({ theme }) => theme.isDark && 'white !important'};
+  }
 
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
