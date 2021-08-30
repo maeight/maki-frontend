@@ -81,7 +81,7 @@ const RewardBrackets: React.FC<RewardMatchesProps> = ({ lotteryData, isHistoricR
 
   return (
     <Wrapper>
-      <Text fontSize="14px" mb="24px">
+      <Text fontSize="14px" mb="24px" color='#5F6471'>
         {t('Match the winning number in the same order to share prizes.')}{' '}
         {!isHistoricRound && t('Current prizes up for grabs:')}
       </Text>

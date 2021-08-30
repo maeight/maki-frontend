@@ -27,7 +27,7 @@ const LotteryPage = styled.div`
 `
 
 const LotteryHero = styled.div`
-  background-image: url(/images/lottery/lotteryBG1.svg);
+  background-image: url(/images/lottery/${({ theme }) => theme.isDark ? 'lotteryHeroDark' : 'lotteryHeroLight'}.svg);
   padding: 48px 0 180px;
   background-size: cover;
   background-position: bottom center;
@@ -67,13 +67,13 @@ const Lottery = () => {
         background={GET_TICKETS_BG}
         index={2}
       >
-        <Flex alignItems="center" justifyContent="center" flexDirection="column" pt="24px">
+        <Flex alignItems="center" justifyContent="center" flexDirection="column" my="-48px">
           {status === LotteryStatus.OPEN && (
             <Heading scale="xl" color="#ffffff" mb="24px" textAlign="center">
               {t('Get your tickets now!')}
             </Heading>
           )}
-          <Flex alignItems="center" justifyContent="center" mb="48px">
+          <Flex alignItems="center" justifyContent="center" mb="24px">
             {nextEventTime && (postCountdownText || preCountdownText) ? (
               <Countdown
                 nextEventTime={nextEventTime}

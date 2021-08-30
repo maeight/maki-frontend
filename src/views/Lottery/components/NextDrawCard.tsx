@@ -14,6 +14,7 @@ import {
   CardFooter,
   ExpandableLabel,
 } from 'maki-uikit-v2'
+import useTheme from 'hooks/useTheme'
 import { useWeb3React } from '@web3-react/core'
 import { LotteryStatus } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'
@@ -49,7 +50,6 @@ const StyledCard = styled(Card)`
 `
 
 const NextDrawWrapper = styled.div`
-  background: ${({ theme }) => theme.colors.background};
   padding: 24px;
 `
 
@@ -63,6 +63,7 @@ const NextDrawCard = () => {
   const { account } = useWeb3React()
   const { currentLotteryId, isTransitioning, currentRound } = useLottery()
   const { endTime, amountCollectedInCake, userTickets, status } = currentRound
+  const { isDark } = useTheme();
 
   const [onPresentViewTicketsModal] = useModal(<ViewTicketsModal roundId={currentLotteryId} roundStatus={status} />)
   const [isExpanded, setIsExpanded] = useState(false)
@@ -145,13 +146,13 @@ const NextDrawCard = () => {
       <CardBody style={{ background: 'white' }}>
         <Grid>
           <Flex justifyContent={['center', null, null, 'flex-start']}>
-            <Heading>{t('Prize Pot')}</Heading>
+            <Heading color='#5F6471'>{t('Prize Pot')}</Heading>
           </Flex>
           <Flex flexDirection="column" mb="18px">
             {getPrizeBalances()}
           </Flex>
           <Box display={['none', null, null, 'flex']}>
-            <Heading>{t('Your tickets')}</Heading>
+            <Heading color='#5F6471'>{t('Your tickets')}</Heading>
           </Box>
           <Flex flexDirection={['column', null, null, 'row']} alignItems={['center', null, null, 'flex-start']}>
             {isLotteryOpen && (
@@ -162,9 +163,10 @@ const NextDrawCard = () => {
               >
                 {account && (
                   <Flex justifyContent={['center', null, null, 'flex-start']}>
-                    <Text display="inline">{t('You have')} </Text>
+                    <Text display="inline" color='#5F6471'>{t('You have')} </Text>
                     {!userTickets.isLoading ? (
                       <Balance
+                        color='#5F6471'
                         value={userTicketCount}
                         decimals={0}
                         unit={` ${t('tickets')}`}
@@ -175,7 +177,7 @@ const NextDrawCard = () => {
                     ) : (
                       <Skeleton mx="4px" height={20} width={40} />
                     )}
-                    <Text display="inline"> {t('this round')}</Text>
+                    <Text color='#5F6471' display="inline"> {t('this round')}</Text>
                   </Flex>
                 )}
                 {!userTickets.isLoading && userTicketCount > 0 && (
