@@ -21,6 +21,7 @@ export default {
   multiCall: {
     256: '', // FIX ** REQUIRED FOR TESTING
     128: '0xdcFb312e99810f5Aa24c9d35018Bef6Eb205A7b1', // UPDATED - ABI UPDATED (June 15th, 2021)
+    137: '0x735F410e2273dB3820DA49C8e83753bCbd39D4E9',
     80001: '0xC594E112F9DD65a96Be36B0De34a4d482e4aAd1F',
   },
 
@@ -83,6 +84,7 @@ export default {
   },
   lottery: {
     256: '',
+    137: '0xF8E5067d0E7b813C0Aab5CE8BA2909CE3F15D7c8',
     80001: '0xFEF167bDb553c54eA2a535d1B6536F74a4193f23',
     128: '',
   },
