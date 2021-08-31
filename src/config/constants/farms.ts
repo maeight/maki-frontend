@@ -418,7 +418,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 41,
-    lpSymbol: 'HT-PTD',
+    lpSymbol: 'PTD-HT',
     lpAddresses: {
       256: '',
       128: '0x3a51e981490f77bdf28f993bc88ba58bce780c16',
