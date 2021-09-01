@@ -1,5 +1,5 @@
 import { ethers } from 'ethers'
-import { getMulticallContract, getMulticallContractMumbai } from 'utils/contractHelpers'
+import { getMulticallContract, getMulticallContractMumbai, getMulticallContractMatic } from 'utils/contractHelpers'
 
 export type MultiCallResponse<T> = T | null
 
@@ -42,6 +42,25 @@ export const multicallv2 = async <T = any>(
 ): Promise<MultiCallResponse<T>> => {
   const { requireSuccess } = options
   const multi = getMulticallContract()
+  const itf = new ethers.utils.Interface(abi)
+
+  const calldata = calls.map((call) => [call.address.toLowerCase(), itf.encodeFunctionData(call.name, call.params)])
+  const returnData = await multi.tryAggregate(requireSuccess, calldata)
+  const res = returnData.map((call, i) => {
+    const [result, data] = call
+    return result ? itf.decodeFunctionResult(calls[i].name, data) : null
+  })
+
+  return res
+}
+
+export const multicallv2Matic = async <T = any>(
+  abi: any[],
+  calls: Call[],
+  options: MulticallOptions = { requireSuccess: true },
+): Promise<MultiCallResponse<T>> => {
+  const { requireSuccess } = options
+  const multi = getMulticallContractMatic()
   const itf = new ethers.utils.Interface(abi)
 
   const calldata = calls.map((call) => [call.address.toLowerCase(), itf.encodeFunctionData(call.name, call.params)])

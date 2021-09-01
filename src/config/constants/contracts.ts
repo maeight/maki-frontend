@@ -80,6 +80,7 @@ export default {
   mockcake: {
     256: '',
     128: '0x5721889472161ee4D8468aE6fed23F0931D1F0C3',
+    137: '0x993163CaD35162fB579D7B64e6695cB076EF5064',
     80001: '0x5721889472161ee4D8468aE6fed23F0931D1F0C3',
   },
   lottery: {

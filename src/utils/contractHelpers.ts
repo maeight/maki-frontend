@@ -1,6 +1,6 @@
 import Web3 from 'web3'
 import { ethers } from 'ethers'
-import { simpleRpcProvider, simpleRpcProviderMumbai } from 'utils/providers'
+import { simpleRpcProvider, simpleRpcProviderMumbai, simpleRpcProviderMatic } from 'utils/providers'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
 
@@ -13,6 +13,7 @@ import {
   getMasterChefAddress,
   getMakiVaultAddress,
   getMulticallAddress,
+  getMulticallAddressMatic,
   getMulticallAddressMumbai,
   getProfileAddress,
   getBunnyFactoryAddress,
@@ -67,6 +68,11 @@ const getContract = (abi: any, address: string, signer?: ethers.Signer | ethers.
   return new ethers.Contract(address, abi, signerOrProvider)
 }
 
+const getContractMatic = (abi: any, address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
+  const signerOrProvider = signer ?? simpleRpcProviderMatic
+  return new ethers.Contract(address, abi, signerOrProvider)
+}
+
 const getContractMumbai = (abi: any, address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
   const signerOrProvider = signer ?? simpleRpcProviderMumbai
   return new ethers.Contract(address, abi, signerOrProvider)
@@ -97,6 +103,10 @@ export const getSousChefContract = (id: number, signer?: ethers.Signer | ethers.
 
 export const getMulticallContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(multiCall, getMulticallAddress(), signer)
+}
+
+export const getMulticallContractMatic = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContractMatic(multiCall, getMulticallAddressMatic(), signer)
 }
 
 export const getMulticallContractMumbai = (signer?: ethers.Signer | ethers.providers.Provider) => {

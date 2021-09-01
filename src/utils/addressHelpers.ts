@@ -22,6 +22,10 @@ export const getMulticallAddress = () => {
   return getAddress(addresses.multiCall)
 }
 
+export const getMulticallAddressMatic = () => {
+  return addresses.multiCall['137']
+}
+
 export const getMulticallAddressMumbai = () => {
   return addresses.multiCall['80001']
 }
@@ -51,10 +55,10 @@ export const getCakeAddress = () => {
   return getAddress(addresses.mockcake)
 }
 export const getLotteryAddress = () => {
-  return addresses.lottery['80001']
+  return addresses.lottery['137']
 }
 export const getMockCakeAddress = () => {
-  return addresses.mockcake['80001']
+  return addresses.mockcake['137']
 }
 export const getLotteryNFTAddress = () => {
   return getAddress(addresses.lotteryNFT)
