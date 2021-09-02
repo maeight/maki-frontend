@@ -41,6 +41,7 @@ import makiVaultAbi from 'config/abi/makiVault.json' // NEEDS TO BE UPDATED W/ M
 import multiCall from 'config/abi/Multicall.json' // NEEDS TO BE UPDATED W/ MULTICALL V2
 
 // Not implemented yet
+import soyMaticAbi from 'config/abi/soyMatic.json'
 import mockCakeAbi from 'config/abi/mockCake.json'
 import lotteryAbi from 'config/abi/lottery.json'
 import profileAbi from 'config/abi/pancakeProfile.json'
@@ -114,7 +115,11 @@ export const getMulticallContractMumbai = (signer?: ethers.Signer | ethers.provi
 }
 
 export const getLotteryContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
-  return getContractMumbai(lotteryAbi, getLotteryAddress(), signer)
+  return getContractMatic(lotteryAbi, getLotteryAddress(), signer)
+}
+
+export const getCakeContractMatic = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContractMatic(soyMaticAbi, getMockCakeAddress(), signer)
 }
 
 export const getMockCakeContract = (signer?: ethers.Signer | ethers.providers.Provider) => {

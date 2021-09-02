@@ -23,7 +23,7 @@ import { usePriceMakiHusd } from 'state/hooks'
 import { useLottery } from 'state/lottery/hooks'
 import { fetchUserTicketsAndLotteries } from 'state/lottery'
 import useTheme from 'hooks/useTheme'
-import { useCakeBalanceMumbai, FetchStatus } from 'hooks/useTokenBalance'
+import { useCakeBalanceMatic, FetchStatus } from 'hooks/useTokenBalance'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
 import { useCake, useLotteryContract } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
@@ -78,7 +78,7 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
   const lotteryContract = useLotteryContract()
   const cakeContract = useCake()
   const { toastSuccess } = useToast()
-  const { balance: userCake, fetchStatus } = useCakeBalanceMumbai()
+  const { balance: userCake, fetchStatus } = useCakeBalanceMatic()
   // balance from useTokenBalance causes rerenders in effects as a new BigNumber is instanciated on each render, hence memoising it using the stringified value below.
   const stringifiedUserCake = userCake.toJSON()
   const memoisedUserCake = useMemo(() => new BigNumber(stringifiedUserCake), [stringifiedUserCake])
