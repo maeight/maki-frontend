@@ -124,35 +124,29 @@ const useApproveConfirmTransaction = ({
     approvalError: state.approvalError,
     confirmReceipt: state.confirmReceipt,
     confirmError: state.confirmError,
-    handleApprove: () => {
-      onApprove()
-        .on('sending', () => {
-          dispatch({ type: 'approve_sending' })
-        })
-        .on('receipt', (payload: Web3Payload) => {
-          dispatch({ type: 'approve_receipt', payload })
-          onApproveSuccess(state)
-        })
-        .on('error', (error: Web3Payload) => {
-          dispatch({ type: 'approve_error', payload: error })
-          console.error('An error occurred approving transaction:', error)
-          toastError(t('An error occurred approving transaction'))
-        })
+    handleApprove: async () => {
+      try {
+        dispatch({ type: 'approve_sending' });
+        const payload: Web3Payload = await onApprove();
+        dispatch({ type: 'approve_receipt', payload })
+        onApproveSuccess(state)
+      } catch (e: any) {
+        dispatch({ type: 'approve_error', payload: e })
+        console.error('An error occurred approving transaction:', e)
+        toastError(t('An error occurred approving transaction'))
+      }
     },
-    handleConfirm: () => {
-      onConfirm()
-        .on('sending', () => {
-          dispatch({ type: 'confirm_sending' })
-        })
-        .on('receipt', (payload: Web3Payload) => {
-          dispatch({ type: 'confirm_receipt', payload })
-          onSuccess(state)
-        })
-        .on('error', (error: Web3Payload) => {
-          dispatch({ type: 'confirm_error', payload: error })
-          console.error('An error occurred confirming transaction:', error)
-          toastError(t('An error occurred confirming transaction'))
-        })
+    handleConfirm: async () => {
+      try {
+        dispatch({ type: 'confirm_sending' })
+        const payload: Web3Payload = await onConfirm();
+        dispatch({ type: 'confirm_receipt', payload })
+        onSuccess(state)
+      } catch (error: any) {
+        dispatch({ type: 'confirm_error', payload: error })
+        console.error('An error occurred confirming transaction:', error)
+        toastError(t('An error occurred confirming transaction'))
+      }
     },
   }
 }
