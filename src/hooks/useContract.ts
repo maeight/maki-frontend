@@ -11,9 +11,9 @@ import masterChef from 'config/abi/masterchef.json'
 import sousChef from 'config/abi/sousChef.json'
 import sousChefHt from 'config/abi/sousChefHt.json'
 import makiVault from 'config/abi/makiVault.json'
-import mockCake from 'config/abi/mockCake.json'
+// import mockCake from 'config/abi/soyMatic.json'
 import profile from 'config/abi/pancakeProfile.json'
-import lottery from 'config/abi/lottery.json'
+// import lottery from 'config/abi/lottery.json'
 import lotteryTicket from 'config/abi/lotteryNft.json'
 import ENS_ABI from 'config/abi/ens-registrar.json'
 import ENS_PUBLIC_RESOLVER_ABI from 'config/abi/ens-public-resolver.json'
@@ -30,12 +30,13 @@ import {
   getMakiAddress,
   getMakiVaultAddress,
   getProfileAddress,
-  getCakeAddress,
-  getLotteryAddress,
+  // getCakeAddress,
+  // getLotteryAddress,
   getLotteryNFTAddress
 } from 'utils/addressHelpers'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
+import { getCakeContractMatic, getLotteryContract } from 'utils/contractHelpers'
 import { useActiveWeb3React } from '.'
 
 // returns null on errors
@@ -105,13 +106,25 @@ export const useProfile = () => {
 }
 
 export const useCake = () => {
-  const abi = (mockCake as unknown) as AbiItem
-  return useContract(getCakeAddress(), abi)
+  const { library, account } = useActiveWeb3React()
+  const signer = account ? library.getSigner(account).connectUnchecked() : library
+  return getCakeContractMatic(signer)
 }
 
+// export const useCake = () => {
+//   const abi = (mockCake as unknown) as AbiItem
+//   return useContract(getCakeAddress(), abi)
+// }
+
+// export const useLotteryContract = () => {
+//   const abi = (lottery as unknown) as AbiItem
+//   return useContract(getLotteryAddress(), abi)
+// }
+
 export const useLotteryContract = () => {
-  const abi = (lottery as unknown) as AbiItem
-  return useContract(getLotteryAddress(), abi)
+  const { library, account } = useActiveWeb3React()
+  const signer = account ? library.getSigner(account).connectUnchecked() : library
+  return getLotteryContract(signer)
 }
 
 export const useLotteryTicket = () => {
