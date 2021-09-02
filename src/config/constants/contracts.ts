@@ -85,7 +85,7 @@ export default {
   },
   lottery: {
     256: '',
-    137: '0x1512aa95aB14fc0435da85dEC6Dc2326994052D7',
+    137: '0x8ef827EcdA1096Da2cD7a584b21B851518f96c05',
     80001: '0xFEF167bDb553c54eA2a535d1B6536F74a4193f23',
     128: '',
   },
