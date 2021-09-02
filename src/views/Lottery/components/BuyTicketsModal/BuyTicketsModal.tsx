@@ -27,6 +27,7 @@ import { useCakeBalanceMatic, FetchStatus } from 'hooks/useTokenBalance'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
 import { useCake, useLotteryContract } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
+import useCallWithGasPrice from 'hooks/useCallWithGasPrice'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import ApproveConfirmButtons, { ButtonArrangement } from '../ApproveConfirmButtons'
 import NumTicketsToBuyButton from './NumTicketsToBuyButton'
@@ -58,6 +59,7 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
   const { account } = useWeb3React()
   const { t } = useTranslation()
   const { theme } = useTheme()
+  const { callWithGasPrice } = useCallWithGasPrice()
   const {
     maxNumberTicketsPerBuyOrClaim,
     currentLotteryId,
@@ -87,7 +89,6 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
   const dispatch = useAppDispatch()
   const hasFetchedBalance = fetchStatus === FetchStatus.SUCCESS
   const userCakeDisplayBalance = getFullDisplayBalance(userCake, 18, 3)
-  console.log('ccc', userCakeDisplayBalance)
 
   const TooltipComponent = () => (
     <>
@@ -247,14 +248,14 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
         }
       },
       onApprove: () => {
-        return cakeContract.approve(lotteryContract.address, ethers.constants.MaxUint256)
+        return callWithGasPrice(cakeContract, 'approve', [lotteryContract.address, ethers.constants.MaxUint256])
       },
       onApproveSuccess: async () => {
         toastSuccess(t('Contract enabled - you can now purchase tickets'))
       },
       onConfirm: () => {
         const ticketsForPurchase = getTicketsForPurchase()
-        return lotteryContract.buyTickets(currentLotteryId, ticketsForPurchase)
+        return callWithGasPrice(lotteryContract, 'buyTickets', [currentLotteryId, ticketsForPurchase])
       },
       onSuccess: async () => {
         onDismiss()
@@ -264,7 +265,7 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
     })
 
   const getErrorMessage = () => {
-    if (userNotEnoughCake) return t('Insufficient CAKE balance')
+    if (userNotEnoughCake) return t('Insufficient SOY balance')
     return t('The maximum number of tickets you can buy in one transaction is %maxTickets%', {
       maxTickets: maxNumberTicketsPerBuyOrClaim.toString(),
     })

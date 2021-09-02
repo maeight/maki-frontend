@@ -17,6 +17,7 @@ import {
   muteAudio,
   unmuteAudio
 } from './actions'
+import { GAS_PRICE_GWEI } from './helpers'
 
 const currentTimestamp = () => new Date().getTime()
 
@@ -51,6 +52,7 @@ export interface UserState {
       [key: string]: SerializedPair
     }
   }
+  gasPrice: string
 
   timestamp: number
 
@@ -70,6 +72,7 @@ export const initialState: UserState = {
   tokens: {},
   tokenLogos: {},
   pairs: {},
+  gasPrice: GAS_PRICE_GWEI.default,
   timestamp: currentTimestamp(),
   audioPlay: true
 }

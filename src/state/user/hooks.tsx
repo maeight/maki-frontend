@@ -24,6 +24,7 @@ import {
   muteAudio,
   unmuteAudio,
 } from './actions'
+import { GAS_PRICE_GWEI } from './helpers'
 
 function serializeToken(token: Token): SerializedToken {
   return {
@@ -58,6 +59,12 @@ export function useIsDarkMode(): boolean {
     shallowEqual
   )
   return userDarkMode === null ? matchesDarkMode : userDarkMode
+}
+
+export function useGasPrice(): string {
+  const chainId = process.env.REACT_APP_CHAIN_ID
+  const userGas = useSelector<AppState, AppState['user']['gasPrice']>((state) => state.user.gasPrice)
+  return chainId === ChainId.MAINNET.toString() ? userGas : GAS_PRICE_GWEI.testnet
 }
 
 export function useDarkModeManager(): [boolean, () => void] {
