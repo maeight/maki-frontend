@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
 import { Link } from 'react-router-dom'
-import { ButtonMenu, ButtonMenuItem } from 'maki-uikit-v2'
+import { ButtonMenu, ButtonMenuItem } from 'maki-toolkit'
 
 const Load = keyframes`{
   0% {
@@ -10,7 +10,7 @@ const Load = keyframes`{
   100% {
     opacity: 100%;
   }
-}`;
+}`
 
 const StyledNav = styled.div`
   margin-bottom: 40px;

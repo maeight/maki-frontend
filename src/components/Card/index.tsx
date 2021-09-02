@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text } from 'maki-uikit-v2'
+import { Text } from 'maki-toolkit'
 
 const Card = styled.div<any>`
   width: 100%;
