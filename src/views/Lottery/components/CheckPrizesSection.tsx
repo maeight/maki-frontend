@@ -9,11 +9,20 @@ import ConnectWalletButton from 'components/ConnectWalletButton'
 import ClaimPrizesModal from './ClaimPrizesModal'
 import useGetUnclaimedRewards, { FetchStatus } from '../hooks/useGetUnclaimedRewards'
 
+const PrizeWrapper = styled(Flex)`
+  flex-direction: column;
+  align-items: center;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    justify-content: center;
+    flex-direction: row;
+  }
+`
+
 const WinnerImageLeft = styled.div`
-  position: absolute;
-  left: 20%;
+  position: relative;
   width: 150px;
   height: 150px;
+  margin-bottom: 32px;
   & img {
     position: absolute;
   }
@@ -27,13 +36,23 @@ const WinnerImageLeft = styled.div`
     right: 0;
     top: 0;
   }
+  ${({ theme }) => theme.mediaQueries.sm} {
+    position: absolute;
+    left: 12%;
+    margin-bottom: 0;
+  }
 `
 
 const WinnerImageRight = styled.div`
   width: 309px;
-  position: absolute;
-  right: 0;
-  bottom: 0;
+  position: relative;
+  margin: 32px 0 -32px;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+  }
 `
 
 const CheckPrizesSection = () => {
@@ -77,7 +96,7 @@ const CheckPrizesSection = () => {
   const getBody = () => {
     if (!account) {
       return (
-        <Flex alignItems="center" justifyContent="center">
+        <PrizeWrapper>
           <WinnerImageLeft>
             <img src="/images/lottery/lotteryImage2.png" alt="lottery ticket" />
             <img src="/images/lottery/lotteryImage3.png" alt="lottery ticket" />
@@ -94,12 +113,12 @@ const CheckPrizesSection = () => {
           <WinnerImageRight>
             <img src="/images/lottery/lotteryImage1.png" alt="lottery ticket" />
           </WinnerImageRight>
-        </Flex>
+        </PrizeWrapper>
       )
     }
     if (hasCheckedForRewards && !hasRewardsToClaim) {
       return (
-        <Flex alignItems="center" justifyContent="center">
+        <PrizeWrapper>
           <WinnerImageLeft>
             <img src="/images/lottery/lotteryImage2.png" alt="lottery ticket" />
             <img src="/images/lottery/lotteryImage3.png" alt="lottery ticket" />
@@ -115,12 +134,12 @@ const CheckPrizesSection = () => {
           <WinnerImageRight>
             <img src="/images/lottery/lotteryImage1.png" alt="lottery ticket" />
           </WinnerImageRight>
-        </Flex>
+        </PrizeWrapper>
       )
     }
     if (hasCheckedForRewards && hasRewardsToClaim) {
       return (
-        <Flex alignItems="center" justifyContent="center">
+        <PrizeWrapper>
           <WinnerImageLeft>
             <img src="/images/lottery/lotteryImage2.png" alt="lottery ticket" />
             <img src="/images/lottery/lotteryImage3.png" alt="lottery ticket" />
@@ -136,7 +155,7 @@ const CheckPrizesSection = () => {
           <WinnerImageRight>
             <img src="/images/lottery/lotteryImage1.png" alt="lottery ticket" />
           </WinnerImageRight>
-        </Flex>
+        </PrizeWrapper>
       )
     }
     const checkNowText = () => {
@@ -149,7 +168,7 @@ const CheckPrizesSection = () => {
       return t('Check Now')
     }
     return (
-      <Flex alignItems="center" justifyContent="center">
+      <PrizeWrapper>
         <WinnerImageLeft>
           <img src="/images/lottery/lotteryImage2.png" alt="lottery ticket" />
           <img src="/images/lottery/lotteryImage3.png" alt="lottery ticket" />
@@ -170,7 +189,7 @@ const CheckPrizesSection = () => {
         <WinnerImageRight>
           <img src="/images/lottery/lotteryImage1.png" alt="lottery ticket" />
         </WinnerImageRight>
-      </Flex>
+      </PrizeWrapper>
     )
   }
 

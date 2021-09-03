@@ -109,7 +109,7 @@ const Lottery = () => {
         </Flex>
         <FinishedBg src='/images/lottery/lotteryBG2.png' alt='Finished Rounds' />
       </PageSection>
-      <PageSection background={isDark ? '#141826' : 'white'} index={2}>
+      <PageSection background={isDark ? '#141826' : 'white'} hasCurvedDivider={false} index={2}>
         <HowToPlay />
       </PageSection>
     </LotteryPage>
