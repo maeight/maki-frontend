@@ -41,6 +41,9 @@ const WinnerImageLeft = styled.div`
     left: 12%;
     margin-bottom: 0;
   }
+  ${({ theme }) => theme.mediaQueries.md} {
+    left: 16%;
+  }
 `
 
 const WinnerImageRight = styled.div`
