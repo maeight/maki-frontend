@@ -2,16 +2,18 @@ import { InjectedConnector } from '@web3-react/injected-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { ConnectorNames } from 'maki-uikit-v2'
 import { ethers } from 'ethers'
-import getNodeUrl from './getRpcUrl'
+import getNodeUrl, { getNodeUrlMatic } from './getRpcUrl'
 
 const POLLING_INTERVAL = 12000
 const rpcUrl = getNodeUrl()
+const rpcUrlMatic = getNodeUrlMatic()
 const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
+const chainIdMatic = 137
 
-const injected = new InjectedConnector({ supportedChainIds: [chainId] })
+const injected = new InjectedConnector({ supportedChainIds: [chainId, chainIdMatic] })
 
 const walletconnect = new WalletConnectConnector({
-  rpc: { [chainId]: rpcUrl },
+  rpc: { [chainId]: rpcUrl, [chainIdMatic]: rpcUrlMatic },
   // bridge: 'https://pancakeswap.bridge.walletconnect.org/',
   qrcode: true,
   pollingInterval: POLLING_INTERVAL,

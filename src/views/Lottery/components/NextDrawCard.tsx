@@ -180,7 +180,7 @@ const NextDrawCard = () => {
                     <Text color='#5F6471' display="inline"> {t('this round')}</Text>
                   </Flex>
                 )}
-                {!userTickets.isLoading && userTicketCount > 0 && (
+                {account && !userTickets.isLoading && userTicketCount > 0 && (
                   <Button
                     onClick={onPresentViewTicketsModal}
                     height="auto"
