@@ -26,6 +26,16 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wht,
   },
   {
+    pid: 42,
+    lpSymbol: 'MAKI-LINK',
+    lpAddresses: {
+      256: '',
+      128: '0xFa1bFDbC83006eC3b5F2691BC02333BB89958C6c',
+    },
+    token: tokens.maki,
+    quoteToken: tokens.link
+  },
+  {
     pid: 40,
     lpSymbol: 'MAKI-PTD',
     lpAddresses: {
