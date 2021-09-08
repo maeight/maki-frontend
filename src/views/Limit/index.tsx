@@ -525,8 +525,8 @@ const Limit = () => {
                           Number(formattedAmounts[Field.INPUT] ?? '0'),
                           Number(formattedAmounts[Field.OUTPUT] ?? '0'),
                           gasPrice,
-                          feeStake,
-                          feeExecutor,
+                          BigNumber.from(feeStake),
+                          BigNumber.from(feeExecutor),
                           readContractAddress,
                           library!
                         )
@@ -598,8 +598,8 @@ const Limit = () => {
                         Number(formattedAmounts[Field.INPUT] ?? '0'),
                         Number(formattedAmounts[Field.OUTPUT] ?? '0'),
                         gasPrice,
-                        feeStake,
-                        feeExecutor,
+                        BigNumber.from(feeStake),
+                        BigNumber.from(feeExecutor),
                         readContractAddress,
                         library!
                       )

@@ -70,8 +70,8 @@ export default function LimitUpdater() {
           dispatch(
             limitUpdateFee({
               status: 'succeeded',
-              feeStake: result[0],
-              feeExecutor: result[1],
+              feeStake: result[0].toString(),
+              feeExecutor: result[1].toString(),
               error: undefined
             })
           )

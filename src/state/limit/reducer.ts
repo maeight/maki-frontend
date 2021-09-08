@@ -20,8 +20,8 @@ import { EOrderState, EOrderStatus, EOrderType } from "./enums";
 export interface LimitState {
   readonly gasPrice: number;
   readonly orders: IOrder[];
-  readonly feeStake: BigNumber; // hex number 
-  readonly feeExecutor: BigNumber; // hex number
+  readonly feeStake: string; // hex number 
+  readonly feeExecutor: string; // hex number
   readonly status: 'idle' | 'loading' | 'succeeded' | 'failed';
   readonly readContractAddress: string;
   readonly account?: string;
@@ -32,8 +32,8 @@ export interface LimitState {
 const initialState: LimitState = {
   gasPrice: 0,
   orders: [],
-  feeStake: BigNumber.from('0x00'),
-  feeExecutor: BigNumber.from('0x00'),
+  feeStake: '0x00',
+  feeExecutor: '0x00',
   status: 'idle',
   readContractAddress: String(process.env.REACT_APP_LIMIT_CONTRACT),
   selectedOrder: undefined,
@@ -130,8 +130,8 @@ export default createReducer<LimitState>(initialState, (builder) =>
       ...state,
       status,
       error,
-      feeStake: !!feeStake && !feeStake.isNegative() ? feeStake : state.feeStake,
-      feeExecutor: !!feeExecutor && !feeExecutor.isNegative() ? feeExecutor : state.feeExecutor
+      feeStake: !!feeStake && !BigNumber.from(feeStake).isNegative() ? feeStake : state.feeStake,
+      feeExecutor: !!feeExecutor && !BigNumber.from(feeExecutor).isNegative() ? feeExecutor : state.feeExecutor
     }
     return _state;
   })

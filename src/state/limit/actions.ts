@@ -33,8 +33,8 @@ interface CancelOrderAction{
 }
 
 interface UpdateFeeAction extends LimitUpdateStatusAction{
-  feeStake: BigNumber;
-  feeExecutor: BigNumber;
+  feeStake: string;
+  feeExecutor: string;
 }
 
 const limitStart =  createAction<LimitStartAction>('limit/start')
