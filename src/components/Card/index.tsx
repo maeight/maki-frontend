@@ -44,6 +44,7 @@ export const DisableCard = styled(Card)`
     return dec && dec.length === 3 ? `rgba(${dec[0]}, ${dec[1]}, ${dec[2]}, 0.1)` : theme.colors.backgroundDisabled
   }};
   color: ${({ theme }) => theme.colors.textDisabled};
+  margin-top: ${({ marginTop }) => marginTop};
   display: flex;
   flex-direction: column;
   align-items: center;

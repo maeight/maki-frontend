@@ -11,6 +11,7 @@ import ConfirmSwapModal from 'components/Swap/ConfirmSwapModal'
 import CurrencyInputPanel from 'components/CurrencyInputPanel'
 import CardNav from 'components/CardNav'
 import { AutoRow, RowBetween } from 'components/Row'
+import ExchangePage from 'components/Layout/ExchangePage'
 import AdvancedSwapDetailsDropdown from 'components/Swap/AdvancedSwapDetailsDropdown'
 import confirmPriceImpactWithoutFee from 'components/Swap/confirmPriceImpactWithoutFee'
 import { ArrowWrapper, BottomGrouping, SwapCallbackError, Wrapper } from 'components/Swap/styleds'
@@ -310,7 +311,7 @@ const Limit = () => {
   // )
 
   return (
-    <>
+    <ExchangePage>
       <TokenWarningModal
         isOpen={urlLoadedTokens.length > 0 && !dismissTokenWarning}
         tokens={urlLoadedTokens}
@@ -651,7 +652,7 @@ const Limit = () => {
       <TableOrders
         modalAction={() => setOpenCancelModal(true)}
       />
-    </>
+    </ExchangePage>
   )
 }
 
