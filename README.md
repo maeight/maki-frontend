@@ -8,7 +8,7 @@ This project contains the main features of the Maki application.
 ## Siasky.net portal URL:
 
 ```
-https://4g05rl2rb2sk4fqbnb438r09tdm2uqolph262mg233f91em7pm7fgig.siasky.net/
+https://4g0b29pun297elt9do7igqmi778i3n6ncg30ppgkqkpnalm93u1m0p0.siasky.net
 ```
 
 If you want to contribute, please refer to the [contributing guidelines](./CONTRIBUTING.md) of this project.
